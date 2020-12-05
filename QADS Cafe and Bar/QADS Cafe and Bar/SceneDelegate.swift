@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 var currentUser = User()
 
@@ -19,6 +20,48 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
+        
+        
+        //Check if logged in and set root view controller
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        //Set the view controller depending on their login status
+        if Auth.auth().currentUser != nil {
+            
+            //User is logged in
+            print("User is logged in")
+            
+            //Go to launch screen
+            let LSstoryboard = UIStoryboard(name: "LaunchScreen", bundle: nil)
+            let LaunchScreenVC = LSstoryboard.instantiateViewController(identifier: "LaunchScreenVC")
+            self.window?.rootViewController = LaunchScreenVC
+            
+            //Load user data
+            currentUser.populateAsCurrentUser() {
+                
+                //Check if document has been created
+                if currentUser.uid == nil {
+                    //Document not yet created - Return to Login View Controller
+                    let NavigationVC = storyboard.instantiateViewController(withIdentifier: "MainNVC") as! MainNavigationViewController
+                    
+                    (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(NavigationVC)
+                } else {
+                    //Sign user in
+                    currentUser.signIn()
+                    
+                    //Go to home page
+                    let TabBarVC = storyboard.instantiateViewController(identifier: "MainTBC")
+                    self.window?.rootViewController = TabBarVC
+                }
+            }
+        } else {
+            //User is not logged in
+            print("User is not logged in")
+            let NavigationVC = storyboard.instantiateViewController(identifier: "MainNVC")
+            window?.rootViewController = NavigationVC
+        }
+        
+        
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

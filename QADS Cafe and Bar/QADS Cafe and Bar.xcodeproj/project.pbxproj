@@ -24,6 +24,9 @@
 		F4D1A914257BD9F30027035C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D1A913257BD9F30027035C /* User.swift */; };
 		F4D1A91E257BE1950027035C /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D1A91D257BE1950027035C /* MainTabBarViewController.swift */; };
 		F4D1A926257BE39A0027035C /* MainNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D1A925257BE39A0027035C /* MainNavigationViewController.swift */; };
+		F4D1A92D257BEB8E0027035C /* CategoriesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D1A92B257BEB8E0027035C /* CategoriesCollectionViewCell.swift */; };
+		F4D1A92E257BEB8E0027035C /* CategoriesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4D1A92C257BEB8E0027035C /* CategoriesCollectionViewCell.xib */; };
+		F4D1A936257BED710027035C /* CafeCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D1A935257BED710027035C /* CafeCollectionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +74,9 @@
 		F4D1A913257BD9F30027035C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F4D1A91D257BE1950027035C /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
 		F4D1A925257BE39A0027035C /* MainNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationViewController.swift; sourceTree = "<group>"; };
+		F4D1A92B257BEB8E0027035C /* CategoriesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCollectionViewCell.swift; sourceTree = "<group>"; };
+		F4D1A92C257BEB8E0027035C /* CategoriesCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoriesCollectionViewCell.xib; sourceTree = "<group>"; };
+		F4D1A935257BED710027035C /* CafeCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CafeCollectionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +155,7 @@
 		F4CF6700257BB7C1004FF87F /* QADS Cafe and Bar */ = {
 			isa = PBXGroup;
 			children = (
+				F4D1A92A257BEB6A0027035C /* Cells */,
 				F4D1A912257BD9C20027035C /* Helpers */,
 				F4D1A8E4257BD09C0027035C /* View Controllers */,
 				F4CF6701257BB7C1004FF87F /* AppDelegate.swift */,
@@ -202,8 +209,18 @@
 			isa = PBXGroup;
 			children = (
 				F4D1A91D257BE1950027035C /* MainTabBarViewController.swift */,
+				F4D1A935257BED710027035C /* CafeCollectionViewController.swift */,
 			);
 			path = "Tab Bar Controllers";
+			sourceTree = "<group>";
+		};
+		F4D1A92A257BEB6A0027035C /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				F4D1A92B257BEB8E0027035C /* CategoriesCollectionViewCell.swift */,
+				F4D1A92C257BEB8E0027035C /* CategoriesCollectionViewCell.xib */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -317,6 +334,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4CF670E257BB7C1004FF87F /* LaunchScreen.storyboard in Resources */,
+				F4D1A92E257BEB8E0027035C /* CategoriesCollectionViewCell.xib in Resources */,
 				F4CF6735257BB8BB004FF87F /* GoogleService-Info.plist in Resources */,
 				F4CF670B257BB7C1004FF87F /* Assets.xcassets in Resources */,
 				F4CF6709257BB7C1004FF87F /* Main.storyboard in Resources */,
@@ -484,7 +502,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4D1A91E257BE1950027035C /* MainTabBarViewController.swift in Sources */,
+				F4D1A92D257BEB8E0027035C /* CategoriesCollectionViewCell.swift in Sources */,
 				F4D1A926257BE39A0027035C /* MainNavigationViewController.swift in Sources */,
+				F4D1A936257BED710027035C /* CafeCollectionViewController.swift in Sources */,
 				F4D1A914257BD9F30027035C /* User.swift in Sources */,
 				F4CF6702257BB7C1004FF87F /* AppDelegate.swift in Sources */,
 				F4CF6704257BB7C1004FF87F /* SceneDelegate.swift in Sources */,
