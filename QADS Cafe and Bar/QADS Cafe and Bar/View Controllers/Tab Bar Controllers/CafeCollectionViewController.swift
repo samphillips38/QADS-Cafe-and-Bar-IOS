@@ -11,6 +11,8 @@ private let reuseIdentifier = "CafeCategoryCell"
 
 class CafeCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
+    var ItemList = itemList()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -28,7 +30,7 @@ class CafeCollectionViewController: UICollectionViewController, UICollectionView
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return constants.CafeCategories.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -37,6 +39,8 @@ class CafeCollectionViewController: UICollectionViewController, UICollectionView
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? CategoriesCollectionViewCell else {
             fatalError("The dequeued cell is not an instance of CategoriesCollectionViewCell")
         }
+        
+        cell.categoryNameLabel.text = constants.CafeCategories[indexPath.row]
     
         return cell
     }
@@ -44,6 +48,21 @@ class CafeCollectionViewController: UICollectionViewController, UICollectionView
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
         //Make the values constants
-        return CGSize(width: collectionView.frame.width * 0.93, height: collectionView.frame.width * 0.4)
+        return CGSize(width: collectionView.frame.width * constants.categoryWidthMultiplier, height: collectionView.frame.width * constants.categoryHeightMultiplier)
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("selected: ", constants.CafeCategories[indexPath.row])
+        
+        //Go to Item VC
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        let ItemVC = storyBoard.instantiateViewController(withIdentifier: "ItemVC") as! ItemsViewController
+        
+        ItemVC.location = "Cafe"
+        ItemVC.category = constants.CafeCategories[indexPath.row]
+        
+        self.navigationController?.pushViewController(ItemVC, animated: true)
+        
     }
 }

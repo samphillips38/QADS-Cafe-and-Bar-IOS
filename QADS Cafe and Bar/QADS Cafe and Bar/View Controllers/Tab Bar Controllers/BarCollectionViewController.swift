@@ -28,7 +28,7 @@ class BarCollectionViewController: UICollectionViewController, UICollectionViewD
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return constants.BarCategories.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -37,6 +37,8 @@ class BarCollectionViewController: UICollectionViewController, UICollectionViewD
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? CategoriesCollectionViewCell else {
             fatalError("The dequeued cell is not an instance of CategoriesCollectionViewCell")
         }
+        
+        cell.categoryNameLabel.text = constants.BarCategories[indexPath.row]
     
         return cell
     }
@@ -44,6 +46,6 @@ class BarCollectionViewController: UICollectionViewController, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
         //Make the values constants
-        return CGSize(width: collectionView.frame.width * 0.93, height: collectionView.frame.width * 0.4)
+        return CGSize(width: collectionView.frame.width * constants.categoryWidthMultiplier, height: collectionView.frame.width * constants.categoryHeightMultiplier)
     }
 }

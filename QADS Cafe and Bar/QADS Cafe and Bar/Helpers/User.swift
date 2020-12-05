@@ -11,8 +11,7 @@ import Firebase
 class User: NSObject {
     var uid: String?
     var crsid: String?
-    
-    
+    var basketItems: [String]?
     
     func populate(data: [String: Any?]) {
         self.uid = data["uid"] as? String
