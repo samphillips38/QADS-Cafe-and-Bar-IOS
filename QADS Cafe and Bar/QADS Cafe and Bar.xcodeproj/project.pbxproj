@@ -29,6 +29,7 @@
 		F4D1A936257BED710027035C /* CafeCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D1A935257BED710027035C /* CafeCollectionViewController.swift */; };
 		F4D1A93B257BF8BE0027035C /* BarCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D1A93A257BF8BE0027035C /* BarCollectionViewController.swift */; };
 		F4D1A940257C02130027035C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D1A93F257C02130027035C /* Constants.swift */; };
+		F4D1A945257C07600027035C /* ItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D1A944257C07600027035C /* ItemsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +82,7 @@
 		F4D1A935257BED710027035C /* CafeCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CafeCollectionViewController.swift; sourceTree = "<group>"; };
 		F4D1A93A257BF8BE0027035C /* BarCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarCollectionViewController.swift; sourceTree = "<group>"; };
 		F4D1A93F257C02130027035C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		F4D1A944257C07600027035C /* ItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,6 +199,7 @@
 				F4D1A91C257BE1640027035C /* Tab Bar Controllers */,
 				F4D1A8EB257BD31A0027035C /* SignInViewController.swift */,
 				F4D1A925257BE39A0027035C /* MainNavigationViewController.swift */,
+				F4D1A944257C07600027035C /* ItemsViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -513,6 +516,7 @@
 				F4D1A926257BE39A0027035C /* MainNavigationViewController.swift in Sources */,
 				F4D1A936257BED710027035C /* CafeCollectionViewController.swift in Sources */,
 				F4D1A940257C02130027035C /* Constants.swift in Sources */,
+				F4D1A945257C07600027035C /* ItemsViewController.swift in Sources */,
 				F4D1A914257BD9F30027035C /* User.swift in Sources */,
 				F4CF6702257BB7C1004FF87F /* AppDelegate.swift in Sources */,
 				F4CF6704257BB7C1004FF87F /* SceneDelegate.swift in Sources */,

@@ -48,4 +48,21 @@ class CafeCollectionViewController: UICollectionViewController, UICollectionView
         //Make the values constants
         return CGSize(width: collectionView.frame.width * 0.93, height: collectionView.frame.width * 0.4)
     }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("selected: ", constants.CafeCategories[indexPath.row])
+        
+        
+        //Go to Item VC
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        let ItemVC = storyBoard.instantiateViewController(withIdentifier: "ItemVC") as! ItemsViewController
+        
+        ItemVC.navigationController?.title = constants.CafeCategories[indexPath.row]
+        
+        self.navigationController?.pushViewController(ItemVC, animated: true)
+        
+        
+        
+    }
 }
