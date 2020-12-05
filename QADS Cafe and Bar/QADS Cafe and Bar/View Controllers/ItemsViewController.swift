@@ -54,6 +54,10 @@ class ItemsViewController: UIViewController, UICollectionViewDelegate, UICollect
             fatalError("The dequeued cell is not an instance of ItemCollectionViewCell")
         }
         
+        var currentItem = ItemList.itemDictionary![ItemList.itemArray![indexPath.row]]
+        
+        cell.itemLabel.text = currentItem?.name
+        
         return cell
     }
     
