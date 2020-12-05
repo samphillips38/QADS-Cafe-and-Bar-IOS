@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,7 +12,7 @@
 		CDD1BC48AE37D62A403539DF /* Pods_QADS_Cafe_and_Bar_QADS_Cafe_and_BarUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57F3777C07EA3810AEDDBA1B /* Pods_QADS_Cafe_and_Bar_QADS_Cafe_and_BarUITests.framework */; };
 		F4CF6702257BB7C1004FF87F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CF6701257BB7C1004FF87F /* AppDelegate.swift */; };
 		F4CF6704257BB7C1004FF87F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CF6703257BB7C1004FF87F /* SceneDelegate.swift */; };
-		F4CF6706257BB7C1004FF87F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CF6705257BB7C1004FF87F /* ViewController.swift */; };
+		F4CF6706257BB7C1004FF87F /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CF6705257BB7C1004FF87F /* SignInViewController.swift */; };
 		F4CF6709257BB7C1004FF87F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4CF6707257BB7C1004FF87F /* Main.storyboard */; };
 		F4CF670B257BB7C1004FF87F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4CF670A257BB7C1004FF87F /* Assets.xcassets */; };
 		F4CF670E257BB7C1004FF87F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4CF670C257BB7C1004FF87F /* LaunchScreen.storyboard */; };
@@ -53,7 +53,7 @@
 		F4CF66FE257BB7C1004FF87F /* QADS Cafe and Bar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "QADS Cafe and Bar.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4CF6701257BB7C1004FF87F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F4CF6703257BB7C1004FF87F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		F4CF6705257BB7C1004FF87F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F4CF6705257BB7C1004FF87F /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		F4CF6708257BB7C1004FF87F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F4CF670A257BB7C1004FF87F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F4CF670D257BB7C1004FF87F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -105,7 +105,6 @@
 				A35502AFC7100019E8B92804 /* Pods-QADS Cafe and BarTests.debug.xcconfig */,
 				40CB71C94E8C2A72ABDE605B /* Pods-QADS Cafe and BarTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -144,9 +143,9 @@
 		F4CF6700257BB7C1004FF87F /* QADS Cafe and Bar */ = {
 			isa = PBXGroup;
 			children = (
+				F4D1A8E4257BD09C0027035C /* View Controllers */,
 				F4CF6701257BB7C1004FF87F /* AppDelegate.swift */,
 				F4CF6703257BB7C1004FF87F /* SceneDelegate.swift */,
-				F4CF6705257BB7C1004FF87F /* ViewController.swift */,
 				F4CF6707257BB7C1004FF87F /* Main.storyboard */,
 				F4CF670A257BB7C1004FF87F /* Assets.xcassets */,
 				F4CF670C257BB7C1004FF87F /* LaunchScreen.storyboard */,
@@ -172,6 +171,14 @@
 				F4CF6725257BB7C2004FF87F /* Info.plist */,
 			);
 			path = "QADS Cafe and BarUITests";
+			sourceTree = "<group>";
+		};
+		F4D1A8E4257BD09C0027035C /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F4CF6705257BB7C1004FF87F /* SignInViewController.swift */,
+			);
+			path = "View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -415,7 +422,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F4CF6706257BB7C1004FF87F /* ViewController.swift in Sources */,
+				F4CF6706257BB7C1004FF87F /* SignInViewController.swift in Sources */,
 				F4CF6702257BB7C1004FF87F /* AppDelegate.swift in Sources */,
 				F4CF6704257BB7C1004FF87F /* SceneDelegate.swift in Sources */,
 			);
