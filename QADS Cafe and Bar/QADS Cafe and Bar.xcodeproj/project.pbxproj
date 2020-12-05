@@ -22,6 +22,8 @@
 		F4CF6737257BB8BB004FF87F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F4CF6734257BB8BB004FF87F /* GoogleService-Info.plist */; };
 		F4D1A8EC257BD31A0027035C /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D1A8EB257BD31A0027035C /* SignInViewController.swift */; };
 		F4D1A914257BD9F30027035C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D1A913257BD9F30027035C /* User.swift */; };
+		F4D1A91E257BE1950027035C /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D1A91D257BE1950027035C /* MainTabBarViewController.swift */; };
+		F4D1A926257BE39A0027035C /* MainNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D1A925257BE39A0027035C /* MainNavigationViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +69,8 @@
 		F4CF6734257BB8BB004FF87F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F4D1A8EB257BD31A0027035C /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		F4D1A913257BD9F30027035C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		F4D1A91D257BE1950027035C /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
+		F4D1A925257BE39A0027035C /* MainNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,7 +183,9 @@
 		F4D1A8E4257BD09C0027035C /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				F4D1A91C257BE1640027035C /* Tab Bar Controllers */,
 				F4D1A8EB257BD31A0027035C /* SignInViewController.swift */,
+				F4D1A925257BE39A0027035C /* MainNavigationViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -190,6 +196,14 @@
 				F4D1A913257BD9F30027035C /* User.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		F4D1A91C257BE1640027035C /* Tab Bar Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F4D1A91D257BE1950027035C /* MainTabBarViewController.swift */,
+			);
+			path = "Tab Bar Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -469,6 +483,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4D1A91E257BE1950027035C /* MainTabBarViewController.swift in Sources */,
+				F4D1A926257BE39A0027035C /* MainNavigationViewController.swift in Sources */,
 				F4D1A914257BD9F30027035C /* User.swift in Sources */,
 				F4CF6702257BB7C1004FF87F /* AppDelegate.swift in Sources */,
 				F4CF6704257BB7C1004FF87F /* SceneDelegate.swift in Sources */,

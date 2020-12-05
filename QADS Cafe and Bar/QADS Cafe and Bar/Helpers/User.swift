@@ -51,5 +51,16 @@ class User: NSObject {
             populateAsCurrentUserCompletion()
         }
     }
+    
+    
+    
+    func signIn() {
+        //Subscribe to topics
+//        for eventID in self.myevents ?? [] {
+//            Messaging.messaging().subscribe(toTopic: eventID, completion: nil)
+//        }
+//        Messaging.messaging().subscribe(toTopic: self.uid!, completion: nil)
+//        Messaging.messaging().subscribe(toTopic: "general", completion: nil)
+    }
 
 }

@@ -12,8 +12,6 @@ import GoogleSignIn
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
@@ -22,6 +20,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self
+        
+        //Set Up window
+        let window = UIWindow(frame: UIScreen.main.bounds)
+        window.makeKeyAndVisible()
+        
+        window.rootViewController = MainNavigationViewController()
         
         return true
     }
@@ -79,38 +83,60 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             
             if (authResult?.additionalUserInfo!.isNewUser)! {
                 
-//                //This is a new user - Go to SignInViewController
-//                let SignInNVC = storyBoard.instantiateViewController(withIdentifier: "SignInNVC") as! UINavigationController
-//
-//                (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(SignInNVC)
+                //This is a new user
                 
-                print("NEW USER")
+                //Create Document
+            
+                //Upload information to Firebase
+                let db = Firestore.firestore()
+                let uid = Auth.auth().currentUser?.uid
+                
+                db.collection("users").document(uid!).setData(["uid": uid!]) { (error) in
+                    if error != nil {
+                        //show error message
+                        print("There was an error: ", error ?? "UNKNOWN")
+                    }
+                }
+                
+                //Change Navigation View controller
+                let MainTabBarVC = storyBoard.instantiateViewController(withIdentifier: "MainTBC") as! UITabBarController
+                
+                (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(MainTabBarVC)
                 
             } else {
                 
                 //Get the user data
                 currentUser.populateAsCurrentUser() {
                     
-//                    //Check for filled in info
-//                    if currentUser.uid == nil {
-//
-//                        //This is a new user - Go to SignInViewController
-//                        let SignInNVC = storyBoard.instantiateViewController(withIdentifier: "SignInNVC") as! UINavigationController
-//
-//                        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(SignInNVC)
-//                    } else {
-//
-//                        //Sign in to subscribe to topics
-//                        currentUser.signIn()
-//
-//                        //This is an existing user - Go to MainTabBarController
-//                        let HomeVC = storyBoard.instantiateViewController(withIdentifier: "MainTBC") as! MainTabBarController
-//
-//                        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(HomeVC)
-//                    }
-                    
-                    
-                    print("EXISTING USER")
+                    //Check for filled in info
+                    if currentUser.uid == nil {
+                        
+                        //Upload information to Firebase
+                        let db = Firestore.firestore()
+                        let uid = Auth.auth().currentUser?.uid
+                        
+                        db.collection("users").document(uid!).setData(["uid": uid!]) { (error) in
+                            if error != nil {
+                                //show error message
+                                print("There was an error: ", error ?? "UNKNOWN")
+                            }
+                        }
+
+                        //This is a new user - Go to SignInViewController
+                        let MainTabBarVC = storyBoard.instantiateViewController(withIdentifier: "MainTBC") as! UITabBarController
+                        
+                        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(MainTabBarVC)
+                        
+                    } else {
+
+                        //Sign in to subscribe to topics (currently does nothing)
+                        currentUser.signIn()
+
+                        //This is an existing user - Go to MainTabBarController
+                        let MainTabBarVC = storyBoard.instantiateViewController(withIdentifier: "MainTBC") as! UITabBarController
+                        
+                        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(MainTabBarVC)
+                    }
                 }
             }
         }
