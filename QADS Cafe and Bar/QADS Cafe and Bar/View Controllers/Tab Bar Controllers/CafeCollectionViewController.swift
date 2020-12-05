@@ -58,7 +58,7 @@ class CafeCollectionViewController: UICollectionViewController, UICollectionView
         
         let ItemVC = storyBoard.instantiateViewController(withIdentifier: "ItemVC") as! ItemsViewController
         
-        ItemVC.navigationController?.title = constants.CafeCategories[indexPath.row]
+//        ItemVC.titleLabel.text = constants.CafeCategories[indexPath.row]
         
         self.navigationController?.pushViewController(ItemVC, animated: true)
         

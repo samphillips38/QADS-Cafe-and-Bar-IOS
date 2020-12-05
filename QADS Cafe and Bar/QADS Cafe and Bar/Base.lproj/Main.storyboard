@@ -133,6 +133,7 @@
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="15p-12-rBP" id="MOb-BH-znP"/>
+                        <outlet property="titleLabel" destination="65c-OF-P8E" id="DVw-aN-HUY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yal-P9-kpG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
