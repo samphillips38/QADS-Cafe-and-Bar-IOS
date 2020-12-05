@@ -28,7 +28,7 @@ class CafeCollectionViewController: UICollectionViewController, UICollectionView
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return constants.CafeCategories.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -37,6 +37,8 @@ class CafeCollectionViewController: UICollectionViewController, UICollectionView
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? CategoriesCollectionViewCell else {
             fatalError("The dequeued cell is not an instance of CategoriesCollectionViewCell")
         }
+        
+        cell.categoryNameLabel.text = constants.CafeCategories[indexPath.row]
     
         return cell
     }
