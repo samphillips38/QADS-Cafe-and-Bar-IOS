@@ -83,6 +83,21 @@
             </objects>
             <point key="canvasLocation" x="4697" y="-210"/>
         </scene>
+        <!--Sams view controller-->
+        <scene sceneID="oJK-0A-4Hi">
+            <objects>
+                <viewController title="Sams view controller" id="mzt-FE-gBp" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bM9-3z-wbX">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="l5V-JJ-ckI"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jdT-eI-Jcn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6366" y="95"/>
+        </scene>
         <!--Queens' Bar-->
         <scene sceneID="x5I-Zr-poe">
             <objects>
