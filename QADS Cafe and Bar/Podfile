@@ -15,6 +15,9 @@ target 'QADS Cafe and Bar' do
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
 
+  pod 'Firebase/Auth'
+  pod 'GoogleSignIn'  
+
   target 'QADS Cafe and BarTests' do
     inherit! :search_paths
     # Pods for testing
