@@ -18,18 +18,27 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tfJ-As-XHA" customClass="GIDSignInButton">
-                                <rect key="frame" x="20" y="602" width="374" height="100"/>
+                                <rect key="frame" x="20" y="542" width="374" height="100"/>
                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="bbp-Iz-Y0u"/>
                                 </constraints>
                             </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Bridge" translatesAutoresizingMaskIntoConstraints="NO" id="Bn7-yc-bTU">
+                                <rect key="frame" x="70" y="164" width="274" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="o7f-vH-1h3"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="tfJ-As-XHA" secondAttribute="bottom" constant="160" id="0Qp-43-8Qe"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="tfJ-As-XHA" secondAttribute="bottom" constant="220" id="0Qp-43-8Qe"/>
+                            <constraint firstItem="Bn7-yc-bTU" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="120" id="Pes-vH-Pc7"/>
                             <constraint firstItem="tfJ-As-XHA" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="UVt-al-kSa"/>
+                            <constraint firstItem="Bn7-yc-bTU" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="70" id="grS-T9-Vv5"/>
+                            <constraint firstItem="Bn7-yc-bTU" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="l3N-8o-OWO"/>
                             <constraint firstItem="tfJ-As-XHA" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="yP3-wg-Bfj"/>
                         </constraints>
                     </view>
@@ -184,6 +193,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Bridge" width="1024" height="1024"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
