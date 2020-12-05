@@ -34,7 +34,7 @@
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemGray4Color"/>
                         <constraints>
                             <constraint firstItem="f7r-4a-g86" firstAttribute="centerY" secondItem="sG0-JG-tDU" secondAttribute="centerY" id="2CR-mE-QNr"/>
                             <constraint firstItem="f7r-4a-g86" firstAttribute="leading" secondItem="sG0-JG-tDU" secondAttribute="leading" constant="20" id="2MN-Ob-OIr"/>
@@ -63,8 +63,8 @@
     </objects>
     <resources>
         <image name="arrowshape.zigzag.forward.fill" catalog="system" width="128" height="93"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        <systemColor name="systemGray4Color">
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

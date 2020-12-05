@@ -16,6 +16,16 @@ class CategoriesCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        layout()
+    }
+    
+    func layout() {
+        
+        //MainView Layout
+        mainView.layer.cornerRadius = 20
+        mainView.clipsToBounds = true
+        
     }
 
 }

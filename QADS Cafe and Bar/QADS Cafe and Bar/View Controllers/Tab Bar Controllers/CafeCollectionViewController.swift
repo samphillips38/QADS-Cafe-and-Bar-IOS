@@ -9,15 +9,15 @@ import UIKit
 
 private let reuseIdentifier = "CategoryCell"
 
-class CafeCollectionViewController: UICollectionViewController {
+class CafeCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Register cell classes
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        //Set up the xib file for the event cells
+        let nib = UINib(nibName: "CategoriesCollectionViewCell",bundle: nil)
+        self.collectionView.register(nib, forCellWithReuseIdentifier: reuseIdentifier)
 
-        // Do any additional setup after loading the view.
     }
 
 
@@ -27,19 +27,23 @@ class CafeCollectionViewController: UICollectionViewController {
         return 1
     }
 
-
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-        return 0
+        return 5
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-    
-        // Configure the cell
+        
+        // Configure the cell...
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? CategoriesCollectionViewCell else {
+            fatalError("The dequeued cell is not an instance of CategoriesCollectionViewCell")
+        }
     
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
-
+        //Make the values constants
+        return CGSize(width: collectionView.frame.width * 0.93, height: collectionView.frame.width * 0.4)
+    }
 }
