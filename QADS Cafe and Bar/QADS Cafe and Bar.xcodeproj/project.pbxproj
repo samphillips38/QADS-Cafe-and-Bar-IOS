@@ -30,6 +30,9 @@
 		F4D1A93B257BF8BE0027035C /* BarCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D1A93A257BF8BE0027035C /* BarCollectionViewController.swift */; };
 		F4D1A940257C02130027035C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D1A93F257C02130027035C /* Constants.swift */; };
 		F4D1A945257C07600027035C /* ItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D1A944257C07600027035C /* ItemsViewController.swift */; };
+		F4D1A94A257C39030027035C /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D1A949257C39030027035C /* Item.swift */; };
+		F4D1A950257C40D40027035C /* ItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D1A94E257C40D40027035C /* ItemCollectionViewCell.swift */; };
+		F4D1A951257C40D40027035C /* ItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4D1A94F257C40D40027035C /* ItemCollectionViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +86,9 @@
 		F4D1A93A257BF8BE0027035C /* BarCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarCollectionViewController.swift; sourceTree = "<group>"; };
 		F4D1A93F257C02130027035C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F4D1A944257C07600027035C /* ItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsViewController.swift; sourceTree = "<group>"; };
+		F4D1A949257C39030027035C /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		F4D1A94E257C40D40027035C /* ItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCollectionViewCell.swift; sourceTree = "<group>"; };
+		F4D1A94F257C40D40027035C /* ItemCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemCollectionViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,6 +215,7 @@
 			children = (
 				F4D1A913257BD9F30027035C /* User.swift */,
 				F4D1A93F257C02130027035C /* Constants.swift */,
+				F4D1A949257C39030027035C /* Item.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -228,6 +235,8 @@
 			children = (
 				F4D1A92B257BEB8E0027035C /* CategoriesCollectionViewCell.swift */,
 				F4D1A92C257BEB8E0027035C /* CategoriesCollectionViewCell.xib */,
+				F4D1A94E257C40D40027035C /* ItemCollectionViewCell.swift */,
+				F4D1A94F257C40D40027035C /* ItemCollectionViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -345,6 +354,7 @@
 				F4CF670E257BB7C1004FF87F /* LaunchScreen.storyboard in Resources */,
 				F4D1A92E257BEB8E0027035C /* CategoriesCollectionViewCell.xib in Resources */,
 				F4CF6735257BB8BB004FF87F /* GoogleService-Info.plist in Resources */,
+				F4D1A951257C40D40027035C /* ItemCollectionViewCell.xib in Resources */,
 				F4CF670B257BB7C1004FF87F /* Assets.xcassets in Resources */,
 				F4CF6709257BB7C1004FF87F /* Main.storyboard in Resources */,
 			);
@@ -514,6 +524,7 @@
 				F4D1A92D257BEB8E0027035C /* CategoriesCollectionViewCell.swift in Sources */,
 				F4D1A93B257BF8BE0027035C /* BarCollectionViewController.swift in Sources */,
 				F4D1A926257BE39A0027035C /* MainNavigationViewController.swift in Sources */,
+				F4D1A94A257C39030027035C /* Item.swift in Sources */,
 				F4D1A936257BED710027035C /* CafeCollectionViewController.swift in Sources */,
 				F4D1A940257C02130027035C /* Constants.swift in Sources */,
 				F4D1A945257C07600027035C /* ItemsViewController.swift in Sources */,
@@ -521,6 +532,7 @@
 				F4CF6702257BB7C1004FF87F /* AppDelegate.swift in Sources */,
 				F4CF6704257BB7C1004FF87F /* SceneDelegate.swift in Sources */,
 				F4D1A8EC257BD31A0027035C /* SignInViewController.swift in Sources */,
+				F4D1A950257C40D40027035C /* ItemCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

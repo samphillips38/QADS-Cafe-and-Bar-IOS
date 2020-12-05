@@ -11,6 +11,8 @@ private let reuseIdentifier = "CafeCategoryCell"
 
 class CafeCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
+    var ItemList = itemList()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -46,23 +48,21 @@ class CafeCollectionViewController: UICollectionViewController, UICollectionView
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
         //Make the values constants
-        return CGSize(width: collectionView.frame.width * 0.93, height: collectionView.frame.width * 0.4)
+        return CGSize(width: collectionView.frame.width * constants.categoryWidthMultiplier, height: collectionView.frame.width * constants.categoryHeightMultiplier)
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("selected: ", constants.CafeCategories[indexPath.row])
-        
         
         //Go to Item VC
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         
         let ItemVC = storyBoard.instantiateViewController(withIdentifier: "ItemVC") as! ItemsViewController
         
-//        ItemVC.titleLabel.text = constants.CafeCategories[indexPath.row]
+        ItemVC.location = "Cafe"
+        ItemVC.category = constants.CafeCategories[indexPath.row]
         
         self.navigationController?.pushViewController(ItemVC, animated: true)
-        
-        
         
     }
 }

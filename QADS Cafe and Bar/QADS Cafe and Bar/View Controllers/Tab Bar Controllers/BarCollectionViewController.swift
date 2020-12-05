@@ -46,6 +46,6 @@ class BarCollectionViewController: UICollectionViewController, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
         //Make the values constants
-        return CGSize(width: collectionView.frame.width * 0.93, height: collectionView.frame.width * 0.4)
+        return CGSize(width: collectionView.frame.width * constants.categoryWidthMultiplier, height: collectionView.frame.width * constants.categoryHeightMultiplier)
     }
 }
