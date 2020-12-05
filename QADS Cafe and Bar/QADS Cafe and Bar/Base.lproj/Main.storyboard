@@ -83,21 +83,6 @@
             </objects>
             <point key="canvasLocation" x="4697" y="-210"/>
         </scene>
-        <!--Sams view controller-->
-        <scene sceneID="oJK-0A-4Hi">
-            <objects>
-                <viewController title="Sams view controller" id="mzt-FE-gBp" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="bM9-3z-wbX">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="l5V-JJ-ckI"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jdT-eI-Jcn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="6366" y="95"/>
-        </scene>
         <!--Queens' Bar-->
         <scene sceneID="x5I-Zr-poe">
             <objects>
@@ -205,40 +190,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qc5-ww-EFf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3700" y="511"/>
-        </scene>
-        <!--RajanViewController-->
-        <scene sceneID="wiz-qY-nym">
-            <objects>
-                <collectionViewController title="RajanViewController" id="r2p-WL-EPF" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="OHL-Vp-Chx">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="g2a-CL-Cuz">
-                            <size key="itemSize" width="128" height="128"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        </collectionViewFlowLayout>
-                        <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="ntU-h4-7Q9">
-                                <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="CJH-VU-JAM">
-                                    <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </collectionViewCellContentView>
-                            </collectionViewCell>
-                        </cells>
-                        <connections>
-                            <outlet property="dataSource" destination="r2p-WL-EPF" id="7lc-ma-ZD6"/>
-                            <outlet property="delegate" destination="r2p-WL-EPF" id="Y7s-zS-PVs"/>
-                        </connections>
-                    </collectionView>
-                </collectionViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="D5v-FN-Qa8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="5555" y="-210"/>
         </scene>
     </scenes>
     <resources>
