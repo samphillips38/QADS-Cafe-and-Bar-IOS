@@ -1,0 +1,6 @@
+framework module Pods_QADS_Cafe_and_BarTests {
+  umbrella header "Pods-QADS Cafe and BarTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
