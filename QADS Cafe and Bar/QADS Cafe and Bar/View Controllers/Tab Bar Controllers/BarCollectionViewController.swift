@@ -1,5 +1,5 @@
 //
-//  CafeCollectionViewController.swift
+//  BarCollectionViewController.swift
 //  QADS Cafe and Bar
 //
 //  Created by Sam Phillips on 05/12/2020.
@@ -7,9 +7,9 @@
 
 import UIKit
 
-private let reuseIdentifier = "CafeCategoryCell"
+private let reuseIdentifier = "BarCategoryCell"
 
-class CafeCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class BarCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
     override func viewDidLoad() {
         super.viewDidLoad()
