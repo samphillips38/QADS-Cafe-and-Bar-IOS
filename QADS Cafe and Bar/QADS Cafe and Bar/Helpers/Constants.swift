@@ -8,10 +8,10 @@
 import UIKit
 
 struct constants {
-    static let CafeCategories = ["Coffee", "Snacks", "Sandwiches", "Drinks", "Other"]
+    static let CafeCategories = ["Hot Drinks", "Cold Drinks", "Snacks", "Sandwiches and Pasties"]
     static let BarCategories = ["Cider", "Beer", "Cocktails", "Snacks", "Other"]
     
     static let categoryWidthMultiplier = CGFloat(0.93)
-    static let categoryHeightMultiplier = CGFloat(0.4)
+    static let categoryHeightMultiplier = CGFloat(0.65)
 }
 

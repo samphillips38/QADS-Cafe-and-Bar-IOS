@@ -12,6 +12,7 @@ class ItemCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var itemLabel: UILabel!
     @IBOutlet weak var stockLabel: UILabel!
+    @IBOutlet weak var categoryImage: UIImageView!
     
     var item = Item()
     
@@ -26,6 +27,12 @@ class ItemCollectionViewCell: UICollectionViewCell {
         //MainView Layout
         mainView.layer.cornerRadius = 20
         mainView.clipsToBounds = true
+        
+        //Add shadow
+        self.layer.shadowOpacity = 0.5
+        self.layer.shadowOffset = CGSize(width: 2, height: 3)
+        self.layer.shadowRadius = 3
+        self.clipsToBounds = false
     }
     
     
@@ -39,6 +46,9 @@ class ItemCollectionViewCell: UICollectionViewCell {
             stockLabel.isHidden = false
             stockLabel.text = "This item is out of stock"
         }
+        
+        categoryImage.image = UIImage(named: item.category!)
+        
     }
     
     
