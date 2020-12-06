@@ -60,7 +60,7 @@
                             <size key="itemSize" width="414" height="128"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="20" maxX="0.0" maxY="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="20" maxX="0.0" maxY="20"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CafeCategoryCell" id="cAB-ub-fao" customClass="CategoriesCollectionViewCell" customModule="QADS_Cafe_and_Bar" customModuleProvider="target">
@@ -204,38 +204,73 @@
                                                     <action selector="stepperTapped:" destination="0cB-uM-czW" eventType="valueChanged" id="VJa-c1-aak"/>
                                                 </connections>
                                             </stepper>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Milk:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EMB-h5-aXO">
-                                                <rect key="frame" x="33" y="331" width="36" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="igc-qN-aY8">
-                                                <rect key="frame" x="87" y="404" width="240" height="128"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="igc-qN-aY8">
+                                                <rect key="frame" x="0.0" y="298" width="414" height="468"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="468" id="l0d-oZ-6Ud"/>
+                                                </constraints>
+                                                <prototypes>
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="OptionTVC" id="mjK-Ra-27k" customClass="OptionsTableViewCell" customModule="QADS_Cafe_and_Bar" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="28" width="414" height="40.5"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mjK-Ra-27k" id="Ant-ZO-QJx">
+                                                            <rect key="frame" x="0.0" y="0.0" width="414" height="40.5"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Option Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9fy-S2-9Ba">
+                                                                    <rect key="frame" x="40" y="10" width="97" height="20.5"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark.square" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Dqu-9e-VO8">
+                                                                    <rect key="frame" x="373.5" y="11" width="20.5" height="18"/>
+                                                                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" secondItem="Dqu-9e-VO8" secondAttribute="height" multiplier="1:1" id="71l-Si-Ap3"/>
+                                                                        <constraint firstAttribute="height" constant="20" id="Bwc-79-ySW"/>
+                                                                    </constraints>
+                                                                </imageView>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstAttribute="trailing" secondItem="Dqu-9e-VO8" secondAttribute="trailing" constant="20" id="IA6-r6-Qyw"/>
+                                                                <constraint firstItem="Dqu-9e-VO8" firstAttribute="centerY" secondItem="Ant-ZO-QJx" secondAttribute="centerY" id="RBh-w9-c3Y"/>
+                                                                <constraint firstItem="9fy-S2-9Ba" firstAttribute="leading" secondItem="Ant-ZO-QJx" secondAttribute="leadingMargin" constant="20" id="g39-Wk-ZfV"/>
+                                                                <constraint firstItem="9fy-S2-9Ba" firstAttribute="centerY" secondItem="Ant-ZO-QJx" secondAttribute="centerY" id="gd1-m7-zdb"/>
+                                                                <constraint firstItem="Dqu-9e-VO8" firstAttribute="top" secondItem="Ant-ZO-QJx" secondAttribute="top" constant="10" id="rgd-ed-yDI"/>
+                                                            </constraints>
+                                                        </tableViewCellContentView>
+                                                        <connections>
+                                                            <outlet property="checkBox" destination="Dqu-9e-VO8" id="ZdQ-yI-h2D"/>
+                                                            <outlet property="optionLabel" destination="9fy-S2-9Ba" id="pOT-hO-sLb"/>
+                                                        </connections>
+                                                    </tableViewCell>
+                                                </prototypes>
                                             </tableView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="yy4-mK-I17" firstAttribute="top" secondItem="Ogc-yt-MDs" secondAttribute="bottom" constant="50" id="04g-Eq-atB"/>
+                                            <constraint firstItem="igc-qN-aY8" firstAttribute="top" secondItem="jCq-fq-VLk" secondAttribute="bottom" constant="20" id="17K-Dp-1RA"/>
                                             <constraint firstItem="yy4-mK-I17" firstAttribute="leading" secondItem="QUJ-je-vR0" secondAttribute="leading" constant="50" id="24A-aS-OyE"/>
                                             <constraint firstItem="yy4-mK-I17" firstAttribute="centerX" secondItem="QUJ-je-vR0" secondAttribute="centerX" id="2uy-Ue-V8i"/>
                                             <constraint firstItem="jCq-fq-VLk" firstAttribute="top" secondItem="GA9-vU-DHA" secondAttribute="bottom" constant="80" id="67s-e8-er8"/>
+                                            <constraint firstAttribute="trailing" secondItem="igc-qN-aY8" secondAttribute="trailing" id="HiY-Sl-T0w"/>
                                             <constraint firstItem="Ogc-yt-MDs" firstAttribute="leading" secondItem="QUJ-je-vR0" secondAttribute="leading" constant="20" id="Isk-mO-81f"/>
                                             <constraint firstItem="pY8-jl-JLV" firstAttribute="centerX" secondItem="QUJ-je-vR0" secondAttribute="centerX" id="OcY-rc-5bQ"/>
                                             <constraint firstAttribute="bottom" secondItem="yy4-mK-I17" secondAttribute="bottom" constant="75" id="Pb7-38-oVN"/>
                                             <constraint firstItem="jCq-fq-VLk" firstAttribute="leading" secondItem="QUJ-je-vR0" secondAttribute="leading" constant="20" id="X4j-fG-yF8"/>
                                             <constraint firstItem="iyu-DG-UbC" firstAttribute="leading" secondItem="89C-vT-adz" secondAttribute="trailing" constant="50" id="XjY-h0-TxD"/>
+                                            <constraint firstItem="igc-qN-aY8" firstAttribute="leading" secondItem="QUJ-je-vR0" secondAttribute="leading" id="bII-ln-BY3"/>
                                             <constraint firstItem="89C-vT-adz" firstAttribute="centerX" secondItem="QUJ-je-vR0" secondAttribute="centerX" id="eOv-Ec-IJu"/>
                                             <constraint firstItem="89C-vT-adz" firstAttribute="centerY" secondItem="Ogc-yt-MDs" secondAttribute="centerY" id="ebY-Qm-rJf"/>
+                                            <constraint firstItem="Ogc-yt-MDs" firstAttribute="top" secondItem="igc-qN-aY8" secondAttribute="bottom" constant="50" id="hE2-Ys-1Ah"/>
                                             <constraint firstItem="GA9-vU-DHA" firstAttribute="centerX" secondItem="QUJ-je-vR0" secondAttribute="centerX" id="neN-bp-dqB"/>
                                             <constraint firstItem="iyu-DG-UbC" firstAttribute="centerY" secondItem="Ogc-yt-MDs" secondAttribute="centerY" id="oda-50-D85"/>
                                             <constraint firstItem="pY8-jl-JLV" firstAttribute="leading" secondItem="QUJ-je-vR0" secondAttribute="leading" constant="20" id="rBx-8L-Xu1"/>
                                             <constraint firstItem="z5p-xn-GeE" firstAttribute="centerX" secondItem="QUJ-je-vR0" secondAttribute="centerX" id="rSH-Co-5Ze"/>
                                             <constraint firstItem="z5p-xn-GeE" firstAttribute="top" secondItem="QUJ-je-vR0" secondAttribute="top" constant="50" id="seB-um-0ZV"/>
-                                            <constraint firstAttribute="height" constant="1000" id="twF-p5-vv5"/>
                                             <constraint firstItem="pY8-jl-JLV" firstAttribute="top" secondItem="z5p-xn-GeE" secondAttribute="bottom" constant="20" id="vES-jm-r7m"/>
                                             <constraint firstItem="GA9-vU-DHA" firstAttribute="top" secondItem="pY8-jl-JLV" secondAttribute="bottom" constant="30" id="xpC-H6-9Vy"/>
                                         </constraints>
@@ -276,9 +311,11 @@
                         <outlet property="descriptionLabel" destination="GA9-vU-DHA" id="rqR-MY-ULf"/>
                         <outlet property="doneButton" destination="u9s-bi-PsB" id="SUV-g9-GDl"/>
                         <outlet property="itemNameLabel" destination="z5p-xn-GeE" id="BxR-wg-XTj"/>
+                        <outlet property="optionTableView" destination="igc-qN-aY8" id="lgH-Oz-LdK"/>
                         <outlet property="outOfStockLabel" destination="pY8-jl-JLV" id="rOG-kX-LKF"/>
                         <outlet property="quantityLabel" destination="89C-vT-adz" id="Cuu-fa-rwp"/>
                         <outlet property="quantityStepper" destination="iyu-DG-UbC" id="oE8-XC-p8u"/>
+                        <outlet property="tableViewHeight" destination="l0d-oZ-6Ud" id="A67-v2-nlK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9sc-05-52c" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -297,7 +334,7 @@
                             <size key="itemSize" width="414" height="128"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="20" maxX="0.0" maxY="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="20" maxX="0.0" maxY="20"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BarCategoryCell" id="w7i-LX-Keg" customClass="CategoriesCollectionViewCell" customModule="QADS_Cafe_and_Bar" customModuleProvider="target">
@@ -361,7 +398,7 @@
         <scene sceneID="X0h-vc-Cgo">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Gof-hZ-0XW" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Cafe" id="7bH-ZJ-NdG"/>
+                    <tabBarItem key="tabBarItem" title="Cafe" image="globe" catalog="system" id="7bH-ZJ-NdG"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Lgi-8n-UIh">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -380,7 +417,7 @@
         <scene sceneID="cMq-LS-keL">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="f6a-Qq-qnp" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Bar" id="Z3L-ZO-d4G"/>
+                    <tabBarItem key="tabBarItem" title="Bar" image="scribble.variable" catalog="system" id="Z3L-ZO-d4G"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="hTe-lP-3WM">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -399,6 +436,9 @@
     <resources>
         <image name="Bridge" width="1024" height="1024"/>
         <image name="bag" catalog="system" width="128" height="128"/>
+        <image name="checkmark.square" catalog="system" width="128" height="114"/>
+        <image name="globe" catalog="system" width="128" height="121"/>
+        <image name="scribble.variable" catalog="system" width="128" height="118"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

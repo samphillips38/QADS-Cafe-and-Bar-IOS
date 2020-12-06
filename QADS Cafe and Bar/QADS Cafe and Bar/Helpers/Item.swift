@@ -46,7 +46,7 @@ class Item: NSObject {
     var desc: String?
     var location: String?
     var name: String?
-    var options: [String: Any]?
+    var options: [String: Bool]?
     var price: Double?
     var stock: Bool?
     
@@ -56,7 +56,7 @@ class Item: NSObject {
         self.desc = doc["description"] as? String
         self.location = doc["location"] as? String
         self.name = doc["name"] as? String
-        self.options = doc["options"] as? [String: Any]
+        self.options = doc["options"] as? [String: Bool]
         self.price = doc["price"] as? Double
         self.stock = doc["stock"] as? Bool
     }

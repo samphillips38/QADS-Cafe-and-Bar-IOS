@@ -39,6 +39,7 @@ class BarCollectionViewController: UICollectionViewController, UICollectionViewD
         }
         
         cell.categoryNameLabel.text = constants.BarCategories[indexPath.row]
+        cell.categoryImage.image = UIImage(named: constants.BarCategories[indexPath.row])
     
         return cell
     }

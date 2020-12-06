@@ -7,7 +7,9 @@
 
 import UIKit
 
-class ItemDetailViewController: UIViewController {
+private let reuseIdentifier = "OptionTVC"
+
+class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var itemNameLabel: UILabel!
     @IBOutlet weak var outOfStockLabel: UILabel!
@@ -17,8 +19,12 @@ class ItemDetailViewController: UIViewController {
     
     
     //Options
+    @IBOutlet weak var optionTableView: UITableView!
     @IBOutlet weak var quantityLabel: UILabel!
     @IBOutlet weak var quantityStepper: UIStepper!
+    
+    @IBOutlet weak var tableViewHeight: NSLayoutConstraint!
+    
     
     var chosenItem = Item()
     
@@ -31,6 +37,10 @@ class ItemDetailViewController: UIViewController {
         //stepper settings
         quantityStepper.maximumValue = 10
         quantityStepper.minimumValue = 1
+        
+        //Table View
+        optionTableView.delegate = self
+        optionTableView.dataSource = self
     }
     
     
@@ -44,6 +54,9 @@ class ItemDetailViewController: UIViewController {
         //Done button
         doneButton.backgroundColor = UIColor(white: 1, alpha: 0.7)
         doneButton.layer.cornerRadius = 5
+        
+        //Table View height
+        tableViewHeight.constant = CGFloat(((chosenItem.options ?? [:]).count * 41))
         
     }
     
@@ -61,6 +74,39 @@ class ItemDetailViewController: UIViewController {
             addToBasketButton.setTitle("This item is out of stock", for: .normal)
         }
     }
+    
+    //MARK:- Table View
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print(chosenItem.options?.count)
+        return chosenItem.options?.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        // Configure the cell...
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as? OptionsTableViewCell else {
+            fatalError("The dequeued cell is not an instance of OptionsTableViewCell")
+        }
+        
+        let dict = chosenItem.options!
+        cell.setWithDictionary(dict: dict, index: indexPath.row)
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let key = Array(chosenItem.options!.keys)[indexPath.row]
+        
+        chosenItem.options![key] = !(chosenItem.options![key] ?? false)
+        
+        tableView.reloadRows(at: [indexPath], with: .fade)
+    }
+    
 
     //MARK:- Button Actions
     
@@ -84,6 +130,6 @@ class ItemDetailViewController: UIViewController {
     
     @IBAction func stepperTapped(_ sender: UIStepper) {
         quantityLabel.text = Int(sender.value).description
-        chosenItem.options?["quantity"] = Int(sender.value).description
+//        chosenItem.options?["quantity"] = Int(sender.value).description
     }
 }
