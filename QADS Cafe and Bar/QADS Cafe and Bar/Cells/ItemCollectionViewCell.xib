@@ -26,11 +26,20 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stock Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="4Ca-tb-nKQ">
+                                <rect key="frame" x="20" y="15" width="406" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" systemColor="systemRedColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                         <constraints>
+                            <constraint firstItem="4Ca-tb-nKQ" firstAttribute="top" secondItem="tvJ-ik-bCb" secondAttribute="top" constant="15" id="3JC-wv-aQN"/>
+                            <constraint firstItem="4Ca-tb-nKQ" firstAttribute="leading" secondItem="tvJ-ik-bCb" secondAttribute="leading" constant="20" id="LS1-Pt-90h"/>
                             <constraint firstItem="mIB-e1-zK9" firstAttribute="centerX" secondItem="tvJ-ik-bCb" secondAttribute="centerX" id="YUh-sw-K9f"/>
                             <constraint firstItem="mIB-e1-zK9" firstAttribute="centerY" secondItem="tvJ-ik-bCb" secondAttribute="centerY" id="jNa-Ss-GKX"/>
+                            <constraint firstAttribute="trailing" secondItem="4Ca-tb-nKQ" secondAttribute="trailing" id="o8i-FS-Bx1"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -46,6 +55,7 @@
             <connections>
                 <outlet property="itemLabel" destination="mIB-e1-zK9" id="qPu-1U-vpL"/>
                 <outlet property="mainView" destination="tvJ-ik-bCb" id="hDl-DD-Kr8"/>
+                <outlet property="stockLabel" destination="4Ca-tb-nKQ" id="afo-eK-NHR"/>
             </connections>
             <point key="canvasLocation" x="307.24637681159425" y="146.98660714285714"/>
         </collectionViewCell>
@@ -53,6 +63,9 @@
     <resources>
         <systemColor name="systemGray5Color">
             <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

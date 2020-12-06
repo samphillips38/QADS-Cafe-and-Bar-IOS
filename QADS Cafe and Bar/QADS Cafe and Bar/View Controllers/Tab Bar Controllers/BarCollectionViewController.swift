@@ -21,7 +21,7 @@ class BarCollectionViewController: UICollectionViewController, UICollectionViewD
     }
 
 
-    // MARK: UICollectionViewDataSource
+    // MARK:- UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -47,5 +47,18 @@ class BarCollectionViewController: UICollectionViewController, UICollectionViewD
 
         //Make the values constants
         return CGSize(width: collectionView.frame.width * constants.categoryWidthMultiplier, height: collectionView.frame.width * constants.categoryHeightMultiplier)
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        //Go to Item VC
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        let ItemVC = storyBoard.instantiateViewController(withIdentifier: "ItemVC") as! ItemsViewController
+        
+        ItemVC.location = "Bar"
+        ItemVC.category = constants.BarCategories[indexPath.row]
+        
+        self.navigationController?.pushViewController(ItemVC, animated: true)
     }
 }
