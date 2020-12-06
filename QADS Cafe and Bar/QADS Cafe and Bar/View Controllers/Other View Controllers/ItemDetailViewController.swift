@@ -22,8 +22,8 @@ class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var optionTableView: UITableView!
     @IBOutlet weak var quantityLabel: UILabel!
     @IBOutlet weak var quantityStepper: UIStepper!
-    
     @IBOutlet weak var tableViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var priceLabel: UILabel!
     
     
     var chosenItem = Item()
@@ -73,6 +73,12 @@ class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableVi
             outOfStockLabel.text = "This item is out of stock."
             addToBasketButton.setTitle("This item is out of stock", for: .normal)
         }
+        
+        setPrice(price: chosenItem.price!)
+    }
+    
+    func setPrice(price: Double) {
+        priceLabel.text = "Price  £" + String(format: "%.2f", price)
     }
     
     //MARK:- Table View
@@ -82,7 +88,6 @@ class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(chosenItem.options?.count)
         return chosenItem.options?.count ?? 0
     }
     
@@ -130,6 +135,8 @@ class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBAction func stepperTapped(_ sender: UIStepper) {
         quantityLabel.text = Int(sender.value).description
+        let price = Double(Int(sender.value).description)! * chosenItem.price!
+        setPrice(price: price)
 //        chosenItem.options?["quantity"] = Int(sender.value).description
     }
 }
