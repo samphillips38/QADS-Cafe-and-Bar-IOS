@@ -29,8 +29,9 @@ class ItemsViewController: UIViewController, UICollectionViewDelegate, UICollect
         let nib = UINib(nibName: "ItemCollectionViewCell",bundle: nil)
         self.collectionView.register(nib, forCellWithReuseIdentifier: reuseIdentifier)
         
-        titleLabel.text = location
+        titleLabel.text = category
         
+        //Load in data
         ItemList.loadItemsFor(location: location, category: category) {
             self.collectionView.reloadData()
         }
@@ -38,7 +39,7 @@ class ItemsViewController: UIViewController, UICollectionViewDelegate, UICollect
     }
     
     
-    // MARK: Collection View
+    // MARK:- Collection View
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -54,9 +55,11 @@ class ItemsViewController: UIViewController, UICollectionViewDelegate, UICollect
             fatalError("The dequeued cell is not an instance of ItemCollectionViewCell")
         }
         
-        var currentItem = ItemList.itemDictionary![ItemList.itemArray![indexPath.row]]
+        var currentItem = ItemList.itemDictionary![ItemList.itemArray![indexPath.row]]!
         
-        cell.itemLabel.text = currentItem?.name
+        cell.loadDataFromObject(item: currentItem) {
+            //Do something on completion
+        }
         
         return cell
     }
@@ -68,4 +71,21 @@ class ItemsViewController: UIViewController, UICollectionViewDelegate, UICollect
         return CGSize(width: collectionView.frame.width * constants.categoryWidthMultiplier, height: collectionView.frame.width * constants.categoryHeightMultiplier)
     }
     
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        //Go to Item VC
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        let ItemDetailVC = storyBoard.instantiateViewController(withIdentifier: "ItemDetailVC") as! ItemDetailViewController
+        
+        var currentItem = ItemList.itemDictionary![ItemList.itemArray![indexPath.row]]
+        ItemDetailVC.chosenItem = currentItem!
+        
+        self.present(ItemDetailVC, animated: true) {
+            //Do something on completion
+        }
+    }
+    
+
 }

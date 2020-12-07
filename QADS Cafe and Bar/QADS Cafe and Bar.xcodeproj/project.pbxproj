@@ -33,6 +33,8 @@
 		F4D1A94A257C39030027035C /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D1A949257C39030027035C /* Item.swift */; };
 		F4D1A950257C40D40027035C /* ItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D1A94E257C40D40027035C /* ItemCollectionViewCell.swift */; };
 		F4D1A951257C40D40027035C /* ItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4D1A94F257C40D40027035C /* ItemCollectionViewCell.xib */; };
+		F4D1A957257D0D390027035C /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D1A956257D0D390027035C /* ItemDetailViewController.swift */; };
+		F4D1A960257D41E10027035C /* OptionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D1A95E257D41E10027035C /* OptionsTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +91,8 @@
 		F4D1A949257C39030027035C /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		F4D1A94E257C40D40027035C /* ItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		F4D1A94F257C40D40027035C /* ItemCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemCollectionViewCell.xib; sourceTree = "<group>"; };
+		F4D1A956257D0D390027035C /* ItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
+		F4D1A95E257D41E10027035C /* OptionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,9 +207,7 @@
 			isa = PBXGroup;
 			children = (
 				F4D1A91C257BE1640027035C /* Tab Bar Controllers */,
-				F4D1A8EB257BD31A0027035C /* SignInViewController.swift */,
-				F4D1A925257BE39A0027035C /* MainNavigationViewController.swift */,
-				F4D1A944257C07600027035C /* ItemsViewController.swift */,
+				F4D1A955257D0C770027035C /* Other View Controllers */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -237,8 +239,20 @@
 				F4D1A92C257BEB8E0027035C /* CategoriesCollectionViewCell.xib */,
 				F4D1A94E257C40D40027035C /* ItemCollectionViewCell.swift */,
 				F4D1A94F257C40D40027035C /* ItemCollectionViewCell.xib */,
+				F4D1A95E257D41E10027035C /* OptionsTableViewCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		F4D1A955257D0C770027035C /* Other View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F4D1A8EB257BD31A0027035C /* SignInViewController.swift */,
+				F4D1A925257BE39A0027035C /* MainNavigationViewController.swift */,
+				F4D1A944257C07600027035C /* ItemsViewController.swift */,
+				F4D1A956257D0D390027035C /* ItemDetailViewController.swift */,
+			);
+			path = "Other View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -525,9 +539,11 @@
 				F4D1A93B257BF8BE0027035C /* BarCollectionViewController.swift in Sources */,
 				F4D1A926257BE39A0027035C /* MainNavigationViewController.swift in Sources */,
 				F4D1A94A257C39030027035C /* Item.swift in Sources */,
+				F4D1A960257D41E10027035C /* OptionsTableViewCell.swift in Sources */,
 				F4D1A936257BED710027035C /* CafeCollectionViewController.swift in Sources */,
 				F4D1A940257C02130027035C /* Constants.swift in Sources */,
 				F4D1A945257C07600027035C /* ItemsViewController.swift in Sources */,
+				F4D1A957257D0D390027035C /* ItemDetailViewController.swift in Sources */,
 				F4D1A914257BD9F30027035C /* User.swift in Sources */,
 				F4CF6702257BB7C1004FF87F /* AppDelegate.swift in Sources */,
 				F4CF6704257BB7C1004FF87F /* SceneDelegate.swift in Sources */,

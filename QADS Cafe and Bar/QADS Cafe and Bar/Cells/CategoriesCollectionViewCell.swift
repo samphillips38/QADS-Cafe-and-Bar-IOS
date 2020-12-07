@@ -11,7 +11,7 @@ class CategoriesCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var categoryNameLabel: UILabel!
-    @IBOutlet weak var categoryIcon: UIImageView!
+    @IBOutlet weak var categoryImage: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,6 +25,12 @@ class CategoriesCollectionViewCell: UICollectionViewCell {
         //MainView Layout
         mainView.layer.cornerRadius = 20
         mainView.clipsToBounds = true
+        
+        //Add shadow
+        self.layer.shadowOpacity = 0.5
+        self.layer.shadowOffset = CGSize(width: 2, height: 3)
+        self.layer.shadowRadius = 3
+        self.clipsToBounds = false
         
     }
 

@@ -41,6 +41,7 @@ class CafeCollectionViewController: UICollectionViewController, UICollectionView
         }
         
         cell.categoryNameLabel.text = constants.CafeCategories[indexPath.row]
+        cell.categoryImage.image = UIImage(named: constants.CafeCategories[indexPath.row])
     
         return cell
     }
