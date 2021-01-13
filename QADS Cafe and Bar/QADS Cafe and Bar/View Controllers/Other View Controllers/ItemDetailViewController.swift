@@ -20,6 +20,9 @@ class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     
     //Options
     @IBOutlet weak var optionTableView: UITableView!
+    
+    
+    
     @IBOutlet weak var quantityLabel: UILabel!
     @IBOutlet weak var quantityStepper: UIStepper!
     @IBOutlet weak var tableViewHeight: NSLayoutConstraint!
@@ -27,9 +30,15 @@ class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     
     
     var chosenItem = Item()
+//    var tempOrder = order()
+    var currentOrderItem = orderItem()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //begin order
+//        tempOrder.startOrder(item: chosenItem)
+        currentOrderItem.createOrderItem(item: chosenItem)
         
         fillInData()
         layout()
@@ -57,11 +66,12 @@ class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         
         //Table View height
         tableViewHeight.constant = CGFloat(((chosenItem.options ?? [:]).count * 41))
-        
     }
     
     
     func fillInData() {
+        
+        //All data that is not changed by the order preferences is loaded from the Item
         itemNameLabel.text = chosenItem.name
         descriptionLabel.text = chosenItem.desc
         
@@ -74,20 +84,23 @@ class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableVi
             addToBasketButton.setTitle("This item is out of stock", for: .normal)
         }
         
-        setPrice(price: chosenItem.price!)
+        //Load price from the order as this could be changed by preferences
+//        setPrice(price: tempOrder.items[0]["price"] as! Double)
+        setPrice(price: currentOrderItem.price)
     }
     
     func setPrice(price: Double) {
         priceLabel.text = "Price  £" + String(format: "%.2f", price)
     }
     
-    //MARK:- Table View
+    //MARK:- Options Table View
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        //Set by Item as the number of options is not varied by preferences
         return chosenItem.options?.count ?? 0
     }
     
@@ -98,18 +111,21 @@ class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableVi
             fatalError("The dequeued cell is not an instance of OptionsTableViewCell")
         }
         
-        let dict = chosenItem.options!
-        cell.setWithDictionary(dict: dict, index: indexPath.row)
+//        let options = tempOrder.items[0]["options"] as! [String : [String : Any]]
+        let options = currentOrderItem.options
+        cell.setWithDictionary(options: options, index: indexPath.row)
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let key = Array(chosenItem.options!.keys)[indexPath.row]
+//        let key = Array(chosenItem.options!.keys)[indexPath.row]
+//
+//        chosenItem.options![key] = !(chosenItem.options![key] ?? false)
+//
+//        tableView.reloadRows(at: [indexPath], with: .fade)
         
-        chosenItem.options![key] = !(chosenItem.options![key] ?? false)
         
-        tableView.reloadRows(at: [indexPath], with: .fade)
     }
     
 
@@ -117,12 +133,8 @@ class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBAction func addToBasketTapped(_ sender: Any) {
         
-        if chosenItem.stock! {
-            currentUser.basketItems?.append(chosenItem)
-            
-            self.dismiss(animated: true) {
-                //do something on completion
-            }
+        dismiss(animated: true) {
+            //Do somehting
         }
     }
     
@@ -134,9 +146,14 @@ class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     @IBAction func stepperTapped(_ sender: UIStepper) {
-        quantityLabel.text = Int(sender.value).description
-        let price = Double(Int(sender.value).description)! * chosenItem.price!
+        
+        //Get new quantity and item price (including extras)
+        let newQuantity = Int(sender.value).description
+        let itemPrice = currentOrderItem.price
+        
+        //Update quantity and price labels
+        quantityLabel.text = newQuantity
+        let price = Double(newQuantity)! * itemPrice
         setPrice(price: price)
-//        chosenItem.options?["quantity"] = Int(sender.value).description
     }
 }

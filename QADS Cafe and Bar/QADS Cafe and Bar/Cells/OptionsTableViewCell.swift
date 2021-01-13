@@ -12,6 +12,12 @@ class OptionsTableViewCell: UITableViewCell {
     @IBOutlet weak var optionLabel: UILabel!
     @IBOutlet weak var checkBox: UIImageView!
     
+    @IBOutlet weak var stepperStackView: UIStackView!
+    @IBOutlet weak var quantityStepper: UIStepper!
+    @IBOutlet weak var quantityLabel: UILabel!
+    
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -31,15 +37,41 @@ class OptionsTableViewCell: UITableViewCell {
         
     }
     
-    func setWithDictionary(dict: [String: Bool], index: Int) {
+    func setWithDictionary(options: [orderItem.Option], index: Int) {
         
-        self.optionLabel.text = Array(dict.keys)[index]
-        
-        if dict[(Array(dict.keys))[index]] ?? false {
-            checkBox.isHidden = false
-        } else {
+        let option = options[index]
+        self.optionLabel.text = option.name
+
+        //Show check box or stepper
+        if option.canHaveMultiple {
+            stepperStackView.isHidden = false
             checkBox.isHidden = true
+        } else {
+            stepperStackView.isHidden = true
+            checkBox.isHidden = false
         }
+        
+        
+        
+        
     }
     
+    @IBAction func stepperTapped(_ sender: UIStepper) {
+        
+        //Get new quantity of extra
+        let newQuantity = Int(sender.value).description
+        
+        self.quantityLabel.text = newQuantity
+        
+        //Update the order
+        
+//        guard let itemVC = self.superview?.superview?.superview?.superview as? ItemDetailViewController else {
+//            fatalError()
+//        }
+//
+//        print(itemVC.tempOrder.items[0])
+    
+        print(newQuantity)
+        
+    }
 }
