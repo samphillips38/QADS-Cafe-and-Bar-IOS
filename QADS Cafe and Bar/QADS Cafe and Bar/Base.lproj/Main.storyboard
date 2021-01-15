@@ -424,12 +424,20 @@
                                                         <action selector="deleteButton:" destination="rUt-0X-n3r" eventType="touchUpInside" id="cQy-sR-EaW"/>
                                                     </connections>
                                                 </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="x1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OlN-xO-tGc">
+                                                    <rect key="frame" x="140" y="13" width="14.5" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="evT-wJ-IAv" firstAttribute="leading" secondItem="6fZ-1p-dqn" secondAttribute="leadingMargin" constant="20" id="129-di-t7Y"/>
                                                 <constraint firstItem="Iov-gL-ydN" firstAttribute="centerY" secondItem="6fZ-1p-dqn" secondAttribute="centerY" id="24A-uO-Jmi"/>
                                                 <constraint firstItem="rRT-5V-hx6" firstAttribute="centerY" secondItem="6fZ-1p-dqn" secondAttribute="centerY" id="9La-Jb-b5S"/>
+                                                <constraint firstItem="OlN-xO-tGc" firstAttribute="leading" secondItem="evT-wJ-IAv" secondAttribute="trailing" constant="20" id="NZq-T7-gso"/>
                                                 <constraint firstItem="Iov-gL-ydN" firstAttribute="leading" secondItem="rRT-5V-hx6" secondAttribute="trailing" constant="30" id="Uzw-4Q-RvN"/>
+                                                <constraint firstItem="OlN-xO-tGc" firstAttribute="centerY" secondItem="6fZ-1p-dqn" secondAttribute="centerY" id="YIR-8f-AD9"/>
                                                 <constraint firstAttribute="trailing" secondItem="Iov-gL-ydN" secondAttribute="trailing" constant="20" id="nnU-WW-MMe"/>
                                                 <constraint firstItem="evT-wJ-IAv" firstAttribute="centerY" secondItem="6fZ-1p-dqn" secondAttribute="centerY" id="ulv-XN-73i"/>
                                             </constraints>
@@ -437,6 +445,7 @@
                                         <connections>
                                             <outlet property="itemNameLabel" destination="evT-wJ-IAv" id="BFb-EB-T0U"/>
                                             <outlet property="itemPriceLabel" destination="rRT-5V-hx6" id="zUj-Pi-ccm"/>
+                                            <outlet property="quantityLabel" destination="OlN-xO-tGc" id="j1r-B8-8x8"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

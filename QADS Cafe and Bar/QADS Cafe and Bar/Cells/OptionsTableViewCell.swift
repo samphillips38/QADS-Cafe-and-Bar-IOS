@@ -41,7 +41,7 @@ class OptionsTableViewCell: UITableViewCell {
         //Get option and layout cell
         let option = options[index]
         self.optionLabel.text = option.name
-        self.extraPriceLabel.text = "+ £" + String(option.extraPrice)
+        self.extraPriceLabel.text = "+ £" + String(format: "%.2f", option.extraPrice)
 
         //Show check box or stepper
         if option.canHaveMultiple {

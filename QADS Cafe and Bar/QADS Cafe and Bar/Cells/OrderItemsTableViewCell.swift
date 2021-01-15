@@ -16,6 +16,7 @@ class OrderItemsTableViewCell: UITableViewCell {
 
     @IBOutlet weak var itemNameLabel: UILabel!
     @IBOutlet weak var itemPriceLabel: UILabel!
+    @IBOutlet weak var quantityLabel: UILabel!
     
     var cellDelegate: orderItemsDelegate?
     var index: IndexPath?
@@ -34,8 +35,8 @@ class OrderItemsTableViewCell: UITableViewCell {
     func fillInData(item: orderItem) {
         
         itemNameLabel.text = item.itemName
-        itemPriceLabel.text = String(item.price)
-        
+        itemPriceLabel.text = "£" + String(format: "%.2f", item.price)
+        quantityLabel.text = "x" + String(item.quantity)
     }
 
     //MARK: -Button Actions
