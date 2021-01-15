@@ -149,7 +149,7 @@ class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBAction func addToBasketTapped(_ sender: Any) {
         
-        currentUser.currentOrder.items.append(currentOrderItem)
+        currentUser.currentOrder.addItem(item: currentOrderItem)
         dismiss(animated: true) {
             //Do somehting
         }

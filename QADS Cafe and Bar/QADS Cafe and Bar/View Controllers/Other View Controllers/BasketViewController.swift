@@ -23,6 +23,12 @@ class BasketViewController: UIViewController, UITableViewDelegate, UITableViewDa
         //Set up table view
         tableView.delegate = self
         tableView.dataSource = self
+        
+        setPrice()
+    }
+    
+    func setPrice() {
+        totalLabel.text = "£" + String(format: "%.2f", currentUser.currentOrder.price)
     }
     
     
@@ -60,7 +66,22 @@ class BasketViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func deleteItemTapped(index: Int) {
         
-        //do something to delete the item
+        //Show warning message about deleting the item
+        let message = "Are you sure you want to delete this item?"
+        
+        let alert = UIAlertController(title: "Confirm", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Confirm", style: .default, handler: { action in
+            
+            //delete item
+            currentUser.currentOrder.removeItemAt(index: index)
+            self.setPrice()
+            self.tableView.reloadData()
+            
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { action in
+            //Do nothing
+        }))
+        self.present(alert, animated: true, completion: nil)
         
     }
     

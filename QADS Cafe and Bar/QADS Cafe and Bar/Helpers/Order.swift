@@ -15,8 +15,18 @@ class order: NSObject {
     var items: [orderItem] = []
     var location: String?
     var orderDate: Date?
-    var price: Double? = 0.0
+    var price: Double = 0.0
     var usrCRSID: String?
+    
+    func addItem(item: orderItem) {
+        price = price + item.price
+        items.append(item)
+    }
+    
+    func removeItemAt(index: Int) {
+        price = price - items[index].price
+        items.remove(at: index)
+    }
     
 }
 
