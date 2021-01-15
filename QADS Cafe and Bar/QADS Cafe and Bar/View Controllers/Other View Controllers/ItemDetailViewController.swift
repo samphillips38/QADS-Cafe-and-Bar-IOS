@@ -9,7 +9,7 @@ import UIKit
 
 private let reuseIdentifier = "OptionTVC"
 
-class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, cellDelegate {
     
     @IBOutlet weak var itemNameLabel: UILabel!
     @IBOutlet weak var outOfStockLabel: UILabel!
@@ -21,8 +21,6 @@ class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     //Options
     @IBOutlet weak var optionTableView: UITableView!
     
-    
-    
     @IBOutlet weak var quantityLabel: UILabel!
     @IBOutlet weak var quantityStepper: UIStepper!
     @IBOutlet weak var tableViewHeight: NSLayoutConstraint!
@@ -30,14 +28,12 @@ class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     
     
     var chosenItem = Item()
-//    var tempOrder = order()
     var currentOrderItem = orderItem()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //begin order
-//        tempOrder.startOrder(item: chosenItem)
         currentOrderItem.createOrderItem(item: chosenItem)
         
         fillInData()
@@ -84,8 +80,7 @@ class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableVi
             addToBasketButton.setTitle("This item is out of stock", for: .normal)
         }
         
-        //Load price from the order as this could be changed by preferences
-//        setPrice(price: tempOrder.items[0]["price"] as! Double)
+        //Load price from the order item as this could be changed by preferences
         setPrice(price: currentOrderItem.price)
     }
     
@@ -111,20 +106,36 @@ class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableVi
             fatalError("The dequeued cell is not an instance of OptionsTableViewCell")
         }
         
-//        let options = tempOrder.items[0]["options"] as! [String : [String : Any]]
+        //Input cell data
         let options = currentOrderItem.options
-        cell.setWithDictionary(options: options, index: indexPath.row)
+        cell.setOptions(options: options, index: indexPath.row)
+        
+        //Set the delegate and index path of cell
+        cell.cellDelegate = self
+        cell.index = indexPath
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let key = Array(chosenItem.options!.keys)[indexPath.row]
-//
-//        chosenItem.options![key] = !(chosenItem.options![key] ?? false)
-//
-//        tableView.reloadRows(at: [indexPath], with: .fade)
         
+        if currentOrderItem.options[indexPath.row].canHaveMultiple {
+            //Dont do anything (this will be controlled by stepper
+            tableView.reloadRows(at: [indexPath], with: .none)
+        } else {
+            
+            //Toggle quantity for single value options
+            let quantity = currentOrderItem.options[indexPath.row].quantity
+            currentOrderItem.options[indexPath.row].quantity = (quantity + 1) % 2
+            tableView.reloadRows(at: [indexPath], with: .fade)
+        }
+        
+    }
+    
+    func onStepperClick(index: Int, sender: UIStepper) {
+        
+        //update the quantity based on stepper value
+        currentOrderItem.options[index].quantity = Int(sender.value)
         
     }
     
@@ -147,13 +158,16 @@ class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBAction func stepperTapped(_ sender: UIStepper) {
         
-        //Get new quantity and item price (including extras)
-        let newQuantity = Int(sender.value).description
-        let itemPrice = currentOrderItem.price
         
-        //Update quantity and price labels
-        quantityLabel.text = newQuantity
-        let price = Double(newQuantity)! * itemPrice
-        setPrice(price: price)
+        
+        //Get new quantity and item price (including extras)
+        let newQuantity = Int(sender.value)
+        
+        currentOrderItem.setQuantity(quantity: newQuantity)
+//        currentUser.currentOrderItem!.setQuantity(quantity: newQuantity)
+        
+        quantityLabel.text = String(newQuantity)
+        setPrice(price: currentOrderItem.price)
+        
     }
 }

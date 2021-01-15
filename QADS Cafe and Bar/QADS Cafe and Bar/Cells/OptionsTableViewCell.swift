@@ -7,6 +7,11 @@
 
 import UIKit
 
+//Protocol for cell Delegate (item detail view)
+protocol cellDelegate{
+    func onStepperClick(index: Int, sender: UIStepper)
+}
+
 class OptionsTableViewCell: UITableViewCell {
     
     @IBOutlet weak var optionLabel: UILabel!
@@ -16,29 +21,22 @@ class OptionsTableViewCell: UITableViewCell {
     @IBOutlet weak var quantityStepper: UIStepper!
     @IBOutlet weak var quantityLabel: UILabel!
     
-    
+    //Set up delegate and index
+    var cellDelegate: cellDelegate?
+    var index: IndexPath?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        checkBox.isHidden = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-        
-//        if selected {
-//            checkBox.isHidden = false
-//        } else {
-//            checkBox.isHidden = true
-//        }
-        
     }
     
-    func setWithDictionary(options: [orderItem.Option], index: Int) {
+    func setOptions(options: [orderItem.Option], index: Int) {
         
+        //Get option and layout cell
         let option = options[index]
         self.optionLabel.text = option.name
 
@@ -51,27 +49,16 @@ class OptionsTableViewCell: UITableViewCell {
             checkBox.isHidden = false
         }
         
-        
-        
-        
     }
     
     @IBAction func stepperTapped(_ sender: UIStepper) {
         
-        //Get new quantity of extra
-        let newQuantity = Int(sender.value).description
+        //Get new quantity of extra and update label
+        let newQuantity = Int(sender.value)
+        self.quantityLabel.text = String(newQuantity)
         
-        self.quantityLabel.text = newQuantity
-        
-        //Update the order
-        
-//        guard let itemVC = self.superview?.superview?.superview?.superview as? ItemDetailViewController else {
-//            fatalError()
-//        }
-//
-//        print(itemVC.tempOrder.items[0])
-    
-        print(newQuantity)
+        //Send the stepper click to detail view
+        cellDelegate?.onStepperClick(index: (index?.row)!, sender: sender)
         
     }
 }

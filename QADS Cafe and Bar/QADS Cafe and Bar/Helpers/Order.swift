@@ -17,31 +17,6 @@ class order: NSObject {
     var orderDate: Date?
     var price: Double? = 0.0
     var usrCRSID: String?
-
-    
-    func startOrder(item: Item) {
-        
-        //Construct options from Item with defaults filled in
-        var optionsDic: [String: [String: Any]] = [:]
-        for (option, optionInfo) in item.options ?? [:] {
-            optionsDic[option] = optionInfo
-            optionsDic[option]?["quantity"] = 0
-        }
-        
-        //Construct the item to be added to the order
-        let orderItem: [String: Any] = [
-            "id": item.id as Any,
-            "name": item.name as Any,
-            "note": "",
-            "options": optionsDic,
-            "price": item.price ?? 0
-        ]
-        
-        //Add item to the order
-        self.items = [orderItem]
-        self.price = item.price ?? 0 + (self.price ?? 0)
-        
-    }
     
 }
 
@@ -53,20 +28,19 @@ class orderItem: NSObject {
     var itemID: String?
     var itemName: String?
     var note: String = ""
-//    var options: [String: [String: Any]] = [:]
     
-    //try struct
+    //Create a struct for an option. These will be stored in an array
     struct Option {
-        var name: String
-        var canHaveMultiple: Bool
-        var extraPrice: Double
-        var quantity: Int
+        var name: String = ""
+        var canHaveMultiple: Bool = false
+        var extraPrice: Double = 0.0
+        var quantity: Int = 0
     }
-    
     var options: [Option] = []
-    
     var price: Double = 0.0
     var quantity: Int = 1
+    
+    
     
     func createOrderItem(item: Item) {
         refItem = item
@@ -74,18 +48,15 @@ class orderItem: NSObject {
         itemName = item.name
         price = item.price ?? 0.0
         
-        //make options dictionary
-        for (option, optionInfo) in item.options ?? [:] {
-//            options[option] = optionInfo
-//            options[option]?["quantity"] = 0
+        //make options Array
+        for (_, optionInfo) in item.options ?? [:] {
             
-            
-            
+            //Create Option struct and append
             let thisOption = Option(
                 name: optionInfo["name"] as! String,
                 canHaveMultiple: optionInfo["can_have_multiple"] as! Bool,
                 extraPrice: optionInfo["extra_price"] as! Double,
-                quantity: 1
+                quantity: 0
                 )
             
             self.options.append(thisOption)
@@ -95,14 +66,17 @@ class orderItem: NSObject {
     
     
     func setQuantity(quantity: Int) {
-        //Change price
+        //Change price and quantity
         
-        //Price for one
+        //Price for one (item plus any extras)
         var price = refItem.price ?? 0
+        for option in options {
+            price = price + (option.extraPrice * Double(option.quantity))
+        }
         
-        
-        
-        
+        //Update price and quantity
+        self.price = price * Double(quantity)
+        self.quantity = quantity
     }
     
 }

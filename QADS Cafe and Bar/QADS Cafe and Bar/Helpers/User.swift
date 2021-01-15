@@ -12,6 +12,7 @@ class User: NSObject {
     var uid: String?
     var crsid: String?
     var currentOrder: order?
+//    var currentOrderItem: orderItem?
     
     func populate(data: [String: Any?]) {
         self.uid = data["uid"] as? String
