@@ -8,7 +8,7 @@
 import UIKit
 
 //Protocol for cell Delegate (item detail view)
-protocol cellDelegate{
+protocol optionsCellDelegate{
     func onStepperClick(index: Int, sender: UIStepper)
 }
 
@@ -20,9 +20,11 @@ class OptionsTableViewCell: UITableViewCell {
     @IBOutlet weak var stepperStackView: UIStackView!
     @IBOutlet weak var quantityStepper: UIStepper!
     @IBOutlet weak var quantityLabel: UILabel!
+    @IBOutlet weak var extraPriceLabel: UILabel!
+    
     
     //Set up delegate and index
-    var cellDelegate: cellDelegate?
+    var cellDelegate: optionsCellDelegate?
     var index: IndexPath?
     
     override func awakeFromNib() {
@@ -39,6 +41,7 @@ class OptionsTableViewCell: UITableViewCell {
         //Get option and layout cell
         let option = options[index]
         self.optionLabel.text = option.name
+        self.extraPriceLabel.text = "+ £" + String(option.extraPrice)
 
         //Show check box or stepper
         if option.canHaveMultiple {
@@ -46,7 +49,13 @@ class OptionsTableViewCell: UITableViewCell {
             checkBox.isHidden = true
         } else {
             stepperStackView.isHidden = true
-            checkBox.isHidden = false
+            
+            if option.quantity == 1 {
+                checkBox.isHidden = false
+            } else {
+                checkBox.isHidden = true
+            }
+            
         }
         
     }

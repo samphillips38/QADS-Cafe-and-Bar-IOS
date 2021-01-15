@@ -12,13 +12,15 @@ class order: NSObject {
     var cancelled = false
     var email: String?
     var flagged = false
-    var items: [[String: Any]] = [[:]]
+    var items: [orderItem] = []
     var location: String?
     var orderDate: Date?
     var price: Double? = 0.0
     var usrCRSID: String?
     
 }
+
+
 
 
 
@@ -67,6 +69,11 @@ class orderItem: NSObject {
     
     func setQuantity(quantity: Int) {
         //Change price and quantity
+        self.quantity = quantity
+        self.updatePrice()
+    }
+    
+    func updatePrice() {
         
         //Price for one (item plus any extras)
         var price = refItem.price ?? 0
@@ -74,9 +81,8 @@ class orderItem: NSObject {
             price = price + (option.extraPrice * Double(option.quantity))
         }
         
-        //Update price and quantity
-        self.price = price * Double(quantity)
-        self.quantity = quantity
+        //Update price
+        self.price = price * Double(self.quantity)
     }
     
 }

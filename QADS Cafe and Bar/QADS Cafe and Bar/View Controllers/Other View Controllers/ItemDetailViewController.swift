@@ -9,7 +9,7 @@ import UIKit
 
 private let reuseIdentifier = "OptionTVC"
 
-class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, cellDelegate {
+class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, optionsCellDelegate {
     
     @IBOutlet weak var itemNameLabel: UILabel!
     @IBOutlet weak var outOfStockLabel: UILabel!
@@ -38,10 +38,6 @@ class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         
         fillInData()
         layout()
-        
-        //stepper settings
-        quantityStepper.maximumValue = 10
-        quantityStepper.minimumValue = 1
         
         //Table View
         optionTableView.delegate = self
@@ -121,12 +117,18 @@ class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         
         if currentOrderItem.options[indexPath.row].canHaveMultiple {
             //Dont do anything (this will be controlled by stepper
-            tableView.reloadRows(at: [indexPath], with: .none)
         } else {
             
             //Toggle quantity for single value options
             let quantity = currentOrderItem.options[indexPath.row].quantity
             currentOrderItem.options[indexPath.row].quantity = (quantity + 1) % 2
+            
+            //Update Price
+            currentOrderItem.updatePrice()
+            setPrice(price: currentOrderItem.price)
+            
+            //Reload cell
+            tableView.cellForRow(at: indexPath)?.selectionStyle = .gray
             tableView.reloadRows(at: [indexPath], with: .fade)
         }
         
@@ -137,6 +139,9 @@ class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         //update the quantity based on stepper value
         currentOrderItem.options[index].quantity = Int(sender.value)
         
+        //Update price
+        currentOrderItem.updatePrice()
+        setPrice(price: currentOrderItem.price)
     }
     
 
@@ -144,6 +149,7 @@ class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBAction func addToBasketTapped(_ sender: Any) {
         
+        currentUser.currentOrder.items.append(currentOrderItem)
         dismiss(animated: true) {
             //Do somehting
         }
@@ -164,7 +170,6 @@ class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         let newQuantity = Int(sender.value)
         
         currentOrderItem.setQuantity(quantity: newQuantity)
-//        currentUser.currentOrderItem!.setQuantity(quantity: newQuantity)
         
         quantityLabel.text = String(newQuantity)
         setPrice(price: currentOrderItem.price)
