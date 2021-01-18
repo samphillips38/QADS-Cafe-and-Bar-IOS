@@ -88,5 +88,12 @@ class BasketViewController: UIViewController, UITableViewDelegate, UITableViewDa
     //MARK: -Button actions
 
     @IBAction func checkoutTapped(_ sender: Any) {
+        
+        currentUser.currentOrder.email = "samphillips38@gmail.com"
+        
+        currentUser.currentOrder.saveOrder {
+            //do something
+        }
+        
     }
 }

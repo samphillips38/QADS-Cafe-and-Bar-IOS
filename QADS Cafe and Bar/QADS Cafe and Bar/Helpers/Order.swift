@@ -6,8 +6,12 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseFirestore
+import FirebaseFunctions
 
 class order: NSObject {
+    var orderID: String?
     var archived = false
     var cancelled = false
     var email: String?
@@ -18,6 +22,8 @@ class order: NSObject {
     var price: Double = 0.0
     var usrCRSID: String?
     
+    lazy var functions = Functions.functions()
+    
     func addItem(item: orderItem) {
         price = price + item.price
         items.append(item)
@@ -26,6 +32,87 @@ class order: NSObject {
     func removeItemAt(index: Int) {
         price = price - items[index].price
         items.remove(at: index)
+    }
+    
+    
+    func saveOrder(completion: @escaping () -> Void) {
+        
+        //Set the time of order
+        let date = Date()
+        self.orderDate = date
+        
+        //Configure the item Dictionary
+        var configuredItems: [[String: Any]] = [[:]]
+        
+        for item in self.items {
+            
+            var itemDic: [String: Any] = [:]
+            
+            itemDic["id"] = item.itemID
+            itemDic["name"] = item.itemName
+            self.location = item.location //This will currently set the order location to last item
+            
+            //set options Dictionary
+            var optionsDic: [String: Any] = [:]
+            for option in item.options {
+                optionsDic[option.name] = [
+                    "name":option.name,
+                    "quantity": option.quantity
+                ]
+            }
+            itemDic["options"] = optionsDic
+            
+            //Add item
+            configuredItems.append(itemDic)
+        }
+        
+        
+        
+        //Upload information to Firebase
+        let db = Firestore.firestore()
+        
+        var ref: DocumentReference? = nil
+        ref = db.collection("orders").addDocument(data: [
+            "archived": self.archived,
+            "cancelled": self.cancelled,
+            "email": self.email as Any,
+            "flagged": self.flagged,
+            "items": configuredItems,
+            "location": self.location as Any,
+            "order_datetime": self.orderDate as Any,
+            "price": self.price,
+            "user": currentUser.crsid as Any
+        ]) { (error) in
+            if error != nil {
+                print("Error creating document: ", error!)
+            } else {
+                self.orderID = ref!.documentID
+            }
+            completion()
+        }
+        
+        
+    }
+    
+    
+    
+    func sendOrder(completion: @escaping () -> Void) {
+        
+        //send request to firebase to send push notification
+        let data = ["archived": self.archived, "cancelled": self.cancelled, "email": self.email ?? "", "flagged": self.flagged, "location": self.location ?? ""] as [String: Any]
+        
+        
+        functions.httpsCallable("emailSender").call(data) { (result, error) in
+            if let error = error as NSError? {
+              if error.domain == FunctionsErrorDomain {
+                  print("There was an error sending notification: ", error.localizedDescription)
+              }
+            }
+            if let text = (result?.data as? [String: Any])?["text"] as? String {
+              print(text)
+            }
+            completion()
+        }
     }
     
 }
@@ -40,6 +127,7 @@ class orderItem: NSObject {
     var itemID: String?
     var itemName: String?
     var note: String = ""
+    var location: String?
     
     //Create a struct for an option. These will be stored in an array
     struct Option {
@@ -59,6 +147,7 @@ class orderItem: NSObject {
         itemID = item.id
         itemName = item.name
         price = item.price ?? 0.0
+        location = item.location
         
         //make options Array
         for (_, optionInfo) in item.options ?? [:] {
