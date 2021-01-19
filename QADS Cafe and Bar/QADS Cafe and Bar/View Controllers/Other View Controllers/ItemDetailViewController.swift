@@ -9,7 +9,7 @@ import UIKit
 
 private let reuseIdentifier = "OptionTVC"
 
-class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, optionsCellDelegate {
     
     @IBOutlet weak var itemNameLabel: UILabel!
     @IBOutlet weak var outOfStockLabel: UILabel!
@@ -20,6 +20,7 @@ class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     
     //Options
     @IBOutlet weak var optionTableView: UITableView!
+    
     @IBOutlet weak var quantityLabel: UILabel!
     @IBOutlet weak var quantityStepper: UIStepper!
     @IBOutlet weak var tableViewHeight: NSLayoutConstraint!
@@ -27,16 +28,16 @@ class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     
     
     var chosenItem = Item()
+    var currentOrderItem = orderItem()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //begin order
+        currentOrderItem.createOrderItem(item: chosenItem)
+        
         fillInData()
         layout()
-        
-        //stepper settings
-        quantityStepper.maximumValue = 10
-        quantityStepper.minimumValue = 1
         
         //Table View
         optionTableView.delegate = self
@@ -57,11 +58,12 @@ class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         
         //Table View height
         tableViewHeight.constant = CGFloat(((chosenItem.options ?? [:]).count * 41))
-        
     }
     
     
     func fillInData() {
+        
+        //All data that is not changed by the order preferences is loaded from the Item
         itemNameLabel.text = chosenItem.name
         descriptionLabel.text = chosenItem.desc
         
@@ -74,20 +76,22 @@ class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableVi
             addToBasketButton.setTitle("This item is out of stock", for: .normal)
         }
         
-        setPrice(price: chosenItem.price!)
+        //Load price from the order item as this could be changed by preferences
+        setPrice(price: currentOrderItem.price)
     }
     
     func setPrice(price: Double) {
         priceLabel.text = "Price  £" + String(format: "%.2f", price)
     }
     
-    //MARK:- Table View
+    //MARK:- Options Table View
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        //Set by Item as the number of options is not varied by preferences
         return chosenItem.options?.count ?? 0
     }
     
@@ -98,18 +102,46 @@ class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableVi
             fatalError("The dequeued cell is not an instance of OptionsTableViewCell")
         }
         
-        let dict = chosenItem.options!
-        cell.setWithDictionary(dict: dict, index: indexPath.row)
+        //Input cell data
+        let options = currentOrderItem.options
+        cell.setOptions(options: options, index: indexPath.row)
+        
+        //Set the delegate and index path of cell
+        cell.cellDelegate = self
+        cell.index = indexPath
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let key = Array(chosenItem.options!.keys)[indexPath.row]
         
-        chosenItem.options![key] = !(chosenItem.options![key] ?? false)
+        if currentOrderItem.options[indexPath.row].canHaveMultiple {
+            //Dont do anything (this will be controlled by stepper
+        } else {
+            
+            //Toggle quantity for single value options
+            let quantity = currentOrderItem.options[indexPath.row].quantity
+            currentOrderItem.options[indexPath.row].quantity = (quantity + 1) % 2
+            
+            //Update Price
+            currentOrderItem.updatePrice()
+            setPrice(price: currentOrderItem.price)
+            
+            //Reload cell
+            tableView.cellForRow(at: indexPath)?.selectionStyle = .gray
+            tableView.reloadRows(at: [indexPath], with: .fade)
+        }
         
-        tableView.reloadRows(at: [indexPath], with: .fade)
+    }
+    
+    func onStepperClick(index: Int, sender: UIStepper) {
+        
+        //update the quantity based on stepper value
+        currentOrderItem.options[index].quantity = Int(sender.value)
+        
+        //Update price
+        currentOrderItem.updatePrice()
+        setPrice(price: currentOrderItem.price)
     }
     
 
@@ -117,12 +149,9 @@ class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBAction func addToBasketTapped(_ sender: Any) {
         
-        if chosenItem.stock! {
-            currentUser.basketItems?.append(chosenItem)
-            
-            self.dismiss(animated: true) {
-                //do something on completion
-            }
+        currentUser.currentOrder.addItem(item: currentOrderItem)
+        dismiss(animated: true) {
+            //Do somehting
         }
     }
     
@@ -134,9 +163,16 @@ class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     @IBAction func stepperTapped(_ sender: UIStepper) {
-        quantityLabel.text = Int(sender.value).description
-        let price = Double(Int(sender.value).description)! * chosenItem.price!
-        setPrice(price: price)
-//        chosenItem.options?["quantity"] = Int(sender.value).description
+        
+        
+        
+        //Get new quantity and item price (including extras)
+        let newQuantity = Int(sender.value)
+        
+        currentOrderItem.setQuantity(quantity: newQuantity)
+        
+        quantityLabel.text = String(newQuantity)
+        setPrice(price: currentOrderItem.price)
+        
     }
 }

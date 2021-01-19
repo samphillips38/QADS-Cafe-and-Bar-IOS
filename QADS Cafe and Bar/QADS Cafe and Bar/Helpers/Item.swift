@@ -18,7 +18,7 @@ class itemList: NSObject {
         let db = Firestore.firestore()
         
         //Get all active Events
-        db.collection("menuitems").whereField("location", isEqualTo: location).whereField("category", isEqualTo: category)
+        db.collection("menuitems").whereField("location", in: [location, "both"]).whereField("category", isEqualTo: category)
             .getDocuments() { (querySnapshot, err) in
                 if let err = err {
                     print("Error getting documents: \(err)")
@@ -46,9 +46,12 @@ class Item: NSObject {
     var desc: String?
     var location: String?
     var name: String?
-    var options: [String: Bool]?
+    var options: [String: [String: Any]]?
+    //var options: [String: Bool]?
     var price: Double?
     var stock: Bool?
+    var id: String?
+
     
     
     func populateItem(ID: String?, doc: [String: Any?]) {
@@ -56,8 +59,18 @@ class Item: NSObject {
         self.desc = doc["description"] as? String
         self.location = doc["location"] as? String
         self.name = doc["name"] as? String
-        self.options = doc["options"] as? [String: Bool]
+        //self.options = doc["options"] as? [String: Bool]
+        self.options = doc["options"] as? [String: [String: Any]]
         self.price = doc["price"] as? Double
         self.stock = doc["stock"] as? Bool
+        self.id = ID! as String
+    }
+    
+    func getImageRef() -> String? {
+        if self.id == nil {
+            return nil
+        } else {
+            return "menuitems/" + self.name! + ".jpg"
+        }
     }
 }

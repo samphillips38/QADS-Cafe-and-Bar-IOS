@@ -12,7 +12,7 @@ class ItemCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var itemLabel: UILabel!
     @IBOutlet weak var stockLabel: UILabel!
-    @IBOutlet weak var categoryImage: UIImageView!
+    @IBOutlet weak var categoryImage: CustomImageView!
     
     var item = Item()
     
@@ -47,7 +47,14 @@ class ItemCollectionViewCell: UICollectionViewCell {
             stockLabel.text = "This item is out of stock"
         }
         
-        categoryImage.image = UIImage(named: item.category!)
+        //Get the item image from firebase
+        categoryImage.LoadImageUsingCache(ImageRef: item.getImageRef()) { (isFound) in
+            if !isFound {
+                //Do something if the image could not be found
+                print("not found")
+            }
+        }
+        
         
     }
     

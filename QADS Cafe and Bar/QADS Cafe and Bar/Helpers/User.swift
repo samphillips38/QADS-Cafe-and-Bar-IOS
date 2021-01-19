@@ -11,7 +11,8 @@ import Firebase
 class User: NSObject {
     var uid: String?
     var crsid: String?
-    var basketItems: [Item]? = []
+    var currentOrder = order()
+    var previousOrders: [String] = []
     
     func populate(data: [String: Any?]) {
         self.uid = data["uid"] as? String
@@ -51,6 +52,33 @@ class User: NSObject {
         }
     }
     
+    
+    func addToPreviousOrders(order: order, completion: @escaping () -> Void) {
+        
+        //Return if order does not yet exist
+        if order.orderID == nil {
+            return
+        }
+        
+        //Save order
+        self.previousOrders.append(order.orderID!)
+        
+        //Upload information to Firebase
+        let db = Firestore.firestore()
+        let orderRef = db.collection("users").document(self.uid!)
+        
+        orderRef.updateData([
+            "previous_orders": self.previousOrders
+        ]) { err in
+            if let err = err {
+                print("Error updating document: \(err)")
+            } else {
+                print("Event successfully updated")
+            }
+            completion()
+        }
+        
+    }
     
     
     func signIn() {

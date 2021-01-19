@@ -14,9 +14,10 @@ target 'QADS Cafe and Bar' do
   # For example, to use Firebase Authentication and Cloud Firestore
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
-
+  pod 'Firebase/Storage'
   pod 'Firebase/Auth'
   pod 'GoogleSignIn'  
+  pod 'Firebase/Functions'
 
   target 'QADS Cafe and BarTests' do
     inherit! :search_paths
