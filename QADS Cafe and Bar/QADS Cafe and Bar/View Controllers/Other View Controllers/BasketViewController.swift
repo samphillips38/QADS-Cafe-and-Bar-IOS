@@ -91,9 +91,26 @@ class BasketViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         currentUser.currentOrder.email = "samphillips38@gmail.com"
         
-        currentUser.currentOrder.saveOrder {
-            //do something
-        }
+        
+        //Show warning message about Checking out
+        let message = "Confirm checkout"
+        
+        let alert = UIAlertController(title: "Confirm", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Confirm", style: .default, handler: { action in
+            
+            //Checkout order once confirmed
+            currentUser.currentOrder.checkoutOrder {
+                currentUser.currentOrder.resetOrder()
+                self.tableView.reloadData()
+            }
+            
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { action in
+            //Do nothing
+        }))
+        self.present(alert, animated: true, completion: nil)
+        
+        
         
     }
 }

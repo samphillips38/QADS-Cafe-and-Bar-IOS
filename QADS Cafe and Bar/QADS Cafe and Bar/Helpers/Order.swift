@@ -20,7 +20,7 @@ class order: NSObject {
     var location: String?
     var orderDate: Date?
     var price: Double = 0.0
-    var usrCRSID: String?
+    var userCRSID: String?
     
     lazy var functions = Functions.functions()
     
@@ -34,6 +34,21 @@ class order: NSObject {
         items.remove(at: index)
     }
     
+    func checkoutOrder(completion: @escaping () -> Void) {
+        
+        if self.orderID == nil {
+            //This is a new order
+            self.saveOrder {
+                completion()
+            }
+        } else {
+            //This order already exists
+            self.updateOrder {
+                completion()
+            }
+        }
+        
+    }
     
     func saveOrder(completion: @escaping () -> Void) {
         
@@ -41,32 +56,8 @@ class order: NSObject {
         let date = Date()
         self.orderDate = date
         
-        //Configure the item Dictionary
-        var configuredItems: [[String: Any]] = [[:]]
-        
-        for item in self.items {
-            
-            var itemDic: [String: Any] = [:]
-            
-            itemDic["id"] = item.itemID
-            itemDic["name"] = item.itemName
-            self.location = item.location //This will currently set the order location to last item
-            
-            //set options Dictionary
-            var optionsDic: [String: Any] = [:]
-            for option in item.options {
-                optionsDic[option.name] = [
-                    "name":option.name,
-                    "quantity": option.quantity
-                ]
-            }
-            itemDic["options"] = optionsDic
-            
-            //Add item
-            configuredItems.append(itemDic)
-        }
-        
-        
+        //Get properly formatted item list
+        let configuredItems = self.configureItems()
         
         //Upload information to Firebase
         let db = Firestore.firestore()
@@ -90,8 +81,40 @@ class order: NSObject {
             }
             completion()
         }
+    }
+    
+    func updateOrder(completion: @escaping () -> Void) {
         
+        //If document does not already exist, return
+        if self.orderID == nil {
+            return
+        }
         
+        //configure items
+        let configuredItems = self.configureItems()
+        
+        //Upload information to Firebase under existing document
+        let db = Firestore.firestore()
+        let orderRef = db.collection("orders").document(self.orderID!)
+        
+        orderRef.updateData([
+            "archived": self.archived,
+            "cancelled": self.cancelled,
+            "email": self.email as Any,
+            "flagged": self.flagged,
+            "items": configuredItems,
+            "location": self.location as Any,
+            "order_datetime": self.orderDate as Any,
+            "price": self.price,
+            "user": currentUser.crsid as Any
+        ]) { err in
+            if let err = err {
+                print("Error updating document: \(err)")
+            } else {
+                print("Event successfully updated")
+            }
+            completion()
+        }
     }
     
     
@@ -113,6 +136,54 @@ class order: NSObject {
             }
             completion()
         }
+    }
+    
+    func configureItems() -> [[String: Any]] {
+        
+        //Configure the item Dictionary
+        var configuredItems: [[String: Any]] = []
+        
+        for item in self.items {
+            
+            var itemDic: [String: Any] = [:]
+            
+            itemDic["id"] = item.itemID
+            itemDic["name"] = item.itemName
+            self.location = item.location //This will currently set the order location to last item
+            
+            //set options Dictionary
+            var optionsDic: [String: Any] = [:]
+            for option in item.options {
+                optionsDic[option.name] = [
+                    "name":option.name,
+                    "quantity": option.quantity
+                ]
+            }
+            itemDic["options"] = optionsDic
+            
+            //Add item
+            configuredItems.append(itemDic)
+        }
+        return configuredItems
+    }
+    
+    
+    func resetOrder() {
+        
+        //Reset all to defaults
+        let new = order()
+        
+        self.orderID = new.orderID
+        self.archived = new.archived
+        self.cancelled = new.cancelled
+        self.email = new.email
+        self.flagged = new.flagged
+        self.items = new.items
+        self.location = new.location
+        self.orderDate = new.orderDate
+        self.price = new.price
+        self.userCRSID = new.userCRSID
+        
     }
     
 }
