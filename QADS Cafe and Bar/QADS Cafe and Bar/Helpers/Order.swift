@@ -39,7 +39,9 @@ class order: NSObject {
         if self.orderID == nil {
             //This is a new order
             self.saveOrder {
-                completion()
+                currentUser.addToPreviousOrders(order: self) {
+                    completion()
+                }
             }
         } else {
             //This order already exists
@@ -251,8 +253,9 @@ class orderItem: NSObject {
             price = price + (option.extraPrice * Double(option.quantity))
         }
         
-        //Update price
+        //Update price and round to 2 dp
         self.price = price * Double(self.quantity)
+        self.price = (self.price * 100).rounded() / 100
     }
     
 }
