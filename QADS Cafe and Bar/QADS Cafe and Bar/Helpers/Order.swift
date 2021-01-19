@@ -36,6 +36,9 @@ class order: NSObject {
     
     func checkoutOrder(completion: @escaping () -> Void) {
         
+        //get email
+        self.email = Auth.auth().currentUser?.email
+        
         if self.orderID == nil {
             //This is a new order
             self.saveOrder {
@@ -114,27 +117,6 @@ class order: NSObject {
                 print("Error updating document: \(err)")
             } else {
                 print("Event successfully updated")
-            }
-            completion()
-        }
-    }
-    
-    
-    
-    func sendOrder(completion: @escaping () -> Void) {
-        
-        //send request to firebase to send push notification
-        let data = ["archived": self.archived, "cancelled": self.cancelled, "email": self.email ?? "", "flagged": self.flagged, "location": self.location ?? ""] as [String: Any]
-        
-        
-        functions.httpsCallable("emailSender").call(data) { (result, error) in
-            if let error = error as NSError? {
-              if error.domain == FunctionsErrorDomain {
-                  print("There was an error sending notification: ", error.localizedDescription)
-              }
-            }
-            if let text = (result?.data as? [String: Any])?["text"] as? String {
-              print(text)
             }
             completion()
         }

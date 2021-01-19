@@ -90,8 +90,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                 //Upload information to Firebase
                 let db = Firestore.firestore()
                 let uid = Auth.auth().currentUser?.uid
+                let crsid = (Auth.auth().currentUser!.email)?.components(separatedBy: "@")[0]
                 
-                db.collection("users").document(uid!).setData(["uid": uid!]) { (error) in
+                db.collection("users").document(uid!).setData([
+                    "uid": uid!,
+                    "crsid": crsid ?? "UNKNOWN"
+                ]) { (error) in
                     if error != nil {
                         //show error message
                         print("There was an error: ", error ?? "UNKNOWN")
@@ -114,8 +118,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                         //Upload information to Firebase
                         let db = Firestore.firestore()
                         let uid = Auth.auth().currentUser?.uid
+                        let crsid = (Auth.auth().currentUser!.email)?.components(separatedBy: "@")[0]
                         
-                        db.collection("users").document(uid!).setData(["uid": uid!]) { (error) in
+                        db.collection("users").document(uid!).setData([
+                            "uid": uid!,
+                            "crsid": crsid ?? "UNKNOWN"
+                        ]) { (error) in
                             if error != nil {
                                 //show error message
                                 print("There was an error: ", error ?? "UNKNOWN")

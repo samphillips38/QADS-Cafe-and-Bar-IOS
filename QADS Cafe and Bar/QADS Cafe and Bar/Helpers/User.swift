@@ -17,6 +17,7 @@ class User: NSObject {
     func populate(data: [String: Any?]) {
         self.uid = data["uid"] as? String
         self.crsid = data["crsid"] as? String
+        self.previousOrders = data["previous_orders"] as? [String] ?? []
     }
     
     func populateAsCurrentUser(populateAsCurrentUserCompletion: @escaping () -> Void) {

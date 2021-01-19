@@ -89,9 +89,6 @@ class BasketViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     @IBAction func checkoutTapped(_ sender: Any) {
         
-        currentUser.currentOrder.email = "samphillips38@gmail.com"
-        
-        
         //Show warning message about Checking out
         let message = "Confirm checkout"
         
