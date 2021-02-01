@@ -11,6 +11,7 @@ private let reuseIdentifier = "OptionTVC"
 
 class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, optionsCellDelegate {
     
+    @IBOutlet weak var itemImage: CustomImageView!
     @IBOutlet weak var itemNameLabel: UILabel!
     @IBOutlet weak var outOfStockLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
@@ -78,6 +79,15 @@ class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         
         //Load price from the order item as this could be changed by preferences
         setPrice(price: currentOrderItem.price)
+        
+        //Get the item image from firebase
+        itemImage.LoadImageUsingCache(ImageRef: chosenItem.getImageRef()) { (isFound) in
+            if !isFound {
+                //Do something if the image could not be found
+                print("not found")
+            }
+        }
+        
     }
     
     func setPrice(price: Double) {
