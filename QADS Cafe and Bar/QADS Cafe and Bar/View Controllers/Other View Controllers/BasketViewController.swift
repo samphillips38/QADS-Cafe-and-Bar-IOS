@@ -90,19 +90,29 @@ class BasketViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBAction func checkoutTapped(_ sender: Any) {
         
         //Show warning message about Checking out
-        let message = "Confirm checkout"
+        let message = "Before you checkout, have you topped up your uPay?"
         
         let alert = UIAlertController(title: "Confirm", message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Confirm", style: .default, handler: { action in
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
             
             //Checkout order once confirmed
             currentUser.currentOrder.checkoutOrder {
                 currentUser.currentOrder.resetOrder()
-                self.tableView.reloadData()
+                
+                //Show confirmation screen (fullscreen)
+                let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let confirmationVC = storyBoard.instantiateViewController(withIdentifier: "OrderConfirmationVC") as! OrderConfirmationViewController
+                confirmationVC.modalPresentationStyle = .fullScreen
+                
+                self.present(confirmationVC, animated: true) {
+                    
+                    //Refresh the table data
+                    self.tableView.reloadData()
+                }
             }
             
         }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { action in
+        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: { action in
             //Do nothing
         }))
         self.present(alert, animated: true, completion: nil)
