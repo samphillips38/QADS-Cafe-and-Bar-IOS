@@ -28,7 +28,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bFB-hl-a2u">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bFB-hl-a2u" customClass="CustomImageView" customModule="QADS_Cafe_and_Bar" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="463" height="245"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iMB-5E-KOH">
@@ -64,7 +64,7 @@
             </constraints>
             <size key="customSize" width="463" height="296"/>
             <connections>
-                <outlet property="categoryImage" destination="bFB-hl-a2u" id="fbD-gY-oPD"/>
+                <outlet property="categoryImage" destination="bFB-hl-a2u" id="BCm-Jt-5Fn"/>
                 <outlet property="categoryNameLabel" destination="f7r-4a-g86" id="pjg-RD-uPE"/>
                 <outlet property="mainView" destination="sG0-JG-tDU" id="v7D-do-weR"/>
             </connections>

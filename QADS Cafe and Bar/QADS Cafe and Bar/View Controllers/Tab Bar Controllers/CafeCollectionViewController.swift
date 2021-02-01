@@ -11,7 +11,7 @@ private let reuseIdentifier = "CafeCategoryCell"
 
 class CafeCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
-    var ItemList = itemList()
+    var categoryList = CategoryList()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,7 +19,11 @@ class CafeCollectionViewController: UICollectionViewController, UICollectionView
         //Set up the xib file for the event cells
         let nib = UINib(nibName: "CategoriesCollectionViewCell",bundle: nil)
         self.collectionView.register(nib, forCellWithReuseIdentifier: reuseIdentifier)
-
+        
+        //Get all the active categories
+        categoryList.getCafeCategories {
+            self.collectionView.reloadData()
+        }
     }
 
 
@@ -30,7 +34,7 @@ class CafeCollectionViewController: UICollectionViewController, UICollectionView
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return constants.CafeCategories.count
+        return categoryList.categories.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -40,8 +44,9 @@ class CafeCollectionViewController: UICollectionViewController, UICollectionView
             fatalError("The dequeued cell is not an instance of CategoriesCollectionViewCell")
         }
         
-        cell.categoryNameLabel.text = constants.CafeCategories[indexPath.row]
-        cell.categoryImage.image = UIImage(named: constants.CafeCategories[indexPath.row])
+        cell.fillInWithCategory(category: categoryList.categories[indexPath.row]) {
+            
+        }
     
         return cell
     }
@@ -53,7 +58,7 @@ class CafeCollectionViewController: UICollectionViewController, UICollectionView
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("selected: ", constants.CafeCategories[indexPath.row])
+        print("selected: ", categoryList.categories[indexPath.row])
         
         //Go to Item VC
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
@@ -61,7 +66,7 @@ class CafeCollectionViewController: UICollectionViewController, UICollectionView
         let ItemVC = storyBoard.instantiateViewController(withIdentifier: "ItemVC") as! ItemsViewController
         
         ItemVC.location = "Cafe"
-        ItemVC.category = constants.CafeCategories[indexPath.row]
+        ItemVC.category = categoryList.categories[indexPath.row].name ?? ""
         
         self.navigationController?.pushViewController(ItemVC, animated: true)
         

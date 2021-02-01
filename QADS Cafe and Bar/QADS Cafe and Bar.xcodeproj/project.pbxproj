@@ -11,6 +11,7 @@
 		C367EB6C57150C9192FAC3D6 /* Pods_QADS_Cafe_and_Bar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 332C19A9EE15E726CAD75FA4 /* Pods_QADS_Cafe_and_Bar.framework */; };
 		CDD1BC48AE37D62A403539DF /* Pods_QADS_Cafe_and_Bar_QADS_Cafe_and_BarUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57F3777C07EA3810AEDDBA1B /* Pods_QADS_Cafe_and_Bar_QADS_Cafe_and_BarUITests.framework */; };
 		F429480225C86A6B00A11D94 /* OrderConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F429480125C86A6B00A11D94 /* OrderConfirmationViewController.swift */; };
+		F429480725C88A5D00A11D94 /* CategoryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F429480625C88A5D00A11D94 /* CategoryList.swift */; };
 		F43EE1DF25A4F5BA000844D7 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43EE1DE25A4F5BA000844D7 /* extensions.swift */; };
 		F444DFB825C84A9900E8D7CE /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F444DFB725C84A9900E8D7CE /* SignUpViewController.swift */; };
 		F49B429325B1AC0D00FDF054 /* BasketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49B429225B1AC0D00FDF054 /* BasketViewController.swift */; };
@@ -71,6 +72,7 @@
 		A35502AFC7100019E8B92804 /* Pods-QADS Cafe and BarTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QADS Cafe and BarTests.debug.xcconfig"; path = "Target Support Files/Pods-QADS Cafe and BarTests/Pods-QADS Cafe and BarTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B98F58E963B94DBCF2D08CB8 /* Pods-QADS Cafe and Bar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QADS Cafe and Bar.debug.xcconfig"; path = "Target Support Files/Pods-QADS Cafe and Bar/Pods-QADS Cafe and Bar.debug.xcconfig"; sourceTree = "<group>"; };
 		F429480125C86A6B00A11D94 /* OrderConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderConfirmationViewController.swift; sourceTree = "<group>"; };
+		F429480625C88A5D00A11D94 /* CategoryList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryList.swift; sourceTree = "<group>"; };
 		F43EE1DE25A4F5BA000844D7 /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
 		F444DF1C25C83E4A00E8D7CE /* QADS Cafe and Bar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "QADS Cafe and Bar.entitlements"; sourceTree = "<group>"; };
 		F444DFB725C84A9900E8D7CE /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 				F4D1A949257C39030027035C /* Item.swift */,
 				F4D944A225A5F6780061532A /* Order.swift */,
 				F43EE1DE25A4F5BA000844D7 /* extensions.swift */,
+				F429480625C88A5D00A11D94 /* CategoryList.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -565,6 +568,7 @@
 				F4D1A936257BED710027035C /* CafeCollectionViewController.swift in Sources */,
 				F49B429825B1AE8700FDF054 /* OrderItemsTableViewCell.swift in Sources */,
 				F4D1A940257C02130027035C /* Constants.swift in Sources */,
+				F429480725C88A5D00A11D94 /* CategoryList.swift in Sources */,
 				F429480225C86A6B00A11D94 /* OrderConfirmationViewController.swift in Sources */,
 				F4D1A945257C07600027035C /* ItemsViewController.swift in Sources */,
 				F4D1A957257D0D390027035C /* ItemDetailViewController.swift in Sources */,

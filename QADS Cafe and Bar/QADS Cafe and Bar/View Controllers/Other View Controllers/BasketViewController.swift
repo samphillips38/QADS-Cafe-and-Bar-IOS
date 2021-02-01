@@ -9,13 +9,18 @@ import UIKit
 
 private let reuseIdentifier = "OrderItemTVC"
 
-class BasketViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, orderItemsDelegate {
+class BasketViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, orderItemsDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var checkoutButton: UIButton!
+    
+    
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var emailLabel: UILabel!
+    @IBOutlet weak var crsidLabel: UILabel!
+    
+    @IBOutlet weak var orderNotesTextField: UITextField!
+    @IBOutlet weak var orderStackView: UIStackView!
     @IBOutlet weak var totalLabel: UILabel!
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +29,14 @@ class BasketViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.delegate = self
         tableView.dataSource = self
         
+        //set action for stack view
+        orderStackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(orderTapped(_:))))
+        orderStackView.isUserInteractionEnabled = true
+        
+        //Text view
+        orderNotesTextField.delegate = self
+        
+        layout()
         setPrice()
     }
     
@@ -31,6 +44,16 @@ class BasketViewController: UIViewController, UITableViewDelegate, UITableViewDa
         totalLabel.text = "£" + String(format: "%.2f", currentUser.currentOrder.price)
     }
     
+    func layout() {
+        
+        //fill in details
+        nameLabel.text = currentUser.firstName! + " " + currentUser.lastName!
+        emailLabel.text = currentUser.email
+        crsidLabel.text = currentUser.crsid
+        
+        //Stack View Layout for button
+        orderStackView.layer.cornerRadius = orderStackView.frame.height/2
+    }
     
     //MARK: -Table view
     
@@ -85,9 +108,18 @@ class BasketViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
     }
     
+    
+    //MARK: -Text Field
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    
     //MARK: -Button actions
-
-    @IBAction func checkoutTapped(_ sender: Any) {
+    
+    @objc func orderTapped(_ sender: UITapGestureRecognizer? = nil) {
         
         //Show warning message about Checking out
         let message = "Before you checkout, have you topped up your uPay?"
@@ -116,8 +148,6 @@ class BasketViewController: UIViewController, UITableViewDelegate, UITableViewDa
             //Do nothing
         }))
         self.present(alert, animated: true, completion: nil)
-        
-        
-        
     }
+    
 }
