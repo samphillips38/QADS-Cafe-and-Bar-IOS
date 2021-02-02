@@ -32,7 +32,7 @@
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.22352941179999999" green="0.56470588239999997" blue="0.39607843139999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="tfJ-As-XHA" secondAttribute="bottom" constant="220" id="0Qp-43-8Qe"/>
                             <constraint firstItem="Bn7-yc-bTU" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="120" id="Pes-vH-Pc7"/>
@@ -72,7 +72,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cvZ-GG-gb2">
                                 <rect key="frame" x="177" y="679" width="60" height="33"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <state key="normal" title="Sign Up"/>
+                                <state key="normal" title="Sign Up">
+                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="signUpButton:" destination="WEV-rv-M6L" eventType="touchUpInside" id="vYw-5G-kjv"/>
                                 </connections>
@@ -85,7 +87,7 @@
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="34r-Qh-dcP"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.22352941179999999" green="0.56470588239999997" blue="0.39607843139999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="34r-Qh-dcP" firstAttribute="trailing" secondItem="j1w-Ef-AkW" secondAttribute="trailing" constant="50" id="101-a4-v8L"/>
                             <constraint firstItem="wVI-2r-zGv" firstAttribute="centerX" secondItem="t5E-ta-kFm" secondAttribute="centerX" id="7P3-xs-50B"/>

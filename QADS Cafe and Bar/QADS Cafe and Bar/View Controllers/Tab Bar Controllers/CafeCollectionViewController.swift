@@ -24,10 +24,29 @@ class CafeCollectionViewController: UICollectionViewController, UICollectionView
         categoryList.getCafeCategories {
             self.collectionView.reloadData()
         }
+        
+        //set title image possibly change later?
+//        setTitleImage()
+     
     }
+    
+    func setTitleImage() { //not implemented right now
+        let titleView = UIImageView(image: UIImage(named: "QueensCrest"))
+        titleView.contentMode = .scaleAspectFit
+        
+        titleView.translatesAutoresizingMaskIntoConstraints = false
+            
+        if let navC = self.navigationController{
+            navC.navigationBar.addSubview(titleView)
+            titleView.centerXAnchor.constraint(equalTo: navC.navigationBar.centerXAnchor).isActive = true
+            titleView.centerYAnchor.constraint(equalTo: navC.navigationBar.centerYAnchor, constant: 0).isActive = true
+            titleView.widthAnchor.constraint(equalTo: navC.navigationBar.widthAnchor, multiplier: 0.2).isActive = true
+            titleView.heightAnchor.constraint(equalTo: navC.navigationBar.widthAnchor, multiplier: 0.088).isActive = true
+        }
+    }
+    
 
-
-    // MARK: UICollectionViewDataSource
+    // MARK:- UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1

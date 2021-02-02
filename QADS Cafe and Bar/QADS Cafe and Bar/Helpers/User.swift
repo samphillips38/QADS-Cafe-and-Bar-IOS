@@ -92,6 +92,7 @@ class User: NSObject {
     func signIn() {
         //Subscribe to topics
         Messaging.messaging().subscribe(toTopic: self.uid!, completion: nil)
+        Messaging.messaging().subscribe(toTopic: self.crsid!, completion: nil)
     }
     
     func make(completion: @escaping () -> Void) {
