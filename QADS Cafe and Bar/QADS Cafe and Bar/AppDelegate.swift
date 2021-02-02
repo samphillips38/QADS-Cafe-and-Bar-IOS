@@ -8,9 +8,10 @@
 import UIKit
 import Firebase
 import GoogleSignIn
+import FirebaseMessaging
 
 @main
-class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -27,7 +28,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         
         window.rootViewController = MainNavigationViewController()
         
+        //set as Messaging delegate
+        Messaging.messaging().delegate = self
+        
+        //Set up notifications
+        if #available(iOS 10.0, *) {
+          // For iOS 10 display notification (sent via APNS)
+          UNUserNotificationCenter.current().delegate = self
+
+          let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+          UNUserNotificationCenter.current().requestAuthorization(
+            options: authOptions,
+            completionHandler: {_, _ in })
+        } else {
+          let settings: UIUserNotificationSettings =
+          UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+          application.registerUserNotificationSettings(settings)
+        }
+
+        application.registerForRemoteNotifications()
+        
         return true
+    }
+    
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+        print("Firebase registration token: \(fcmToken)")
+
+        let dataDict:[String: String] = ["token": fcmToken]
+        NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
+        // TODO: If necessary send token to application server.
+        // Note: This callback is fired at each app startup and whenever a new token is generated.
     }
 
     // MARK: UISceneSession Lifecycle
@@ -85,21 +115,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                 
                 //This is a new user
                 
-                //Create Document
-            
-                //Upload information to Firebase
-                let db = Firestore.firestore()
-                let uid = Auth.auth().currentUser?.uid
-                
-                db.collection("users").document(uid!).setData(["uid": uid!]) { (error) in
-                    if error != nil {
-                        //show error message
-                        print("There was an error: ", error ?? "UNKNOWN")
-                    }
-                }
-                
-                //Change Navigation View controller
-                let MainTabBarVC = storyBoard.instantiateViewController(withIdentifier: "MainTBC") as! UITabBarController
+                //Go to sign up page
+                let MainTabBarVC = storyBoard.instantiateViewController(withIdentifier: "SignUpVC") as! SignUpViewController
                 
                 (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(MainTabBarVC)
                 
@@ -111,25 +128,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                     //Check for filled in info
                     if currentUser.uid == nil {
                         
-                        //Upload information to Firebase
-                        let db = Firestore.firestore()
-                        let uid = Auth.auth().currentUser?.uid
-                        
-                        db.collection("users").document(uid!).setData(["uid": uid!]) { (error) in
-                            if error != nil {
-                                //show error message
-                                print("There was an error: ", error ?? "UNKNOWN")
-                            }
-                        }
-
                         //This is a new user - Go to SignInViewController
-                        let MainTabBarVC = storyBoard.instantiateViewController(withIdentifier: "MainTBC") as! UITabBarController
+                        let MainTabBarVC = storyBoard.instantiateViewController(withIdentifier: "SignUpVC") as! SignUpViewController
                         
                         (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(MainTabBarVC)
                         
                     } else {
 
-                        //Sign in to subscribe to topics (currently does nothing)
+                        //Sign in to subscribe to topics
                         currentUser.signIn()
 
                         //This is an existing user - Go to MainTabBarController

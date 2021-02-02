@@ -10,7 +10,10 @@
 		7FAE117B34E06C4B9963171D /* Pods_QADS_Cafe_and_BarTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12D6FF57C0390BA854E31FD4 /* Pods_QADS_Cafe_and_BarTests.framework */; };
 		C367EB6C57150C9192FAC3D6 /* Pods_QADS_Cafe_and_Bar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 332C19A9EE15E726CAD75FA4 /* Pods_QADS_Cafe_and_Bar.framework */; };
 		CDD1BC48AE37D62A403539DF /* Pods_QADS_Cafe_and_Bar_QADS_Cafe_and_BarUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57F3777C07EA3810AEDDBA1B /* Pods_QADS_Cafe_and_Bar_QADS_Cafe_and_BarUITests.framework */; };
+		F429480225C86A6B00A11D94 /* OrderConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F429480125C86A6B00A11D94 /* OrderConfirmationViewController.swift */; };
+		F429480725C88A5D00A11D94 /* CategoryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F429480625C88A5D00A11D94 /* CategoryList.swift */; };
 		F43EE1DF25A4F5BA000844D7 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43EE1DE25A4F5BA000844D7 /* extensions.swift */; };
+		F444DFB825C84A9900E8D7CE /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F444DFB725C84A9900E8D7CE /* SignUpViewController.swift */; };
 		F49B429325B1AC0D00FDF054 /* BasketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49B429225B1AC0D00FDF054 /* BasketViewController.swift */; };
 		F49B429825B1AE8700FDF054 /* OrderItemsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49B429725B1AE8700FDF054 /* OrderItemsTableViewCell.swift */; };
 		F4CF6702257BB7C1004FF87F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CF6701257BB7C1004FF87F /* AppDelegate.swift */; };
@@ -68,7 +71,11 @@
 		848306473783005A3AB87F8A /* Pods-QADS Cafe and Bar-QADS Cafe and BarUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QADS Cafe and Bar-QADS Cafe and BarUITests.release.xcconfig"; path = "Target Support Files/Pods-QADS Cafe and Bar-QADS Cafe and BarUITests/Pods-QADS Cafe and Bar-QADS Cafe and BarUITests.release.xcconfig"; sourceTree = "<group>"; };
 		A35502AFC7100019E8B92804 /* Pods-QADS Cafe and BarTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QADS Cafe and BarTests.debug.xcconfig"; path = "Target Support Files/Pods-QADS Cafe and BarTests/Pods-QADS Cafe and BarTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B98F58E963B94DBCF2D08CB8 /* Pods-QADS Cafe and Bar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QADS Cafe and Bar.debug.xcconfig"; path = "Target Support Files/Pods-QADS Cafe and Bar/Pods-QADS Cafe and Bar.debug.xcconfig"; sourceTree = "<group>"; };
+		F429480125C86A6B00A11D94 /* OrderConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderConfirmationViewController.swift; sourceTree = "<group>"; };
+		F429480625C88A5D00A11D94 /* CategoryList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryList.swift; sourceTree = "<group>"; };
 		F43EE1DE25A4F5BA000844D7 /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
+		F444DF1C25C83E4A00E8D7CE /* QADS Cafe and Bar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "QADS Cafe and Bar.entitlements"; sourceTree = "<group>"; };
+		F444DFB725C84A9900E8D7CE /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		F49B429225B1AC0D00FDF054 /* BasketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketViewController.swift; sourceTree = "<group>"; };
 		F49B429725B1AE8700FDF054 /* OrderItemsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItemsTableViewCell.swift; sourceTree = "<group>"; };
 		F4CF66FE257BB7C1004FF87F /* QADS Cafe and Bar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "QADS Cafe and Bar.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -179,6 +186,7 @@
 		F4CF6700257BB7C1004FF87F /* QADS Cafe and Bar */ = {
 			isa = PBXGroup;
 			children = (
+				F444DF1C25C83E4A00E8D7CE /* QADS Cafe and Bar.entitlements */,
 				F4D1A92A257BEB6A0027035C /* Cells */,
 				F4D1A912257BD9C20027035C /* Helpers */,
 				F4D1A8E4257BD09C0027035C /* View Controllers */,
@@ -228,6 +236,7 @@
 				F4D1A949257C39030027035C /* Item.swift */,
 				F4D944A225A5F6780061532A /* Order.swift */,
 				F43EE1DE25A4F5BA000844D7 /* extensions.swift */,
+				F429480625C88A5D00A11D94 /* CategoryList.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -259,10 +268,12 @@
 			isa = PBXGroup;
 			children = (
 				F4D1A8EB257BD31A0027035C /* SignInViewController.swift */,
+				F444DFB725C84A9900E8D7CE /* SignUpViewController.swift */,
 				F4D1A925257BE39A0027035C /* MainNavigationViewController.swift */,
 				F4D1A944257C07600027035C /* ItemsViewController.swift */,
 				F4D1A956257D0D390027035C /* ItemDetailViewController.swift */,
 				F49B429225B1AC0D00FDF054 /* BasketViewController.swift */,
+				F429480125C86A6B00A11D94 /* OrderConfirmationViewController.swift */,
 			);
 			path = "Other View Controllers";
 			sourceTree = "<group>";
@@ -557,9 +568,12 @@
 				F4D1A936257BED710027035C /* CafeCollectionViewController.swift in Sources */,
 				F49B429825B1AE8700FDF054 /* OrderItemsTableViewCell.swift in Sources */,
 				F4D1A940257C02130027035C /* Constants.swift in Sources */,
+				F429480725C88A5D00A11D94 /* CategoryList.swift in Sources */,
+				F429480225C86A6B00A11D94 /* OrderConfirmationViewController.swift in Sources */,
 				F4D1A945257C07600027035C /* ItemsViewController.swift in Sources */,
 				F4D1A957257D0D390027035C /* ItemDetailViewController.swift in Sources */,
 				F4D1A914257BD9F30027035C /* User.swift in Sources */,
+				F444DFB825C84A9900E8D7CE /* SignUpViewController.swift in Sources */,
 				F43EE1DF25A4F5BA000844D7 /* extensions.swift in Sources */,
 				F4CF6702257BB7C1004FF87F /* AppDelegate.swift in Sources */,
 				F4CF6704257BB7C1004FF87F /* SceneDelegate.swift in Sources */,
@@ -741,6 +755,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO;
+				CODE_SIGN_ENTITLEMENTS = "QADS Cafe and Bar/QADS Cafe and Bar.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = X9F3S93MFG;
 				INFOPLIST_FILE = "QADS Cafe and Bar/Info.plist";
@@ -761,6 +777,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO;
+				CODE_SIGN_ENTITLEMENTS = "QADS Cafe and Bar/QADS Cafe and Bar.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = X9F3S93MFG;
 				INFOPLIST_FILE = "QADS Cafe and Bar/Info.plist";
@@ -781,6 +799,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = X9F3S93MFG;
 				INFOPLIST_FILE = "QADS Cafe and BarTests/Info.plist";
@@ -804,6 +823,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = X9F3S93MFG;
 				INFOPLIST_FILE = "QADS Cafe and BarTests/Info.plist";
@@ -826,6 +846,7 @@
 			baseConfigurationReference = 5E59C8EA50E6768D644498A6 /* Pods-QADS Cafe and Bar-QADS Cafe and BarUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = X9F3S93MFG;
 				INFOPLIST_FILE = "QADS Cafe and BarUITests/Info.plist";
@@ -847,6 +868,7 @@
 			baseConfigurationReference = 848306473783005A3AB87F8A /* Pods-QADS Cafe and Bar-QADS Cafe and BarUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = X9F3S93MFG;
 				INFOPLIST_FILE = "QADS Cafe and BarUITests/Info.plist";

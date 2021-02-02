@@ -12,7 +12,6 @@ private let reuseIdentifier = "ItemCell"
 class ItemsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var titleLabel: UILabel!
     
     var ItemList = itemList()
     var location = String()
@@ -29,7 +28,7 @@ class ItemsViewController: UIViewController, UICollectionViewDelegate, UICollect
         let nib = UINib(nibName: "ItemCollectionViewCell",bundle: nil)
         self.collectionView.register(nib, forCellWithReuseIdentifier: reuseIdentifier)
         
-        titleLabel.text = category
+        navigationItem.title = category
         
         //Load in data
         ItemList.loadItemsFor(location: location, category: category) {
@@ -68,7 +67,7 @@ class ItemsViewController: UIViewController, UICollectionViewDelegate, UICollect
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
         //Make the values constants
-        return CGSize(width: collectionView.frame.width * constants.categoryWidthMultiplier, height: collectionView.frame.width * constants.categoryHeightMultiplier)
+        return CGSize(width: collectionView.frame.width * constants.itemWidthMultiplier, height: collectionView.frame.width * constants.itemHeightMultiplier)
     }
     
 

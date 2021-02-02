@@ -12,7 +12,8 @@ class ItemCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var itemLabel: UILabel!
     @IBOutlet weak var stockLabel: UILabel!
-    @IBOutlet weak var categoryImage: CustomImageView!
+    @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
     
     var item = Item()
     
@@ -24,15 +25,8 @@ class ItemCollectionViewCell: UICollectionViewCell {
 
     func layout() {
         
-        //MainView Layout
-        mainView.layer.cornerRadius = 20
-        mainView.clipsToBounds = true
+        //Nothing yet
         
-        //Add shadow
-        self.layer.shadowOpacity = 0.5
-        self.layer.shadowOffset = CGSize(width: 2, height: 3)
-        self.layer.shadowRadius = 3
-        self.clipsToBounds = false
     }
     
     
@@ -40,19 +34,14 @@ class ItemCollectionViewCell: UICollectionViewCell {
         
         //Fill in data
         itemLabel.text = item.name
+        descriptionLabel.text = item.desc
+        priceLabel.text = "£" + String(format: "%.2f", item.price ?? 0.0)
+        
         if item.stock ?? true {
             stockLabel.isHidden = true
         } else {
             stockLabel.isHidden = false
             stockLabel.text = "This item is out of stock"
-        }
-        
-        //Get the item image from firebase
-        categoryImage.LoadImageUsingCache(ImageRef: item.getImageRef()) { (isFound) in
-            if !isFound {
-                //Do something if the image could not be found
-                print("not found")
-            }
         }
         
         

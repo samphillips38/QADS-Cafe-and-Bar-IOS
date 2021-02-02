@@ -21,6 +21,7 @@ class order: NSObject {
     var orderDate: Date?
     var price: Double = 0.0
     var userCRSID: String?
+    var note: String?
     
     lazy var functions = Functions.functions()
     
@@ -35,6 +36,9 @@ class order: NSObject {
     }
     
     func checkoutOrder(completion: @escaping () -> Void) {
+        
+        //get email
+        self.email = Auth.auth().currentUser?.email
         
         if self.orderID == nil {
             //This is a new order
@@ -74,7 +78,8 @@ class order: NSObject {
             "location": self.location as Any,
             "order_datetime": self.orderDate as Any,
             "price": self.price,
-            "user": currentUser.crsid as Any
+            "user": currentUser.crsid as Any,
+            "note": self.note as Any
         ]) { (error) in
             if error != nil {
                 print("Error creating document: ", error!)
@@ -108,33 +113,13 @@ class order: NSObject {
             "location": self.location as Any,
             "order_datetime": self.orderDate as Any,
             "price": self.price,
-            "user": currentUser.crsid as Any
+            "user": currentUser.crsid as Any,
+            "note": self.note as Any
         ]) { err in
             if let err = err {
                 print("Error updating document: \(err)")
             } else {
                 print("Event successfully updated")
-            }
-            completion()
-        }
-    }
-    
-    
-    
-    func sendOrder(completion: @escaping () -> Void) {
-        
-        //send request to firebase to send push notification
-        let data = ["archived": self.archived, "cancelled": self.cancelled, "email": self.email ?? "", "flagged": self.flagged, "location": self.location ?? ""] as [String: Any]
-        
-        
-        functions.httpsCallable("emailSender").call(data) { (result, error) in
-            if let error = error as NSError? {
-              if error.domain == FunctionsErrorDomain {
-                  print("There was an error sending notification: ", error.localizedDescription)
-              }
-            }
-            if let text = (result?.data as? [String: Any])?["text"] as? String {
-              print(text)
             }
             completion()
         }
@@ -185,6 +170,7 @@ class order: NSObject {
         self.orderDate = new.orderDate
         self.price = new.price
         self.userCRSID = new.userCRSID
+        self.note = new.note
         
     }
     
@@ -199,7 +185,7 @@ class orderItem: NSObject {
     var refItem = Item()
     var itemID: String?
     var itemName: String?
-    var note: String = ""
+//    var note: String = ""
     var location: String?
     
     //Create a struct for an option. These will be stored in an array

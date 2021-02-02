@@ -10,6 +10,8 @@ import UIKit
 private let reuseIdentifier = "BarCategoryCell"
 
 class BarCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+    
+    var categoryList = CategoryList()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,6 +20,11 @@ class BarCollectionViewController: UICollectionViewController, UICollectionViewD
         let nib = UINib(nibName: "CategoriesCollectionViewCell",bundle: nil)
         self.collectionView.register(nib, forCellWithReuseIdentifier: reuseIdentifier)
 
+        //Get all the active categories
+        categoryList.getBarCategories {
+            self.collectionView.reloadData()
+        }
+        
     }
 
 
@@ -28,7 +35,7 @@ class BarCollectionViewController: UICollectionViewController, UICollectionViewD
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return constants.BarCategories.count
+        return categoryList.categories.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -38,9 +45,10 @@ class BarCollectionViewController: UICollectionViewController, UICollectionViewD
             fatalError("The dequeued cell is not an instance of CategoriesCollectionViewCell")
         }
         
-        cell.categoryNameLabel.text = constants.BarCategories[indexPath.row]
-        cell.categoryImage.image = UIImage(named: constants.BarCategories[indexPath.row])
-    
+        cell.fillInWithCategory(category: categoryList.categories[indexPath.row]) {
+            
+        }
+        
         return cell
     }
     
@@ -58,7 +66,7 @@ class BarCollectionViewController: UICollectionViewController, UICollectionViewD
         let ItemVC = storyBoard.instantiateViewController(withIdentifier: "ItemVC") as! ItemsViewController
         
         ItemVC.location = "Bar"
-        ItemVC.category = constants.BarCategories[indexPath.row]
+        ItemVC.category = categoryList.categories[indexPath.row].name ?? ""
         
         self.navigationController?.pushViewController(ItemVC, animated: true)
     }

@@ -11,10 +11,10 @@ private let reuseIdentifier = "OptionTVC"
 
 class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, optionsCellDelegate {
     
+    @IBOutlet weak var itemImage: CustomImageView!
     @IBOutlet weak var itemNameLabel: UILabel!
     @IBOutlet weak var outOfStockLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var addToBasketButton: UIButton!
     @IBOutlet weak var doneButton: UIButton!
     
     
@@ -26,6 +26,8 @@ class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var tableViewHeight: NSLayoutConstraint!
     @IBOutlet weak var priceLabel: UILabel!
     
+    @IBOutlet weak var addStackView: UIStackView!
+    @IBOutlet weak var noCustomisationsLabel: UILabel!
     
     var chosenItem = Item()
     var currentOrderItem = orderItem()
@@ -42,22 +44,30 @@ class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         //Table View
         optionTableView.delegate = self
         optionTableView.dataSource = self
+        
+        //set action for stack view
+        addStackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(addToBasketTapped(_:))))
+        addStackView.isUserInteractionEnabled = true
     }
     
     
     func layout() {
         
-        //Add to basket button
-        addToBasketButton.layer.cornerRadius = 20
-        addToBasketButton.layer.borderWidth = 1
-        addToBasketButton.layer.borderColor = UIColor.blue.cgColor
-        
         //Done button
         doneButton.backgroundColor = UIColor(white: 1, alpha: 0.7)
         doneButton.layer.cornerRadius = 5
         
+        //Stack View Layout
+        addStackView.layer.cornerRadius = addStackView.frame.height/2
+        
         //Table View height
         tableViewHeight.constant = CGFloat(((chosenItem.options ?? [:]).count * 41))
+        
+        
+        if currentOrderItem.options.count ?? 0 == 0 {
+            optionTableView.isHidden = true
+            noCustomisationsLabel.isHidden = false
+        }
     }
     
     
@@ -69,19 +79,26 @@ class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         
         if chosenItem.stock ?? false {
             outOfStockLabel.isHidden = true
-            addToBasketButton.setTitle("Add to basket", for: .normal)
         } else {
             outOfStockLabel.isHidden = false
             outOfStockLabel.text = "This item is out of stock."
-            addToBasketButton.setTitle("This item is out of stock", for: .normal)
         }
         
         //Load price from the order item as this could be changed by preferences
         setPrice(price: currentOrderItem.price)
+        
+        //Get the item image from firebase
+        itemImage.LoadImageUsingCache(ImageRef: chosenItem.getImageRef()) { (isFound) in
+            if !isFound {
+                //Do something if the image could not be found
+                print("not found")
+            }
+        }
+        
     }
     
     func setPrice(price: Double) {
-        priceLabel.text = "Price  £" + String(format: "%.2f", price)
+        priceLabel.text = "£" + String(format: "%.2f", price)
     }
     
     //MARK:- Options Table View
@@ -147,14 +164,12 @@ class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableVi
 
     //MARK:- Button Actions
     
-    @IBAction func addToBasketTapped(_ sender: Any) {
-        
+    @objc func addToBasketTapped(_ sender: UITapGestureRecognizer? = nil) {
         currentUser.currentOrder.addItem(item: currentOrderItem)
         dismiss(animated: true) {
             //Do somehting
         }
     }
-    
     
     @IBAction func doneButtonTapped(_ sender: Any) {
         self.dismiss(animated: true) {
