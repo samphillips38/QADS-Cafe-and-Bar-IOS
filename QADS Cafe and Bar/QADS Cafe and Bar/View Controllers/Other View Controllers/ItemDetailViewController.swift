@@ -27,7 +27,7 @@ class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var priceLabel: UILabel!
     
     @IBOutlet weak var addStackView: UIStackView!
-    
+    @IBOutlet weak var noCustomisationsLabel: UILabel!
     
     var chosenItem = Item()
     var currentOrderItem = orderItem()
@@ -62,6 +62,12 @@ class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         
         //Table View height
         tableViewHeight.constant = CGFloat(((chosenItem.options ?? [:]).count * 41))
+        
+        
+        if currentOrderItem.options.count ?? 0 == 0 {
+            optionTableView.isHidden = true
+            noCustomisationsLabel.isHidden = false
+        }
     }
     
     
