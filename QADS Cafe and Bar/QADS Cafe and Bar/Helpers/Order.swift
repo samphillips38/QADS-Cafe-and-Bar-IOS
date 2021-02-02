@@ -21,6 +21,7 @@ class order: NSObject {
     var orderDate: Date?
     var price: Double = 0.0
     var userCRSID: String?
+    var note: String?
     
     lazy var functions = Functions.functions()
     
@@ -77,7 +78,8 @@ class order: NSObject {
             "location": self.location as Any,
             "order_datetime": self.orderDate as Any,
             "price": self.price,
-            "user": currentUser.crsid as Any
+            "user": currentUser.crsid as Any,
+            "note": self.note as Any
         ]) { (error) in
             if error != nil {
                 print("Error creating document: ", error!)
@@ -111,7 +113,8 @@ class order: NSObject {
             "location": self.location as Any,
             "order_datetime": self.orderDate as Any,
             "price": self.price,
-            "user": currentUser.crsid as Any
+            "user": currentUser.crsid as Any,
+            "note": self.note as Any
         ]) { err in
             if let err = err {
                 print("Error updating document: \(err)")
@@ -167,6 +170,7 @@ class order: NSObject {
         self.orderDate = new.orderDate
         self.price = new.price
         self.userCRSID = new.userCRSID
+        self.note = new.note
         
     }
     
@@ -181,7 +185,7 @@ class orderItem: NSObject {
     var refItem = Item()
     var itemID: String?
     var itemName: String?
-    var note: String = ""
+//    var note: String = ""
     var location: String?
     
     //Create a struct for an option. These will be stored in an array

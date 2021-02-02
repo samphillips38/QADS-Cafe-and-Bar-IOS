@@ -47,7 +47,6 @@ class Item: NSObject {
     var location: String?
     var name: String?
     var options: [String: [String: Any]]?
-    //var options: [String: Bool]?
     var price: Double?
     var stock: Bool?
     var id: String?

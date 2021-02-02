@@ -116,6 +116,10 @@ class BasketViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return true
     }
     
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        currentUser.currentOrder.note = textField.text
+    }
+    
     
     //MARK: -Button actions
     
@@ -140,6 +144,7 @@ class BasketViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     
                     //Refresh the table data
                     self.tableView.reloadData()
+                    self.orderNotesTextField.text = ""
                 }
             }
             
