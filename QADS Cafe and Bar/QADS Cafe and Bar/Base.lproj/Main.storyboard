@@ -144,7 +144,7 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" title="Queens' Cafe" id="IFr-jE-3dg">
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="bag" catalog="system" id="nU2-LG-d5o">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="CartIcon" id="nU2-LG-d5o">
                             <connections>
                                 <segue destination="Zi9-b5-wva" kind="show" id="4rg-jg-BZx"/>
                             </connections>
@@ -758,7 +758,7 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" title="Queens' Bar" id="DoX-Ku-trL">
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="bag" catalog="system" id="C2b-is-wrZ">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="CartIcon" id="C2b-is-wrZ">
                             <connections>
                                 <segue destination="Zi9-b5-wva" kind="show" id="Tke-gJ-e1L"/>
                             </connections>
@@ -808,11 +808,12 @@
         <scene sceneID="X0h-vc-Cgo">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Gof-hZ-0XW" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Cafe" image="globe" catalog="system" id="7bH-ZJ-NdG"/>
+                    <tabBarItem key="tabBarItem" title="Cafe" image="CafeIcon" id="7bH-ZJ-NdG"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Lgi-8n-UIh">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="barTintColor" red="0.0039215686269999999" green="0.2901960784" blue="0.015686274510000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -831,11 +832,12 @@
         <scene sceneID="cMq-LS-keL">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="f6a-Qq-qnp" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Bar" image="scribble.variable" catalog="system" id="Z3L-ZO-d4G"/>
+                    <tabBarItem key="tabBarItem" title="Bar" image="BarIcon" id="Z3L-ZO-d4G"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="hTe-lP-3WM">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="barTintColor" red="0.0039215686269999999" green="0.2901960784" blue="0.015686274510000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -852,14 +854,14 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="4rg-jg-BZx"/>
+        <segue reference="Tke-gJ-e1L"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="BarIcon" width="25" height="25"/>
         <image name="Bridge" width="1024" height="1024"/>
-        <image name="bag" catalog="system" width="128" height="128"/>
+        <image name="CafeIcon" width="25" height="25"/>
+        <image name="CartIcon" width="25" height="25"/>
         <image name="checkmark.square" catalog="system" width="128" height="114"/>
-        <image name="globe" catalog="system" width="128" height="121"/>
-        <image name="scribble.variable" catalog="system" width="128" height="118"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
