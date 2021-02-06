@@ -27,7 +27,7 @@ class CategoryList: NSObject {
         let db = Firestore.firestore()
         
         //Get all active Events
-        db.collection("categories").whereField("open", isEqualTo: true).whereField("location", isEqualTo: "Cafe").getDocuments() { (querySnapshot, err) in
+        db.collection("categories").whereField("location", isEqualTo: "Cafe").getDocuments() { (querySnapshot, err) in
                 if let err = err {
                     print("Error getting categories: \(err)")
                 } else {
@@ -58,7 +58,7 @@ class CategoryList: NSObject {
         let db = Firestore.firestore()
         
         //Get all active Events
-        db.collection("categories").whereField("open", isEqualTo: true).whereField("location", isEqualTo: "Bar").getDocuments() { (querySnapshot, err) in
+        db.collection("categories").whereField("location", isEqualTo: "Bar").getDocuments() { (querySnapshot, err) in
                 if let err = err {
                     print("Error getting categories: \(err)")
                 } else {

@@ -10,6 +10,7 @@
 		7FAE117B34E06C4B9963171D /* Pods_QADS_Cafe_and_BarTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12D6FF57C0390BA854E31FD4 /* Pods_QADS_Cafe_and_BarTests.framework */; };
 		C367EB6C57150C9192FAC3D6 /* Pods_QADS_Cafe_and_Bar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 332C19A9EE15E726CAD75FA4 /* Pods_QADS_Cafe_and_Bar.framework */; };
 		CDD1BC48AE37D62A403539DF /* Pods_QADS_Cafe_and_Bar_QADS_Cafe_and_BarUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57F3777C07EA3810AEDDBA1B /* Pods_QADS_Cafe_and_Bar_QADS_Cafe_and_BarUITests.framework */; };
+		F414A8FC25CE9E380008B9AB /* CafeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F414A8FB25CE9E380008B9AB /* CafeViewController.swift */; };
 		F429480225C86A6B00A11D94 /* OrderConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F429480125C86A6B00A11D94 /* OrderConfirmationViewController.swift */; };
 		F429480725C88A5D00A11D94 /* CategoryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F429480625C88A5D00A11D94 /* CategoryList.swift */; };
 		F43EE1DF25A4F5BA000844D7 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43EE1DE25A4F5BA000844D7 /* extensions.swift */; };
@@ -71,6 +72,7 @@
 		848306473783005A3AB87F8A /* Pods-QADS Cafe and Bar-QADS Cafe and BarUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QADS Cafe and Bar-QADS Cafe and BarUITests.release.xcconfig"; path = "Target Support Files/Pods-QADS Cafe and Bar-QADS Cafe and BarUITests/Pods-QADS Cafe and Bar-QADS Cafe and BarUITests.release.xcconfig"; sourceTree = "<group>"; };
 		A35502AFC7100019E8B92804 /* Pods-QADS Cafe and BarTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QADS Cafe and BarTests.debug.xcconfig"; path = "Target Support Files/Pods-QADS Cafe and BarTests/Pods-QADS Cafe and BarTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B98F58E963B94DBCF2D08CB8 /* Pods-QADS Cafe and Bar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QADS Cafe and Bar.debug.xcconfig"; path = "Target Support Files/Pods-QADS Cafe and Bar/Pods-QADS Cafe and Bar.debug.xcconfig"; sourceTree = "<group>"; };
+		F414A8FB25CE9E380008B9AB /* CafeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CafeViewController.swift; sourceTree = "<group>"; };
 		F429480125C86A6B00A11D94 /* OrderConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderConfirmationViewController.swift; sourceTree = "<group>"; };
 		F429480625C88A5D00A11D94 /* CategoryList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryList.swift; sourceTree = "<group>"; };
 		F43EE1DE25A4F5BA000844D7 /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 				F4D1A91D257BE1950027035C /* MainTabBarViewController.swift */,
 				F4D1A935257BED710027035C /* CafeCollectionViewController.swift */,
 				F4D1A93A257BF8BE0027035C /* BarCollectionViewController.swift */,
+				F414A8FB25CE9E380008B9AB /* CafeViewController.swift */,
 			);
 			path = "Tab Bar Controllers";
 			sourceTree = "<group>";
@@ -560,6 +563,7 @@
 				F49B429325B1AC0D00FDF054 /* BasketViewController.swift in Sources */,
 				F4D1A91E257BE1950027035C /* MainTabBarViewController.swift in Sources */,
 				F4D1A92D257BEB8E0027035C /* CategoriesCollectionViewCell.swift in Sources */,
+				F414A8FC25CE9E380008B9AB /* CafeViewController.swift in Sources */,
 				F4D1A93B257BF8BE0027035C /* BarCollectionViewController.swift in Sources */,
 				F4D1A926257BE39A0027035C /* MainNavigationViewController.swift in Sources */,
 				F4D1A94A257C39030027035C /* Item.swift in Sources */,
