@@ -6,15 +6,22 @@
 //
 
 import UIKit
+import FirebaseFirestore
 
 private let reuseIdentifier = "CafeCategoryCell"
 
 class CafeCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
     var categoryList = CategoryList()
+    var isOpen = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Set open status
+        setOpenStatus {
+            //Do something depending on outcome
+        }
 
         //Set up the xib file for the event cells
         let nib = UINib(nibName: "CategoriesCollectionViewCell",bundle: nil)
@@ -44,6 +51,28 @@ class CafeCollectionViewController: UICollectionViewController, UICollectionView
             titleView.heightAnchor.constraint(equalTo: navC.navigationBar.widthAnchor, multiplier: 0.088).isActive = true
         }
     }
+    
+    
+    func setOpenStatus(Completion: @escaping () -> Void) {
+        
+        //Load Firestore Database
+        let db = Firestore.firestore()
+        
+        //Get all active Events
+        db.collection("locations").whereField("name", isEqualTo: "cafe").getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting categories: \(err)")
+                } else {
+                    for document in querySnapshot!.documents {
+                        
+                        let doc = document.data() as [String : Any]
+                        self.isOpen = (doc["open"] as? Bool) ?? true
+                    }
+                }
+                Completion()
+        }
+    }
+    
     
 
     // MARK:- UICollectionViewDataSource
