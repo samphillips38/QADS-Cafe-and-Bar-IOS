@@ -109,6 +109,7 @@ class CafeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     func animateOpenBanner() {
+        //Banner will come down if closed and up if open
         if isOpen {
             self.view.layoutIfNeeded()
             UIView.animate(withDuration: 0.3, animations: {
@@ -122,6 +123,17 @@ class CafeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 self.view.layoutIfNeeded()
             }, completion: nil)
         }
+    }
+    
+    func shakeBanner() {
+        //Banner will shake
+        let animation = CABasicAnimation(keyPath: "position")
+        animation.duration = 0.07
+        animation.repeatCount = 4
+        animation.autoreverses = true
+        animation.fromValue = NSValue(cgPoint: CGPoint(x: isOpenView.center.x - 5, y: isOpenView.center.y))
+        animation.toValue = NSValue(cgPoint: CGPoint(x: isOpenView.center.x + 5, y: isOpenView.center.y))
+        isOpenView.layer.add(animation, forKey: "position")
     }
     
 
@@ -163,6 +175,7 @@ class CafeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         //If closed do nothing
         if !self.isOpen {
+            shakeBanner()
             return
         }
         

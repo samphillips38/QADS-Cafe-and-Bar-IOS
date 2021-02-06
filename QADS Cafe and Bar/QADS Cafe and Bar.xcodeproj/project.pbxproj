@@ -11,6 +11,7 @@
 		C367EB6C57150C9192FAC3D6 /* Pods_QADS_Cafe_and_Bar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 332C19A9EE15E726CAD75FA4 /* Pods_QADS_Cafe_and_Bar.framework */; };
 		CDD1BC48AE37D62A403539DF /* Pods_QADS_Cafe_and_Bar_QADS_Cafe_and_BarUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57F3777C07EA3810AEDDBA1B /* Pods_QADS_Cafe_and_Bar_QADS_Cafe_and_BarUITests.framework */; };
 		F414A8FC25CE9E380008B9AB /* CafeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F414A8FB25CE9E380008B9AB /* CafeViewController.swift */; };
+		F414A90425CEAB980008B9AB /* BarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F414A90325CEAB980008B9AB /* BarViewController.swift */; };
 		F429480225C86A6B00A11D94 /* OrderConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F429480125C86A6B00A11D94 /* OrderConfirmationViewController.swift */; };
 		F429480725C88A5D00A11D94 /* CategoryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F429480625C88A5D00A11D94 /* CategoryList.swift */; };
 		F43EE1DF25A4F5BA000844D7 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43EE1DE25A4F5BA000844D7 /* extensions.swift */; };
@@ -33,7 +34,6 @@
 		F4D1A926257BE39A0027035C /* MainNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D1A925257BE39A0027035C /* MainNavigationViewController.swift */; };
 		F4D1A92D257BEB8E0027035C /* CategoriesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D1A92B257BEB8E0027035C /* CategoriesCollectionViewCell.swift */; };
 		F4D1A92E257BEB8E0027035C /* CategoriesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4D1A92C257BEB8E0027035C /* CategoriesCollectionViewCell.xib */; };
-		F4D1A936257BED710027035C /* CafeCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D1A935257BED710027035C /* CafeCollectionViewController.swift */; };
 		F4D1A93B257BF8BE0027035C /* BarCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D1A93A257BF8BE0027035C /* BarCollectionViewController.swift */; };
 		F4D1A940257C02130027035C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D1A93F257C02130027035C /* Constants.swift */; };
 		F4D1A945257C07600027035C /* ItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D1A944257C07600027035C /* ItemsViewController.swift */; };
@@ -73,6 +73,7 @@
 		A35502AFC7100019E8B92804 /* Pods-QADS Cafe and BarTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QADS Cafe and BarTests.debug.xcconfig"; path = "Target Support Files/Pods-QADS Cafe and BarTests/Pods-QADS Cafe and BarTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B98F58E963B94DBCF2D08CB8 /* Pods-QADS Cafe and Bar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QADS Cafe and Bar.debug.xcconfig"; path = "Target Support Files/Pods-QADS Cafe and Bar/Pods-QADS Cafe and Bar.debug.xcconfig"; sourceTree = "<group>"; };
 		F414A8FB25CE9E380008B9AB /* CafeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CafeViewController.swift; sourceTree = "<group>"; };
+		F414A90325CEAB980008B9AB /* BarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarViewController.swift; sourceTree = "<group>"; };
 		F429480125C86A6B00A11D94 /* OrderConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderConfirmationViewController.swift; sourceTree = "<group>"; };
 		F429480625C88A5D00A11D94 /* CategoryList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryList.swift; sourceTree = "<group>"; };
 		F43EE1DE25A4F5BA000844D7 /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
@@ -100,7 +101,6 @@
 		F4D1A925257BE39A0027035C /* MainNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationViewController.swift; sourceTree = "<group>"; };
 		F4D1A92B257BEB8E0027035C /* CategoriesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCollectionViewCell.swift; sourceTree = "<group>"; };
 		F4D1A92C257BEB8E0027035C /* CategoriesCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoriesCollectionViewCell.xib; sourceTree = "<group>"; };
-		F4D1A935257BED710027035C /* CafeCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CafeCollectionViewController.swift; sourceTree = "<group>"; };
 		F4D1A93A257BF8BE0027035C /* BarCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarCollectionViewController.swift; sourceTree = "<group>"; };
 		F4D1A93F257C02130027035C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F4D1A944257C07600027035C /* ItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsViewController.swift; sourceTree = "<group>"; };
@@ -247,9 +247,9 @@
 			isa = PBXGroup;
 			children = (
 				F4D1A91D257BE1950027035C /* MainTabBarViewController.swift */,
-				F4D1A935257BED710027035C /* CafeCollectionViewController.swift */,
 				F4D1A93A257BF8BE0027035C /* BarCollectionViewController.swift */,
 				F414A8FB25CE9E380008B9AB /* CafeViewController.swift */,
+				F414A90325CEAB980008B9AB /* BarViewController.swift */,
 			);
 			path = "Tab Bar Controllers";
 			sourceTree = "<group>";
@@ -565,11 +565,11 @@
 				F4D1A92D257BEB8E0027035C /* CategoriesCollectionViewCell.swift in Sources */,
 				F414A8FC25CE9E380008B9AB /* CafeViewController.swift in Sources */,
 				F4D1A93B257BF8BE0027035C /* BarCollectionViewController.swift in Sources */,
+				F414A90425CEAB980008B9AB /* BarViewController.swift in Sources */,
 				F4D1A926257BE39A0027035C /* MainNavigationViewController.swift in Sources */,
 				F4D1A94A257C39030027035C /* Item.swift in Sources */,
 				F4D1A960257D41E10027035C /* OptionsTableViewCell.swift in Sources */,
 				F4D944A325A5F6780061532A /* Order.swift in Sources */,
-				F4D1A936257BED710027035C /* CafeCollectionViewController.swift in Sources */,
 				F49B429825B1AE8700FDF054 /* OrderItemsTableViewCell.swift in Sources */,
 				F4D1A940257C02130027035C /* Constants.swift in Sources */,
 				F429480725C88A5D00A11D94 /* CategoryList.swift in Sources */,
