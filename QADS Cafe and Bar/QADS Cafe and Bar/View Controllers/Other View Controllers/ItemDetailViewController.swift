@@ -165,7 +165,11 @@ class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     //MARK:- Button Actions
     
     @objc func addToBasketTapped(_ sender: UITapGestureRecognizer? = nil) {
-        currentUser.currentOrder.addItem(item: currentOrderItem)
+        if currentOrderItem.location == "Cafe" {
+            currentUser.cafeOrder.addItem(item: currentOrderItem)
+        } else {
+            currentUser.barOrder.addItem(item: currentOrderItem)
+        }
         dismiss(animated: true) {
             //Do somehting
         }

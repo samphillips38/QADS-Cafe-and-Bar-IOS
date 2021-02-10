@@ -41,7 +41,8 @@ class BasketViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func setPrice() {
-        totalLabel.text = "£" + String(format: "%.2f", currentUser.currentOrder.price)
+        let price = currentUser.barOrder.price + currentUser.cafeOrder.price
+        totalLabel.text = "£" + String(format: "%.2f", price)
     }
     
     func layout() {
@@ -62,7 +63,7 @@ class BasketViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return currentUser.currentOrder.items.count
+        return currentUser.cafeOrder.items.count + currentUser.barOrder.items.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -72,7 +73,7 @@ class BasketViewController: UIViewController, UITableViewDelegate, UITableViewDa
             fatalError("The dequeued cell is not an instance of OrderItemsTableViewCell")
         }
         
-        cell.fillInData(item: currentUser.currentOrder.items[indexPath.row])
+        cell.fillInData(item: currentUser.getItemAt(index: indexPath.row))
         
         //set delegate and index
         cell.cellDelegate = self
@@ -96,7 +97,7 @@ class BasketViewController: UIViewController, UITableViewDelegate, UITableViewDa
         alert.addAction(UIAlertAction(title: "Confirm", style: .default, handler: { action in
             
             //delete item
-            currentUser.currentOrder.removeItemAt(index: index)
+            currentUser.removeItemAt(index: index)
             self.setPrice()
             self.tableView.reloadData()
             
@@ -117,7 +118,8 @@ class BasketViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        currentUser.currentOrder.note = textField.text
+        currentUser.cafeOrder.note = textField.text
+        currentUser.barOrder.note = textField.text
     }
     
     
@@ -132,8 +134,7 @@ class BasketViewController: UIViewController, UITableViewDelegate, UITableViewDa
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
             
             //Checkout order once confirmed
-            currentUser.currentOrder.checkoutOrder {
-                currentUser.currentOrder.resetOrder()
+            currentUser.checkout {
                 
                 //Show confirmation screen (fullscreen)
                 let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)

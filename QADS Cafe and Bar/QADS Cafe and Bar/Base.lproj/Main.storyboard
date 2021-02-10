@@ -687,47 +687,6 @@
             </objects>
             <point key="canvasLocation" x="7429" y="-662"/>
         </scene>
-        <!--Queens' Bar-->
-        <scene sceneID="x5I-Zr-poe">
-            <objects>
-                <collectionViewController id="yXz-me-4VT" customClass="BarCollectionViewController" customModule="QADS_Cafe_and_Bar" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" id="2C6-3j-csz">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="30" minimumInteritemSpacing="10" id="nRF-lz-Hs4">
-                            <size key="itemSize" width="414" height="128"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="20" maxX="0.0" maxY="20"/>
-                        </collectionViewFlowLayout>
-                        <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BarCategoryCell" id="w7i-LX-Keg" customClass="CategoriesCollectionViewCell" customModule="QADS_Cafe_and_Bar" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="20" width="414" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="6xB-kw-t69">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="128"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </collectionViewCellContentView>
-                            </collectionViewCell>
-                        </cells>
-                        <connections>
-                            <outlet property="dataSource" destination="yXz-me-4VT" id="tlz-qh-qIx"/>
-                            <outlet property="delegate" destination="yXz-me-4VT" id="Qag-v8-fYp"/>
-                        </connections>
-                    </collectionView>
-                    <navigationItem key="navigationItem" title="Queens' Bar" id="DoX-Ku-trL">
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="CartIcon" id="C2b-is-wrZ">
-                            <connections>
-                                <segue destination="Zi9-b5-wva" kind="show" id="Tke-gJ-e1L"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                </collectionViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5YU-l7-Aev" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4696" y="511"/>
-        </scene>
         <!--Queens' Cafe-->
         <scene sceneID="7wV-Y8-SVW">
             <objects>
@@ -945,7 +904,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Queens' Bar" id="tfk-eA-OMr">
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="CartIcon" id="kQ3-Zv-Qcy"/>
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="CartIcon" id="kQ3-Zv-Qcy">
+                            <connections>
+                                <segue destination="Zi9-b5-wva" kind="show" id="eJg-Q2-lsh"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="FVJ-2K-Zlv" id="xpq-hq-0Tl"/>
@@ -955,11 +918,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hOD-nJ-n4d" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4695.652173913044" y="1285.0446428571429"/>
+            <point key="canvasLocation" x="4696" y="511"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Vzt-Ak-FxO"/>
+        <segue reference="eJg-Q2-lsh"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="BarIcon" width="25" height="25"/>
