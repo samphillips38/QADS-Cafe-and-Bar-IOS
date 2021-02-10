@@ -15,7 +15,8 @@ class User: NSObject {
     var firstName: String?
     var lastName: String?
     var email: String?
-    var currentOrder = order()
+    var cafeOrder = order()
+    var barOrder = order()
     var previousOrders: [String] = []
     
     func populate(data: [String: Any?]) {
@@ -89,6 +90,61 @@ class User: NSObject {
     }
     
     
+    func checkout(completion: @escaping () -> Void) {
+        
+        //For each order, save and send out if they have items
+        for order in [self.cafeOrder, self.barOrder] {
+            
+            //Skip if there are no orders
+            if order.items.isEmpty {
+                continue
+            }
+            
+            //get email and name
+            order.email = Auth.auth().currentUser?.email
+            order.name = (self.firstName ?? "") + " " + (self.lastName ?? "")
+            
+            if order.orderID == nil {
+                //This is a new order
+                order.saveOrder {
+                    self.addToPreviousOrders(order: order) {
+                        order.resetOrder()
+                        completion()
+                    }
+                }
+            } else {
+                //This order already exists
+                order.updateOrder {
+                    order.resetOrder()
+                    completion()
+                }
+            }
+        }
+        
+    }
+    
+    
+    func removeItemAt(index: Int) {
+        if index < self.cafeOrder.items.count {
+            //This is in the cafe
+            self.cafeOrder.removeItemAt(index: index)
+        } else {
+            //This is in the bar
+            self.barOrder.removeItemAt(index: index - self.cafeOrder.items.count)
+        }
+    }
+    
+    func getItemAt(index: Int) -> orderItem {
+        if index < self.cafeOrder.items.count {
+            //This is in the cafe
+            return self.cafeOrder.items[index]
+        } else {
+            //This is in the bar
+            return self.barOrder.items[index - self.cafeOrder.items.count]
+        }
+    }
+    
+    
     func signIn() {
         //Subscribe to topics
         Messaging.messaging().subscribe(toTopic: self.uid!, completion: nil)
@@ -122,7 +178,6 @@ class User: NSObject {
             
             completion()
         }
-        
     }
 
 }

@@ -22,6 +22,7 @@ class order: NSObject {
     var price: Double = 0.0
     var userCRSID: String?
     var note: String?
+    var name: String?
     
     lazy var functions = Functions.functions()
     
@@ -37,8 +38,9 @@ class order: NSObject {
     
     func checkoutOrder(completion: @escaping () -> Void) {
         
-        //get email
+        //get email and name
         self.email = Auth.auth().currentUser?.email
+        self.name = (currentUser.firstName ?? "") + " " + (currentUser.lastName ?? "")
         
         if self.orderID == nil {
             //This is a new order
@@ -62,25 +64,14 @@ class order: NSObject {
         let date = Date()
         self.orderDate = date
         
-        //Get properly formatted item list
-        let configuredItems = self.configureItems()
+        //Configure Data
+        let dataDic = makeDataDictionary()
         
         //Upload information to Firebase
         let db = Firestore.firestore()
         
         var ref: DocumentReference? = nil
-        ref = db.collection("orders").addDocument(data: [
-            "archived": self.archived,
-            "cancelled": self.cancelled,
-            "email": self.email as Any,
-            "flagged": self.flagged,
-            "items": configuredItems,
-            "location": self.location as Any,
-            "order_datetime": self.orderDate as Any,
-            "price": self.price,
-            "user": currentUser.crsid as Any,
-            "note": self.note as Any
-        ]) { (error) in
+        ref = db.collection("orders").addDocument(data: dataDic) { (error) in
             if error != nil {
                 print("Error creating document: ", error!)
             } else {
@@ -97,14 +88,31 @@ class order: NSObject {
             return
         }
         
-        //configure items
-        let configuredItems = self.configureItems()
+        //Configure Data
+        let dataDic = makeDataDictionary()
         
         //Upload information to Firebase under existing document
         let db = Firestore.firestore()
         let orderRef = db.collection("orders").document(self.orderID!)
         
-        orderRef.updateData([
+        orderRef.updateData(dataDic) { err in
+            if let err = err {
+                print("Error updating document: \(err)")
+            } else {
+                print("Order successfully updated")
+            }
+            completion()
+        }
+    }
+    
+    
+    func makeDataDictionary() -> [String: Any] {
+        //Create a dictionary in the correct format for saving in firebase
+        
+        //Get properly formatted item list
+        let configuredItems = self.configureItems()
+        
+        let dataDic = [
             "archived": self.archived,
             "cancelled": self.cancelled,
             "email": self.email as Any,
@@ -114,46 +122,46 @@ class order: NSObject {
             "order_datetime": self.orderDate as Any,
             "price": self.price,
             "user": currentUser.crsid as Any,
-            "note": self.note as Any
-        ]) { err in
-            if let err = err {
-                print("Error updating document: \(err)")
-            } else {
-                print("Event successfully updated")
-            }
-            completion()
-        }
+            "note": self.note as Any,
+            "name": self.name as Any
+        ]
+        
+        return dataDic
     }
     
-    func configureItems() -> [[String: Any]] {
+    func configureItems() -> [[String: Any]] { //Returns Configured Cafe then Bar Lists
         
-        //Configure the item Dictionary
+        //Configure the item Dictionary for Bar and Cafe
         var configuredItems: [[String: Any]] = []
         
         for item in self.items {
             
-            var itemDic: [String: Any] = [:]
-            
-            itemDic["id"] = item.itemID
-            itemDic["name"] = item.itemName
-            self.location = item.location //This will currently set the order location to last item
-            
-            //set options Dictionary
-            var optionsDic: [String: Any] = [:]
-            for option in item.options {
-                optionsDic[option.name] = [
-                    "name":option.name,
-                    "quantity": option.quantity
-                ]
+            //Add multiple if more than one quantity
+            for _ in 1...item.quantity {
+                
+                var itemDic: [String: Any] = [:]
+                
+                itemDic["id"] = item.itemID
+                itemDic["name"] = item.itemName
+                self.location = item.location //Ensures that the order is set to the correct location
+                
+                //set options Dictionary
+                var optionsDic: [String: Any] = [:]
+                for option in item.options {
+                    optionsDic[option.name] = [
+                        "name":option.name,
+                        "quantity": option.quantity
+                    ]
+                }
+                itemDic["options"] = optionsDic
+                
+                //Add item
+                configuredItems.append(itemDic)
+                
             }
-            itemDic["options"] = optionsDic
-            
-            //Add item
-            configuredItems.append(itemDic)
         }
         return configuredItems
     }
-    
     
     func resetOrder() {
         
@@ -171,6 +179,7 @@ class order: NSObject {
         self.price = new.price
         self.userCRSID = new.userCRSID
         self.note = new.note
+        self.name = new.name
         
     }
     

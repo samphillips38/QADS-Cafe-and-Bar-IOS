@@ -114,47 +114,6 @@
             </objects>
             <point key="canvasLocation" x="1491" y="92"/>
         </scene>
-        <!--Queens' Cafe-->
-        <scene sceneID="0Wj-dd-ESt">
-            <objects>
-                <collectionViewController id="bWg-ZY-40A" customClass="CafeCollectionViewController" customModule="QADS_Cafe_and_Bar" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" id="yJk-7G-peG">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="30" minimumInteritemSpacing="10" id="rq1-yr-rs7">
-                            <size key="itemSize" width="414" height="128"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="20" maxX="0.0" maxY="20"/>
-                        </collectionViewFlowLayout>
-                        <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CafeCategoryCell" id="cAB-ub-fao" customClass="CategoriesCollectionViewCell" customModule="QADS_Cafe_and_Bar" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="20" width="414" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="ZTR-Rj-3XA">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="128"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </collectionViewCellContentView>
-                            </collectionViewCell>
-                        </cells>
-                        <connections>
-                            <outlet property="dataSource" destination="bWg-ZY-40A" id="KDI-QZ-2Eg"/>
-                            <outlet property="delegate" destination="bWg-ZY-40A" id="4oG-yE-bXw"/>
-                        </connections>
-                    </collectionView>
-                    <navigationItem key="navigationItem" title="Queens' Cafe" id="IFr-jE-3dg">
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="CartIcon" id="nU2-LG-d5o">
-                            <connections>
-                                <segue destination="Zi9-b5-wva" kind="show" id="4rg-jg-BZx"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                </collectionViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Pl4-qD-lC1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4697" y="-210"/>
-        </scene>
         <!--Items View Controller-->
         <scene sceneID="x3X-6W-6bx">
             <objects>
@@ -728,46 +687,80 @@
             </objects>
             <point key="canvasLocation" x="7429" y="-662"/>
         </scene>
-        <!--Queens' Bar-->
-        <scene sceneID="x5I-Zr-poe">
+        <!--Queens' Cafe-->
+        <scene sceneID="7wV-Y8-SVW">
             <objects>
-                <collectionViewController id="yXz-me-4VT" customClass="BarCollectionViewController" customModule="QADS_Cafe_and_Bar" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" id="2C6-3j-csz">
+                <viewController id="4L3-X4-2nf" customClass="CafeViewController" customModule="QADS_Cafe_and_Bar" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="eJb-PB-ygz">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="oWF-95-MKn">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="30" minimumInteritemSpacing="10" id="WO9-m9-hMR">
+                                    <size key="itemSize" width="414" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="20" maxX="0.0" maxY="20"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CafeCategoryCell" id="85L-Qm-ctu" customClass="CategoriesCollectionViewCell" customModule="QADS_Cafe_and_Bar" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="20" width="414" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="xPg-8p-M4E">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vcx-4p-Io4">
+                                <rect key="frame" x="0.0" y="68" width="414" height="20"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Closed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Gh-mJ-VYW">
+                                        <rect key="frame" x="186" y="2" width="42.5" height="16"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemRedColor"/>
+                                <constraints>
+                                    <constraint firstItem="7Gh-mJ-VYW" firstAttribute="centerX" secondItem="Vcx-4p-Io4" secondAttribute="centerX" id="fxq-b5-fKJ"/>
+                                    <constraint firstItem="7Gh-mJ-VYW" firstAttribute="centerY" secondItem="Vcx-4p-Io4" secondAttribute="centerY" id="hHb-7t-Jyb"/>
+                                    <constraint firstAttribute="height" constant="20" id="mvz-Lx-kY7"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="eTE-zt-NRf"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="30" minimumInteritemSpacing="10" id="nRF-lz-Hs4">
-                            <size key="itemSize" width="414" height="128"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="20" maxX="0.0" maxY="20"/>
-                        </collectionViewFlowLayout>
-                        <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BarCategoryCell" id="w7i-LX-Keg" customClass="CategoriesCollectionViewCell" customModule="QADS_Cafe_and_Bar" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="20" width="414" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="6xB-kw-t69">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="128"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </collectionViewCellContentView>
-                            </collectionViewCell>
-                        </cells>
-                        <connections>
-                            <outlet property="dataSource" destination="yXz-me-4VT" id="tlz-qh-qIx"/>
-                            <outlet property="delegate" destination="yXz-me-4VT" id="Qag-v8-fYp"/>
-                        </connections>
-                    </collectionView>
-                    <navigationItem key="navigationItem" title="Queens' Bar" id="DoX-Ku-trL">
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="CartIcon" id="C2b-is-wrZ">
+                        <constraints>
+                            <constraint firstItem="eTE-zt-NRf" firstAttribute="bottom" secondItem="oWF-95-MKn" secondAttribute="bottom" id="3v7-Vb-sfK"/>
+                            <constraint firstItem="oWF-95-MKn" firstAttribute="leading" secondItem="eTE-zt-NRf" secondAttribute="leading" id="4UC-3J-MQQ"/>
+                            <constraint firstItem="Vcx-4p-Io4" firstAttribute="top" secondItem="eTE-zt-NRf" secondAttribute="top" constant="-20" id="8fk-dR-jQB"/>
+                            <constraint firstItem="Vcx-4p-Io4" firstAttribute="leading" secondItem="eTE-zt-NRf" secondAttribute="leading" id="CzY-lE-wU9"/>
+                            <constraint firstItem="oWF-95-MKn" firstAttribute="top" secondItem="Vcx-4p-Io4" secondAttribute="bottom" id="PXS-aw-Zeh"/>
+                            <constraint firstItem="eTE-zt-NRf" firstAttribute="trailing" secondItem="Vcx-4p-Io4" secondAttribute="trailing" id="UiX-zk-rYt"/>
+                            <constraint firstItem="eTE-zt-NRf" firstAttribute="trailing" secondItem="oWF-95-MKn" secondAttribute="trailing" id="wrg-Kl-03q"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Queens' Cafe" id="cYc-bk-aBI">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="CartIcon" id="Qt4-4Z-cCN">
                             <connections>
-                                <segue destination="Zi9-b5-wva" kind="show" id="Tke-gJ-e1L"/>
+                                <segue destination="Zi9-b5-wva" kind="show" id="Vzt-Ak-FxO"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                </collectionViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5YU-l7-Aev" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                    <connections>
+                        <outlet property="collectionView" destination="oWF-95-MKn" id="fpm-8x-eZp"/>
+                        <outlet property="isOpenConstraint" destination="8fk-dR-jQB" id="3Qh-u9-ODL"/>
+                        <outlet property="isOpenView" destination="Vcx-4p-Io4" id="3GW-I5-2pe"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4OY-5z-4MV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4696" y="511"/>
+            <point key="canvasLocation" x="4696" y="-210"/>
         </scene>
         <!--Main Tab Bar View Controller-->
         <scene sceneID="0Ep-Jg-XZa">
@@ -821,7 +814,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="bWg-ZY-40A" kind="relationship" relationship="rootViewController" id="2IZ-fn-oMv"/>
+                        <segue destination="4L3-X4-2nf" kind="relationship" relationship="rootViewController" id="akS-1v-apy"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5c9-YJ-FVW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -845,16 +838,91 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="yXz-me-4VT" kind="relationship" relationship="rootViewController" id="a13-t2-q8a"/>
+                        <segue destination="Uza-qL-rht" kind="relationship" relationship="rootViewController" id="XvZ-sF-Svf"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qc5-ww-EFf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3700" y="511"/>
         </scene>
+        <!--Queens' Bar-->
+        <scene sceneID="yxW-lN-v6m">
+            <objects>
+                <viewController id="Uza-qL-rht" customClass="BarViewController" customModule="QADS_Cafe_and_Bar" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wZP-IN-lT4">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="FVJ-2K-Zlv">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="30" minimumInteritemSpacing="10" id="r7g-fy-GBg">
+                                    <size key="itemSize" width="414" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="20" maxX="0.0" maxY="20"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BarCategoryCell" id="gKe-Kt-XnS" customClass="CategoriesCollectionViewCell" customModule="QADS_Cafe_and_Bar" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="20" width="414" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Bej-2b-jMA">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m47-3w-fub">
+                                <rect key="frame" x="0.0" y="68" width="414" height="20"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Closed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nPK-AJ-I4h">
+                                        <rect key="frame" x="186" y="2" width="42.5" height="16"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemRedColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="3K3-Qp-00S"/>
+                                    <constraint firstItem="nPK-AJ-I4h" firstAttribute="centerY" secondItem="m47-3w-fub" secondAttribute="centerY" id="JWg-gj-xap"/>
+                                    <constraint firstItem="nPK-AJ-I4h" firstAttribute="centerX" secondItem="m47-3w-fub" secondAttribute="centerX" id="QYO-PZ-uRM"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vyc-wA-oey"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="FVJ-2K-Zlv" firstAttribute="top" secondItem="m47-3w-fub" secondAttribute="bottom" id="2es-rc-N67"/>
+                            <constraint firstItem="m47-3w-fub" firstAttribute="top" secondItem="vyc-wA-oey" secondAttribute="top" constant="-20" id="QkO-Rh-jZM"/>
+                            <constraint firstItem="vyc-wA-oey" firstAttribute="trailing" secondItem="FVJ-2K-Zlv" secondAttribute="trailing" id="YL8-FQ-AnK"/>
+                            <constraint firstItem="m47-3w-fub" firstAttribute="leading" secondItem="vyc-wA-oey" secondAttribute="leading" id="c8s-zC-quw"/>
+                            <constraint firstItem="FVJ-2K-Zlv" firstAttribute="leading" secondItem="vyc-wA-oey" secondAttribute="leading" id="ihQ-wT-288"/>
+                            <constraint firstItem="vyc-wA-oey" firstAttribute="trailing" secondItem="m47-3w-fub" secondAttribute="trailing" id="skz-mw-LsG"/>
+                            <constraint firstItem="vyc-wA-oey" firstAttribute="bottom" secondItem="FVJ-2K-Zlv" secondAttribute="bottom" id="teW-DE-pzT"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Queens' Bar" id="tfk-eA-OMr">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="CartIcon" id="kQ3-Zv-Qcy">
+                            <connections>
+                                <segue destination="Zi9-b5-wva" kind="show" id="eJg-Q2-lsh"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="collectionView" destination="FVJ-2K-Zlv" id="xpq-hq-0Tl"/>
+                        <outlet property="isOpenConstraint" destination="QkO-Rh-jZM" id="y5K-9E-geN"/>
+                        <outlet property="isOpenView" destination="m47-3w-fub" id="5qf-qT-KlN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hOD-nJ-n4d" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4696" y="511"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Tke-gJ-e1L"/>
+        <segue reference="eJg-Q2-lsh"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="BarIcon" width="25" height="25"/>
