@@ -1,19 +1,19 @@
 //
-//  OrderItemsTableViewCell.swift
+//  OrderItemsCollectionViewCell.swift
 //  QADS Cafe and Bar
 //
-//  Created by Sam Phillips on 15/01/2021.
+//  Created by Sam Phillips on 12/05/2021.
 //
 
 import UIKit
 
 //Protocol for cell delegate
-protocol orderItemsDelegate {
-    func deleteItemTapped(index: Int)
-}
+//protocol orderItemsDelegate {
+//    func deleteItemTapped(index: Int)
+//}
 
-class OrderItemsTableViewCell: UITableViewCell {
-
+class OrderItemsCollectionViewCell: UICollectionViewCell {
+    
     @IBOutlet weak var itemNameLabel: UILabel!
     @IBOutlet weak var itemPriceLabel: UILabel!
     @IBOutlet weak var quantityLabel: UILabel!
@@ -23,14 +23,10 @@ class OrderItemsTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        itemNameLabel.text = "Something"
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
+    
     
     func fillInData(item: orderItem) {
         

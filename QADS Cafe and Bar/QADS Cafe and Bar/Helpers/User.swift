@@ -151,6 +151,23 @@ class User: NSObject {
         Messaging.messaging().subscribe(toTopic: self.crsid!, completion: nil)
     }
     
+    func signOut() {
+        //Unsubscribe and sign out
+        Messaging.messaging().unsubscribe(fromTopic: self.uid!, completion: nil)
+        Messaging.messaging().unsubscribe(fromTopic: self.crsid!, completion: nil)
+        
+        //Sign out of Firebase
+        let firebaseAuth = Auth.auth()
+        do {
+            try firebaseAuth.signOut()
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
+        
+        //Reset data
+        self.populate(data: [:])
+    }
+    
     func make(completion: @escaping () -> Void) {
         
         //Upload information to Firebase

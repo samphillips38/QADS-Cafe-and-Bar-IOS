@@ -17,6 +17,7 @@ class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var doneButton: UIButton!
     
+    @IBOutlet weak var allergenLabel: UILabel!
     
     //Options
     @IBOutlet weak var optionTableView: UITableView!
@@ -64,7 +65,7 @@ class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         tableViewHeight.constant = CGFloat(((chosenItem.options ?? [:]).count * 41))
         
         
-        if currentOrderItem.options.count ?? 0 == 0 {
+        if currentOrderItem.options.count == 0 {
             optionTableView.isHidden = true
             noCustomisationsLabel.isHidden = false
         }
@@ -76,6 +77,7 @@ class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         //All data that is not changed by the order preferences is loaded from the Item
         itemNameLabel.text = chosenItem.name
         descriptionLabel.text = chosenItem.desc
+        allergenLabel.text = fillInAllergens(allergenList: chosenItem.allergens)
         
         if chosenItem.stock ?? false {
             outOfStockLabel.isHidden = true
@@ -99,6 +101,27 @@ class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func setPrice(price: Double) {
         priceLabel.text = "£" + String(format: "%.2f", price)
+    }
+    
+    func fillInAllergens(allergenList: [String]?) -> String {
+        //If allergens not found, display warning message
+        guard let allergenList = allergenList else {
+            return "Error, no allergen data received. Please contact catering staff."
+        }
+        //If no allergens are found, display No Allergens
+        if allergenList[0] == "no allergens" || allergenList.isEmpty {
+            return "No Allergens."
+        }
+        //Construct output
+        var output = "Contains "
+        for (i, allergen) in allergenList.enumerated() {
+            if i == allergenList.count - 1 {
+                output = output.dropLast(2) + " and " + allergen + "."
+            } else {
+                output = output + allergen + ", "
+            }
+        }
+        return output
     }
     
     //MARK:- Options Table View
