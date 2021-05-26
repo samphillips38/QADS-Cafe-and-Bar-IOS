@@ -22,6 +22,7 @@
 		F4A3393E264C0F2D003F15BC /* OrderItemsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A3393D264C0F2D003F15BC /* OrderItemsCollectionViewCell.swift */; };
 		F4A33940264C1E4F003F15BC /* DetailsFooterCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A3393F264C1E4F003F15BC /* DetailsFooterCollectionReusableView.swift */; };
 		F4A33942264FC609003F15BC /* ButteryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A33941264FC609003F15BC /* ButteryViewController.swift */; };
+		F4A3394426526B62003F15BC /* OptionPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A3394326526B61003F15BC /* OptionPickerViewController.swift */; };
 		F4CF6702257BB7C1004FF87F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CF6701257BB7C1004FF87F /* AppDelegate.swift */; };
 		F4CF6704257BB7C1004FF87F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CF6703257BB7C1004FF87F /* SceneDelegate.swift */; };
 		F4CF6709257BB7C1004FF87F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4CF6707257BB7C1004FF87F /* Main.storyboard */; };
@@ -46,6 +47,8 @@
 		F4D1A957257D0D390027035C /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D1A956257D0D390027035C /* ItemDetailViewController.swift */; };
 		F4D1A960257D41E10027035C /* OptionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D1A95E257D41E10027035C /* OptionsTableViewCell.swift */; };
 		F4D944A325A5F6780061532A /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D944A225A5F6780061532A /* Order.swift */; };
+		F4EDDCFE265BC16E0095FC2C /* AllergiesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EDDCFD265BC16E0095FC2C /* AllergiesTableViewCell.swift */; };
+		F4EDDD00265BC2430095FC2C /* CheckBoxImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EDDCFF265BC2430095FC2C /* CheckBoxImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +91,7 @@
 		F4A3393D264C0F2D003F15BC /* OrderItemsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItemsCollectionViewCell.swift; sourceTree = "<group>"; };
 		F4A3393F264C1E4F003F15BC /* DetailsFooterCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsFooterCollectionReusableView.swift; sourceTree = "<group>"; };
 		F4A33941264FC609003F15BC /* ButteryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButteryViewController.swift; sourceTree = "<group>"; };
+		F4A3394326526B61003F15BC /* OptionPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionPickerViewController.swift; sourceTree = "<group>"; };
 		F4CF66FE257BB7C1004FF87F /* QADS Cafe and Bar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "QADS Cafe and Bar.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4CF6701257BB7C1004FF87F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F4CF6703257BB7C1004FF87F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -116,6 +120,8 @@
 		F4D1A956257D0D390027035C /* ItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
 		F4D1A95E257D41E10027035C /* OptionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsTableViewCell.swift; sourceTree = "<group>"; };
 		F4D944A225A5F6780061532A /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
+		F4EDDCFD265BC16E0095FC2C /* AllergiesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllergiesTableViewCell.swift; sourceTree = "<group>"; };
+		F4EDDCFF265BC2430095FC2C /* CheckBoxImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +173,16 @@
 				12D6FF57C0390BA854E31FD4 /* Pods_QADS_Cafe_and_BarTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F4A33945265288EA003F15BC /* Sign In Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F4D1A8EB257BD31A0027035C /* SignInViewController.swift */,
+				F444DFB725C84A9900E8D7CE /* SignUpViewController.swift */,
+				F4D1A925257BE39A0027035C /* MainNavigationViewController.swift */,
+			);
+			path = "Sign In Controllers";
 			sourceTree = "<group>";
 		};
 		F4CF66F5257BB7C1004FF87F = {
@@ -230,6 +246,7 @@
 		F4D1A8E4257BD09C0027035C /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				F4A33945265288EA003F15BC /* Sign In Controllers */,
 				F4D1A91C257BE1640027035C /* Tab Bar Controllers */,
 				F4D1A955257D0C770027035C /* Other View Controllers */,
 			);
@@ -245,6 +262,7 @@
 				F4D944A225A5F6780061532A /* Order.swift */,
 				F43EE1DE25A4F5BA000844D7 /* extensions.swift */,
 				F429480625C88A5D00A11D94 /* CategoryList.swift */,
+				F4EDDCFF265BC2430095FC2C /* CheckBoxImageView.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -271,6 +289,7 @@
 				F49B429725B1AE8700FDF054 /* OrderItemsTableViewCell.swift */,
 				F4A3393D264C0F2D003F15BC /* OrderItemsCollectionViewCell.swift */,
 				F4A3393F264C1E4F003F15BC /* DetailsFooterCollectionReusableView.swift */,
+				F4EDDCFD265BC16E0095FC2C /* AllergiesTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -278,14 +297,12 @@
 		F4D1A955257D0C770027035C /* Other View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				F4D1A8EB257BD31A0027035C /* SignInViewController.swift */,
-				F444DFB725C84A9900E8D7CE /* SignUpViewController.swift */,
-				F4D1A925257BE39A0027035C /* MainNavigationViewController.swift */,
 				F4D1A944257C07600027035C /* ItemsViewController.swift */,
 				F4D1A956257D0D390027035C /* ItemDetailViewController.swift */,
+				F4A3394326526B61003F15BC /* OptionPickerViewController.swift */,
 				F49B429225B1AC0D00FDF054 /* BasketViewController.swift */,
-				F429480125C86A6B00A11D94 /* OrderConfirmationViewController.swift */,
 				F4A3393B264C0EE8003F15BC /* Basket2ViewController.swift */,
+				F429480125C86A6B00A11D94 /* OrderConfirmationViewController.swift */,
 			);
 			path = "Other View Controllers";
 			sourceTree = "<group>";
@@ -583,8 +600,11 @@
 				F49B429825B1AE8700FDF054 /* OrderItemsTableViewCell.swift in Sources */,
 				F4D1A940257C02130027035C /* Constants.swift in Sources */,
 				F429480725C88A5D00A11D94 /* CategoryList.swift in Sources */,
+				F4EDDCFE265BC16E0095FC2C /* AllergiesTableViewCell.swift in Sources */,
+				F4EDDD00265BC2430095FC2C /* CheckBoxImageView.swift in Sources */,
 				F429480225C86A6B00A11D94 /* OrderConfirmationViewController.swift in Sources */,
 				F4D1A945257C07600027035C /* ItemsViewController.swift in Sources */,
+				F4A3394426526B62003F15BC /* OptionPickerViewController.swift in Sources */,
 				F4D1A957257D0D390027035C /* ItemDetailViewController.swift in Sources */,
 				F4D1A914257BD9F30027035C /* User.swift in Sources */,
 				F444DFB825C84A9900E8D7CE /* SignUpViewController.swift in Sources */,

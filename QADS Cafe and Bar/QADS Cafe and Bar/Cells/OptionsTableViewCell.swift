@@ -22,7 +22,6 @@ class OptionsTableViewCell: UITableViewCell {
     @IBOutlet weak var quantityLabel: UILabel!
     @IBOutlet weak var extraPriceLabel: UILabel!
     
-    
     //Set up delegate and index
     var cellDelegate: optionsCellDelegate?
     var index: IndexPath?

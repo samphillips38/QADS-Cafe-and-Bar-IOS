@@ -8,6 +8,7 @@
 import UIKit
 
 private let reuseIdentifier = "OptionTVC"
+private let noCustomisationsIdentifier = "NoCustomisationsTVC"
 
 class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, optionsCellDelegate {
     
@@ -62,13 +63,13 @@ class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         addStackView.layer.cornerRadius = addStackView.frame.height/2
         
         //Table View height
-        tableViewHeight.constant = CGFloat(((chosenItem.options ?? [:]).count * 41))
+        tableViewHeight.constant = CGFloat((max((chosenItem.options ?? [:]).count, 1) * 41))
         
         
-        if currentOrderItem.options.count == 0 {
-            optionTableView.isHidden = true
-            noCustomisationsLabel.isHidden = false
-        }
+//        if currentOrderItem.options.count == 0 {
+//            optionTableView.isHidden = true
+//            noCustomisationsLabel.isHidden = false
+//        }
     }
     
     
@@ -132,10 +133,16 @@ class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //Set by Item as the number of options is not varied by preferences
-        return chosenItem.options?.count ?? 0
+        return max(1, chosenItem.options?.count ?? 0)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        //No Customisations
+        if chosenItem.options?.count ?? 0 == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: noCustomisationsIdentifier, for: indexPath) as UITableViewCell
+            return cell
+        }
         
         // Configure the cell...
         guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as? OptionsTableViewCell else {
@@ -156,7 +163,7 @@ class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if currentOrderItem.options[indexPath.row].canHaveMultiple {
-            //Dont do anything (this will be controlled by stepper
+            //Dont do anything (this will be controlled by stepper)
         } else {
             
             //Toggle quantity for single value options
@@ -206,8 +213,6 @@ class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBAction func stepperTapped(_ sender: UIStepper) {
         
-        
-        
         //Get new quantity and item price (including extras)
         let newQuantity = Int(sender.value)
         
@@ -215,6 +220,22 @@ class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         
         quantityLabel.text = String(newQuantity)
         setPrice(price: currentOrderItem.price)
+        
+    }
+    @IBAction func addAllergyTapped(_ sender: Any) {
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let optionsVC = storyBoard.instantiateViewController(withIdentifier: "OptionsVC") as! OptionPickerViewController
+        
+        optionsVC.chosenItem = self.chosenItem
+        show(optionsVC, sender: self)
+    }
+    @IBAction func addCustomisationTapped(_ sender: Any) {
+        
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let optionsVC = storyBoard.instantiateViewController(withIdentifier: "OptionsVC") as! OptionPickerViewController
+        
+        optionsVC.chosenItem = self.chosenItem
+        show(optionsVC, sender: self)
         
     }
 }

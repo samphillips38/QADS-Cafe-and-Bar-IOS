@@ -144,6 +144,8 @@ class Basket2ViewController: UIViewController, UICollectionViewDelegate, UIColle
                     
                     //Refresh the table data
                     self.collectionView.reloadData()
+                    self.layout()
+                    self.setPrice()
 //                    self.orderNotesTextField.text = ""
                 }
             }
