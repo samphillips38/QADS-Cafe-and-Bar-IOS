@@ -13,8 +13,7 @@ class OptionPickerViewController: UIViewController, UITableViewDelegate, UITable
 
     @IBOutlet weak var tableView: UITableView!
     
-    var chosenItem = Item()
-    var allergenList: [String]?
+    var currentOrderItem = orderItem()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,14 +22,12 @@ class OptionPickerViewController: UIViewController, UITableViewDelegate, UITable
         tableView.delegate = self
         tableView.dataSource = self
         
-        //Set the allergen list and reload data
-        currentUser.getAllergenList(completion: { result in
-            self.allergenList = result
+        //Get allergen data
+        currentOrderItem.getAllergenList {
             self.tableView.reloadData()
-        })
-        
+        }
     }
-    
+
 
     //MARK:- Table View
     
@@ -39,18 +36,44 @@ class OptionPickerViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return currentOrderItem.allergies.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as? AllergiesTableViewCell else {
             fatalError("The dequeued cell is not an instance of AllergiesTableViewCell")
         }
-        
-//        cell.allergiesLabel.text = allergenList?[indexPath.row]
-        print(allergenList)
-        cell.allergiesLabel.text = "something"
+        //Fill in Data
+        let allergy = currentOrderItem.allergies[indexPath.row]
+        cell.allergiesLabel.text = allergy
+        if currentOrderItem.chosenAllergies.contains(allergy) {
+            cell.checkBox.isHidden = false
+        } else {
+            cell.checkBox.isHidden = true
+        }
         return cell
     }
-
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        //Add allergy
+        let allergy = currentOrderItem.allergies[indexPath.row]
+        if currentOrderItem.chosenAllergies.contains(allergy) {
+            currentOrderItem.chosenAllergies = currentOrderItem.chosenAllergies.filter { $0 != allergy }
+        } else {
+            currentOrderItem.chosenAllergies.append(allergy)
+        }
+        
+        //Reload cell
+        tableView.cellForRow(at: indexPath)?.selectionStyle = .gray
+        tableView.reloadRows(at: [indexPath], with: .fade)
+    }
+    
+    //MARK:- Button Actions
+    
+    @IBAction func doneTapped(_ sender: Any) {
+        self.dismiss(animated: true) {
+            //Do something
+        }
+    }
 }

@@ -9,19 +9,16 @@ import UIKit
 
 class AllergiesTableViewCell: UITableViewCell {
 
-//    @IBOutlet weak var checkBox: CheckBox!
     @IBOutlet weak var allergiesLabel: UILabel!
+    @IBOutlet weak var checkBox: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-//        checkBox.initialise()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-//        checkBox.selected()
     }
 
 }

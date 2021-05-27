@@ -30,6 +30,7 @@ class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBOutlet weak var addStackView: UIStackView!
     @IBOutlet weak var noCustomisationsLabel: UILabel!
+    @IBOutlet weak var chosenAllergiesLabel: UILabel!
     
     var chosenItem = Item()
     var currentOrderItem = orderItem()
@@ -226,7 +227,7 @@ class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let optionsVC = storyBoard.instantiateViewController(withIdentifier: "OptionsVC") as! OptionPickerViewController
         
-        optionsVC.chosenItem = self.chosenItem
+        optionsVC.currentOrderItem = self.currentOrderItem
         show(optionsVC, sender: self)
     }
     @IBAction func addCustomisationTapped(_ sender: Any) {
@@ -234,7 +235,7 @@ class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let optionsVC = storyBoard.instantiateViewController(withIdentifier: "OptionsVC") as! OptionPickerViewController
         
-        optionsVC.chosenItem = self.chosenItem
+        optionsVC.currentOrderItem = self.currentOrderItem
         show(optionsVC, sender: self)
         
     }

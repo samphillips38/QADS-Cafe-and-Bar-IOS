@@ -196,6 +196,8 @@ class orderItem: NSObject {
     var itemName: String?
 //    var note: String = ""
     var location: String?
+    var allergies: [String] = []
+    var chosenAllergies: [String] = []
     
     //Create a struct for an option. These will be stored in an array
     struct Option {
@@ -251,6 +253,24 @@ class orderItem: NSObject {
         //Update price and round to 2 dp
         self.price = price * Double(self.quantity)
         self.price = (self.price * 100).rounded() / 100
+    }
+    
+    func getAllergenList(completion: @escaping () -> Void) {
+        
+        let db = Firestore.firestore()
+        db.collection("settings").document("allergies").getDocument { (document, err) in
+            if err != nil {
+                print("Error getting documents: \(String(describing: err))")
+            } else {
+                if let document = document, document.exists {
+                    //Fill in allergy data
+                    self.allergies = (document["allergies"] as? [String]) ?? []
+                } else {
+                    print("Document does not exist")
+                }
+            }
+            completion()
+        }
     }
     
 }

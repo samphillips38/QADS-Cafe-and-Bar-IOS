@@ -197,28 +197,5 @@ class User: NSObject {
         }
     }
     
-    func getAllergenList(completion: @escaping (_ allergenList: [String]?) -> Void) {
-        
-        let db = Firestore.firestore()
-        
-        db.collection("settings").document("allergies").getDocument { (document, err) in
-            
-            if err != nil {
-                print("Error getting documents: \(String(describing: err))")
-            } else {
-                if let document = document, document.exists {
-
-                    //do something
-                    completion(document["allergies"] as? [String])
-                    
-                } else {
-                    print("Document does not exist")
-                }
-            }
-            completion(nil)
-        }
-        
-    }
-    
 
 }

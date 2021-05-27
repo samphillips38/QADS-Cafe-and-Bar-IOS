@@ -16,16 +16,33 @@ class CheckBoxImageView: UIImageView {
         // Drawing code
     }
     */
+//    var isSelected: Bool = false
+    
     func initialise() {
         //Do something
-        image = UIImage(named: "square")
-    }
-    
-    func selected() {
-        image = UIImage(named: "checkmark.square")
-    }
-    func deselected() {
-        image = UIImage(named: "square")
+//        print(self.isSelected)
+//        if self.isSelected {
+//            image = UIImage(named: "checkmark.square")
+//        } else {
+//            image = UIImage(named: "square")
+//        }
     }
 
+    func toggle() {
+//        if self.isSelected {
+//            image = UIImage(named: "square")
+//            isSelected = false
+//        } else {
+//            image = UIImage(named: "checkmark.square")
+//            isSelected = true
+//        }
+    }
+    
+    func setSelected(isSelected: Bool) {
+        if isSelected {
+            image = UIImage(named: "checkmark.square")
+        } else {
+            image = UIImage(named: "square")
+        }
+    }
 }
