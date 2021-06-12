@@ -1,40 +1,32 @@
 //
-//  BasketViewController.swift
+//  Basket2ViewController.swift
 //  QADS Cafe and Bar
 //
-//  Created by Sam Phillips on 15/01/2021.
+//  Created by Sam Phillips on 12/05/2021.
 //
 
 import UIKit
 
-private let reuseIdentifier = "OrderItemTVC"
+private let emptyBasketIdentifier = "emptyBasketCVC"
+private let reuseIdentifier = "OrderItemCVC"
+private let footerID = "DetailsFooter"
 
-class BasketViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, orderItemsDelegate, UITextFieldDelegate {
-
-    @IBOutlet weak var tableView: UITableView!
+class BasketViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, orderItemsDelegate {
     
-    
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var emailLabel: UILabel!
-    @IBOutlet weak var crsidLabel: UILabel!
-    
-    @IBOutlet weak var orderNotesTextField: UITextField!
+    @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var orderStackView: UIStackView!
     @IBOutlet weak var totalLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        //Set up table view
-        tableView.delegate = self
-        tableView.dataSource = self
+        //Set up Collection view
+        collectionView.delegate = self
+        collectionView.dataSource = self
         
         //set action for stack view
         orderStackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(orderTapped(_:))))
         orderStackView.isUserInteractionEnabled = true
-        
-        //Text view
-        orderNotesTextField.delegate = self
         
         layout()
         setPrice()
@@ -44,35 +36,35 @@ class BasketViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let price = currentUser.barOrder.price + currentUser.cafeOrder.price
         totalLabel.text = "£" + String(format: "%.2f", price)
     }
-    
+
     func layout() {
-        
-        //fill in details
-        nameLabel.text = currentUser.firstName! + " " + currentUser.lastName!
-        emailLabel.text = currentUser.email
-        crsidLabel.text = currentUser.crsid
-        
+
         //Stack View Layout for button
         orderStackView.layer.cornerRadius = orderStackView.frame.height/2
     }
     
-    //MARK: -Table view
+    //MARK: -Collection view
     
-    func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return currentUser.cafeOrder.items.count + currentUser.barOrder.items.count
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return max(1, currentUser.cafeOrder.items.count + currentUser.barOrder.items.count)
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        // Configure the cell...
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as? OrderItemsTableViewCell else {
-            fatalError("The dequeued cell is not an instance of OrderItemsTableViewCell")
+        //Handle Empty Basket
+        if currentUser.cafeOrder.items.count + currentUser.barOrder.items.count == 0 {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: emptyBasketIdentifier, for: indexPath)
+            return cell
         }
         
+        //Basket with items
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? OrderItemsCollectionViewCell else {
+            fatalError("The dequeued cell is not an instance of OrderItemsCollectionViewCell")
+        }
         cell.fillInData(item: currentUser.getItemAt(index: indexPath.row))
         
         //set delegate and index
@@ -80,14 +72,21 @@ class BasketViewController: UIViewController, UITableViewDelegate, UITableViewDa
         cell.index = indexPath
         
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //do something
-        tableView.reloadRows(at: [indexPath], with: .fade)
         
     }
     
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        
+        let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: footerID, for: indexPath)
+        return headerView
+    }
+
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        //Set Cell Sizes
+        return CGSize(width: collectionView.frame.width * constants.basketItemWidthMultiplier, height: collectionView.frame.width * constants.basketItemHeightMultiplier)
+    }
+
     func deleteItemTapped(index: Int) {
         
         //Show warning message about deleting the item
@@ -99,7 +98,7 @@ class BasketViewController: UIViewController, UITableViewDelegate, UITableViewDa
             //delete item
             currentUser.removeItemAt(index: index)
             self.setPrice()
-            self.tableView.reloadData()
+            self.collectionView.reloadData()
             
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { action in
@@ -112,15 +111,15 @@ class BasketViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     //MARK: -Text Field
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        currentUser.cafeOrder.note = textField.text
-        currentUser.barOrder.note = textField.text
-    }
+//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+//        textField.resignFirstResponder()
+//        return true
+//    }
+//
+//    func textFieldDidEndEditing(_ textField: UITextField) {
+//        currentUser.cafeOrder.note = textField.text
+//        currentUser.barOrder.note = textField.text
+//    }
     
     
     //MARK: -Button actions
@@ -144,8 +143,10 @@ class BasketViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 self.present(confirmationVC, animated: true) {
                     
                     //Refresh the table data
-                    self.tableView.reloadData()
-                    self.orderNotesTextField.text = ""
+                    self.collectionView.reloadData()
+                    self.layout()
+                    self.setPrice()
+//                    self.orderNotesTextField.text = ""
                 }
             }
             
@@ -155,5 +156,8 @@ class BasketViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }))
         self.present(alert, animated: true, completion: nil)
     }
+    
+    
+    
     
 }

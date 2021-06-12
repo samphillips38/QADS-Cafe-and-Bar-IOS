@@ -16,9 +16,8 @@
 		F429480725C88A5D00A11D94 /* CategoryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F429480625C88A5D00A11D94 /* CategoryList.swift */; };
 		F43EE1DF25A4F5BA000844D7 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43EE1DE25A4F5BA000844D7 /* extensions.swift */; };
 		F444DFB825C84A9900E8D7CE /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F444DFB725C84A9900E8D7CE /* SignUpViewController.swift */; };
-		F49B429325B1AC0D00FDF054 /* BasketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49B429225B1AC0D00FDF054 /* BasketViewController.swift */; };
 		F49B429825B1AE8700FDF054 /* OrderItemsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49B429725B1AE8700FDF054 /* OrderItemsTableViewCell.swift */; };
-		F4A3393C264C0EE8003F15BC /* Basket2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A3393B264C0EE8003F15BC /* Basket2ViewController.swift */; };
+		F4A3393C264C0EE8003F15BC /* BasketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A3393B264C0EE8003F15BC /* BasketViewController.swift */; };
 		F4A3393E264C0F2D003F15BC /* OrderItemsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A3393D264C0F2D003F15BC /* OrderItemsCollectionViewCell.swift */; };
 		F4A33940264C1E4F003F15BC /* DetailsFooterCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A3393F264C1E4F003F15BC /* DetailsFooterCollectionReusableView.swift */; };
 		F4A33942264FC609003F15BC /* ButteryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A33941264FC609003F15BC /* ButteryViewController.swift */; };
@@ -85,9 +84,8 @@
 		F43EE1DE25A4F5BA000844D7 /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
 		F444DF1C25C83E4A00E8D7CE /* QADS Cafe and Bar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "QADS Cafe and Bar.entitlements"; sourceTree = "<group>"; };
 		F444DFB725C84A9900E8D7CE /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
-		F49B429225B1AC0D00FDF054 /* BasketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketViewController.swift; sourceTree = "<group>"; };
 		F49B429725B1AE8700FDF054 /* OrderItemsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItemsTableViewCell.swift; sourceTree = "<group>"; };
-		F4A3393B264C0EE8003F15BC /* Basket2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Basket2ViewController.swift; sourceTree = "<group>"; };
+		F4A3393B264C0EE8003F15BC /* BasketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketViewController.swift; sourceTree = "<group>"; };
 		F4A3393D264C0F2D003F15BC /* OrderItemsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItemsCollectionViewCell.swift; sourceTree = "<group>"; };
 		F4A3393F264C1E4F003F15BC /* DetailsFooterCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsFooterCollectionReusableView.swift; sourceTree = "<group>"; };
 		F4A33941264FC609003F15BC /* ButteryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButteryViewController.swift; sourceTree = "<group>"; };
@@ -300,8 +298,7 @@
 				F4D1A944257C07600027035C /* ItemsViewController.swift */,
 				F4D1A956257D0D390027035C /* ItemDetailViewController.swift */,
 				F4A3394326526B61003F15BC /* OptionPickerViewController.swift */,
-				F49B429225B1AC0D00FDF054 /* BasketViewController.swift */,
-				F4A3393B264C0EE8003F15BC /* Basket2ViewController.swift */,
+				F4A3393B264C0EE8003F15BC /* BasketViewController.swift */,
 				F429480125C86A6B00A11D94 /* OrderConfirmationViewController.swift */,
 			);
 			path = "Other View Controllers";
@@ -586,7 +583,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F49B429325B1AC0D00FDF054 /* BasketViewController.swift in Sources */,
 				F4D1A91E257BE1950027035C /* MainTabBarViewController.swift in Sources */,
 				F4D1A92D257BEB8E0027035C /* CategoriesCollectionViewCell.swift in Sources */,
 				F414A8FC25CE9E380008B9AB /* CafeViewController.swift in Sources */,
@@ -594,7 +590,7 @@
 				F4D1A926257BE39A0027035C /* MainNavigationViewController.swift in Sources */,
 				F4D1A94A257C39030027035C /* Item.swift in Sources */,
 				F4D1A960257D41E10027035C /* OptionsTableViewCell.swift in Sources */,
-				F4A3393C264C0EE8003F15BC /* Basket2ViewController.swift in Sources */,
+				F4A3393C264C0EE8003F15BC /* BasketViewController.swift in Sources */,
 				F4D944A325A5F6780061532A /* Order.swift in Sources */,
 				F4A33942264FC609003F15BC /* ButteryViewController.swift in Sources */,
 				F49B429825B1AE8700FDF054 /* OrderItemsTableViewCell.swift in Sources */,
@@ -802,6 +798,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.samphillips.QADS-Cafe-and-Bar";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -824,6 +821,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.samphillips.QADS-Cafe-and-Bar";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
