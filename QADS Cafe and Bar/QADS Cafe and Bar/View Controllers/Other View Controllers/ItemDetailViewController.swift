@@ -8,6 +8,7 @@
 import UIKit
 
 private let reuseIdentifier = "OptionTVC"
+private let noCustomisationsIdentifier = "NoCustomisationsTVC"
 
 class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, optionsCellDelegate {
     
@@ -17,6 +18,7 @@ class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var doneButton: UIButton!
     
+    @IBOutlet weak var allergenLabel: UILabel!
     
     //Options
     @IBOutlet weak var optionTableView: UITableView!
@@ -28,6 +30,7 @@ class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBOutlet weak var addStackView: UIStackView!
     @IBOutlet weak var noCustomisationsLabel: UILabel!
+    @IBOutlet weak var chosenAllergiesLabel: UILabel!
     
     var chosenItem = Item()
     var currentOrderItem = orderItem()
@@ -61,13 +64,13 @@ class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         addStackView.layer.cornerRadius = addStackView.frame.height/2
         
         //Table View height
-        tableViewHeight.constant = CGFloat(((chosenItem.options ?? [:]).count * 41))
+        tableViewHeight.constant = CGFloat((max((chosenItem.options ?? [:]).count, 1) * 41))
         
         
-        if currentOrderItem.options.count ?? 0 == 0 {
-            optionTableView.isHidden = true
-            noCustomisationsLabel.isHidden = false
-        }
+//        if currentOrderItem.options.count == 0 {
+//            optionTableView.isHidden = true
+//            noCustomisationsLabel.isHidden = false
+//        }
     }
     
     
@@ -76,6 +79,7 @@ class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         //All data that is not changed by the order preferences is loaded from the Item
         itemNameLabel.text = chosenItem.name
         descriptionLabel.text = chosenItem.desc
+        allergenLabel.text = fillInAllergens(allergenList: chosenItem.allergens)
         
         if chosenItem.stock ?? false {
             outOfStockLabel.isHidden = true
@@ -101,6 +105,27 @@ class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         priceLabel.text = "£" + String(format: "%.2f", price)
     }
     
+    func fillInAllergens(allergenList: [String]?) -> String {
+        //If allergens not found, display warning message
+        guard let allergenList = allergenList else {
+            return "Error, no allergen data received. Please contact catering staff."
+        }
+        //If no allergens are found, display No Allergens
+        if allergenList[0] == "no allergens" || allergenList.isEmpty {
+            return "No Allergens."
+        }
+        //Construct output
+        var output = "Contains "
+        for (i, allergen) in allergenList.enumerated() {
+            if i == allergenList.count - 1 {
+                output = output.dropLast(2) + " and " + allergen + "."
+            } else {
+                output = output + allergen + ", "
+            }
+        }
+        return output
+    }
+    
     //MARK:- Options Table View
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -109,10 +134,16 @@ class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //Set by Item as the number of options is not varied by preferences
-        return chosenItem.options?.count ?? 0
+        return max(1, chosenItem.options?.count ?? 0)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        //No Customisations
+        if chosenItem.options?.count ?? 0 == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: noCustomisationsIdentifier, for: indexPath) as UITableViewCell
+            return cell
+        }
         
         // Configure the cell...
         guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as? OptionsTableViewCell else {
@@ -133,7 +164,7 @@ class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if currentOrderItem.options[indexPath.row].canHaveMultiple {
-            //Dont do anything (this will be controlled by stepper
+            //Dont do anything (this will be controlled by stepper)
         } else {
             
             //Toggle quantity for single value options
@@ -183,8 +214,6 @@ class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBAction func stepperTapped(_ sender: UIStepper) {
         
-        
-        
         //Get new quantity and item price (including extras)
         let newQuantity = Int(sender.value)
         
@@ -192,6 +221,22 @@ class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         
         quantityLabel.text = String(newQuantity)
         setPrice(price: currentOrderItem.price)
+        
+    }
+    @IBAction func addAllergyTapped(_ sender: Any) {
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let optionsVC = storyBoard.instantiateViewController(withIdentifier: "OptionsVC") as! OptionPickerViewController
+        
+        optionsVC.currentOrderItem = self.currentOrderItem
+        show(optionsVC, sender: self)
+    }
+    @IBAction func addCustomisationTapped(_ sender: Any) {
+        
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let optionsVC = storyBoard.instantiateViewController(withIdentifier: "OptionsVC") as! OptionPickerViewController
+        
+        optionsVC.currentOrderItem = self.currentOrderItem
+        show(optionsVC, sender: self)
         
     }
 }

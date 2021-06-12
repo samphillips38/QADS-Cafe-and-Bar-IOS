@@ -43,10 +43,9 @@ class CafeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         self.collectionView.register(nib, forCellWithReuseIdentifier: reuseIdentifier)
         
         //Get all the active categories
-        categoryList.getCafeCategories {
+        categoryList.getCategories(location: "Cafe", Completion: {
             self.collectionView.reloadData()
-        }
-        
+        })
         
         //adding the refresh control
         refreshControl.addTarget(self, action: #selector(refreshData), for: UIControl.Event.valueChanged)
@@ -192,5 +191,16 @@ class CafeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
     }
 
-
+    // MARK:- Button Actions
+    
+    @IBAction func signOutTapped(_ sender: Any) {
+        //Sign out
+        currentUser.signOut()
+        
+        //Move to SignIn VC
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let NavigationVC = storyBoard.instantiateViewController(withIdentifier: "MainNVC") as! MainNavigationViewController
+        
+        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(NavigationVC)
+    }
 }

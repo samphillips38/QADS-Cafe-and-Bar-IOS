@@ -42,6 +42,7 @@ class itemList: NSObject {
 
 
 class Item: NSObject {
+    var allergens: [String]?
     var category: String?
     var desc: String?
     var location: String?
@@ -54,6 +55,7 @@ class Item: NSObject {
     
     
     func populateItem(ID: String?, doc: [String: Any?]) {
+        self.allergens = doc["allergens"] as? [String]
         self.category = doc["category"] as? String
         self.desc = doc["description"] as? String
         self.location = doc["location"] as? String

@@ -44,10 +44,9 @@ class BarViewController: UIViewController, UICollectionViewDelegate, UICollectio
         self.collectionView.register(nib, forCellWithReuseIdentifier: reuseIdentifier)
         
         //Get all the active categories
-        categoryList.getBarCategories {
+        categoryList.getCategories(location: "Bar", Completion: {
             self.collectionView.reloadData()
-        }
-        
+        })
         
         //adding the refresh control
         refreshControl.addTarget(self, action: #selector(refreshData), for: UIControl.Event.valueChanged)

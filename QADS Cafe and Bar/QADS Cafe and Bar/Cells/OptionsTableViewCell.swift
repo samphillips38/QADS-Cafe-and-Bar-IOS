@@ -15,13 +15,12 @@ protocol optionsCellDelegate{
 class OptionsTableViewCell: UITableViewCell {
     
     @IBOutlet weak var optionLabel: UILabel!
-    @IBOutlet weak var checkBox: UIImageView!
+    @IBOutlet weak var checkBox: CheckBoxImageView!
     
     @IBOutlet weak var stepperStackView: UIStackView!
     @IBOutlet weak var quantityStepper: UIStepper!
     @IBOutlet weak var quantityLabel: UILabel!
     @IBOutlet weak var extraPriceLabel: UILabel!
-    
     
     //Set up delegate and index
     var cellDelegate: optionsCellDelegate?
@@ -55,9 +54,7 @@ class OptionsTableViewCell: UITableViewCell {
             } else {
                 checkBox.isHidden = true
             }
-            
         }
-        
     }
     
     @IBAction func stepperTapped(_ sender: UIStepper) {

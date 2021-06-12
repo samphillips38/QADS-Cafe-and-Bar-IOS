@@ -42,8 +42,7 @@ class OrderItemsTableViewCell: UITableViewCell {
     //MARK: -Button Actions
     
     @IBAction func deleteButton(_ sender: Any) {
-        
         cellDelegate?.deleteItemTapped(index: index!.row)
-        
     }
+    
 }

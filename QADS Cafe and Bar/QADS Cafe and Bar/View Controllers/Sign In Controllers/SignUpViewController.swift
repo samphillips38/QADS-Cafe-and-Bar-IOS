@@ -15,7 +15,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var signUpButtion: UIButton!
     @IBOutlet weak var errorLabel: UILabel!
-    
+    @IBOutlet weak var scrollView: UIScrollView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,9 +37,30 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    
+    //MARK:- Text Field
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
+        switchBasedNextTextField(textField)
         return true
+    }
+    
+    private func switchBasedNextTextField(_ textField: UITextField) {
+        //Move to the next text field. YearTextField removes keyboard
+        switch textField {
+        case self.firstNameTextField:
+            self.lastNameTextField.becomeFirstResponder()
+        default:
+            self.lastNameTextField.resignFirstResponder()
+        }
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        scrollView.setContentOffset(CGPoint(x: scrollView.contentOffset.x, y: textField.frame.origin.y/2), animated: true)
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        scrollView.setContentOffset(CGPoint(x: scrollView.contentOffset.x, y: 0), animated: true)
     }
     
     //MARK:- Button Actions
