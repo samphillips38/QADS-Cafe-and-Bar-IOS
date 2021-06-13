@@ -46,6 +46,8 @@
 		F4D1A957257D0D390027035C /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D1A956257D0D390027035C /* ItemDetailViewController.swift */; };
 		F4D1A960257D41E10027035C /* OptionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D1A95E257D41E10027035C /* OptionsTableViewCell.swift */; };
 		F4D944A325A5F6780061532A /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D944A225A5F6780061532A /* Order.swift */; };
+		F4E664882674A5110044A6C9 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E664872674A5110044A6C9 /* TestViewController.swift */; };
+		F4E6648A2674B30A0044A6C9 /* TestCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E664892674B30A0044A6C9 /* TestCollectionViewCell.swift */; };
 		F4EDDCFE265BC16E0095FC2C /* AllergiesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EDDCFD265BC16E0095FC2C /* AllergiesTableViewCell.swift */; };
 		F4EDDD00265BC2430095FC2C /* CheckBoxImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EDDCFF265BC2430095FC2C /* CheckBoxImageView.swift */; };
 /* End PBXBuildFile section */
@@ -118,6 +120,8 @@
 		F4D1A956257D0D390027035C /* ItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
 		F4D1A95E257D41E10027035C /* OptionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsTableViewCell.swift; sourceTree = "<group>"; };
 		F4D944A225A5F6780061532A /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
+		F4E664872674A5110044A6C9 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		F4E664892674B30A0044A6C9 /* TestCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCollectionViewCell.swift; sourceTree = "<group>"; };
 		F4EDDCFD265BC16E0095FC2C /* AllergiesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllergiesTableViewCell.swift; sourceTree = "<group>"; };
 		F4EDDCFF265BC2430095FC2C /* CheckBoxImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -300,6 +304,8 @@
 				F4A3394326526B61003F15BC /* OptionPickerViewController.swift */,
 				F4A3393B264C0EE8003F15BC /* BasketViewController.swift */,
 				F429480125C86A6B00A11D94 /* OrderConfirmationViewController.swift */,
+				F4E664872674A5110044A6C9 /* TestViewController.swift */,
+				F4E664892674B30A0044A6C9 /* TestCollectionViewCell.swift */,
 			);
 			path = "Other View Controllers";
 			sourceTree = "<group>";
@@ -583,6 +589,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4E6648A2674B30A0044A6C9 /* TestCollectionViewCell.swift in Sources */,
 				F4D1A91E257BE1950027035C /* MainTabBarViewController.swift in Sources */,
 				F4D1A92D257BEB8E0027035C /* CategoriesCollectionViewCell.swift in Sources */,
 				F414A8FC25CE9E380008B9AB /* CafeViewController.swift in Sources */,
@@ -608,6 +615,7 @@
 				F4CF6702257BB7C1004FF87F /* AppDelegate.swift in Sources */,
 				F4CF6704257BB7C1004FF87F /* SceneDelegate.swift in Sources */,
 				F4D1A8EC257BD31A0027035C /* SignInViewController.swift in Sources */,
+				F4E664882674A5110044A6C9 /* TestViewController.swift in Sources */,
 				F4A3393E264C0F2D003F15BC /* OrderItemsCollectionViewCell.swift in Sources */,
 				F4D1A950257C40D40027035C /* ItemCollectionViewCell.swift in Sources */,
 				F4A33940264C1E4F003F15BC /* DetailsFooterCollectionReusableView.swift in Sources */,
