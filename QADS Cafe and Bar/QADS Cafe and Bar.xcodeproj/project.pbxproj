@@ -48,6 +48,7 @@
 		F4D944A325A5F6780061532A /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D944A225A5F6780061532A /* Order.swift */; };
 		F4E664882674A5110044A6C9 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E664872674A5110044A6C9 /* TestViewController.swift */; };
 		F4E6648A2674B30A0044A6C9 /* TestCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E664892674B30A0044A6C9 /* TestCollectionViewCell.swift */; };
+		F4E6648C267614190044A6C9 /* TestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6648B267614190044A6C9 /* TestTableViewCell.swift */; };
 		F4EDDCFE265BC16E0095FC2C /* AllergiesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EDDCFD265BC16E0095FC2C /* AllergiesTableViewCell.swift */; };
 		F4EDDD00265BC2430095FC2C /* CheckBoxImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EDDCFF265BC2430095FC2C /* CheckBoxImageView.swift */; };
 /* End PBXBuildFile section */
@@ -122,6 +123,7 @@
 		F4D944A225A5F6780061532A /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		F4E664872674A5110044A6C9 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		F4E664892674B30A0044A6C9 /* TestCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCollectionViewCell.swift; sourceTree = "<group>"; };
+		F4E6648B267614190044A6C9 /* TestTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestTableViewCell.swift; sourceTree = "<group>"; };
 		F4EDDCFD265BC16E0095FC2C /* AllergiesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllergiesTableViewCell.swift; sourceTree = "<group>"; };
 		F4EDDCFF265BC2430095FC2C /* CheckBoxImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -306,6 +308,7 @@
 				F429480125C86A6B00A11D94 /* OrderConfirmationViewController.swift */,
 				F4E664872674A5110044A6C9 /* TestViewController.swift */,
 				F4E664892674B30A0044A6C9 /* TestCollectionViewCell.swift */,
+				F4E6648B267614190044A6C9 /* TestTableViewCell.swift */,
 			);
 			path = "Other View Controllers";
 			sourceTree = "<group>";
@@ -600,6 +603,7 @@
 				F4A3393C264C0EE8003F15BC /* BasketViewController.swift in Sources */,
 				F4D944A325A5F6780061532A /* Order.swift in Sources */,
 				F4A33942264FC609003F15BC /* ButteryViewController.swift in Sources */,
+				F4E6648C267614190044A6C9 /* TestTableViewCell.swift in Sources */,
 				F49B429825B1AE8700FDF054 /* OrderItemsTableViewCell.swift in Sources */,
 				F4D1A940257C02130027035C /* Constants.swift in Sources */,
 				F429480725C88A5D00A11D94 /* CategoryList.swift in Sources */,
