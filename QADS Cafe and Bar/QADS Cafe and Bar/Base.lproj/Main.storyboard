@@ -454,7 +454,7 @@
                                                 <rect key="frame" x="338" y="1092" width="46" height="30"/>
                                                 <state key="normal" title="Button"/>
                                                 <connections>
-                                                    <segue destination="qVe-dC-sFk" kind="show" id="snh-Jl-9Vq"/>
+                                                    <action selector="testButtonTapped:" destination="0cB-uM-czW" eventType="touchUpInside" id="Tos-96-SnV"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -568,23 +568,53 @@
         <!--Test View Controller-->
         <scene sceneID="hcu-bI-One">
             <objects>
-                <viewController id="qVe-dC-sFk" customClass="TestViewController" customModule="QADS_Cafe_and_Bar" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TestVC" id="qVe-dC-sFk" customClass="TestViewController" customModule="QADS_Cafe_and_Bar" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="EAU-Vp-bBn">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="RUG-x1-8hE">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="YXg-0B-294">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="YXg-0B-294">
                                     <size key="itemSize" width="383" height="315"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="10" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TestTitleCVC" id="yES-5T-WrC">
+                                        <rect key="frame" x="15.5" y="10" width="383" height="315"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="PXt-7h-rUb">
+                                            <rect key="frame" x="0.0" y="0.0" width="383" height="315"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RQw-Op-93g">
+                                                    <rect key="frame" x="0.0" y="0.0" width="383" height="200"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="200" id="gWh-WC-lf6"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CE3-zb-ZRT">
+                                                    <rect key="frame" x="20" y="220" width="343" height="33.5"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="28"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="CE3-zb-ZRT" firstAttribute="centerX" secondItem="PXt-7h-rUb" secondAttribute="centerX" id="096-Dr-9yk"/>
+                                                <constraint firstItem="RQw-Op-93g" firstAttribute="top" secondItem="PXt-7h-rUb" secondAttribute="top" id="1Dt-mG-rWf"/>
+                                                <constraint firstItem="CE3-zb-ZRT" firstAttribute="top" secondItem="RQw-Op-93g" secondAttribute="bottom" constant="20" id="4Yr-aI-uEp"/>
+                                                <constraint firstItem="CE3-zb-ZRT" firstAttribute="leading" secondItem="PXt-7h-rUb" secondAttribute="leading" constant="20" id="QS5-4X-VZS"/>
+                                                <constraint firstItem="RQw-Op-93g" firstAttribute="leading" secondItem="PXt-7h-rUb" secondAttribute="leading" id="VSp-HJ-NaW"/>
+                                                <constraint firstAttribute="trailing" secondItem="RQw-Op-93g" secondAttribute="trailing" id="xlA-yd-mwB"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TestID" id="50M-bk-oyI" customClass="TestCollectionViewCell" customModule="QADS_Cafe_and_Bar" customModuleProvider="target">
-                                        <rect key="frame" x="15.5" y="0.0" width="383" height="315"/>
+                                        <rect key="frame" x="15.5" y="335" width="383" height="315"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="NIF-8e-4bf">
                                             <rect key="frame" x="0.0" y="0.0" width="383" height="315"/>
@@ -596,11 +626,11 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Hl5-P7-S6N">
+                                                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Hl5-P7-S6N">
                                                     <rect key="frame" x="0.0" y="36" width="383" height="279"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <prototypes>
-                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TestTVC" id="fRT-Ob-pJg">
+                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TestTVC" id="fRT-Ob-pJg" customClass="TestTableViewCell" customModule="QADS_Cafe_and_Bar" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="24.5" width="383" height="43.5"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fRT-Ob-pJg" id="7Dc-dU-bq9">
@@ -629,6 +659,9 @@
                                                                     <constraint firstItem="Ra3-QW-X7p" firstAttribute="centerY" secondItem="7Dc-dU-bq9" secondAttribute="centerY" id="ILI-AR-sca"/>
                                                                 </constraints>
                                                             </tableViewCellContentView>
+                                                            <connections>
+                                                                <outlet property="nameLabel" destination="oRq-Ue-oZn" id="NqF-3I-5Me"/>
+                                                            </connections>
                                                         </tableViewCell>
                                                     </prototypes>
                                                 </tableView>
@@ -656,8 +689,8 @@
                         <constraints>
                             <constraint firstItem="RbO-IE-PtN" firstAttribute="trailing" secondItem="RUG-x1-8hE" secondAttribute="trailing" id="JdT-7s-v0V"/>
                             <constraint firstItem="RbO-IE-PtN" firstAttribute="bottom" secondItem="RUG-x1-8hE" secondAttribute="bottom" id="LmM-wW-iXD"/>
-                            <constraint firstItem="RUG-x1-8hE" firstAttribute="top" secondItem="RbO-IE-PtN" secondAttribute="top" id="WKq-kq-gLT"/>
                             <constraint firstItem="RUG-x1-8hE" firstAttribute="leading" secondItem="RbO-IE-PtN" secondAttribute="leading" id="heB-fQ-YFP"/>
+                            <constraint firstItem="RUG-x1-8hE" firstAttribute="top" secondItem="RbO-IE-PtN" secondAttribute="top" id="heo-YW-hp4"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="08r-vo-oho"/>

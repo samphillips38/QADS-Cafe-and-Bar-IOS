@@ -239,4 +239,18 @@ class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         show(optionsVC, sender: self)
         
     }
+    
+    
+    @IBAction func testButtonTapped(_ sender: Any) {
+        
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let testVC = storyBoard.instantiateViewController(withIdentifier: "TestVC") as! TestViewController
+        
+        testVC.chosenItem = chosenItem
+        show(testVC, sender: self)
+        
+        
+    }
+    
+    
 }

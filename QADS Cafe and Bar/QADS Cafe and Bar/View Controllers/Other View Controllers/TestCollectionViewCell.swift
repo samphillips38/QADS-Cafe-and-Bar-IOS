@@ -7,17 +7,20 @@
 
 import UIKit
 
-private let reuseIdentifier = "TestTVC"
-
 class TestCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
+    var collectionViewRow = 3
+    var cellDic: [String: Any] = [:]
+    var numRows = 4
+    let rowHeight = CGFloat(50)
     
     func setUp() {
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        
+        self.tableView.rowHeight = self.rowHeight
+
     }
     
     
@@ -30,17 +33,20 @@ class TestCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITable
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //Set by Item as the number of options is not varied by preferences
-        return 2
+        return self.numRows
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         // Configure the cell...
-//        guard let cell = self.tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) else {
-//            fatalError("The dequeued cell is not an instance of OptionsTableViewCell")
-//        }
-//
-        let cell = self.tableView.dequeueReusableCell(withIdentifier: reuseIdentifier!, for: indexPath)
+        guard let cell = self.tableView.dequeueReusableCell(withIdentifier: "TestTVC", for: indexPath) as? TestTableViewCell else {
+            fatalError("The dequeued cell is not an instance of TestTableViewCell")
+        }
+        
+        cell.nameLabel.text = "ColRow: " +
+                            String(collectionViewRow) +
+                            ", TabRow: " +
+                            String(indexPath.row)
         
         return cell
     }
