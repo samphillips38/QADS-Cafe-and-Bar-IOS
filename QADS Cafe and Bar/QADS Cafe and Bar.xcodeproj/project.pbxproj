@@ -12,6 +12,7 @@
 		CDD1BC48AE37D62A403539DF /* Pods_QADS_Cafe_and_Bar_QADS_Cafe_and_BarUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57F3777C07EA3810AEDDBA1B /* Pods_QADS_Cafe_and_Bar_QADS_Cafe_and_BarUITests.framework */; };
 		F414A8FC25CE9E380008B9AB /* CafeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F414A8FB25CE9E380008B9AB /* CafeViewController.swift */; };
 		F414A90425CEAB980008B9AB /* BarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F414A90325CEAB980008B9AB /* BarViewController.swift */; };
+		F4188F4B2677C7A90071FC37 /* TestTitleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4188F4A2677C7A90071FC37 /* TestTitleCollectionViewCell.swift */; };
 		F429480225C86A6B00A11D94 /* OrderConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F429480125C86A6B00A11D94 /* OrderConfirmationViewController.swift */; };
 		F429480725C88A5D00A11D94 /* CategoryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F429480625C88A5D00A11D94 /* CategoryList.swift */; };
 		F43EE1DF25A4F5BA000844D7 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43EE1DE25A4F5BA000844D7 /* extensions.swift */; };
@@ -82,6 +83,7 @@
 		B98F58E963B94DBCF2D08CB8 /* Pods-QADS Cafe and Bar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QADS Cafe and Bar.debug.xcconfig"; path = "Target Support Files/Pods-QADS Cafe and Bar/Pods-QADS Cafe and Bar.debug.xcconfig"; sourceTree = "<group>"; };
 		F414A8FB25CE9E380008B9AB /* CafeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CafeViewController.swift; sourceTree = "<group>"; };
 		F414A90325CEAB980008B9AB /* BarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarViewController.swift; sourceTree = "<group>"; };
+		F4188F4A2677C7A90071FC37 /* TestTitleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestTitleCollectionViewCell.swift; sourceTree = "<group>"; };
 		F429480125C86A6B00A11D94 /* OrderConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderConfirmationViewController.swift; sourceTree = "<group>"; };
 		F429480625C88A5D00A11D94 /* CategoryList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryList.swift; sourceTree = "<group>"; };
 		F43EE1DE25A4F5BA000844D7 /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
@@ -307,6 +309,7 @@
 				F4A3393B264C0EE8003F15BC /* BasketViewController.swift */,
 				F429480125C86A6B00A11D94 /* OrderConfirmationViewController.swift */,
 				F4E664872674A5110044A6C9 /* TestViewController.swift */,
+				F4188F4A2677C7A90071FC37 /* TestTitleCollectionViewCell.swift */,
 				F4E664892674B30A0044A6C9 /* TestCollectionViewCell.swift */,
 				F4E6648B267614190044A6C9 /* TestTableViewCell.swift */,
 			);
@@ -607,6 +610,7 @@
 				F49B429825B1AE8700FDF054 /* OrderItemsTableViewCell.swift in Sources */,
 				F4D1A940257C02130027035C /* Constants.swift in Sources */,
 				F429480725C88A5D00A11D94 /* CategoryList.swift in Sources */,
+				F4188F4B2677C7A90071FC37 /* TestTitleCollectionViewCell.swift in Sources */,
 				F4EDDCFE265BC16E0095FC2C /* AllergiesTableViewCell.swift in Sources */,
 				F4EDDD00265BC2430095FC2C /* CheckBoxImageView.swift in Sources */,
 				F429480225C86A6B00A11D94 /* OrderConfirmationViewController.swift in Sources */,

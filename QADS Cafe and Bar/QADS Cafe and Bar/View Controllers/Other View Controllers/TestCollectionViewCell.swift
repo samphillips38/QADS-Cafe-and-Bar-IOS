@@ -9,17 +9,24 @@ import UIKit
 
 class TestCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
-    var collectionViewRow = 3
-    var cellDic: [String: Any] = [:]
-    var numRows = 4
     let rowHeight = CGFloat(50)
+    
+    var options: [String: [String: Any]] = [:]
+    var optionList: [String] = []
     
     func setUp() {
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.rowHeight = self.rowHeight
+
+        for (key, _) in options {
+            optionList.append(key)
+        }
+        print("This is the option list")
+        print(optionList)
 
     }
     
@@ -33,7 +40,7 @@ class TestCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITable
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //Set by Item as the number of options is not varied by preferences
-        return self.numRows
+        return optionList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -43,12 +50,18 @@ class TestCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITable
             fatalError("The dequeued cell is not an instance of TestTableViewCell")
         }
         
-        cell.nameLabel.text = "ColRow: " +
-                            String(collectionViewRow) +
-                            ", TabRow: " +
-                            String(indexPath.row)
+        cell.nameLabel.text = optionList[indexPath.row]
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        //Set row to selected
+        
+        //Reload cell
+        tableView.cellForRow(at: indexPath)?.selectionStyle = .gray
+        tableView.reloadRows(at: [indexPath], with: .fade)
     }
     
     

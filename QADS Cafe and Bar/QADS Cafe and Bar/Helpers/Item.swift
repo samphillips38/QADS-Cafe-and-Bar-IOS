@@ -48,6 +48,7 @@ class Item: NSObject {
     var location: String?
     var name: String?
     var options: [String: [String: Any]]?
+    var types: [String: [String: Any]]?
     var price: Double?
     var stock: Bool?
     var id: String?
@@ -60,8 +61,8 @@ class Item: NSObject {
         self.desc = doc["description"] as? String
         self.location = doc["location"] as? String
         self.name = doc["name"] as? String
-        //self.options = doc["options"] as? [String: Bool]
         self.options = doc["options"] as? [String: [String: Any]]
+        self.types = doc["types"] as? [String: [String: Any]]
         self.price = doc["price"] as? Double
         self.stock = doc["stock"] as? Bool
         self.id = ID! as String

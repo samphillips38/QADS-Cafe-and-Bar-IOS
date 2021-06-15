@@ -20,10 +20,21 @@ class TestViewController: UIViewController, UICollectionViewDelegate, UICollecti
 
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
+        constructPageList()
     }
     
     func constructPageList() {
-        pageList.append("Title")
+        
+        //Title
+        pageList.append(["Title": chosenItem.name])
+        
+        //Option
+        pageList.append(["Option": chosenItem.options ?? [:]])
+        
+        //Types
+        for (key, value) in chosenItem.types ?? [:] {
+            pageList.append(["Type": [key: value]])
+        }
         
     }
     
@@ -35,32 +46,103 @@ class TestViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return pageList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        // Configure the cell...
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? TestCollectionViewCell else {
-            fatalError("The dequeued cell is not an instance of TestCollectionViewCell")
+        let data_dic = pageList[indexPath.row] as! [String: Any]
+        
+        if data_dic.keys.contains("Title") {
+            
+            // Configure cell for title
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TestTitleCVC", for: indexPath) as? TestTitleCollectionViewCell else {
+                fatalError("The dequeued cell is not an instance of TestTitleCollectionViewCell")
+            }
+            
+            return cell
+            
+            
+        } else if data_dic.keys.contains("Option") {
+            
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TestID", for: indexPath) as? TestCollectionViewCell else {
+                fatalError("The dequeued cell is not an instance of TestCollectionViewCell")
+            }
+            cell.titleLabel.text = "Choose an Option"
+            cell.options = data_dic["Option"] as! [String : [String : Any]]
+            cell.setUp()
+            return cell
+            
+            
+        } else if data_dic.keys.contains("Type") {
+            
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TestID", for: indexPath) as? TestCollectionViewCell else {
+                fatalError("The dequeued cell is not an instance of TestCollectionViewCell")
+            }
+            
+            cell.titleLabel.text = "Choose an Type"
+            
+            cell.setUp()
+            return cell
+            
+        } else {
+            
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TestID", for: indexPath) as? TestCollectionViewCell else {
+                fatalError("The dequeued cell is not an instance of TestCollectionViewCell")
+            }
+            cell.titleLabel.text = "Extra"
+            return cell
         }
-        cell.setUp()
-        cell.cellDic = chosenItem.options ?? [:]
-        cell.collectionViewRow = indexPath.row
-        cell.numRows = indexPath.row * (indexPath.row + 1)
-        return cell
+        
+
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        guard let cell = self.collectionView(self.collectionView, cellForItemAt: indexPath) as? TestCollectionViewCell else {
-            fatalError("The dequeued cell is not an instance of TestCollectionViewCell")
-        }
-        let height = cell.rowHeight * CGFloat(cell.numRows) + 36
-        print(height)
+        let data_dic = pageList[indexPath.row] as! [String: Any]
+        
+        if data_dic.keys.contains("Title") {
 
-        //Make the values constants
-        return CGSize(width: collectionView.frame.width * constants.itemWidthMultiplier, height: height)
+            //Fill Screen
+            return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
+            
+        } else if data_dic.keys.contains("Option") {
+            guard let cell = self.collectionView(self.collectionView, cellForItemAt: indexPath) as? TestCollectionViewCell else {
+                fatalError("The dequeued cell is not an instance of TestCollectionViewCell")
+            }
+
+            //Set height based on table view height
+            let numRows = (data_dic["Option"] as! [String: [String: Any]]).count
+            let height = cell.rowHeight * CGFloat(numRows) + 36
+            return CGSize(width: collectionView.frame.width, height: height)
+            
+        } else if data_dic.keys.contains("Type") {
+            
+            guard let cell = self.collectionView(self.collectionView, cellForItemAt: indexPath) as? TestCollectionViewCell else {
+                fatalError("The dequeued cell is not an instance of TestCollectionViewCell")
+            }
+            let numRows = (data_dic["Type"] as! [String: [String: Any]]).count
+            let height = cell.rowHeight * CGFloat(numRows) + 36
+            print(height)
+
+            //Make the values constants
+            return CGSize(width: collectionView.frame.width * constants.itemWidthMultiplier, height: height)
+            
+        } else {
+            
+            guard let cell = self.collectionView(self.collectionView, cellForItemAt: indexPath) as? TestCollectionViewCell else {
+                fatalError("The dequeued cell is not an instance of TestCollectionViewCell")
+            }
+            let numRows = (data_dic["Type"] as! [String: [String: Any]]).count
+            let height = cell.rowHeight * CGFloat(numRows) + 36
+            print(height)
+
+            //Make the values constants
+            return CGSize(width: collectionView.frame.width * constants.itemWidthMultiplier, height: height)
+            
+        }
+        
+        
     }
     
 

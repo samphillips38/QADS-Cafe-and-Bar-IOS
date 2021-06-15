@@ -583,7 +583,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="10" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TestTitleCVC" id="yES-5T-WrC">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TestTitleCVC" id="yES-5T-WrC" customClass="TestTitleCollectionViewCell" customModule="QADS_Cafe_and_Bar" customModuleProvider="target">
                                         <rect key="frame" x="15.5" y="10" width="383" height="315"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="PXt-7h-rUb">
@@ -679,6 +679,7 @@
                                         <size key="customSize" width="383" height="315"/>
                                         <connections>
                                             <outlet property="tableView" destination="Hl5-P7-S6N" id="VCu-Gp-MmW"/>
+                                            <outlet property="titleLabel" destination="NuW-v5-BYT" id="hm0-fE-efi"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
