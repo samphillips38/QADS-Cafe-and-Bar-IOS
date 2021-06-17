@@ -60,7 +60,8 @@ class TestViewController: UIViewController, UICollectionViewDelegate, UICollecti
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TestTitleCVC", for: indexPath) as? TestTitleCollectionViewCell else {
                 fatalError("The dequeued cell is not an instance of TestTitleCollectionViewCell")
             }
-            cell.titleLabel.text = data_dic[constants.titleStr] as? String
+            
+            self.fillOutTitleCell(cell: cell, data: data_dic)
             return cell
             
         } else if data_dic.keys.contains(constants.optionStr) {
@@ -100,8 +101,7 @@ class TestViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         if data_dic.keys.contains(constants.titleStr) {
 
-            //Fill Screen
-            height = 300
+            height = constants.itemTitleHeight
             
         } else if data_dic.keys.contains(constants.optionStr) {
             guard let cell = self.collectionView(self.collectionView, cellForItemAt: indexPath) as? TestCollectionViewCell else {
@@ -131,6 +131,22 @@ class TestViewController: UIViewController, UICollectionViewDelegate, UICollecti
         let numRows = (cellDic ?? [:]).count
         let height = rowHeight * CGFloat(numRows) + 36
         return height
+    }
+    
+    func fillOutTitleCell(cell: TestTitleCollectionViewCell, data: [String: Any]) {
+        
+        
+        cell.titleLabel.text = chosenItem.name
+        cell.descriptionLabel.text = chosenItem.desc
+        cell.allergenLabel.text = cell.makeAllergenLabel(allergenList: chosenItem.allergens)
+        
+        //Get the item image from firebase
+        cell.imageView.LoadImageUsingCache(ImageRef: chosenItem.getImageRef()) { (isFound) in
+            if !isFound {
+                //Do something if the image could not be found
+                print("not found")
+            }
+        }
     }
     
 

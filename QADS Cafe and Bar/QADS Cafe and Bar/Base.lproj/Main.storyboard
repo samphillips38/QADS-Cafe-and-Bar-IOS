@@ -580,45 +580,76 @@
                                     <size key="itemSize" width="383" height="315"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="10" maxX="0.0" maxY="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TestTitleCVC" id="yES-5T-WrC" customClass="TestTitleCollectionViewCell" customModule="QADS_Cafe_and_Bar" customModuleProvider="target">
-                                        <rect key="frame" x="15.5" y="10" width="383" height="315"/>
+                                        <rect key="frame" x="15.5" y="0.0" width="383" height="433"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="PXt-7h-rUb">
-                                            <rect key="frame" x="0.0" y="0.0" width="383" height="315"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="383" height="433"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RQw-Op-93g" customClass="CustomImageView" customModule="QADS_Cafe_and_Bar" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="383" height="200"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RQw-Op-93g" customClass="CustomImageView" customModule="QADS_Cafe_and_Bar" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="383" height="250"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="200" id="gWh-WC-lf6"/>
+                                                        <constraint firstAttribute="height" constant="250" id="gWh-WC-lf6"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CE3-zb-ZRT">
-                                                    <rect key="frame" x="20" y="220" width="343" height="33.5"/>
+                                                    <rect key="frame" x="20" y="270" width="343" height="33.5"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="28"/>
                                                     <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lz6-mD-yCy">
+                                                    <rect key="frame" x="10" y="313.5" width="363" height="2"/>
+                                                    <color key="backgroundColor" red="0.22352941179999999" green="0.56470588239999997" blue="0.39607843139999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="2" id="PkR-tw-BqY"/>
+                                                    </constraints>
+                                                </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tPX-og-ooU">
+                                                    <rect key="frame" x="20" y="335.5" width="343" height="19.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error, no allergen data received. Please contact catering staff." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u7o-dv-n16">
+                                                    <rect key="frame" x="10" y="375" width="363" height="31.5"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
+                                                    <color key="textColor" systemColor="systemRedColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="CE3-zb-ZRT" firstAttribute="centerX" secondItem="PXt-7h-rUb" secondAttribute="centerX" id="096-Dr-9yk"/>
                                                 <constraint firstItem="RQw-Op-93g" firstAttribute="top" secondItem="PXt-7h-rUb" secondAttribute="top" id="1Dt-mG-rWf"/>
+                                                <constraint firstItem="u7o-dv-n16" firstAttribute="top" secondItem="tPX-og-ooU" secondAttribute="bottom" constant="20" id="2PD-Lb-6w6"/>
                                                 <constraint firstItem="CE3-zb-ZRT" firstAttribute="top" secondItem="RQw-Op-93g" secondAttribute="bottom" constant="20" id="4Yr-aI-uEp"/>
+                                                <constraint firstItem="lz6-mD-yCy" firstAttribute="centerX" secondItem="PXt-7h-rUb" secondAttribute="centerX" id="Mgg-gS-eqt"/>
+                                                <constraint firstItem="tPX-og-ooU" firstAttribute="centerX" secondItem="PXt-7h-rUb" secondAttribute="centerX" id="O31-Xy-WPp"/>
+                                                <constraint firstItem="tPX-og-ooU" firstAttribute="top" secondItem="lz6-mD-yCy" secondAttribute="bottom" constant="20" id="O6W-N0-GBo"/>
+                                                <constraint firstItem="tPX-og-ooU" firstAttribute="leading" secondItem="PXt-7h-rUb" secondAttribute="leading" constant="20" id="Pgz-sY-Ndt"/>
                                                 <constraint firstItem="CE3-zb-ZRT" firstAttribute="leading" secondItem="PXt-7h-rUb" secondAttribute="leading" constant="20" id="QS5-4X-VZS"/>
                                                 <constraint firstItem="RQw-Op-93g" firstAttribute="leading" secondItem="PXt-7h-rUb" secondAttribute="leading" id="VSp-HJ-NaW"/>
+                                                <constraint firstItem="lz6-mD-yCy" firstAttribute="leading" secondItem="PXt-7h-rUb" secondAttribute="leading" constant="10" id="d1C-lR-qaz"/>
+                                                <constraint firstItem="u7o-dv-n16" firstAttribute="centerX" secondItem="PXt-7h-rUb" secondAttribute="centerX" id="nnK-Da-fSN"/>
+                                                <constraint firstItem="lz6-mD-yCy" firstAttribute="top" secondItem="CE3-zb-ZRT" secondAttribute="bottom" constant="10" id="qq6-QJ-jj1"/>
+                                                <constraint firstItem="u7o-dv-n16" firstAttribute="leading" secondItem="PXt-7h-rUb" secondAttribute="leading" constant="10" id="vZp-fD-7Om"/>
                                                 <constraint firstAttribute="trailing" secondItem="RQw-Op-93g" secondAttribute="trailing" id="xlA-yd-mwB"/>
                                             </constraints>
                                         </collectionViewCellContentView>
+                                        <size key="customSize" width="383" height="433"/>
                                         <connections>
+                                            <outlet property="allergenLabel" destination="u7o-dv-n16" id="ph2-gQ-2hK"/>
+                                            <outlet property="descriptionLabel" destination="tPX-og-ooU" id="sis-In-4Y1"/>
                                             <outlet property="imageView" destination="RQw-Op-93g" id="Z6M-A4-7qM"/>
                                             <outlet property="titleLabel" destination="CE3-zb-ZRT" id="no1-qS-DDx"/>
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TestID" id="50M-bk-oyI" customClass="TestCollectionViewCell" customModule="QADS_Cafe_and_Bar" customModuleProvider="target">
-                                        <rect key="frame" x="15.5" y="335" width="383" height="315"/>
+                                        <rect key="frame" x="15.5" y="443" width="383" height="315"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="NIF-8e-4bf">
                                             <rect key="frame" x="0.0" y="0.0" width="383" height="315"/>
@@ -705,7 +736,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HKP-Zm-yWi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8588" y="887"/>
+            <point key="canvasLocation" x="8586.9565217391319" y="886.60714285714278"/>
         </scene>
         <!--Option Picker View Controller-->
         <scene sceneID="hkK-pf-mwl">

@@ -30,5 +30,6 @@ struct constants {
     static let optionStr = "Option"
     static let typeStr = "Type"
     
+    static let itemTitleHeight = CGFloat(500)
 }
 
