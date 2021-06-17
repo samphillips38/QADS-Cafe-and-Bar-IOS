@@ -13,6 +13,7 @@ class TestViewController: UIViewController, UICollectionViewDelegate, UICollecti
 
     @IBOutlet weak var collectionView: UICollectionView!
     var chosenItem = Item()
+    var currentOrderItem = orderItem()
     var pageList: [Any] = []
     
     override func viewDidLoad() {
@@ -21,6 +22,7 @@ class TestViewController: UIViewController, UICollectionViewDelegate, UICollecti
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
         constructPageList()
+        currentOrderItem.createOrderItem(item: chosenItem)
     }
     
     func constructPageList() {
@@ -129,7 +131,7 @@ class TestViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     func getCellHeight(cellDic: [String: Any]?, rowHeight: CGFloat) -> CGFloat {
         let numRows = (cellDic ?? [:]).count
-        let height = rowHeight * CGFloat(numRows) + 36
+        let height = rowHeight * CGFloat(numRows) + 60.5
         return height
     }
     

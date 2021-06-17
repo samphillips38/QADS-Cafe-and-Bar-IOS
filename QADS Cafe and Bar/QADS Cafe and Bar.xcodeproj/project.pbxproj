@@ -13,6 +13,7 @@
 		F414A8FC25CE9E380008B9AB /* CafeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F414A8FB25CE9E380008B9AB /* CafeViewController.swift */; };
 		F414A90425CEAB980008B9AB /* BarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F414A90325CEAB980008B9AB /* BarViewController.swift */; };
 		F4188F4B2677C7A90071FC37 /* TestTitleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4188F4A2677C7A90071FC37 /* TestTitleCollectionViewCell.swift */; };
+		F4188F4F267B68780071FC37 /* TestAllergensCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4188F4E267B68780071FC37 /* TestAllergensCollectionViewCell.swift */; };
 		F429480225C86A6B00A11D94 /* OrderConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F429480125C86A6B00A11D94 /* OrderConfirmationViewController.swift */; };
 		F429480725C88A5D00A11D94 /* CategoryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F429480625C88A5D00A11D94 /* CategoryList.swift */; };
 		F43EE1DF25A4F5BA000844D7 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43EE1DE25A4F5BA000844D7 /* extensions.swift */; };
@@ -84,6 +85,7 @@
 		F414A8FB25CE9E380008B9AB /* CafeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CafeViewController.swift; sourceTree = "<group>"; };
 		F414A90325CEAB980008B9AB /* BarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarViewController.swift; sourceTree = "<group>"; };
 		F4188F4A2677C7A90071FC37 /* TestTitleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestTitleCollectionViewCell.swift; sourceTree = "<group>"; };
+		F4188F4E267B68780071FC37 /* TestAllergensCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAllergensCollectionViewCell.swift; sourceTree = "<group>"; };
 		F429480125C86A6B00A11D94 /* OrderConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderConfirmationViewController.swift; sourceTree = "<group>"; };
 		F429480625C88A5D00A11D94 /* CategoryList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryList.swift; sourceTree = "<group>"; };
 		F43EE1DE25A4F5BA000844D7 /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
@@ -312,6 +314,7 @@
 				F4188F4A2677C7A90071FC37 /* TestTitleCollectionViewCell.swift */,
 				F4E664892674B30A0044A6C9 /* TestCollectionViewCell.swift */,
 				F4E6648B267614190044A6C9 /* TestTableViewCell.swift */,
+				F4188F4E267B68780071FC37 /* TestAllergensCollectionViewCell.swift */,
 			);
 			path = "Other View Controllers";
 			sourceTree = "<group>";
@@ -612,6 +615,7 @@
 				F429480725C88A5D00A11D94 /* CategoryList.swift in Sources */,
 				F4188F4B2677C7A90071FC37 /* TestTitleCollectionViewCell.swift in Sources */,
 				F4EDDCFE265BC16E0095FC2C /* AllergiesTableViewCell.swift in Sources */,
+				F4188F4F267B68780071FC37 /* TestAllergensCollectionViewCell.swift in Sources */,
 				F4EDDD00265BC2430095FC2C /* CheckBoxImageView.swift in Sources */,
 				F429480225C86A6B00A11D94 /* OrderConfirmationViewController.swift in Sources */,
 				F4D1A945257C07600027035C /* ItemsViewController.swift in Sources */,

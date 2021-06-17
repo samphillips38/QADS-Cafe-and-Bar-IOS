@@ -53,6 +53,7 @@ class TestCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITable
         }
         
         cell.nameLabel.text = optionList[indexPath.row]
+        cell.checkBox.initialise()
         
         return cell
     }
@@ -60,6 +61,10 @@ class TestCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITable
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         //Set row to selected
+        guard let cell = self.tableView(self.tableView, cellForRowAt: indexPath) as? TestTableViewCell else {
+            fatalError("This cell is not an instance of TestTableViewCell")
+        }
+        cell.checkBox.toggle()
         
         //Reload cell
         tableView.cellForRow(at: indexPath)?.selectionStyle = .gray

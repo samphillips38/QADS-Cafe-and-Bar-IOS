@@ -210,6 +210,16 @@ class orderItem: NSObject {
     var price: Double = 0.0
     var quantity: Int = 1
     
+    struct choice {
+        var name: String = ""
+        var price: Double = 0.0
+        var isSelected: Bool = false
+    }
+    struct type {
+        var name: String = ""
+        var choices: [choice] = []
+    }
+    var types: [type] = []
     
     
     func createOrderItem(item: Item) {
@@ -231,7 +241,25 @@ class orderItem: NSObject {
                 )
             
             self.options.append(thisOption)
+        }
+        
+        // Fill in types
+        for (typeName, typeInfo) in item.types ?? [:] {
+            var choiceList: [choice] = []
+            for (choiceName, choicePrice) in typeInfo {
+                let thisChoice = choice(
+                    name: choiceName ,
+                    price: choicePrice as! Double,
+                    isSelected: false
+                )
+                choiceList.append(thisChoice)
+            }
             
+            let thisType = type(
+                name: typeName,
+                choices: choiceList
+            )
+            self.types.append(thisType)
         }
     }
     
