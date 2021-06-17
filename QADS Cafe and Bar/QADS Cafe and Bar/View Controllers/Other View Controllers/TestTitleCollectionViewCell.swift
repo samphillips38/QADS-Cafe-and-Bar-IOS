@@ -8,5 +8,7 @@
 import UIKit
 
 class TestTitleCollectionViewCell: UICollectionViewCell {
+    @IBOutlet weak var imageView: CustomImageView!
+    @IBOutlet weak var titleLabel: UILabel!
     
 }

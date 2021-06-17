@@ -12,9 +12,13 @@ class TestCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITable
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     let rowHeight = CGFloat(50)
+    var cellType = "Option"
     
-    var options: [String: [String: Any]] = [:]
+    var optionDic: [String: Any] = [:]
     var optionList: [String] = []
+    
+    var typeDic: [String: Any] = [:]
+    var typeList: [String] = []
     
     func setUp() {
         
@@ -22,11 +26,9 @@ class TestCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITable
         self.tableView.dataSource = self
         self.tableView.rowHeight = self.rowHeight
 
-        for (key, _) in options {
+        for (key, _) in optionDic {
             optionList.append(key)
         }
-        print("This is the option list")
-        print(optionList)
 
     }
     
