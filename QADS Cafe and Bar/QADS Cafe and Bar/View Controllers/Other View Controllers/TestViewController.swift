@@ -26,14 +26,14 @@ class TestViewController: UIViewController, UICollectionViewDelegate, UICollecti
     func constructPageList() {
         
         //Title
-        pageList.append(["Title": chosenItem.name])
+        pageList.append([constants.titleStr: chosenItem.name])
         
         //Option
-        pageList.append(["Option": chosenItem.options ?? [:]])
+        pageList.append([constants.optionStr: chosenItem.options ?? [:]])
         
         //Types
         for (key, value) in chosenItem.types ?? [:] {
-            pageList.append(["Type": [key: value]])
+            pageList.append([constants.typeStr: [key: value]])
         }
         
     }
@@ -54,33 +54,33 @@ class TestViewController: UIViewController, UICollectionViewDelegate, UICollecti
         let data_dic = pageList[indexPath.row] as! [String: Any]
         let cell = UICollectionViewCell()
         
-        if data_dic.keys.contains("Title") {
+        if data_dic.keys.contains(constants.titleStr) {
             
             // Configure cell for title
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TestTitleCVC", for: indexPath) as? TestTitleCollectionViewCell else {
                 fatalError("The dequeued cell is not an instance of TestTitleCollectionViewCell")
             }
-            cell.titleLabel.text = data_dic["Title"] as? String
+            cell.titleLabel.text = data_dic[constants.titleStr] as? String
             return cell
             
-        } else if data_dic.keys.contains("Option") {
+        } else if data_dic.keys.contains(constants.optionStr) {
             
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TestID", for: indexPath) as? TestCollectionViewCell else {
                 fatalError("The dequeued cell is not an instance of TestCollectionViewCell")
             }
-            cell.cellType = "Option"
+            cell.cellType = constants.optionStr
             cell.titleLabel.text = "Choose an Option"
-            cell.optionDic = data_dic["Option"] as! [String : [String : Any]]
+            cell.optionDic = data_dic[constants.optionStr] as! [String : [String : Any]]
             cell.setUp()
             return cell
             
-        } else if data_dic.keys.contains("Type") {
+        } else if data_dic.keys.contains(constants.typeStr) {
             
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TestID", for: indexPath) as? TestCollectionViewCell else {
                 fatalError("The dequeued cell is not an instance of TestCollectionViewCell")
             }
-            cell.cellType = "Type"
-            let type_dic = data_dic["Type"] as! [String : [String : Any]]
+            cell.cellType = constants.typeStr
+            let type_dic = data_dic[constants.typeStr] as! [String : [String : Any]]
             cell.titleLabel.text = type_dic.first?.key
             cell.optionDic = type_dic.first?.value ?? [:]
             cell.setUp()
@@ -98,27 +98,27 @@ class TestViewController: UIViewController, UICollectionViewDelegate, UICollecti
         let data_dic = pageList[indexPath.row] as! [String: Any]
         var height = CGFloat()
         
-        if data_dic.keys.contains("Title") {
+        if data_dic.keys.contains(constants.titleStr) {
 
             //Fill Screen
             height = 300
             
-        } else if data_dic.keys.contains("Option") {
+        } else if data_dic.keys.contains(constants.optionStr) {
             guard let cell = self.collectionView(self.collectionView, cellForItemAt: indexPath) as? TestCollectionViewCell else {
                 fatalError("The dequeued cell is not an instance of TestCollectionViewCell")
             }
 
             //Set height based on table view height
-            let optionDic = data_dic["Option"] as! [String: [String: Any]]
+            let optionDic = data_dic[constants.optionStr] as! [String: [String: Any]]
             height = getCellHeight(cellDic: optionDic, rowHeight: cell.rowHeight)
             
-        } else if data_dic.keys.contains("Type") {
+        } else if data_dic.keys.contains(constants.typeStr) {
             
             guard let cell = self.collectionView(self.collectionView, cellForItemAt: indexPath) as? TestCollectionViewCell else {
                 fatalError("The dequeued cell is not an instance of TestCollectionViewCell")
             }
             
-            let type_dic = data_dic["Type"] as! [String : [String : Any]]
+            let type_dic = data_dic[constants.typeStr] as! [String : [String : Any]]
             height = getCellHeight(cellDic: type_dic.first?.value, rowHeight: cell.rowHeight)
             
         }

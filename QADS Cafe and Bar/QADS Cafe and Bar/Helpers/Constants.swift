@@ -24,5 +24,11 @@ struct constants {
 //    static let QDarkGreen = UIColor(red: 0.003, green: 0.290, blue: 0.157, alpha: 1.00)
 //    static let QLightGreen = UIColor(red: 0.224, green: 144, blue: 101, alpha: 1)
     
+    
+    // For string values
+    static let titleStr = "Title"
+    static let optionStr = "Option"
+    static let typeStr = "Type"
+    
 }
 
