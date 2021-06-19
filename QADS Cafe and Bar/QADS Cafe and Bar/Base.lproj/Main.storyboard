@@ -693,17 +693,28 @@
                                                                         </constraints>
                                                                     </imageView>
                                                                     <stepper hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="QUg-Wt-qZb">
-                                                                        <rect key="frame" x="279" y="6" width="94" height="32"/>
+                                                                        <rect key="frame" x="244" y="6" width="94" height="32"/>
+                                                                        <connections>
+                                                                            <action selector="quantityStepper:" destination="fRT-Ob-pJg" eventType="valueChanged" id="oIg-bq-tbv"/>
+                                                                        </connections>
                                                                     </stepper>
+                                                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jFn-UM-OTF">
+                                                                        <rect key="frame" x="348" y="13" width="10" height="18"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
                                                                 </subviews>
                                                                 <constraints>
                                                                     <constraint firstItem="lRS-OM-tVa" firstAttribute="leading" secondItem="SrQ-XY-x7J" secondAttribute="trailing" constant="5" id="280-ch-JMo"/>
                                                                     <constraint firstItem="oRq-Ue-oZn" firstAttribute="leading" secondItem="7Dc-dU-bq9" secondAttribute="leadingMargin" constant="20" id="2dx-qj-KTf"/>
                                                                     <constraint firstItem="oRq-Ue-oZn" firstAttribute="centerY" secondItem="7Dc-dU-bq9" secondAttribute="centerY" id="9Gc-Dt-Lgr"/>
+                                                                    <constraint firstItem="jFn-UM-OTF" firstAttribute="centerY" secondItem="7Dc-dU-bq9" secondAttribute="centerY" id="BQr-kw-SFF"/>
+                                                                    <constraint firstItem="jFn-UM-OTF" firstAttribute="leading" secondItem="QUg-Wt-qZb" secondAttribute="trailing" constant="10" id="CY8-gE-Utb"/>
                                                                     <constraint firstAttribute="trailingMargin" secondItem="lRS-OM-tVa" secondAttribute="trailing" constant="3" id="Dwf-Eq-wPy"/>
                                                                     <constraint firstItem="SrQ-XY-x7J" firstAttribute="centerY" secondItem="7Dc-dU-bq9" secondAttribute="centerY" id="dHf-7P-zxu"/>
                                                                     <constraint firstItem="lRS-OM-tVa" firstAttribute="centerY" secondItem="7Dc-dU-bq9" secondAttribute="centerY" id="fFh-kH-FaH"/>
-                                                                    <constraint firstAttribute="trailing" secondItem="QUg-Wt-qZb" secondAttribute="trailing" constant="10" id="l4l-zX-gaV"/>
+                                                                    <constraint firstAttribute="trailingMargin" secondItem="jFn-UM-OTF" secondAttribute="trailing" constant="5" id="lZs-EZ-pzQ"/>
                                                                     <constraint firstItem="SrQ-XY-x7J" firstAttribute="leading" secondItem="oRq-Ue-oZn" secondAttribute="trailing" constant="30" id="nAZ-9e-mGG"/>
                                                                     <constraint firstItem="QUg-Wt-qZb" firstAttribute="centerY" secondItem="7Dc-dU-bq9" secondAttribute="centerY" id="soW-Bq-gwa"/>
                                                                 </constraints>
@@ -712,6 +723,7 @@
                                                                 <outlet property="checkBox" destination="lRS-OM-tVa" id="5xr-4z-CgF"/>
                                                                 <outlet property="nameLabel" destination="oRq-Ue-oZn" id="NqF-3I-5Me"/>
                                                                 <outlet property="priceLabel" destination="SrQ-XY-x7J" id="Lo5-js-Zei"/>
+                                                                <outlet property="quantityCount" destination="jFn-UM-OTF" id="1fS-TA-WQr"/>
                                                                 <outlet property="quantityStepper" destination="QUg-Wt-qZb" id="eW9-Qu-bGe"/>
                                                             </connections>
                                                         </tableViewCell>
@@ -758,6 +770,9 @@
                                                 </tableView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mSo-NB-agU">
                                                     <rect key="frame" x="20" y="15" width="343" height="25.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="25.5" id="alS-ea-GAB"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="21"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>

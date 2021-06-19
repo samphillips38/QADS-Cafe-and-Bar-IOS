@@ -7,10 +7,11 @@
 
 import UIKit
 
-class TestCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITableViewDataSource {
+class TestCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITableViewDataSource, TestOptionsCellDelegate {
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var quantityLabel: UILabel!
     let rowHeight = CGFloat(50)
     var cellType = "Option"
     
@@ -22,6 +23,16 @@ class TestCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITable
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.rowHeight = self.rowHeight
+    }
+    
+    func onStepperClick(index: Int, sender: UIStepper) {
+        
+        //update the quantity based on stepper value
+        currentOrderItem.options[index].quantity = Int(sender.value)
+        
+        //Update price
+        currentOrderItem.updatePrice()
+//        setPrice(price: currentOrderItem.price)
     }
     
     
