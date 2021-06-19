@@ -17,21 +17,11 @@ class TestCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITable
     var currentOrderItem = orderItem()
     var optionList: [orderItem.Option] = []
     
-//    var optionDic: [String: Any] = [:]
-//    var optionList: [String] = []
-//
-//    var typeDic: [String: Any] = [:]
-//    var typeList: [String] = []
-    
     func setUp() {
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.rowHeight = self.rowHeight
-
-//        for (key, _) in optionDic {
-//            optionList.append(key)
-//        }
 
     }
     
@@ -66,6 +56,7 @@ class TestCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITable
             fatalError("This cell is not an instance of TestTableViewCell")
         }
         cell.option.quantity += 1
+        self.optionList[indexPath.row] = cell.option
         
         //Reload cell
         tableView.cellForRow(at: indexPath)?.selectionStyle = .gray

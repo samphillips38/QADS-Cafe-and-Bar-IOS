@@ -86,9 +86,7 @@ class TestViewController: UIViewController, UICollectionViewDelegate, UICollecti
             let type = data_dic[constants.typeStr] as! orderItem.type
             cell.optionList = type.choices
             cell.cellType = constants.typeStr
-//            let type_dic = data_dic[constants.typeStr] as! [String : [String : Any]]
-//            cell.titleLabel.text = type_dic.first?.key
-//            cell.optionDic = type_dic.first?.value ?? [:]
+            cell.titleLabel.text = type.name
             cell.setUp()
             return cell
             
