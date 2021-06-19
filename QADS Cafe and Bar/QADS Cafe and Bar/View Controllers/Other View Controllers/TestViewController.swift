@@ -28,16 +28,16 @@ class TestViewController: UIViewController, UICollectionViewDelegate, UICollecti
     func constructPageList() {
         
         //Title
-        pageList.append([constants.titleStr: chosenItem.name])
+        pageList.append([constants.titleStr: currentOrderItem.itemName])
         
         //Option
-        pageList.append([constants.optionStr: chosenItem.options ?? [:]])
+        pageList.append([constants.optionStr: currentOrderItem.options])
         
         //Types
-        for (key, value) in chosenItem.types ?? [:] {
-            pageList.append([constants.typeStr: [key: value]])
+        for type in currentOrderItem.types {
+            pageList.append([constants.typeStr: type])
         }
-        
+
     }
     
     
@@ -62,8 +62,7 @@ class TestViewController: UIViewController, UICollectionViewDelegate, UICollecti
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TestTitleCVC", for: indexPath) as? TestTitleCollectionViewCell else {
                 fatalError("The dequeued cell is not an instance of TestTitleCollectionViewCell")
             }
-            
-            self.fillOutTitleCell(cell: cell, data: data_dic)
+            cell.fillInData(chosenItem: self.chosenItem)
             return cell
             
         } else if data_dic.keys.contains(constants.optionStr) {
@@ -133,22 +132,6 @@ class TestViewController: UIViewController, UICollectionViewDelegate, UICollecti
         let numRows = (cellDic ?? [:]).count
         let height = rowHeight * CGFloat(numRows) + 60.5
         return height
-    }
-    
-    func fillOutTitleCell(cell: TestTitleCollectionViewCell, data: [String: Any]) {
-        
-        
-        cell.titleLabel.text = chosenItem.name
-        cell.descriptionLabel.text = chosenItem.desc
-        cell.allergenLabel.text = cell.makeAllergenLabel(allergenList: chosenItem.allergens)
-        
-        //Get the item image from firebase
-        cell.imageView.LoadImageUsingCache(ImageRef: chosenItem.getImageRef()) { (isFound) in
-            if !isFound {
-                //Do something if the image could not be found
-                print("not found")
-            }
-        }
     }
     
 

@@ -13,6 +13,22 @@ class TestTitleCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var allergenLabel: UILabel!
     
+    func fillInData(chosenItem: Item) {
+        
+        titleLabel.text = chosenItem.name
+        descriptionLabel.text = chosenItem.desc
+        allergenLabel.text = makeAllergenLabel(allergenList: chosenItem.allergens)
+        
+        //Get the item image from firebase
+        imageView.LoadImageUsingCache(ImageRef: chosenItem.getImageRef()) { (isFound) in
+            if !isFound {
+                //Do something if the image could not be found
+                print("not found")
+            }
+        }
+        
+    }
+    
     func makeAllergenLabel(allergenList: [String]?) -> String {
         //If allergens not found, display warning message
         guard let allergenList = allergenList else {
