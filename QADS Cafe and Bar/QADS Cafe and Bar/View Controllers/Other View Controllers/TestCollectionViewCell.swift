@@ -22,7 +22,6 @@ class TestCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITable
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.rowHeight = self.rowHeight
-
     }
     
     
@@ -51,12 +50,15 @@ class TestCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITable
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        //Set row to selected
-        guard let cell = self.tableView(self.tableView, cellForRowAt: indexPath) as? TestTableViewCell else {
-            fatalError("This cell is not an instance of TestTableViewCell")
+        // If can have multiple then skip
+        let option = optionList[indexPath.row]
+        if option.canHaveMultiple {
+            tableView.reloadRows(at: [indexPath], with: .fade)
+            return
         }
-        cell.option.quantity += 1
-        self.optionList[indexPath.row] = cell.option
+        
+        // Set quantity
+        optionList[indexPath.row].quantity = 1 - option.quantity
         
         //Reload cell
         tableView.cellForRow(at: indexPath)?.selectionStyle = .gray

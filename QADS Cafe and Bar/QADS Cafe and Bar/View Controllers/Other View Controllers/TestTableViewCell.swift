@@ -13,6 +13,7 @@ class TestTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
     
+    @IBOutlet weak var quantityStepper: UIStepper!
     var option = orderItem.Option()
     
     override func awakeFromNib() {
@@ -30,10 +31,11 @@ class TestTableViewCell: UITableViewCell {
         self.nameLabel.text = option.name
         self.priceLabel.text = "+ £" + String(format: "%.2f", option.extraPrice)
         checkBox.setSelected(setTo: option.quantity != 0)
-    }
-    
-    
-    
-    
+        
+        if option.canHaveMultiple {
+            quantityStepper.isHidden = false
+            checkBox.isHidden = true
+        }
 
+    }
 }

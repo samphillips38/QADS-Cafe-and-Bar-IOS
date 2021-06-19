@@ -673,14 +673,14 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="383" height="43.5"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Option Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oRq-Ue-oZn">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Option Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oRq-Ue-oZn">
                                                                         <rect key="frame" x="40" y="12" width="96.5" height="20"/>
                                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SrQ-XY-x7J">
-                                                                        <rect key="frame" x="166.5" y="13" width="44" height="18"/>
+                                                                        <rect key="frame" x="166.5" y="13" width="158.5" height="18"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -692,20 +692,27 @@
                                                                             <constraint firstAttribute="width" secondItem="lRS-OM-tVa" secondAttribute="height" multiplier="1:1" id="ubY-d6-43o"/>
                                                                         </constraints>
                                                                     </imageView>
+                                                                    <stepper hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="QUg-Wt-qZb">
+                                                                        <rect key="frame" x="279" y="6" width="94" height="32"/>
+                                                                    </stepper>
                                                                 </subviews>
                                                                 <constraints>
+                                                                    <constraint firstItem="lRS-OM-tVa" firstAttribute="leading" secondItem="SrQ-XY-x7J" secondAttribute="trailing" constant="5" id="280-ch-JMo"/>
                                                                     <constraint firstItem="oRq-Ue-oZn" firstAttribute="leading" secondItem="7Dc-dU-bq9" secondAttribute="leadingMargin" constant="20" id="2dx-qj-KTf"/>
                                                                     <constraint firstItem="oRq-Ue-oZn" firstAttribute="centerY" secondItem="7Dc-dU-bq9" secondAttribute="centerY" id="9Gc-Dt-Lgr"/>
                                                                     <constraint firstAttribute="trailingMargin" secondItem="lRS-OM-tVa" secondAttribute="trailing" constant="3" id="Dwf-Eq-wPy"/>
                                                                     <constraint firstItem="SrQ-XY-x7J" firstAttribute="centerY" secondItem="7Dc-dU-bq9" secondAttribute="centerY" id="dHf-7P-zxu"/>
                                                                     <constraint firstItem="lRS-OM-tVa" firstAttribute="centerY" secondItem="7Dc-dU-bq9" secondAttribute="centerY" id="fFh-kH-FaH"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="QUg-Wt-qZb" secondAttribute="trailing" constant="10" id="l4l-zX-gaV"/>
                                                                     <constraint firstItem="SrQ-XY-x7J" firstAttribute="leading" secondItem="oRq-Ue-oZn" secondAttribute="trailing" constant="30" id="nAZ-9e-mGG"/>
+                                                                    <constraint firstItem="QUg-Wt-qZb" firstAttribute="centerY" secondItem="7Dc-dU-bq9" secondAttribute="centerY" id="soW-Bq-gwa"/>
                                                                 </constraints>
                                                             </tableViewCellContentView>
                                                             <connections>
                                                                 <outlet property="checkBox" destination="lRS-OM-tVa" id="5xr-4z-CgF"/>
                                                                 <outlet property="nameLabel" destination="oRq-Ue-oZn" id="NqF-3I-5Me"/>
                                                                 <outlet property="priceLabel" destination="SrQ-XY-x7J" id="Lo5-js-Zei"/>
+                                                                <outlet property="quantityStepper" destination="QUg-Wt-qZb" id="eW9-Qu-bGe"/>
                                                             </connections>
                                                         </tableViewCell>
                                                     </prototypes>
