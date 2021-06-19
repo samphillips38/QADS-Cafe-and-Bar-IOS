@@ -21,8 +21,8 @@ class TestViewController: UIViewController, UICollectionViewDelegate, UICollecti
 
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
-        constructPageList()
         currentOrderItem.createOrderItem(item: chosenItem)
+        constructPageList()
     }
     
     func constructPageList() {
@@ -31,7 +31,9 @@ class TestViewController: UIViewController, UICollectionViewDelegate, UICollecti
         pageList.append([constants.titleStr: currentOrderItem.itemName])
         
         //Option
-        pageList.append([constants.optionStr: currentOrderItem.options])
+        if !currentOrderItem.options.isEmpty {
+            pageList.append([constants.optionStr: currentOrderItem.options])
+        }
         
         //Types
         for type in currentOrderItem.types {
@@ -70,9 +72,9 @@ class TestViewController: UIViewController, UICollectionViewDelegate, UICollecti
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TestID", for: indexPath) as? TestCollectionViewCell else {
                 fatalError("The dequeued cell is not an instance of TestCollectionViewCell")
             }
+            cell.optionList = data_dic[constants.optionStr] as! [orderItem.Option]
             cell.cellType = constants.optionStr
             cell.titleLabel.text = "Choose an Option"
-            cell.optionDic = data_dic[constants.optionStr] as! [String : [String : Any]]
             cell.setUp()
             return cell
             
@@ -81,10 +83,12 @@ class TestViewController: UIViewController, UICollectionViewDelegate, UICollecti
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TestID", for: indexPath) as? TestCollectionViewCell else {
                 fatalError("The dequeued cell is not an instance of TestCollectionViewCell")
             }
+            let type = data_dic[constants.typeStr] as! orderItem.type
+            cell.optionList = type.choices
             cell.cellType = constants.typeStr
-            let type_dic = data_dic[constants.typeStr] as! [String : [String : Any]]
-            cell.titleLabel.text = type_dic.first?.key
-            cell.optionDic = type_dic.first?.value ?? [:]
+//            let type_dic = data_dic[constants.typeStr] as! [String : [String : Any]]
+//            cell.titleLabel.text = type_dic.first?.key
+//            cell.optionDic = type_dic.first?.value ?? [:]
             cell.setUp()
             return cell
             
@@ -110,8 +114,8 @@ class TestViewController: UIViewController, UICollectionViewDelegate, UICollecti
             }
 
             //Set height based on table view height
-            let optionDic = data_dic[constants.optionStr] as! [String: [String: Any]]
-            height = getCellHeight(cellDic: optionDic, rowHeight: cell.rowHeight)
+            let optionList = data_dic[constants.optionStr] as! [orderItem.Option]
+            height = getCellHeight(optionList: optionList, rowHeight: cell.rowHeight)
             
         } else if data_dic.keys.contains(constants.typeStr) {
             
@@ -119,17 +123,16 @@ class TestViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 fatalError("The dequeued cell is not an instance of TestCollectionViewCell")
             }
             
-            let type_dic = data_dic[constants.typeStr] as! [String : [String : Any]]
-            height = getCellHeight(cellDic: type_dic.first?.value, rowHeight: cell.rowHeight)
-            
+            let type = data_dic[constants.typeStr] as! orderItem.type
+            height = getCellHeight(optionList: type.choices, rowHeight: cell.rowHeight)
         }
         
         //Set Cell size
         return CGSize(width: collectionView.frame.width, height: height)
     }
     
-    func getCellHeight(cellDic: [String: Any]?, rowHeight: CGFloat) -> CGFloat {
-        let numRows = (cellDic ?? [:]).count
+    func getCellHeight(optionList: [Any]?, rowHeight: CGFloat) -> CGFloat {
+        let numRows = (optionList ?? []).count
         let height = rowHeight * CGFloat(numRows) + 60.5
         return height
     }

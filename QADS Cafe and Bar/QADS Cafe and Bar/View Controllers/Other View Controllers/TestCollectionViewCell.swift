@@ -14,11 +14,14 @@ class TestCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITable
     let rowHeight = CGFloat(50)
     var cellType = "Option"
     
-    var optionDic: [String: Any] = [:]
-    var optionList: [String] = []
+    var currentOrderItem = orderItem()
+    var optionList: [orderItem.Option] = []
     
-    var typeDic: [String: Any] = [:]
-    var typeList: [String] = []
+//    var optionDic: [String: Any] = [:]
+//    var optionList: [String] = []
+//
+//    var typeDic: [String: Any] = [:]
+//    var typeList: [String] = []
     
     func setUp() {
         
@@ -26,9 +29,9 @@ class TestCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITable
         self.tableView.dataSource = self
         self.tableView.rowHeight = self.rowHeight
 
-        for (key, _) in optionDic {
-            optionList.append(key)
-        }
+//        for (key, _) in optionDic {
+//            optionList.append(key)
+//        }
 
     }
     
@@ -51,10 +54,8 @@ class TestCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITable
         guard let cell = self.tableView.dequeueReusableCell(withIdentifier: "TestTVC", for: indexPath) as? TestTableViewCell else {
             fatalError("The dequeued cell is not an instance of TestTableViewCell")
         }
-        
-        cell.nameLabel.text = optionList[indexPath.row]
-        cell.checkBox.initialise()
-        
+        cell.option = self.optionList[indexPath.row]
+        cell.fillInData()
         return cell
     }
     
@@ -64,7 +65,7 @@ class TestCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITable
         guard let cell = self.tableView(self.tableView, cellForRowAt: indexPath) as? TestTableViewCell else {
             fatalError("This cell is not an instance of TestTableViewCell")
         }
-        cell.checkBox.toggle()
+        cell.option.quantity += 1
         
         //Reload cell
         tableView.cellForRow(at: indexPath)?.selectionStyle = .gray

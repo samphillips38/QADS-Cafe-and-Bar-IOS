@@ -13,6 +13,8 @@ class TestTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
     
+    var option = orderItem.Option()
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -24,12 +26,10 @@ class TestTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func setOption(option: orderItem.Option) {
-        
+    func fillInData() {
         self.nameLabel.text = option.name
         self.priceLabel.text = "+ £" + String(format: "%.2f", option.extraPrice)
         checkBox.setSelected(setTo: option.quantity != 0)
-        
     }
     
     
