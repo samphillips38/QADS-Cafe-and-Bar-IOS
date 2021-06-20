@@ -11,7 +11,6 @@ class TestCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITable
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var quantityLabel: UILabel!
     let rowHeight = CGFloat(50)
     var cellType = "Option"
     
