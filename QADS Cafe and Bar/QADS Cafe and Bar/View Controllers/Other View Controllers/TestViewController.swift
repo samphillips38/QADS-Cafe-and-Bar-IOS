@@ -146,7 +146,7 @@ class TestViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 fatalError("The dequeued cell is not an instance of TestAllergensCollectionViewCell")
             }
             
-            height = getCellHeight(optionList: currentOrderItem.allergies, rowHeight: cell.rowHeight)
+            height = getCellHeight(optionList: currentOrderItem.allergies, rowHeight: cell.rowHeight, isAllergy: true)
             
         }
         
@@ -154,10 +154,16 @@ class TestViewController: UIViewController, UICollectionViewDelegate, UICollecti
         return CGSize(width: collectionView.frame.width, height: height)
     }
     
-    func getCellHeight(optionList: [Any]?, rowHeight: CGFloat) -> CGFloat {
+    func getCellHeight(optionList: [Any]?, rowHeight: CGFloat, isAllergy: Bool = false) -> CGFloat {
         let numRows = (optionList ?? []).count
-        let height = rowHeight * CGFloat(numRows) + 60.5
-        return height
+        let height = rowHeight * CGFloat(numRows)
+        
+        if isAllergy { // Is Allergy Cell
+            return height + 93.5
+        }
+        
+        // Is other cell
+        return height + 60.5
     }
     
 

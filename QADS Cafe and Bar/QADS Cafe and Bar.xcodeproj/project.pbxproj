@@ -313,8 +313,8 @@
 				F4E664872674A5110044A6C9 /* TestViewController.swift */,
 				F4188F4A2677C7A90071FC37 /* TestTitleCollectionViewCell.swift */,
 				F4E664892674B30A0044A6C9 /* TestCollectionViewCell.swift */,
-				F4E6648B267614190044A6C9 /* TestTableViewCell.swift */,
 				F4188F4E267B68780071FC37 /* TestAllergensCollectionViewCell.swift */,
+				F4E6648B267614190044A6C9 /* TestTableViewCell.swift */,
 			);
 			path = "Other View Controllers";
 			sourceTree = "<group>";
