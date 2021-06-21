@@ -50,14 +50,34 @@ class TestCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITable
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        // Configure the cell...
-        guard let cell = self.tableView.dequeueReusableCell(withIdentifier: "TestTVC", for: indexPath) as? TestTableViewCell else {
-            fatalError("The dequeued cell is not an instance of TestTableViewCell")
+        let option = optionList[indexPath.row]
+        if !option.canHaveMultiple {
+            
+            // Configure the cell...
+            guard let cell = self.tableView.dequeueReusableCell(withIdentifier: "TestTVC", for: indexPath) as? TestTableViewCell else {
+                fatalError("The dequeued cell is not an instance of TestTableViewCell")
+            }
+            
+            cell.option = option
+            cell.fillInData()
+            return cell
+            
+        } else {
+            
+            // Configure the cell...
+            guard let cell = self.tableView.dequeueReusableCell(withIdentifier: "MultipleTestTVC", for: indexPath) as? TestTableViewCell else {
+                fatalError("The dequeued cell is not an instance of TestTableViewCell")
+            }
+            
+            cell.option = option
+            cell.fillInData()
+            return cell
+            
         }
-        cell.option = self.optionList[indexPath.row]
-        cell.fillInData()
-        return cell
+        
+//        cell.option = self.optionList[indexPath.row]
+//        cell.fillInData()
+//        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -68,7 +88,6 @@ class TestCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITable
             tableView.reloadRows(at: [indexPath], with: .fade)
             return
         }
-        
         // Set quantity
         let refreshedIndexes = switchSelectedTo(index: indexPath)
         
@@ -78,6 +97,10 @@ class TestCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITable
     }
     
     func switchSelectedTo(index: IndexPath) -> [IndexPath] {
+        if optionList[index.row].quantity > 0 {
+            optionList[index.row].quantity = 0
+            return [index]
+        }
         var switchedIndexes: [IndexPath] = []
         for i in 0...(optionList.count - 1) {
             if optionList[i].quantity != 0 {

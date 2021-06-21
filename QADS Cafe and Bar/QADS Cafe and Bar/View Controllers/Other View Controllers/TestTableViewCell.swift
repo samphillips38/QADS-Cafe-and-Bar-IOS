@@ -41,12 +41,13 @@ class TestTableViewCell: UITableViewCell {
     func fillInData() {
         self.nameLabel.text = option.name
         self.priceLabel.text = "+ £" + String(format: "%.2f", option.extraPrice)
-        checkBox.setSelected(setTo: option.quantity != 0)
         
         if option.canHaveMultiple {
             quantityStepper.isHidden = false
             quantityCount.isHidden = false
-            checkBox.isHidden = true
+//            checkBox.isHidden = true
+        } else {
+            checkBox.setSelected(setTo: option.quantity != 0)
         }
     }
 
