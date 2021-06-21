@@ -34,6 +34,8 @@ class TestCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITable
 //        setPrice(price: currentOrderItem.price)
     }
     
+
+    
     
     
     //MARK:- Table View
@@ -68,12 +70,23 @@ class TestCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITable
         }
         
         // Set quantity
-        optionList[indexPath.row].quantity = 1 - option.quantity
+        let refreshedIndexes = switchSelectedTo(index: indexPath)
         
         //Reload cell
         tableView.cellForRow(at: indexPath)?.selectionStyle = .gray
-        tableView.reloadRows(at: [indexPath], with: .fade)
+        tableView.reloadRows(at: refreshedIndexes, with: .fade)
     }
     
-    
+    func switchSelectedTo(index: IndexPath) -> [IndexPath] {
+        var switchedIndexes: [IndexPath] = []
+        for i in 0...(optionList.count - 1) {
+            if optionList[i].quantity != 0 {
+                switchedIndexes.append(IndexPath(row: i, section: 0))
+                optionList[i].quantity = 0
+            }
+        }
+        optionList[index.row].quantity = 1
+        switchedIndexes.append(index)
+        return switchedIndexes
+    }
 }
