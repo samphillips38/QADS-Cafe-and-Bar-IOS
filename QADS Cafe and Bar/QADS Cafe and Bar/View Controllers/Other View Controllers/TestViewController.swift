@@ -130,7 +130,7 @@ class TestViewController: UIViewController, UICollectionViewDelegate, UICollecti
 
             //Set height based on table view height
             let optionList = data_dic[constants.optionStr] as! [orderItem.Option]
-            height = getCellHeight(optionList: optionList, rowHeight: cell.rowHeight)
+            height = getCellHeight(optionList: optionList, rowHeight: cell.rowHeight, offset: cell.tableView.frame.minY)
             
         } else if data_dic.keys.contains(constants.typeStr) {
             
@@ -139,14 +139,14 @@ class TestViewController: UIViewController, UICollectionViewDelegate, UICollecti
             }
             
             let type = data_dic[constants.typeStr] as! orderItem.type
-            height = getCellHeight(optionList: type.choices, rowHeight: cell.rowHeight)
+            height = getCellHeight(optionList: type.choices, rowHeight: cell.rowHeight, offset: cell.tableView.frame.minY)
         } else if data_dic.keys.contains("Allergies") {
             
             guard let cell = self.collectionView(self.collectionView, cellForItemAt: indexPath) as? TestAllergensCollectionViewCell else {
                 fatalError("The dequeued cell is not an instance of TestAllergensCollectionViewCell")
             }
             
-            height = getCellHeight(optionList: currentOrderItem.allergies, rowHeight: cell.rowHeight, isAllergy: true)
+            height = getCellHeight(optionList: currentOrderItem.allergies, rowHeight: cell.rowHeight, offset: cell.tableView.frame.minY)
             
         }
         
@@ -154,16 +154,10 @@ class TestViewController: UIViewController, UICollectionViewDelegate, UICollecti
         return CGSize(width: collectionView.frame.width, height: height)
     }
     
-    func getCellHeight(optionList: [Any]?, rowHeight: CGFloat, isAllergy: Bool = false) -> CGFloat {
+    func getCellHeight(optionList: [Any]?, rowHeight: CGFloat, offset: CGFloat) -> CGFloat {
         let numRows = (optionList ?? []).count
         let height = rowHeight * CGFloat(numRows)
-        
-        if isAllergy { // Is Allergy Cell
-            return height + 93.5
-        }
-        
-        // Is other cell
-        return height + 60.5
+        return height + offset
     }
     
 
