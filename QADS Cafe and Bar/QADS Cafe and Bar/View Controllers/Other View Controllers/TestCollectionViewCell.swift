@@ -13,6 +13,7 @@ class TestCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITable
     @IBOutlet weak var tableView: UITableView!
     let rowHeight = CGFloat(50)
     var cellType = constants.optionCell
+    var index: IndexPath?
     
     var currentOrderItem = orderItem()
     
@@ -20,6 +21,12 @@ class TestCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITable
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.rowHeight = self.rowHeight
+        
+        if cellType == constants.optionCell {
+            titleLabel.text = "This is an option"
+        } else if cellType == constants.typeCell {
+            titleLabel.text = "This is a Type"
+        }
     }
     
     func onStepperClick(index: Int, sender: UIStepper) {
@@ -32,6 +39,15 @@ class TestCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITable
 //        setPrice(price: currentOrderItem.price)
     }
     
+    func getTypeIndex() -> Int {
+        let i = index?.row ?? 0
+        if cellType == constants.typeCell {
+            // Minus all options and the title
+            return i - 1 - currentOrderItem.options.count
+        }
+        // Return error if not type
+        return -1
+    }
     
     
     

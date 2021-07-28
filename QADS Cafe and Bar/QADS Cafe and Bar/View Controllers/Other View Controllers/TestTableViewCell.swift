@@ -24,10 +24,13 @@ class TestTableViewCell: UITableViewCell {
     //Set up delegate and index
     var cellDelegate: optionsCellDelegate?
     var index: IndexPath?
+    var typeIndex: Int?
     
     // Order Item
     var thisOrderItem = orderItem()
     var cellType = constants.optionCell
+    
+    private var option = orderItem.Option()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -41,15 +44,19 @@ class TestTableViewCell: UITableViewCell {
     }
     
     func makeCell() {
-        if self.cellType == constants.optionCell {
-            self.makeOptionCell()
+        if cellType == constants.optionCell {
+            option = thisOrderItem.options[index!.row]
+            makeOptionCell()
+        } else if cellType == constants.typeCell {
+            let type = thisOrderItem.types[typeIndex!]
+            option = type.choices[index!.row]
+            makeOptionCell()
         } else {
-            self.makeAllergyCell()
+            makeAllergyCell()
         }
     }
     
     func makeOptionCell() {
-        var option = thisOrderItem.options[index!.row]
         self.nameLabel.text = option.name
         self.priceLabel.text = "+ £" + String(format: "%.2f", option.extraPrice)
         
@@ -62,7 +69,7 @@ class TestTableViewCell: UITableViewCell {
     }
     
     func makeAllergyCell() {
-        
+        // Make the cell
     }
 
     @IBAction func quantityStepper(_ sender: UIStepper) {
