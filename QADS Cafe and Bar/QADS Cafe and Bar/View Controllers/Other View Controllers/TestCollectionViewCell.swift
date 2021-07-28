@@ -16,6 +16,7 @@ class TestCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITable
     var index: IndexPath?
     
     var currentOrderItem = orderItem()
+    private var typeIndex = -1 // Which type are we on
     
     func setUp() {
         self.tableView.delegate = self
@@ -26,6 +27,7 @@ class TestCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITable
             titleLabel.text = "This is an option"
         } else if cellType == constants.typeCell {
             titleLabel.text = "This is a Type"
+            typeIndex = (index?.row ?? 0) - 2 // Minus one for title and one for options
         }
     }
     
@@ -36,17 +38,15 @@ class TestCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITable
         
         //Update price
         currentOrderItem.updatePrice()
-//        setPrice(price: currentOrderItem.price)
     }
     
-    func getTypeIndex() -> Int {
-        let i = index?.row ?? 0
-        if cellType == constants.typeCell {
-            // Minus all options and the title
-            return i - 1 - currentOrderItem.options.count
+    func getOptionList() -> [orderItem.Option]{
+        if cellType == constants.optionCell {
+            return currentOrderItem.options
+        } else {
+            let type = currentOrderItem.types[typeIndex]
+            return type.choices
         }
-        // Return error if not type
-        return -1
     }
     
     
@@ -59,11 +59,11 @@ class TestCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITable
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //Set by Item as the number of options is not varied by preferences
-        return currentOrderItem.options.count
+        return getOptionList().count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let option = currentOrderItem.options[indexPath.row]
+        let option = getOptionList()[indexPath.row]
         if !option.canHaveMultiple {
             
             // Configure the cell...
@@ -73,6 +73,8 @@ class TestCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITable
             
             cell.thisOrderItem = currentOrderItem
             cell.index = indexPath
+            cell.typeIndex = typeIndex
+            cell.cellType = cellType
             cell.makeCell()
             return cell
             
@@ -85,16 +87,19 @@ class TestCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITable
             
             cell.thisOrderItem = currentOrderItem
             cell.index = indexPath
+            cell.typeIndex = typeIndex
+            cell.cellType = cellType
             cell.makeCell()
             return cell
             
         }
+        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         // If can have multiple then skip
-        let option = currentOrderItem.options[indexPath.row]
+        let option = getOptionList()[indexPath.row]
         if option.canHaveMultiple {
             tableView.reloadRows(at: [indexPath], with: .fade)
             return
@@ -108,7 +113,7 @@ class TestCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITable
     }
     
     func switchSelectedTo(index: IndexPath) -> [IndexPath] {
-        var optionList = currentOrderItem.options
+        var optionList = getOptionList()
         if optionList[index.row].quantity > 0 {
             optionList[index.row].quantity = 0
             return [index]

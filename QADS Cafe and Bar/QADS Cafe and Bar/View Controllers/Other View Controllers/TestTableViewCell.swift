@@ -24,7 +24,7 @@ class TestTableViewCell: UITableViewCell {
     //Set up delegate and index
     var cellDelegate: optionsCellDelegate?
     var index: IndexPath?
-    var typeIndex: Int?
+    var typeIndex = -1
     
     // Order Item
     var thisOrderItem = orderItem()
@@ -48,7 +48,7 @@ class TestTableViewCell: UITableViewCell {
             option = thisOrderItem.options[index!.row]
             makeOptionCell()
         } else if cellType == constants.typeCell {
-            let type = thisOrderItem.types[typeIndex!]
+            let type = thisOrderItem.types[typeIndex]
             option = type.choices[index!.row]
             makeOptionCell()
         } else {
