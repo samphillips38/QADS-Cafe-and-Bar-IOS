@@ -21,11 +21,13 @@ class TestTableViewCell: UITableViewCell {
     @IBOutlet weak var quantityStepper: UIStepper!
     @IBOutlet weak var quantityCount: UILabel!
     
-    var option = orderItem.Option()
-    
     //Set up delegate and index
     var cellDelegate: optionsCellDelegate?
     var index: IndexPath?
+    
+    // Order Item
+    var thisOrderItem = orderItem()
+    var cellType = constants.optionCell
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -38,17 +40,29 @@ class TestTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func fillInData() {
+    func makeCell() {
+        if self.cellType == constants.optionCell {
+            self.makeOptionCell()
+        } else {
+            self.makeAllergyCell()
+        }
+    }
+    
+    func makeOptionCell() {
+        var option = thisOrderItem.options[index!.row]
         self.nameLabel.text = option.name
         self.priceLabel.text = "+ £" + String(format: "%.2f", option.extraPrice)
         
         if option.canHaveMultiple {
             quantityStepper.isHidden = false
             quantityCount.isHidden = false
-//            checkBox.isHidden = true
         } else {
             checkBox.setSelected(setTo: option.quantity != 0)
         }
+    }
+    
+    func makeAllergyCell() {
+        
     }
 
     @IBAction func quantityStepper(_ sender: UIStepper) {

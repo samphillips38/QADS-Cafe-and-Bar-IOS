@@ -12,13 +12,11 @@ class TestCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITable
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     let rowHeight = CGFloat(50)
-    var cellType = "Option"
+    var cellType = constants.optionCell
     
     var currentOrderItem = orderItem()
-    var optionList: [orderItem.Option] = []
     
     func setUp() {
-        
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.rowHeight = self.rowHeight
@@ -34,7 +32,6 @@ class TestCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITable
 //        setPrice(price: currentOrderItem.price)
     }
     
-
     
     
     
@@ -46,11 +43,11 @@ class TestCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITable
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //Set by Item as the number of options is not varied by preferences
-        return optionList.count
+        return currentOrderItem.options.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let option = optionList[indexPath.row]
+        let option = currentOrderItem.options[indexPath.row]
         if !option.canHaveMultiple {
             
             // Configure the cell...
@@ -58,8 +55,9 @@ class TestCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITable
                 fatalError("The dequeued cell is not an instance of TestTableViewCell")
             }
             
-            cell.option = option
-            cell.fillInData()
+            cell.thisOrderItem = currentOrderItem
+            cell.index = indexPath
+            cell.makeCell()
             return cell
             
         } else {
@@ -69,21 +67,18 @@ class TestCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITable
                 fatalError("The dequeued cell is not an instance of TestTableViewCell")
             }
             
-            cell.option = option
-            cell.fillInData()
+            cell.thisOrderItem = currentOrderItem
+            cell.index = indexPath
+            cell.makeCell()
             return cell
             
         }
-        
-//        cell.option = self.optionList[indexPath.row]
-//        cell.fillInData()
-//        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         // If can have multiple then skip
-        let option = optionList[indexPath.row]
+        let option = currentOrderItem.options[indexPath.row]
         if option.canHaveMultiple {
             tableView.reloadRows(at: [indexPath], with: .fade)
             return
@@ -97,6 +92,7 @@ class TestCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITable
     }
     
     func switchSelectedTo(index: IndexPath) -> [IndexPath] {
+        var optionList = currentOrderItem.options
         if optionList[index.row].quantity > 0 {
             optionList[index.row].quantity = 0
             return [index]
@@ -110,6 +106,7 @@ class TestCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITable
         }
         optionList[index.row].quantity = 1
         switchedIndexes.append(index)
+        currentOrderItem.options = optionList
         return switchedIndexes
     }
 }

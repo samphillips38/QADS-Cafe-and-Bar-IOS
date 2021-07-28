@@ -13,10 +13,10 @@ class TestAllergensCollectionViewCell: UICollectionViewCell, UITableViewDelegate
     @IBOutlet weak var tableView: UITableView!
     
     let rowHeight = CGFloat(50)
-    var allergyList: [String] = []
+    var currentOrderItem = orderItem()
+    var allergyDic: [String: Bool] = [:]
     
     func setUp() {
-        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = rowHeight
@@ -32,7 +32,7 @@ class TestAllergensCollectionViewCell: UICollectionViewCell, UITableViewDelegate
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //Set by Item as the number of options is not varied by preferences
-        return allergyList.count
+        return allergyDic.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
