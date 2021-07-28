@@ -14,7 +14,7 @@ class TestAllergensCollectionViewCell: UICollectionViewCell, UITableViewDelegate
     
     let rowHeight = CGFloat(50)
     var currentOrderItem = orderItem()
-    var allergyDic: [String: Bool] = [:]
+    var allergyList: [String] = []
     
     func setUp() {
         tableView.delegate = self
@@ -32,7 +32,7 @@ class TestAllergensCollectionViewCell: UICollectionViewCell, UITableViewDelegate
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //Set by Item as the number of options is not varied by preferences
-        return allergyDic.count
+        return allergyList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -41,8 +41,6 @@ class TestAllergensCollectionViewCell: UICollectionViewCell, UITableViewDelegate
         guard let cell = self.tableView.dequeueReusableCell(withIdentifier: "optionTVC", for: indexPath) as? TestTableViewCell else {
             fatalError("The dequeued cell is not an instance of TestTableViewCell")
         }
-//        cell.option = self.optionList[indexPath.row]
-//        cell.fillInData()
         cell.nameLabel.text = allergyList[indexPath.row]
         cell.checkBox.initialise()
         return cell

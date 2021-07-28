@@ -14,7 +14,6 @@ class TestViewController: UIViewController, UICollectionViewDelegate, UICollecti
     @IBOutlet weak var collectionView: UICollectionView!
     var chosenItem = Item()
     var currentOrderItem = orderItem()
-    var pageList: [Any] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,34 +21,22 @@ class TestViewController: UIViewController, UICollectionViewDelegate, UICollecti
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
         currentOrderItem.createOrderItem(item: chosenItem)
-        currentOrderItem.getAllergenList {
-            self.constructPageList()
+        currentUser.getAllergenList {
             self.collectionView.reloadData()
         }
     }
     
-    func constructPageList() {
-        
-        // Title
-        pageList.append([constants.titleStr: currentOrderItem.itemName])
-        
-        // Option
-        if !currentOrderItem.options.isEmpty {
-            pageList.append([constants.optionStr: currentOrderItem.options])
+    func getCellType(indexPath: IndexPath) -> Int {
+        if indexPath.row == 0 {
+            return constants.titleCell
+        } else if indexPath.row == 1 {
+            return constants.optionCell
+        } else if 0 <= indexPath.row-2 && indexPath.row-2 < currentOrderItem.types.count {
+            return constants.typeCell
+        } else {
+            return constants.allergyCell
         }
-        
-        // Types
-        for type in currentOrderItem.types {
-            pageList.append([constants.typeStr: type])
-        }
-        
-        // Allergies
-        if !currentOrderItem.allergies.isEmpty {
-            pageList.append(["Allergies": currentOrderItem.allergies])
-        }
-
     }
-    
     
     
     // MARK:- Collection View
@@ -58,15 +45,15 @@ class TestViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return pageList.count
+        // Add one for title, one for options
+        return currentOrderItem.types.count + 2
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let data_dic = pageList[indexPath.row] as! [String: Any]
         let cell = UICollectionViewCell()
         
-        if data_dic.keys.contains(constants.titleStr) {
+        if getCellType(indexPath: indexPath) == constants.titleCell { // This is the title cell
             
             // Configure cell for title
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TestTitleCVC", for: indexPath) as? TestTitleCollectionViewCell else {
@@ -75,35 +62,31 @@ class TestViewController: UIViewController, UICollectionViewDelegate, UICollecti
             cell.fillInData(chosenItem: self.chosenItem)
             return cell
             
-        } else if data_dic.keys.contains(constants.optionStr) {
+        } else if getCellType(indexPath: indexPath) == constants.optionCell { // This is the Options cell
             
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TestID", for: indexPath) as? TestCollectionViewCell else {
                 fatalError("The dequeued cell is not an instance of TestCollectionViewCell")
             }
-            cell.optionList = data_dic[constants.optionStr] as! [orderItem.Option]
-            cell.cellType = constants.optionStr
-            cell.titleLabel.text = "Choose an Option"
+            cell.cellType = constants.optionCell
             cell.setUp()
             return cell
             
-        } else if data_dic.keys.contains(constants.typeStr) {
+        } else if getCellType(indexPath: indexPath) == constants.typeCell { // This is a Type
             
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TestID", for: indexPath) as? TestCollectionViewCell else {
                 fatalError("The dequeued cell is not an instance of TestCollectionViewCell")
             }
-            let type = data_dic[constants.typeStr] as! orderItem.type
-            cell.optionList = type.choices
-            cell.cellType = constants.typeStr
-            cell.titleLabel.text = type.name
+
+            cell.cellType = constants.typeCell
             cell.setUp()
             return cell
             
-        } else if data_dic.keys.contains("Allergies") {
+        } else if getCellType(indexPath: indexPath) == constants.allergyCell { // This is an Allergy Cell
             
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AllergyCVC", for: indexPath) as? TestAllergensCollectionViewCell else {
                 fatalError("The dequeued cell is not an instance of TestAllergensCollectionViewCell")
             }
-            cell.allergyList = data_dic["Allergies"] as! [String]
+            cell.allergyList = currentUser.allergies
             cell.setUp()
             return cell
             
@@ -116,37 +99,36 @@ class TestViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let data_dic = pageList[indexPath.row] as! [String: Any]
         var height = CGFloat()
         
-        if data_dic.keys.contains(constants.titleStr) {
+        if getCellType(indexPath: indexPath) == constants.titleCell {
 
             height = constants.itemTitleHeight
             
-        } else if data_dic.keys.contains(constants.optionStr) {
+        } else if getCellType(indexPath: indexPath) == constants.allergyCell {
             guard let cell = self.collectionView(self.collectionView, cellForItemAt: indexPath) as? TestCollectionViewCell else {
                 fatalError("The dequeued cell is not an instance of TestCollectionViewCell")
             }
 
             //Set height based on table view height
-            let optionList = data_dic[constants.optionStr] as! [orderItem.Option]
+            let optionList = currentOrderItem.options
             height = getCellHeight(optionList: optionList, rowHeight: cell.rowHeight, offset: cell.tableView.frame.minY)
             
-        } else if data_dic.keys.contains(constants.typeStr) {
+        } else if getCellType(indexPath: indexPath) == constants.typeCell {
             
             guard let cell = self.collectionView(self.collectionView, cellForItemAt: indexPath) as? TestCollectionViewCell else {
                 fatalError("The dequeued cell is not an instance of TestCollectionViewCell")
             }
             
-            let type = data_dic[constants.typeStr] as! orderItem.type
+            let type = currentOrderItem.types[indexPath.row - 2]
             height = getCellHeight(optionList: type.choices, rowHeight: cell.rowHeight, offset: cell.tableView.frame.minY)
-        } else if data_dic.keys.contains("Allergies") {
+        } else if getCellType(indexPath: indexPath) == constants.allergyCell {
             
             guard let cell = self.collectionView(self.collectionView, cellForItemAt: indexPath) as? TestAllergensCollectionViewCell else {
                 fatalError("The dequeued cell is not an instance of TestAllergensCollectionViewCell")
             }
             
-            height = getCellHeight(optionList: currentOrderItem.allergies, rowHeight: cell.rowHeight, offset: cell.tableView.frame.minY)
+            height = getCellHeight(optionList: currentUser.allergies, rowHeight: cell.rowHeight, offset: cell.tableView.frame.minY)
             
         }
         

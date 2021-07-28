@@ -35,5 +35,6 @@ struct constants {
     static let optionCell = 0
     static let allergyCell = 1
     static let typeCell = 2
+    static let titleCell = 3
 }
 
