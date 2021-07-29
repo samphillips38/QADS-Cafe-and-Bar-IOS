@@ -99,6 +99,11 @@ class TestViewController: UIViewController, UICollectionViewDelegate, UICollecti
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CheckoutCVC", for: indexPath) as? TestCheckoutCollectionViewCell else {
                 fatalError("The dequeued cell is not an instance of TestCheckoutCollectionViewCell")
             }
+            cell.currentOrderItem = currentOrderItem
+            cell.dismiss = {
+                self.dismiss(animated: true, completion: nil)
+            }
+            cell.setUp()
             return cell
         }
         
