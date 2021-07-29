@@ -277,10 +277,15 @@ class orderItem: NSObject {
     
     func updatePrice() {
         
-        //Price for one (item plus any extras)
+        //Price for one item plus options, plus Types
         var price = refItem.price ?? 0
         for option in options {
-            price = price + (option.extraPrice * Double(option.quantity))
+            price += option.extraPrice * Double(option.quantity)
+        }
+        for type in types {
+            for choice in type.choices {
+                price += choice.extraPrice * Double(choice.quantity)
+            }
         }
         
         //Update price and round to 2 dp

@@ -137,6 +137,7 @@ class TestCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITable
         } else if cellType == constants.typeCell {
             currentOrderItem.types[typeIndex].choices = optionList
         }
+        currentOrderItem.updatePrice()
         
         return switchedIndexes
     }
