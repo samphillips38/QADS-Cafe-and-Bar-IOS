@@ -68,6 +68,8 @@ class TestViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 fatalError("The dequeued cell is not an instance of TestCollectionViewCell")
             }
             cell.cellType = constants.optionCell
+            cell.index = indexPath
+            cell.currentOrderItem = currentOrderItem
             cell.setUp()
             return cell
             
@@ -76,8 +78,9 @@ class TestViewController: UIViewController, UICollectionViewDelegate, UICollecti
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TestID", for: indexPath) as? TestCollectionViewCell else {
                 fatalError("The dequeued cell is not an instance of TestCollectionViewCell")
             }
-
             cell.cellType = constants.typeCell
+            cell.index = indexPath
+            cell.currentOrderItem = currentOrderItem
             cell.setUp()
             return cell
             
@@ -105,14 +108,14 @@ class TestViewController: UIViewController, UICollectionViewDelegate, UICollecti
 
             height = constants.itemTitleHeight
             
-        } else if getCellType(indexPath: indexPath) == constants.allergyCell {
+        } else if getCellType(indexPath: indexPath) == constants.optionCell {
             guard let cell = self.collectionView(self.collectionView, cellForItemAt: indexPath) as? TestCollectionViewCell else {
                 fatalError("The dequeued cell is not an instance of TestCollectionViewCell")
             }
 
             //Set height based on table view height
             let optionList = currentOrderItem.options
-            height = getCellHeight(optionList: optionList, rowHeight: cell.rowHeight, offset: cell.tableView.frame.minY)
+            height = getCellHeight(optionList: optionList, rowHeight: cell.rowHeight, offset: constants.optionTVOffset)
             
         } else if getCellType(indexPath: indexPath) == constants.typeCell {
             
@@ -121,14 +124,14 @@ class TestViewController: UIViewController, UICollectionViewDelegate, UICollecti
             }
             
             let type = currentOrderItem.types[indexPath.row - 2]
-            height = getCellHeight(optionList: type.choices, rowHeight: cell.rowHeight, offset: cell.tableView.frame.minY)
+            height = getCellHeight(optionList: type.choices, rowHeight: cell.rowHeight, offset: constants.optionTVOffset)
         } else if getCellType(indexPath: indexPath) == constants.allergyCell {
             
             guard let cell = self.collectionView(self.collectionView, cellForItemAt: indexPath) as? TestAllergensCollectionViewCell else {
                 fatalError("The dequeued cell is not an instance of TestAllergensCollectionViewCell")
             }
             
-            height = getCellHeight(optionList: currentUser.allergies, rowHeight: cell.rowHeight, offset: cell.tableView.frame.minY)
+            height = getCellHeight(optionList: currentUser.allergies, rowHeight: cell.rowHeight, offset: constants.allergyTVOffset)
             
         }
         

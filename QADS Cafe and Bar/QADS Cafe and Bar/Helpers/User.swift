@@ -18,7 +18,7 @@ class User: NSObject {
     var cafeOrder = order()
     var barOrder = order()
     var previousOrders: [String] = []
-    var allergies: [String] = [] // This is a list of all possible allergens in food 
+    var allergies: [orderItem.allergy] = [] // This is a list of all possible allergens in food
     
     func populate(data: [String: Any?]) {
         self.uid = data["uid"] as? String
@@ -207,7 +207,11 @@ class User: NSObject {
             } else {
                 if let document = document, document.exists {
                     //Fill in allergy data
-                    self.allergies = (document["allergies"] as? [String]) ?? []
+                    for allergyName in (document["allergies"] as? [String]) ?? [] {
+                        var allergy = orderItem.allergy()
+                        allergy.name = allergyName
+                        self.allergies.append(allergy)
+                    }
                 } else {
                     print("Document does not exist")
                 }

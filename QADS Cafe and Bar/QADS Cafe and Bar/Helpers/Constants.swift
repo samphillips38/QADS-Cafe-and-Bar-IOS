@@ -31,6 +31,8 @@ struct constants {
     static let typeStr = "Type"
     
     static let itemTitleHeight = CGFloat(500)
+    static let optionTVOffset = CGFloat(60.5)
+    static let allergyTVOffset = CGFloat(93.5)
     
     static let optionCell = 0
     static let allergyCell = 1

@@ -14,7 +14,7 @@ class TestAllergensCollectionViewCell: UICollectionViewCell, UITableViewDelegate
     
     let rowHeight = CGFloat(50)
     var currentOrderItem = orderItem()
-    var allergyList: [String] = []
+    var allergyList: [orderItem.allergy] = []
     
     func setUp() {
         tableView.delegate = self
@@ -41,7 +41,7 @@ class TestAllergensCollectionViewCell: UICollectionViewCell, UITableViewDelegate
         guard let cell = self.tableView.dequeueReusableCell(withIdentifier: "optionTVC", for: indexPath) as? TestTableViewCell else {
             fatalError("The dequeued cell is not an instance of TestTableViewCell")
         }
-        cell.nameLabel.text = allergyList[indexPath.row]
+        cell.nameLabel.text = allergyList[indexPath.row].name
         cell.checkBox.initialise()
         return cell
     }

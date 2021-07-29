@@ -26,8 +26,9 @@ class TestCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITable
         if cellType == constants.optionCell {
             titleLabel.text = "This is an option"
         } else if cellType == constants.typeCell {
-            titleLabel.text = "This is a Type"
             typeIndex = (index?.row ?? 0) - 2 // Minus one for title and one for options
+            let type = currentOrderItem.types[typeIndex]
+            titleLabel.text = type.name
         }
     }
     
