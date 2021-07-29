@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TestCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITableViewDataSource, TestOptionsCellDelegate {
+class TestCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
@@ -31,16 +31,7 @@ class TestCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITable
             titleLabel.text = type.name
         }
     }
-    
-    func onStepperClick(index: Int, sender: UIStepper) {
         
-        //update the quantity based on stepper value
-        currentOrderItem.options[index].quantity = Int(sender.value)
-        
-        //Update price
-        currentOrderItem.updatePrice()
-    }
-    
     func getOptionList() -> [orderItem.Option]{
         if cellType == constants.optionCell {
             return currentOrderItem.options
@@ -49,7 +40,6 @@ class TestCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITable
             return type.choices
         }
     }
-    
     
     
     //MARK:- Table View

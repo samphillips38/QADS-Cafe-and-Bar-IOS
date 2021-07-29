@@ -18,8 +18,9 @@ class TestViewController: UIViewController, UICollectionViewDelegate, UICollecti
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.collectionView.delegate = self
-        self.collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.allowsSelection = false
         currentOrderItem.createOrderItem(item: chosenItem) {
             self.collectionView.reloadData()
         }
@@ -158,6 +159,5 @@ class TestViewController: UIViewController, UICollectionViewDelegate, UICollecti
         let height = rowHeight * CGFloat(numRows)
         return height + offset
     }
-    
 
 }
