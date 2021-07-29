@@ -14,12 +14,12 @@ class TestAllergensCollectionViewCell: UICollectionViewCell, UITableViewDelegate
     
     let rowHeight = CGFloat(50)
     var currentOrderItem = orderItem()
-//    var allergyList: [orderItem.allergy] = []
     
     func setUp() {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = rowHeight
+        titleLabel.text = "Allergies"
     }
     
     

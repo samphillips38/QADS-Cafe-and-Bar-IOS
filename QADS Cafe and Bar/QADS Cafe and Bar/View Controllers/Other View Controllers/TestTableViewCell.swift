@@ -72,7 +72,7 @@ class TestTableViewCell: UITableViewCell {
         // Make the cell
         let allergy = thisOrderItem.allergies[index?.row ?? 0]
         self.nameLabel.text = allergy.name
-        checkBox.initialise()
+        checkBox.setSelected(setTo: allergy.isChosen)
     }
 
     @IBAction func quantityStepper(_ sender: UIStepper) {

@@ -89,7 +89,6 @@ class TestViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 fatalError("The dequeued cell is not an instance of TestAllergensCollectionViewCell")
             }
             cell.currentOrderItem = currentOrderItem
-//            cell.allergyList = currentOrderItem.allergies
             cell.setUp()
             return cell
             
