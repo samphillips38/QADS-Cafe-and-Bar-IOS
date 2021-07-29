@@ -26,14 +26,17 @@ class TestViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     func getCellType(indexPath: IndexPath) -> Int {
+        let typeNum = currentOrderItem.types.count
         if indexPath.row == 0 {
             return constants.titleCell
         } else if indexPath.row == 1 {
             return constants.optionCell
-        } else if 0 <= indexPath.row-2 && indexPath.row-2 < currentOrderItem.types.count {
+        } else if 0 <= indexPath.row-2 && indexPath.row-2 < typeNum {
             return constants.typeCell
-        } else {
+        } else if indexPath.row == typeNum + 2 {
             return constants.allergyCell
+        } else {
+            return constants.checkoutCell
         }
     }
     
@@ -44,8 +47,8 @@ class TestViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // Add one for title, one for options, one for allergies
-        return currentOrderItem.types.count + 3
+        // Add one for title, one for options, one for allergies, one for checkout
+        return currentOrderItem.types.count + 4
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -92,6 +95,11 @@ class TestViewController: UIViewController, UICollectionViewDelegate, UICollecti
             cell.setUp()
             return cell
             
+        } else if getCellType(indexPath: indexPath) == constants.checkoutCell {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CheckoutCVC", for: indexPath) as? TestCheckoutCollectionViewCell else {
+                fatalError("The dequeued cell is not an instance of TestCheckoutCollectionViewCell")
+            }
+            return cell
         }
         
         return cell
@@ -132,6 +140,8 @@ class TestViewController: UIViewController, UICollectionViewDelegate, UICollecti
             
             height = getCellHeight(optionList: currentOrderItem.allergies, rowHeight: cell.rowHeight, offset: constants.allergyTVOffset)
             
+        } else if getCellType(indexPath: indexPath) == constants.checkoutCell {
+            height = constants.itemCheckoutHeight
         }
         
         //Set Cell size

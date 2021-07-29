@@ -10,6 +10,7 @@
 		7FAE117B34E06C4B9963171D /* Pods_QADS_Cafe_and_BarTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12D6FF57C0390BA854E31FD4 /* Pods_QADS_Cafe_and_BarTests.framework */; };
 		C367EB6C57150C9192FAC3D6 /* Pods_QADS_Cafe_and_Bar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 332C19A9EE15E726CAD75FA4 /* Pods_QADS_Cafe_and_Bar.framework */; };
 		CDD1BC48AE37D62A403539DF /* Pods_QADS_Cafe_and_Bar_QADS_Cafe_and_BarUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57F3777C07EA3810AEDDBA1B /* Pods_QADS_Cafe_and_Bar_QADS_Cafe_and_BarUITests.framework */; };
+		F40FBAE926B2B3BF00EA62B3 /* TestCheckoutCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40FBAE826B2B3BE00EA62B3 /* TestCheckoutCollectionViewCell.swift */; };
 		F414A8FC25CE9E380008B9AB /* CafeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F414A8FB25CE9E380008B9AB /* CafeViewController.swift */; };
 		F414A90425CEAB980008B9AB /* BarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F414A90325CEAB980008B9AB /* BarViewController.swift */; };
 		F4188F4B2677C7A90071FC37 /* TestTitleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4188F4A2677C7A90071FC37 /* TestTitleCollectionViewCell.swift */; };
@@ -82,6 +83,7 @@
 		848306473783005A3AB87F8A /* Pods-QADS Cafe and Bar-QADS Cafe and BarUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QADS Cafe and Bar-QADS Cafe and BarUITests.release.xcconfig"; path = "Target Support Files/Pods-QADS Cafe and Bar-QADS Cafe and BarUITests/Pods-QADS Cafe and Bar-QADS Cafe and BarUITests.release.xcconfig"; sourceTree = "<group>"; };
 		A35502AFC7100019E8B92804 /* Pods-QADS Cafe and BarTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QADS Cafe and BarTests.debug.xcconfig"; path = "Target Support Files/Pods-QADS Cafe and BarTests/Pods-QADS Cafe and BarTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B98F58E963B94DBCF2D08CB8 /* Pods-QADS Cafe and Bar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QADS Cafe and Bar.debug.xcconfig"; path = "Target Support Files/Pods-QADS Cafe and Bar/Pods-QADS Cafe and Bar.debug.xcconfig"; sourceTree = "<group>"; };
+		F40FBAE826B2B3BE00EA62B3 /* TestCheckoutCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCheckoutCollectionViewCell.swift; sourceTree = "<group>"; };
 		F414A8FB25CE9E380008B9AB /* CafeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CafeViewController.swift; sourceTree = "<group>"; };
 		F414A90325CEAB980008B9AB /* BarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarViewController.swift; sourceTree = "<group>"; };
 		F4188F4A2677C7A90071FC37 /* TestTitleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestTitleCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -315,6 +317,7 @@
 				F4E664892674B30A0044A6C9 /* TestCollectionViewCell.swift */,
 				F4188F4E267B68780071FC37 /* TestAllergensCollectionViewCell.swift */,
 				F4E6648B267614190044A6C9 /* TestTableViewCell.swift */,
+				F40FBAE826B2B3BE00EA62B3 /* TestCheckoutCollectionViewCell.swift */,
 			);
 			path = "Other View Controllers";
 			sourceTree = "<group>";
@@ -604,6 +607,7 @@
 				F414A8FC25CE9E380008B9AB /* CafeViewController.swift in Sources */,
 				F414A90425CEAB980008B9AB /* BarViewController.swift in Sources */,
 				F4D1A926257BE39A0027035C /* MainNavigationViewController.swift in Sources */,
+				F40FBAE926B2B3BF00EA62B3 /* TestCheckoutCollectionViewCell.swift in Sources */,
 				F4D1A94A257C39030027035C /* Item.swift in Sources */,
 				F4D1A960257D41E10027035C /* OptionsTableViewCell.swift in Sources */,
 				F4A3393C264C0EE8003F15BC /* BasketViewController.swift in Sources */,

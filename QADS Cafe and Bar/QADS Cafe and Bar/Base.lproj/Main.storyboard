@@ -862,6 +862,43 @@
                                             <outlet property="titleLabel" destination="mSo-NB-agU" id="2YW-iX-SLT"/>
                                         </connections>
                                     </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CheckoutCVC" id="ff9-GP-nPD" customClass="TestCheckoutCollectionViewCell" customModule="QADS_Cafe_and_Bar" customModuleProvider="target">
+                                        <rect key="frame" x="15.5" y="1280" width="383" height="315"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="uvK-oJ-s2f">
+                                            <rect key="frame" x="0.0" y="0.0" width="383" height="315"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="IMd-U6-CQW">
+                                                    <rect key="frame" x="144.5" y="20" width="94" height="32"/>
+                                                </stepper>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M4s-Nf-CSw">
+                                                    <rect key="frame" x="288.5" y="25.5" width="7.5" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2rv-9Q-x4P">
+                                                    <rect key="frame" x="168.5" y="102" width="46" height="30"/>
+                                                    <state key="normal" title="Button"/>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="IMd-U6-CQW" firstAttribute="top" secondItem="uvK-oJ-s2f" secondAttribute="top" constant="20" id="0uy-bJ-ctW"/>
+                                                <constraint firstItem="2rv-9Q-x4P" firstAttribute="top" secondItem="IMd-U6-CQW" secondAttribute="bottom" constant="50" id="59I-5H-zLB"/>
+                                                <constraint firstItem="M4s-Nf-CSw" firstAttribute="centerY" secondItem="IMd-U6-CQW" secondAttribute="centerY" id="URR-Ac-mLZ"/>
+                                                <constraint firstItem="IMd-U6-CQW" firstAttribute="centerX" secondItem="uvK-oJ-s2f" secondAttribute="centerX" id="V3z-4h-a4K"/>
+                                                <constraint firstItem="2rv-9Q-x4P" firstAttribute="centerX" secondItem="uvK-oJ-s2f" secondAttribute="centerX" id="eXS-ar-7bh"/>
+                                                <constraint firstItem="M4s-Nf-CSw" firstAttribute="leading" secondItem="IMd-U6-CQW" secondAttribute="trailing" constant="50" id="p1z-nd-BSl"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <outlet property="addToBasketButton" destination="2rv-9Q-x4P" id="Zwi-Y7-pvn"/>
+                                            <outlet property="quantityLabel" destination="M4s-Nf-CSw" id="GPi-F0-xxU"/>
+                                            <outlet property="quantityStepper" destination="IMd-U6-CQW" id="BrI-65-Wb4"/>
+                                        </connections>
+                                    </collectionViewCell>
                                 </cells>
                             </collectionView>
                         </subviews>
