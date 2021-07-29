@@ -38,12 +38,6 @@ class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //begin order
-        currentOrderItem.createOrderItem(item: chosenItem)
-        
-        fillInData()
-        layout()
-        
         //Table View
         optionTableView.delegate = self
         optionTableView.dataSource = self
@@ -51,6 +45,13 @@ class ItemDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         //set action for stack view
         addStackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(addToBasketTapped(_:))))
         addStackView.isUserInteractionEnabled = true
+        
+        //begin order
+        currentOrderItem.createOrderItem(item: chosenItem) {
+            self.fillInData()
+            self.layout()
+        }
+        
     }
     
     

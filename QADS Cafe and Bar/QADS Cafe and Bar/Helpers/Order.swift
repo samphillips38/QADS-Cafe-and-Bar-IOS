@@ -200,7 +200,7 @@ class orderItem: NSObject {
         var name = ""
         var isChosen = false
     }
-    var chosenAllergies: [allergy] = [] // Allergies to go with order
+    var allergies: [allergy] = [] // Allergies to go with order
     
     //Create a struct for an option. These will be stored in an array
     struct Option {
@@ -220,14 +220,14 @@ class orderItem: NSObject {
     var types: [type] = []
     
     
-    func createOrderItem(item: Item) {
+    func createOrderItem(item: Item, completion: @escaping () -> Void) {
         refItem = item
         itemID = item.id
         itemName = item.name
         price = item.price ?? 0.0
         location = item.location
         
-        //make options Array
+        // Make options Array
         for (_, optionInfo) in item.options ?? [:] {
             
             //Create Option struct and append
@@ -260,6 +260,12 @@ class orderItem: NSObject {
             )
             self.types.append(thisType)
         }
+        
+        // Get allergies
+        getAllergenList {
+            completion()
+        }
+        
     }
     
     
@@ -280,6 +286,28 @@ class orderItem: NSObject {
         //Update price and round to 2 dp
         self.price = price * Double(self.quantity)
         self.price = (self.price * 100).rounded() / 100
+    }
+    
+    func getAllergenList(completion: @escaping () -> Void) {
+        
+        let db = Firestore.firestore()
+        db.collection("settings").document("allergies").getDocument { (document, err) in
+            if err != nil {
+                print("Error getting documents: \(String(describing: err))")
+            } else {
+                if let document = document, document.exists {
+                    //Fill in allergy data
+                    for allergyName in (document["allergies"] as? [String]) ?? [] {
+                        var allergy = orderItem.allergy()
+                        allergy.name = allergyName
+                        self.allergies.append(allergy)
+                    }
+                } else {
+                    print("Document does not exist")
+                }
+            }
+            completion()
+        }
     }
     
 }

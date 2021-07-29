@@ -23,7 +23,7 @@ class OptionPickerViewController: UIViewController, UITableViewDelegate, UITable
         tableView.dataSource = self
         
         //Get allergen data
-        currentUser.getAllergenList {
+        currentOrderItem.getAllergenList {
             self.tableView.reloadData()
         }
     }
@@ -36,7 +36,7 @@ class OptionPickerViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return currentUser.allergies.count
+        return currentOrderItem.allergies.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -44,7 +44,7 @@ class OptionPickerViewController: UIViewController, UITableViewDelegate, UITable
             fatalError("The dequeued cell is not an instance of AllergiesTableViewCell")
         }
         //Fill in Data
-        let allergy = currentUser.allergies[indexPath.row]
+        let allergy = currentOrderItem.allergies[indexPath.row]
         cell.allergiesLabel.text = allergy.name
 //        if currentOrderItem.chosenAllergies.contains(allergy.name) {
 //            cell.checkBox.isHidden = false

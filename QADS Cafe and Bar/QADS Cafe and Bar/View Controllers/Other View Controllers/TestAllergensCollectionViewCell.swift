@@ -14,7 +14,7 @@ class TestAllergensCollectionViewCell: UICollectionViewCell, UITableViewDelegate
     
     let rowHeight = CGFloat(50)
     var currentOrderItem = orderItem()
-    var allergyList: [orderItem.allergy] = []
+//    var allergyList: [orderItem.allergy] = []
     
     func setUp() {
         tableView.delegate = self
@@ -32,7 +32,7 @@ class TestAllergensCollectionViewCell: UICollectionViewCell, UITableViewDelegate
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //Set by Item as the number of options is not varied by preferences
-        return allergyList.count
+        return currentOrderItem.allergies.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -41,14 +41,17 @@ class TestAllergensCollectionViewCell: UICollectionViewCell, UITableViewDelegate
         guard let cell = self.tableView.dequeueReusableCell(withIdentifier: "optionTVC", for: indexPath) as? TestTableViewCell else {
             fatalError("The dequeued cell is not an instance of TestTableViewCell")
         }
-        cell.nameLabel.text = allergyList[indexPath.row].name
-        cell.checkBox.initialise()
+        cell.cellType = constants.allergyCell
+        cell.thisOrderItem = currentOrderItem
+        cell.index = indexPath
+        cell.makeCell()
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         // Set allergy
+        currentOrderItem.allergies[indexPath.row].isChosen.toggle()
         
         //Reload cell
         tableView.cellForRow(at: indexPath)?.selectionStyle = .gray

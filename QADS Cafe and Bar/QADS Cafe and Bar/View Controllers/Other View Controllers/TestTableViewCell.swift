@@ -51,7 +51,7 @@ class TestTableViewCell: UITableViewCell {
             let type = thisOrderItem.types[typeIndex]
             option = type.choices[index!.row]
             makeOptionCell()
-        } else {
+        } else if cellType == constants.allergyCell {
             makeAllergyCell()
         }
     }
@@ -70,6 +70,9 @@ class TestTableViewCell: UITableViewCell {
     
     func makeAllergyCell() {
         // Make the cell
+        let allergy = thisOrderItem.allergies[index?.row ?? 0]
+        self.nameLabel.text = allergy.name
+        checkBox.initialise()
     }
 
     @IBAction func quantityStepper(_ sender: UIStepper) {

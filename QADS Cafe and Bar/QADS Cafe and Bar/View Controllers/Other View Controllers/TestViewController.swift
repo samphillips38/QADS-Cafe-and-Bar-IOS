@@ -20,8 +20,7 @@ class TestViewController: UIViewController, UICollectionViewDelegate, UICollecti
 
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
-        currentOrderItem.createOrderItem(item: chosenItem)
-        currentUser.getAllergenList {
+        currentOrderItem.createOrderItem(item: chosenItem) {
             self.collectionView.reloadData()
         }
     }
@@ -45,8 +44,8 @@ class TestViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // Add one for title, one for options
-        return currentOrderItem.types.count + 2
+        // Add one for title, one for options, one for allergies
+        return currentOrderItem.types.count + 3
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -89,7 +88,8 @@ class TestViewController: UIViewController, UICollectionViewDelegate, UICollecti
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AllergyCVC", for: indexPath) as? TestAllergensCollectionViewCell else {
                 fatalError("The dequeued cell is not an instance of TestAllergensCollectionViewCell")
             }
-            cell.allergyList = currentUser.allergies
+            cell.currentOrderItem = currentOrderItem
+//            cell.allergyList = currentOrderItem.allergies
             cell.setUp()
             return cell
             
@@ -131,7 +131,7 @@ class TestViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 fatalError("The dequeued cell is not an instance of TestAllergensCollectionViewCell")
             }
             
-            height = getCellHeight(optionList: currentUser.allergies, rowHeight: cell.rowHeight, offset: constants.allergyTVOffset)
+            height = getCellHeight(optionList: currentOrderItem.allergies, rowHeight: cell.rowHeight, offset: constants.allergyTVOffset)
             
         }
         

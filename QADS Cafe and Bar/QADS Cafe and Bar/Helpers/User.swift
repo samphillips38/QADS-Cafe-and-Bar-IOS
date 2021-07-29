@@ -18,7 +18,6 @@ class User: NSObject {
     var cafeOrder = order()
     var barOrder = order()
     var previousOrders: [String] = []
-    var allergies: [orderItem.allergy] = [] // This is a list of all possible allergens in food
     
     func populate(data: [String: Any?]) {
         self.uid = data["uid"] as? String
@@ -194,28 +193,6 @@ class User: NSObject {
             self.email = email
             self.crsid = crsid
             
-            completion()
-        }
-    }
-    
-    func getAllergenList(completion: @escaping () -> Void) {
-        
-        let db = Firestore.firestore()
-        db.collection("settings").document("allergies").getDocument { (document, err) in
-            if err != nil {
-                print("Error getting documents: \(String(describing: err))")
-            } else {
-                if let document = document, document.exists {
-                    //Fill in allergy data
-                    for allergyName in (document["allergies"] as? [String]) ?? [] {
-                        var allergy = orderItem.allergy()
-                        allergy.name = allergyName
-                        self.allergies.append(allergy)
-                    }
-                } else {
-                    print("Document does not exist")
-                }
-            }
             completion()
         }
     }
