@@ -114,19 +114,22 @@ class TestCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITable
     
     func switchSelectedTo(index: IndexPath) -> [IndexPath] {
         var optionList = getOptionList()
+        var switchedIndexes: [IndexPath] = []
+        
         if optionList[index.row].quantity > 0 { // Deselect if already selected
             optionList[index.row].quantity = 0
-            return [index]
-        }
-        var switchedIndexes: [IndexPath] = []
-        for i in 0...(optionList.count - 1) { // Deselect all other cells
-            if optionList[i].quantity != 0 {
-                switchedIndexes.append(IndexPath(row: i, section: 0))
-                optionList[i].quantity = 0
+            switchedIndexes = [index]
+            
+        } else { // Not yet selected
+            for i in 0...(optionList.count - 1) { // Deselect all other cells
+                if optionList[i].quantity != 0 {
+                    switchedIndexes.append(IndexPath(row: i, section: 0))
+                    optionList[i].quantity = 0
+                }
             }
+            optionList[index.row].quantity = 1
+            switchedIndexes.append(index)
         }
-        optionList[index.row].quantity = 1
-        switchedIndexes.append(index)
         
         // Save to currentOrder object
         if cellType == constants.optionCell {
