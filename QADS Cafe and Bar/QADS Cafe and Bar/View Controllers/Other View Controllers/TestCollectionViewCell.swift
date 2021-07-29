@@ -122,7 +122,7 @@ class TestCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITable
             
         } else { // Not yet selected
             for i in 0...(optionList.count - 1) { // Deselect all other cells
-                if optionList[i].quantity != 0 {
+                if optionList[i].quantity != 0 && !optionList[i].canHaveMultiple {
                     switchedIndexes.append(IndexPath(row: i, section: 0))
                     optionList[i].quantity = 0
                 }

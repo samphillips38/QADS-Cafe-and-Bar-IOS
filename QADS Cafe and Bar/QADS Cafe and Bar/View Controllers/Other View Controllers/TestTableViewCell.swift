@@ -63,6 +63,7 @@ class TestTableViewCell: UITableViewCell {
         if option.canHaveMultiple {
             quantityStepper.isHidden = false
             quantityCount.isHidden = false
+            quantityCount.text = String(option.quantity)
         } else {
             checkBox.setSelected(setTo: option.quantity != 0)
         }
@@ -78,9 +79,12 @@ class TestTableViewCell: UITableViewCell {
     @IBAction func quantityStepper(_ sender: UIStepper) {
         //Get new quantity of extra and update label
         let newQuantity = Int(sender.value)
-        self.quantityCount.text = String(newQuantity)
+//        quantityCount.text = String(newQuantity)
+        thisOrderItem.options[(index?.row)!].quantity = newQuantity
+        thisOrderItem.updatePrice()
+        makeCell()
         
         //Send the stepper click to detail view
-        cellDelegate?.onStepperClick(index: (index?.row)!, sender: sender)
+//        cellDelegate?.onStepperClick(index: (index?.row)!, sender: sender)
     }
 }
