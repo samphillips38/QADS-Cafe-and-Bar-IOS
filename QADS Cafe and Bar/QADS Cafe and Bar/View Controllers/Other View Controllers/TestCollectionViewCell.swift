@@ -24,11 +24,11 @@ class TestCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITable
         self.tableView.rowHeight = self.rowHeight
         
         if cellType == constants.optionCell {
-            titleLabel.text = "This is an option"
+            titleLabel.text = "Customise Item"
         } else if cellType == constants.typeCell {
             typeIndex = (index?.row ?? 0) - 2 // Minus one for title and one for options
             let type = currentOrderItem.types[typeIndex]
-            titleLabel.text = type.name
+            titleLabel.text = "Please Select " + type.name
         }
     }
         
