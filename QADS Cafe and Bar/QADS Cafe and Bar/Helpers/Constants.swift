@@ -32,8 +32,8 @@ struct constants {
     
     static let itemTitleHeight = CGFloat(500)
     static let optionTVOffset = CGFloat(96)
-    static let allergyHeight = CGFloat(125)
-    static let itemCheckoutHeight = CGFloat(200)
+    static let allergyHeight = CGFloat(200)
+    static let itemCheckoutHeight = CGFloat(150)
     
     static let optionCell = 0
     static let allergyCell = 1

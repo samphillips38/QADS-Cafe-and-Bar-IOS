@@ -11,7 +11,9 @@ private let reuseIdentifier = "TestID"
 
 class TestViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
+    @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
+    
     var chosenItem = Item()
     var currentOrderItem = orderItem()
     
@@ -24,6 +26,10 @@ class TestViewController: UIViewController, UICollectionViewDelegate, UICollecti
         currentOrderItem.createOrderItem(item: chosenItem) {
             self.collectionView.reloadData()
         }
+        
+        // Layout Button
+        cancelButton.backgroundColor = UIColor(white: 1, alpha: 0.7)
+        cancelButton.layer.cornerRadius = 5
     }
     
     func getCellType(indexPath: IndexPath) -> Int {
@@ -155,4 +161,7 @@ class TestViewController: UIViewController, UICollectionViewDelegate, UICollecti
         return height + offset
     }
 
+    @IBAction func cancelTapped(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
 }

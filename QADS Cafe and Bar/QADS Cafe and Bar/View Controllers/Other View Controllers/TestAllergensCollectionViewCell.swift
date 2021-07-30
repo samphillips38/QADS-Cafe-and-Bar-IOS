@@ -32,7 +32,7 @@ class TestAllergensCollectionViewCell: UICollectionViewCell {
             }
         }
         if noneFound {
-            chosenAllergiesLabel.text = "No Allergies Chosen"
+            chosenAllergiesLabel.text = "No Allergies Added"
         } else {
             chosenAllergiesLabel.text = String(text.dropLast(2))
         }
@@ -48,4 +48,7 @@ class TestAllergensCollectionViewCell: UICollectionViewCell {
         AllergyVC.setUp()
     }
     
+    @IBAction func addAllergyTapped(_ sender: Any) {
+        chooseAllergiesTapped()
+    }
 }
