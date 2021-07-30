@@ -67,13 +67,8 @@ class TestTableViewCell: UITableViewCell {
 
     @IBAction func quantityStepper(_ sender: UIStepper) {
         //Get new quantity of extra and update label
-        let newQuantity = Int(sender.value)
-//        quantityCount.text = String(newQuantity)
-        thisOrderItem.options[(index?.row)!].quantity = newQuantity
+        thisOrderItem.options[(index?.row)!].quantity = Int(sender.value)
         thisOrderItem.updatePrice()
         makeCell()
-        
-        //Send the stepper click to detail view
-//        cellDelegate?.onStepperClick(index: (index?.row)!, sender: sender)
     }
 }

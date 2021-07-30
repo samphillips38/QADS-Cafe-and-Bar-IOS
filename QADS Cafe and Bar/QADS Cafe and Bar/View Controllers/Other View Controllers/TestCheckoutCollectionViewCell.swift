@@ -17,6 +17,7 @@ class TestCheckoutCollectionViewCell: UICollectionViewCell {
     
     var currentOrderItem = orderItem()
     var dismiss = {}
+    var inStock = false
     
     func setUp() {
         
@@ -28,6 +29,11 @@ class TestCheckoutCollectionViewCell: UICollectionViewCell {
         quantityLabel.text = String(currentOrderItem.quantity)
         orderStackView.layer.cornerRadius = orderStackView.frame.height/2
         priceLabel.text = "£" + String(format: "%.2f", currentOrderItem.price)
+        if inStock {
+            errorLabel.isHidden = true
+        } else {
+            errorLabel.isHidden = false
+        }
     }
     
     @objc func addToBasketTapped(_ sender: UITapGestureRecognizer? = nil) {
@@ -43,7 +49,6 @@ class TestCheckoutCollectionViewCell: UICollectionViewCell {
     @IBAction func stepperTapped(_ sender: UIStepper) {
         currentOrderItem.quantity = Int(sender.value)
         currentOrderItem.updatePrice()
-        
         setUp()
     }
 }

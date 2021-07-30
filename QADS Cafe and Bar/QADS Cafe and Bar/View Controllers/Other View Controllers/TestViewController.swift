@@ -101,6 +101,7 @@ class TestViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 fatalError("The dequeued cell is not an instance of TestCheckoutCollectionViewCell")
             }
             cell.currentOrderItem = currentOrderItem
+            cell.inStock = chosenItem.stock ?? false
             cell.dismiss = {
                 self.dismiss(animated: true, completion: nil)
             }
