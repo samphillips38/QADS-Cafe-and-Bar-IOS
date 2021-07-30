@@ -40,7 +40,7 @@ class AllergyPickerViewController: UIViewController, UITableViewDelegate, UITabl
             fatalError("The dequeued cell is not an instance of TestTableViewCell")
         }
         cell.cellType = constants.allergyCell
-        cell.thisOrderItem = currentOrderItem
+        cell.currentOrderItem = currentOrderItem
         cell.index = indexPath
         cell.makeCell()
         return cell

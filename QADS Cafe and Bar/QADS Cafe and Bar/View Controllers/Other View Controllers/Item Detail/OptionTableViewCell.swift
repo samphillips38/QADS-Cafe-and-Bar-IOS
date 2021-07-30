@@ -16,12 +16,12 @@ class OptionTableViewCell: UITableViewCell {
     @IBOutlet weak var quantityCount: UILabel!
     
     //Set up delegate and index
-    var cellDelegate: optionsCellDelegate?
+//    var cellDelegate: optionsCellDelegate?
     var index: IndexPath?
     var typeIndex = -1
     
     // Order Item
-    var thisOrderItem = orderItem()
+    var currentOrderItem = orderItem()
     var cellType = constants.optionCell
     
     var onQuantityChange = {}
@@ -36,10 +36,10 @@ class OptionTableViewCell: UITableViewCell {
     
     func makeCell() {
         if cellType == constants.optionCell {
-            option = thisOrderItem.options[index!.row]
+            option = currentOrderItem.options[index!.row]
             makeOptionCell()
         } else if cellType == constants.typeCell {
-            let type = thisOrderItem.types[typeIndex]
+            let type = currentOrderItem.types[typeIndex]
             option = type.choices[index!.row]
             makeOptionCell()
         } else if cellType == constants.allergyCell {
@@ -62,15 +62,15 @@ class OptionTableViewCell: UITableViewCell {
     
     func makeAllergyCell() {
         // Make the cell
-        let allergy = thisOrderItem.allergies[index?.row ?? 0]
+        let allergy = currentOrderItem.allergies[index?.row ?? 0]
         self.nameLabel.text = allergy.name
         checkBox.setSelected(setTo: allergy.isChosen)
     }
 
     @IBAction func quantityStepper(_ sender: UIStepper) {
         //Get new quantity of extra and update label
-        thisOrderItem.options[(index?.row)!].quantity = Int(sender.value)
-        thisOrderItem.updatePrice()
+        currentOrderItem.options[(index?.row)!].quantity = Int(sender.value)
+        currentOrderItem.updatePrice()
         makeCell()
         onQuantityChange()
     }

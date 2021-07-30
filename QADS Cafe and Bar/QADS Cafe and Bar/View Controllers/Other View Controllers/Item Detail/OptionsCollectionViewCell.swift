@@ -55,36 +55,24 @@ class OptionsCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITa
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let option = getOptionList()[indexPath.row]
-        if !option.canHaveMultiple {
-            
-            // Configure the cell...
-            guard let cell = self.tableView.dequeueReusableCell(withIdentifier: singleChoiceReuseID, for: indexPath) as? OptionTableViewCell else {
-                fatalError("The dequeued cell is not an instance of OptionTableViewCell")
-            }
-            
-            cell.thisOrderItem = currentOrderItem
-            cell.index = indexPath
-            cell.typeIndex = typeIndex
-            cell.cellType = cellType
-            cell.onQuantityChange = onCellTapped
-            cell.makeCell()
-            return cell
-            
+        // Configure the cell...
+        var identifier = ""
+        if option.canHaveMultiple { // Choose which cell type to load
+            identifier = multipleChoiceReuseID
         } else {
-            
-            // Configure the cell...
-            guard let cell = self.tableView.dequeueReusableCell(withIdentifier: multipleChoiceReuseID, for: indexPath) as? OptionTableViewCell else {
-                fatalError("The dequeued cell is not an instance of OptionTableViewCell")
-            }
-            
-            cell.thisOrderItem = currentOrderItem
-            cell.index = indexPath
-            cell.typeIndex = typeIndex
-            cell.cellType = cellType
-            cell.onQuantityChange = onCellTapped
-            cell.makeCell()
-            return cell
+            identifier = singleChoiceReuseID
         }
+        
+        guard let cell = self.tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as? OptionTableViewCell else {
+            fatalError("The dequeued cell is not an instance of OptionTableViewCell")
+        }
+        cell.currentOrderItem = currentOrderItem
+        cell.index = indexPath
+        cell.typeIndex = typeIndex
+        cell.cellType = cellType
+        cell.onQuantityChange = onCellTapped
+        cell.makeCell()
+        return cell
         
     }
     
