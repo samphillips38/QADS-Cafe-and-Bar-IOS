@@ -21,12 +21,18 @@ class TestAllergensCollectionViewCell: UICollectionViewCell {
     
     func setChosenAllergies() {
         var text = "Chosen Allergies: "
+        var noneFound = true
         for allergy in currentOrderItem.allergies {
             if allergy.isChosen {
                 text += allergy.name + ", "
+                noneFound = false
             }
         }
-        chosenAllergiesLabel.text = String(text.dropLast(2))
+        if noneFound {
+            chosenAllergiesLabel.text = "No Allergies Chosen"
+        } else {
+            chosenAllergiesLabel.text = String(text.dropLast(2))
+        }
     }
     
     @IBAction func selectAllergiesTapped(_ sender: Any) {
