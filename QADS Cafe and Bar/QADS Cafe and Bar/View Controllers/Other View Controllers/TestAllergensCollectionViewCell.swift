@@ -17,6 +17,9 @@ class TestAllergensCollectionViewCell: UICollectionViewCell {
     func setUp() {
         titleLabel.text = "Choose Allergies"
         setChosenAllergies()
+        
+        // Add gesture recogniser for cell
+        self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(chooseAllergiesTapped(_:))))
     }
     
     func setChosenAllergies() {
@@ -35,7 +38,8 @@ class TestAllergensCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    @IBAction func selectAllergiesTapped(_ sender: Any) {
+    
+    @objc func chooseAllergiesTapped(_ sender: UITapGestureRecognizer? = nil) {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let AllergyVC = storyBoard.instantiateViewController(withIdentifier: "OptionsVC") as! OptionPickerViewController
         AllergyVC.currentOrderItem = currentOrderItem
