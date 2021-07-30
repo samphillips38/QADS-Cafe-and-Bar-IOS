@@ -54,7 +54,7 @@ class ItemsViewController: UIViewController, UICollectionViewDelegate, UICollect
             fatalError("The dequeued cell is not an instance of ItemCollectionViewCell")
         }
         
-        var currentItem = ItemList.itemDictionary![ItemList.itemArray![indexPath.row]]!
+        let currentItem = ItemList.itemDictionary![ItemList.itemArray![indexPath.row]]!
         
         cell.loadDataFromObject(item: currentItem) {
             //Do something on completion

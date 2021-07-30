@@ -20,6 +20,7 @@ class OptionsCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITa
     
     var currentOrderItem = orderItem()
     private var typeIndex = -1 // Which type are we on
+    var onCellTapped = {}
     
     func setUp() {
         self.tableView.delegate = self
@@ -65,6 +66,7 @@ class OptionsCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITa
             cell.index = indexPath
             cell.typeIndex = typeIndex
             cell.cellType = cellType
+            cell.onQuantityChange = onCellTapped
             cell.makeCell()
             return cell
             
@@ -79,6 +81,7 @@ class OptionsCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITa
             cell.index = indexPath
             cell.typeIndex = typeIndex
             cell.cellType = cellType
+            cell.onQuantityChange = onCellTapped
             cell.makeCell()
             return cell
         }
@@ -99,6 +102,9 @@ class OptionsCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITa
         //Reload cell
         tableView.cellForRow(at: indexPath)?.selectionStyle = .gray
         tableView.reloadRows(at: refreshedIndexes, with: .fade)
+        
+        // Execute cell tapped closure
+        onCellTapped()
     }
     
     func switchSelectedTo(index: IndexPath) -> [IndexPath] {

@@ -24,6 +24,8 @@ class OptionTableViewCell: UITableViewCell {
     var thisOrderItem = orderItem()
     var cellType = constants.optionCell
     
+    var onQuantityChange = {}
+    
     private var option = orderItem.Option()
     
     override func awakeFromNib() {
@@ -70,5 +72,6 @@ class OptionTableViewCell: UITableViewCell {
         thisOrderItem.options[(index?.row)!].quantity = Int(sender.value)
         thisOrderItem.updatePrice()
         makeCell()
+        onQuantityChange()
     }
 }

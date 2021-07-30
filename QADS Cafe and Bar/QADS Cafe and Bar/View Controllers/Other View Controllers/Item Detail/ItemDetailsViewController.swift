@@ -79,6 +79,7 @@ class ItemDetailsViewController: UIViewController, UICollectionViewDelegate, UIC
             cell.cellType = constants.optionCell
             cell.index = indexPath
             cell.currentOrderItem = currentOrderItem
+            cell.onCellTapped = optionTapped
             cell.setUp()
             return cell
             
@@ -90,6 +91,7 @@ class ItemDetailsViewController: UIViewController, UICollectionViewDelegate, UIC
             cell.cellType = constants.typeCell
             cell.index = indexPath
             cell.currentOrderItem = currentOrderItem
+            cell.onCellTapped = optionTapped
             cell.setUp()
             return cell
             
@@ -164,6 +166,16 @@ class ItemDetailsViewController: UIViewController, UICollectionViewDelegate, UIC
         return height + offset
     }
 
+    func optionTapped() {
+        // Get Checkout cell and refresh contents to update price
+        let n = collectionView.numberOfItems(inSection: 0) - 1
+        guard let cell = collectionView.cellForItem(at: IndexPath(item: n, section: 0)) as? CheckoutCollectionViewCell else {
+            print("Could not refresh Checkout cell - Cell not found")
+            return
+        }
+        cell.setUp()
+    }
+    
     @IBAction func cancelTapped(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
