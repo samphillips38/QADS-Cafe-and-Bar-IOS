@@ -1,5 +1,5 @@
 //
-//  OptionPickerViewController.swift
+//  AllergyPickerViewController.swift
 //  QADS Cafe and Bar
 //
 //  Created by Sam Phillips on 17/05/2021.
@@ -9,7 +9,7 @@ import UIKit
 
 private let reuseIdentifier = "AllergyTVC"
 
-class OptionPickerViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class AllergyPickerViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -36,7 +36,7 @@ class OptionPickerViewController: UIViewController, UITableViewDelegate, UITable
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Configure the cell...
-        guard let cell = self.tableView.dequeueReusableCell(withIdentifier: "AllergyTVC", for: indexPath) as? TestTableViewCell else {
+        guard let cell = self.tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as? OptionTableViewCell else {
             fatalError("The dequeued cell is not an instance of TestTableViewCell")
         }
         cell.cellType = constants.allergyCell

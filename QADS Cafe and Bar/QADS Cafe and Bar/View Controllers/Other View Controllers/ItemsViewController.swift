@@ -73,17 +73,11 @@ class ItemsViewController: UIViewController, UICollectionViewDelegate, UICollect
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        //Go to Item VC
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        
-        let ItemDetailVC = storyBoard.instantiateViewController(withIdentifier: "ItemDetailVC") as! ItemDetailViewController
-        
-        var currentItem = ItemList.itemDictionary![ItemList.itemArray![indexPath.row]]
-        ItemDetailVC.chosenItem = currentItem!
-        
-        self.present(ItemDetailVC, animated: true) {
-            //Do something on completion
-        }
+        let ItemDetailVC = storyBoard.instantiateViewController(withIdentifier: "ItemDetailVC") as! ItemDetailsViewController
+
+        ItemDetailVC.chosenItem = ItemList.itemDictionary![ItemList.itemArray![indexPath.row]]!
+        present(ItemDetailVC, animated: true, completion: nil)
     }
     
 

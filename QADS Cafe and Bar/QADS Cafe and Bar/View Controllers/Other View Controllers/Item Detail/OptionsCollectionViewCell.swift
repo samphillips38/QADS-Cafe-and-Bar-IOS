@@ -1,5 +1,5 @@
 //
-//  TestCollectionViewCell.swift
+//  OptionsCollectionViewCell.swift
 //  QADS Cafe and Bar
 //
 //  Created by Sam Phillips on 12/06/2021.
@@ -7,7 +7,10 @@
 
 import UIKit
 
-class TestCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITableViewDataSource {
+private let singleChoiceReuseID = "SingleChoiceTVC"
+private let multipleChoiceReuseID = "MultipleChoiceTVC"
+
+class OptionsCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
@@ -54,8 +57,8 @@ class TestCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITable
         if !option.canHaveMultiple {
             
             // Configure the cell...
-            guard let cell = self.tableView.dequeueReusableCell(withIdentifier: "TestTVC", for: indexPath) as? TestTableViewCell else {
-                fatalError("The dequeued cell is not an instance of TestTableViewCell")
+            guard let cell = self.tableView.dequeueReusableCell(withIdentifier: singleChoiceReuseID, for: indexPath) as? OptionTableViewCell else {
+                fatalError("The dequeued cell is not an instance of OptionTableViewCell")
             }
             
             cell.thisOrderItem = currentOrderItem
@@ -68,8 +71,8 @@ class TestCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITable
         } else {
             
             // Configure the cell...
-            guard let cell = self.tableView.dequeueReusableCell(withIdentifier: "MultipleTestTVC", for: indexPath) as? TestTableViewCell else {
-                fatalError("The dequeued cell is not an instance of TestTableViewCell")
+            guard let cell = self.tableView.dequeueReusableCell(withIdentifier: multipleChoiceReuseID, for: indexPath) as? OptionTableViewCell else {
+                fatalError("The dequeued cell is not an instance of OptionTableViewCell")
             }
             
             cell.thisOrderItem = currentOrderItem

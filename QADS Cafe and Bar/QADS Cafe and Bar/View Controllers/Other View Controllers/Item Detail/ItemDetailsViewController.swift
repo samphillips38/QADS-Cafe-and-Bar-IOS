@@ -1,5 +1,5 @@
 //
-//  TestViewController.swift
+//  ItemDetailViewController.swift
 //  QADS Cafe and Bar
 //
 //  Created by Sam Phillips on 12/06/2021.
@@ -7,9 +7,12 @@
 
 import UIKit
 
-private let reuseIdentifier = "TestID"
+private let titleReuseID = "TitleCVC"
+private let optionsReuseID = "OptionsCVC"
+private let allergyReuseID = "AllergyCVC"
+private let checkoutReuseID = "CheckoutCVC"
 
-class TestViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class ItemDetailsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -62,15 +65,15 @@ class TestViewController: UIViewController, UICollectionViewDelegate, UICollecti
         if getCellType(indexPath: indexPath) == constants.titleCell { // This is the title cell
             
             // Configure cell for title
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TestTitleCVC", for: indexPath) as? TestTitleCollectionViewCell else {
-                fatalError("The dequeued cell is not an instance of TestTitleCollectionViewCell")
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: titleReuseID, for: indexPath) as? ItemTitleCollectionViewCell else {
+                fatalError("The dequeued cell is not an instance of ItemTitleCollectionViewCell")
             }
             cell.fillInData(chosenItem: self.chosenItem)
             return cell
             
         } else if getCellType(indexPath: indexPath) == constants.optionCell { // This is the Options cell
             
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TestID", for: indexPath) as? TestCollectionViewCell else {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: optionsReuseID, for: indexPath) as? OptionsCollectionViewCell else {
                 fatalError("The dequeued cell is not an instance of TestCollectionViewCell")
             }
             cell.cellType = constants.optionCell
@@ -81,8 +84,8 @@ class TestViewController: UIViewController, UICollectionViewDelegate, UICollecti
             
         } else if getCellType(indexPath: indexPath) == constants.typeCell { // This is a Type
             
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TestID", for: indexPath) as? TestCollectionViewCell else {
-                fatalError("The dequeued cell is not an instance of TestCollectionViewCell")
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: optionsReuseID, for: indexPath) as? OptionsCollectionViewCell else {
+                fatalError("The dequeued cell is not an instance of OptionsCollectionViewCell")
             }
             cell.cellType = constants.typeCell
             cell.index = indexPath
@@ -92,8 +95,8 @@ class TestViewController: UIViewController, UICollectionViewDelegate, UICollecti
             
         } else if getCellType(indexPath: indexPath) == constants.allergyCell { // This is an Allergy Cell
             
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AllergyCVC", for: indexPath) as? TestAllergensCollectionViewCell else {
-                fatalError("The dequeued cell is not an instance of TestAllergensCollectionViewCell")
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: allergyReuseID, for: indexPath) as? AllergensCollectionViewCell else {
+                fatalError("The dequeued cell is not an instance of AllergensCollectionViewCell")
             }
             cell.presentVC = {(VC: UIViewController) -> Void in
                 self.present(VC, animated: true, completion: nil)
@@ -103,8 +106,8 @@ class TestViewController: UIViewController, UICollectionViewDelegate, UICollecti
             return cell
             
         } else if getCellType(indexPath: indexPath) == constants.checkoutCell {
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CheckoutCVC", for: indexPath) as? TestCheckoutCollectionViewCell else {
-                fatalError("The dequeued cell is not an instance of TestCheckoutCollectionViewCell")
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: checkoutReuseID, for: indexPath) as? CheckoutCollectionViewCell else {
+                fatalError("The dequeued cell is not an instance of CheckoutCollectionViewCell")
             }
             cell.currentOrderItem = currentOrderItem
             cell.inStock = chosenItem.stock ?? false
@@ -129,8 +132,8 @@ class TestViewController: UIViewController, UICollectionViewDelegate, UICollecti
             height = constants.itemTitleHeight
             
         } else if getCellType(indexPath: indexPath) == constants.optionCell {
-            guard let cell = self.collectionView(self.collectionView, cellForItemAt: indexPath) as? TestCollectionViewCell else {
-                fatalError("The dequeued cell is not an instance of TestCollectionViewCell")
+            guard let cell = self.collectionView(self.collectionView, cellForItemAt: indexPath) as? OptionsCollectionViewCell else {
+                fatalError("The dequeued cell is not an instance of OptionsCollectionViewCell")
             }
 
             //Set height based on table view height
@@ -139,8 +142,8 @@ class TestViewController: UIViewController, UICollectionViewDelegate, UICollecti
             
         } else if getCellType(indexPath: indexPath) == constants.typeCell {
             
-            guard let cell = self.collectionView(self.collectionView, cellForItemAt: indexPath) as? TestCollectionViewCell else {
-                fatalError("The dequeued cell is not an instance of TestCollectionViewCell")
+            guard let cell = self.collectionView(self.collectionView, cellForItemAt: indexPath) as? OptionsCollectionViewCell else {
+                fatalError("The dequeued cell is not an instance of OptionsCollectionViewCell")
             }
             
             let type = currentOrderItem.types[indexPath.row - 2]

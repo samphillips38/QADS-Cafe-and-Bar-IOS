@@ -1,5 +1,5 @@
 //
-//  TestTableViewCell.swift
+//  OptionTableViewCell.swift
 //  QADS Cafe and Bar
 //
 //  Created by Sam Phillips on 13/06/2021.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TestTableViewCell: UITableViewCell {
+class OptionTableViewCell: UITableViewCell {
 
     @IBOutlet weak var checkBox: CheckBoxImageView!
     @IBOutlet weak var nameLabel: UILabel!

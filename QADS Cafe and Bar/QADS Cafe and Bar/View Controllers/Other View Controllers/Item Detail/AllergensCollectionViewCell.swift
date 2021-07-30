@@ -1,5 +1,5 @@
 //
-//  TestAllergensCollectionViewCell.swift
+//  AllergensCollectionViewCell.swift
 //  QADS Cafe and Bar
 //
 //  Created by Sam Phillips on 17/06/2021.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TestAllergensCollectionViewCell: UICollectionViewCell {
+class AllergensCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var chosenAllergiesLabel: UILabel!
     
@@ -41,7 +41,7 @@ class TestAllergensCollectionViewCell: UICollectionViewCell {
     
     @objc func chooseAllergiesTapped(_ sender: UITapGestureRecognizer? = nil) {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let AllergyVC = storyBoard.instantiateViewController(withIdentifier: "OptionsVC") as! OptionPickerViewController
+        let AllergyVC = storyBoard.instantiateViewController(withIdentifier: "AllergiesVC") as! AllergyPickerViewController
         AllergyVC.currentOrderItem = currentOrderItem
         AllergyVC.onDismiss = {self.setChosenAllergies()}
         presentVC(AllergyVC)
