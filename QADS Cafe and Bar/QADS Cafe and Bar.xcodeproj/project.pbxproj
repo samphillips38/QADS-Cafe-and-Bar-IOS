@@ -339,7 +339,6 @@
 				F4CF66FB257BB7C1004FF87F /* Frameworks */,
 				F4CF66FC257BB7C1004FF87F /* Resources */,
 				FC7DEB763068B3DD4BE33D04 /* [CP] Embed Pods Frameworks */,
-				0A0FB204066C7977B9D40119 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -378,7 +377,6 @@
 				F4CF671C257BB7C2004FF87F /* Frameworks */,
 				F4CF671D257BB7C2004FF87F /* Resources */,
 				756CDC597919C29D8846D128 /* [CP] Embed Pods Frameworks */,
-				FB25C52E09A2AD8403399C15 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -465,23 +463,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0A0FB204066C7977B9D40119 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-QADS Cafe and Bar/Pods-QADS Cafe and Bar-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-QADS Cafe and Bar/Pods-QADS Cafe and Bar-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-QADS Cafe and Bar/Pods-QADS Cafe and Bar-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		2B824E670D9235EB5ECEFE26 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -563,23 +544,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-QADS Cafe and Bar-QADS Cafe and BarUITests/Pods-QADS Cafe and Bar-QADS Cafe and BarUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		FB25C52E09A2AD8403399C15 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-QADS Cafe and Bar-QADS Cafe and BarUITests/Pods-QADS Cafe and Bar-QADS Cafe and BarUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-QADS Cafe and Bar-QADS Cafe and BarUITests/Pods-QADS Cafe and Bar-QADS Cafe and BarUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-QADS Cafe and Bar-QADS Cafe and BarUITests/Pods-QADS Cafe and Bar-QADS Cafe and BarUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FC7DEB763068B3DD4BE33D04 /* [CP] Embed Pods Frameworks */ = {

@@ -84,7 +84,7 @@ class FieldValue {
 
   FieldValue();
 
-  FieldValue(ObjectValue object);  // NOLINT(runtime/explicit)
+  FieldValue(const ObjectValue& object);  // NOLINT(runtime/explicit)
 
   /** Returns the true type for this value. */
   Type type() const {
@@ -212,7 +212,7 @@ class FieldValue {
   static FieldValue FromString(const std::string& value);
   static FieldValue FromString(std::string&& value);
   static FieldValue FromBlob(nanopb::ByteString blob);
-  static FieldValue FromReference(DatabaseId database_id, DocumentKey value);
+  static FieldValue FromReference(DatabaseId database_id, DocumentKey key);
   static FieldValue FromGeoPoint(const GeoPoint& value);
   static FieldValue FromArray(const Array& value);
   static FieldValue FromArray(Array&& value);
@@ -409,7 +409,7 @@ class FieldValue::ServerTimestamp {
 };
 
 // Pretend you can automatically upcast from ObjectValue to FieldValue.
-inline FieldValue::FieldValue(ObjectValue object)
+inline FieldValue::FieldValue(const ObjectValue& object)
     : FieldValue(object.AsFieldValue()) {
 }
 
