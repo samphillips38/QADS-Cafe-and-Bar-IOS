@@ -44,10 +44,6 @@ class TestCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITable
     
     //MARK:- Table View
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //Set by Item as the number of options is not varied by preferences
         return getOptionList().count

@@ -13,67 +13,52 @@ class OptionPickerViewController: UIViewController, UITableViewDelegate, UITable
 
     @IBOutlet weak var tableView: UITableView!
     
+    let rowHeight = CGFloat(50)
     var currentOrderItem = orderItem()
+    var onDismiss = {}
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
+    func setUp() {
         // Do any additional setup after loading the view.
         tableView.delegate = self
         tableView.dataSource = self
-        
-        //Get allergen data
-        currentOrderItem.getAllergenList {
-            self.tableView.reloadData()
-        }
+        tableView.rowHeight = rowHeight
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        onDismiss()
+    }
 
     //MARK:- Table View
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return currentOrderItem.allergies.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as? AllergiesTableViewCell else {
-            fatalError("The dequeued cell is not an instance of AllergiesTableViewCell")
+        // Configure the cell...
+        guard let cell = self.tableView.dequeueReusableCell(withIdentifier: "AllergyTVC", for: indexPath) as? TestTableViewCell else {
+            fatalError("The dequeued cell is not an instance of TestTableViewCell")
         }
-        //Fill in Data
-        let allergy = currentOrderItem.allergies[indexPath.row]
-        cell.allergiesLabel.text = allergy.name
-//        if currentOrderItem.chosenAllergies.contains(allergy.name) {
-//            cell.checkBox.isHidden = false
-//        } else {
-//            cell.checkBox.isHidden = true
-//        }
+        cell.cellType = constants.allergyCell
+        cell.thisOrderItem = currentOrderItem
+        cell.index = indexPath
+        cell.makeCell()
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // Set allergy
+        currentOrderItem.allergies[indexPath.row].isChosen.toggle()
         
-        //Add allergy
-//        let allergy = currentOrderItem.allergies[indexPath.row]
-//        if currentOrderItem.chosenAllergies.contains(allergy) {
-//            currentOrderItem.chosenAllergies = currentOrderItem.chosenAllergies.filter { $0 != allergy }
-//        } else {
-//            currentOrderItem.chosenAllergies.append(allergy)
-//        }
-//        
-//        //Reload cell
-//        tableView.cellForRow(at: indexPath)?.selectionStyle = .gray
-//        tableView.reloadRows(at: [indexPath], with: .fade)
+        //Reload cell
+        tableView.cellForRow(at: indexPath)?.selectionStyle = .gray
+        tableView.reloadRows(at: [indexPath], with: .fade)
     }
     
     //MARK:- Button Actions
     
     @IBAction func doneTapped(_ sender: Any) {
-        self.dismiss(animated: true) {
-            //Do something
+        dismiss(animated: true) {
         }
     }
 }

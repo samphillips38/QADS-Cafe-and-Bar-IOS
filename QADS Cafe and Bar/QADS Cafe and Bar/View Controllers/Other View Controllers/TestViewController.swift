@@ -43,10 +43,7 @@ class TestViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     
     // MARK:- Collection View
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // Add one for title, one for options, one for allergies, one for checkout
         return currentOrderItem.types.count + 4
@@ -91,6 +88,9 @@ class TestViewController: UIViewController, UICollectionViewDelegate, UICollecti
             
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AllergyCVC", for: indexPath) as? TestAllergensCollectionViewCell else {
                 fatalError("The dequeued cell is not an instance of TestAllergensCollectionViewCell")
+            }
+            cell.presentVC = {(VC: UIViewController) -> Void in
+                self.present(VC, animated: true, completion: nil)
             }
             cell.currentOrderItem = currentOrderItem
             cell.setUp()
@@ -140,13 +140,7 @@ class TestViewController: UIViewController, UICollectionViewDelegate, UICollecti
             let type = currentOrderItem.types[indexPath.row - 2]
             height = getCellHeight(optionList: type.choices, rowHeight: cell.rowHeight, offset: constants.optionTVOffset)
         } else if getCellType(indexPath: indexPath) == constants.allergyCell {
-            
-            guard let cell = self.collectionView(self.collectionView, cellForItemAt: indexPath) as? TestAllergensCollectionViewCell else {
-                fatalError("The dequeued cell is not an instance of TestAllergensCollectionViewCell")
-            }
-            
-            height = getCellHeight(optionList: currentOrderItem.allergies, rowHeight: cell.rowHeight, offset: constants.allergyTVOffset)
-            
+            height = constants.allergyHeight
         } else if getCellType(indexPath: indexPath) == constants.checkoutCell {
             height = constants.itemCheckoutHeight
         }
