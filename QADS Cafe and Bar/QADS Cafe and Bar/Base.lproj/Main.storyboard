@@ -571,12 +571,12 @@
                                             <constraints>
                                                 <constraint firstItem="IMd-U6-CQW" firstAttribute="top" secondItem="uvK-oJ-s2f" secondAttribute="top" constant="20" id="0uy-bJ-ctW"/>
                                                 <constraint firstItem="7Kd-dv-aSB" firstAttribute="top" secondItem="bhJ-eK-Dlf" secondAttribute="bottom" constant="15" id="1LU-oH-cJA"/>
+                                                <constraint firstItem="IMd-U6-CQW" firstAttribute="centerX" secondItem="uvK-oJ-s2f" secondAttribute="centerX" id="28V-UI-xQL"/>
                                                 <constraint firstItem="bhJ-eK-Dlf" firstAttribute="centerX" secondItem="uvK-oJ-s2f" secondAttribute="centerX" id="2Qx-al-5Bg"/>
                                                 <constraint firstItem="7Kd-dv-aSB" firstAttribute="centerX" secondItem="uvK-oJ-s2f" secondAttribute="centerX" id="Dvt-fS-mWt"/>
                                                 <constraint firstItem="bhJ-eK-Dlf" firstAttribute="top" secondItem="IMd-U6-CQW" secondAttribute="bottom" constant="25" id="J4b-1a-tHK"/>
                                                 <constraint firstItem="7Kd-dv-aSB" firstAttribute="leading" secondItem="uvK-oJ-s2f" secondAttribute="leading" constant="20" id="Sil-00-MzO"/>
                                                 <constraint firstItem="M4s-Nf-CSw" firstAttribute="centerY" secondItem="IMd-U6-CQW" secondAttribute="centerY" id="URR-Ac-mLZ"/>
-                                                <constraint firstItem="IMd-U6-CQW" firstAttribute="centerX" secondItem="uvK-oJ-s2f" secondAttribute="centerX" id="V3z-4h-a4K"/>
                                                 <constraint firstItem="M4s-Nf-CSw" firstAttribute="leading" secondItem="IMd-U6-CQW" secondAttribute="trailing" constant="50" id="p1z-nd-BSl"/>
                                                 <constraint firstAttribute="trailing" secondItem="M4s-Nf-CSw" secondAttribute="trailing" constant="5" id="qAf-Oe-tJJ"/>
                                             </constraints>
