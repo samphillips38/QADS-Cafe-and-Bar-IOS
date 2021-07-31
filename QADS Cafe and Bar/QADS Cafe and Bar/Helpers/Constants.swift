@@ -24,5 +24,21 @@ struct constants {
 //    static let QDarkGreen = UIColor(red: 0.003, green: 0.290, blue: 0.157, alpha: 1.00)
 //    static let QLightGreen = UIColor(red: 0.224, green: 144, blue: 101, alpha: 1)
     
+    
+    // For string values
+    static let titleStr = "Title"
+    static let optionStr = "Option"
+    static let typeStr = "Type"
+    
+    static let itemTitleHeight = CGFloat(500)
+    static let optionTVOffset = CGFloat(96)
+    static let allergyHeight = CGFloat(200)
+    static let itemCheckoutHeight = CGFloat(150)
+    
+    static let optionCell = 0
+    static let allergyCell = 1
+    static let typeCell = 2
+    static let titleCell = 3
+    static let checkoutCell = 4
 }
 

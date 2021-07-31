@@ -196,8 +196,11 @@ class orderItem: NSObject {
     var itemName: String?
 //    var note: String = ""
     var location: String?
-    var allergies: [String] = []
-    var chosenAllergies: [String] = []
+    struct allergy {
+        var name = ""
+        var isChosen = false
+    }
+    var allergies: [allergy] = [] // Allergies to go with order
     
     //Create a struct for an option. These will be stored in an array
     struct Option {
@@ -210,16 +213,21 @@ class orderItem: NSObject {
     var price: Double = 0.0
     var quantity: Int = 1
     
+    struct type {
+        var name: String = ""
+        var choices: [Option] = []
+    }
+    var types: [type] = []
     
     
-    func createOrderItem(item: Item) {
+    func createOrderItem(item: Item, completion: @escaping () -> Void) {
         refItem = item
         itemID = item.id
         itemName = item.name
         price = item.price ?? 0.0
         location = item.location
         
-        //make options Array
+        // Make options Array
         for (_, optionInfo) in item.options ?? [:] {
             
             //Create Option struct and append
@@ -231,8 +239,33 @@ class orderItem: NSObject {
                 )
             
             self.options.append(thisOption)
-            
         }
+        
+        // Fill in types
+        for (typeName, typeInfo) in item.types ?? [:] {
+            var choiceList: [Option] = []
+            for (choiceName, choicePrice) in typeInfo {
+                let thisChoice = Option(
+                    name: choiceName,
+                    canHaveMultiple: false,
+                    extraPrice: choicePrice as! Double,
+                    quantity: 0
+                )
+                choiceList.append(thisChoice)
+            }
+            
+            let thisType = type(
+                name: typeName,
+                choices: choiceList
+            )
+            self.types.append(thisType)
+        }
+        
+        // Get allergies
+        getAllergenList {
+            completion()
+        }
+        
     }
     
     
@@ -244,10 +277,15 @@ class orderItem: NSObject {
     
     func updatePrice() {
         
-        //Price for one (item plus any extras)
+        //Price for one item plus options, plus Types
         var price = refItem.price ?? 0
         for option in options {
-            price = price + (option.extraPrice * Double(option.quantity))
+            price += option.extraPrice * Double(option.quantity)
+        }
+        for type in types {
+            for choice in type.choices {
+                price += choice.extraPrice * Double(choice.quantity)
+            }
         }
         
         //Update price and round to 2 dp
@@ -264,7 +302,11 @@ class orderItem: NSObject {
             } else {
                 if let document = document, document.exists {
                     //Fill in allergy data
-                    self.allergies = (document["allergies"] as? [String]) ?? []
+                    for allergyName in (document["allergies"] as? [String]) ?? [] {
+                        var allergy = orderItem.allergy()
+                        allergy.name = allergyName
+                        self.allergies.append(allergy)
+                    }
                 } else {
                     print("Document does not exist")
                 }
