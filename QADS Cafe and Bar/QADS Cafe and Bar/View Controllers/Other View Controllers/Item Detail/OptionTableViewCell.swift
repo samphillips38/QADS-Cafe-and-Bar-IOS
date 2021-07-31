@@ -15,8 +15,7 @@ class OptionTableViewCell: UITableViewCell {
     @IBOutlet weak var quantityStepper: UIStepper!
     @IBOutlet weak var quantityCount: UILabel!
     
-    //Set up delegate and index
-//    var cellDelegate: optionsCellDelegate?
+    //Set up indexes for cell and type
     var index: IndexPath?
     var typeIndex = -1
     
