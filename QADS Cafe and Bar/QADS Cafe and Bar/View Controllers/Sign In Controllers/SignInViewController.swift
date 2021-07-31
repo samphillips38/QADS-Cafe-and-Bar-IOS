@@ -14,21 +14,20 @@ import FirebaseFirestore
 
 class SignInViewController: UIViewController {
     
+    @IBOutlet weak var googleSignInButtonView: GIDSignInButton!
     @IBOutlet weak var appleButtonView: GIDSignInButton!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Allow pop up to be presented
-        GIDSignIn.sharedInstance()?.hostedDomain = nil
-        GIDSignIn.sharedInstance()?.presentingViewController = self
-        
         // Sets up the apple sign in button.
-        setupSignInButton()
+        setupAppleSignInButton()
     }
     
-    func setupSignInButton() {
+    //MARK:- Apple Sign In
+    
+    func setupAppleSignInButton() {
         let button = ASAuthorizationAppleIDButton()
         button.addTarget(self, action: #selector(handleSignInWithAppleTapped), for: .touchUpInside)
         
@@ -68,7 +67,82 @@ class SignInViewController: UIViewController {
         
         return request
     }
+    
+    //MARK:- Google Sign In
+    
+    @IBAction func googleSignInTapped(_ sender: Any) {
+        print("Sign in with google tapped")
+        guard let clientID = FirebaseApp.app()?.options.clientID else { return }
 
+        // Create Google Sign In configuration object.
+        let config = GIDConfiguration(clientID: clientID)
+
+        // Start the sign in flow!
+        GIDSignIn.sharedInstance.signIn(with: config, presenting: self) { [unowned self] user, error in
+
+          if let error = error {
+            print(error)
+            return
+          }
+
+          guard
+            let authentication = user?.authentication,
+            let idToken = authentication.idToken
+          else {
+            return
+          }
+
+          let credential = GoogleAuthProvider.credential(withIDToken: idToken,
+                                                         accessToken: authentication.accessToken)
+            
+            // Login/Sign up to Firebase
+            FirebaseAuth.Auth.auth().signIn(with: credential) { (authResult, error) in
+                if let error = error {
+                    print("Error logging into Firebase from Google:", error)
+                }
+    
+                print("Successfully logged into Firebase with Google")
+    
+                //Change the root ViewController
+                let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+    
+                if (authResult?.additionalUserInfo!.isNewUser)! {
+    
+                    //This is a new user
+    
+                    //Go to sign up page
+                    let MainTabBarVC = storyBoard.instantiateViewController(withIdentifier: "SignUpVC") as! SignUpViewController
+    
+                    (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(MainTabBarVC)
+    
+                } else {
+    
+                    //Get the user data
+                    currentUser.populateAsCurrentUser() {
+    
+                        //Check for filled in info
+                        if currentUser.uid == nil {
+    
+                            //This is a new user - Go to SignInViewController
+                            let MainTabBarVC = storyBoard.instantiateViewController(withIdentifier: "SignUpVC") as! SignUpViewController
+    
+                            (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(MainTabBarVC)
+    
+                        } else {
+    
+                            //Sign in to subscribe to topics
+                            currentUser.signIn()
+    
+                            //This is an existing user - Go to MainTabBarController
+                            let MainTabBarVC = storyBoard.instantiateViewController(withIdentifier: "MainTBC") as! UITabBarController
+    
+                            (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(MainTabBarVC)
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 
