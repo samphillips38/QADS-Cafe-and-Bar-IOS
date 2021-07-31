@@ -497,6 +497,7 @@
                                             <constraints>
                                                 <constraint firstItem="pm5-mH-Z5B" firstAttribute="centerX" secondItem="UyX-t8-3nI" secondAttribute="centerX" id="2tL-cX-d2s"/>
                                                 <constraint firstItem="wRe-m9-sqQ" firstAttribute="top" secondItem="pm5-mH-Z5B" secondAttribute="bottom" constant="15" id="6Ku-SH-4YB"/>
+                                                <constraint firstItem="mSo-NB-agU" firstAttribute="centerX" secondItem="UyX-t8-3nI" secondAttribute="centerX" id="6aA-1V-3z3"/>
                                                 <constraint firstItem="9PN-BQ-LtX" firstAttribute="centerX" secondItem="UyX-t8-3nI" secondAttribute="centerX" id="6hr-7Q-rYb"/>
                                                 <constraint firstItem="pm5-mH-Z5B" firstAttribute="top" secondItem="mSo-NB-agU" secondAttribute="bottom" constant="5" id="75m-4d-no1"/>
                                                 <constraint firstItem="AFd-TB-gmU" firstAttribute="centerX" secondItem="UyX-t8-3nI" secondAttribute="centerX" id="C8T-dD-JZL"/>
@@ -506,7 +507,6 @@
                                                 <constraint firstItem="pm5-mH-Z5B" firstAttribute="leading" secondItem="UyX-t8-3nI" secondAttribute="leading" constant="10" id="V9u-Zl-VyK"/>
                                                 <constraint firstItem="AFd-TB-gmU" firstAttribute="leading" secondItem="UyX-t8-3nI" secondAttribute="leading" constant="20" id="ZrL-eF-zLV"/>
                                                 <constraint firstItem="mSo-NB-agU" firstAttribute="top" secondItem="UyX-t8-3nI" secondAttribute="top" constant="15" id="lzh-xR-ICr"/>
-                                                <constraint firstItem="mSo-NB-agU" firstAttribute="centerX" secondItem="UyX-t8-3nI" secondAttribute="centerX" id="mdq-qG-iG9"/>
                                                 <constraint firstItem="mSo-NB-agU" firstAttribute="leading" secondItem="UyX-t8-3nI" secondAttribute="leading" constant="20" id="qlM-GB-oG9"/>
                                                 <constraint firstItem="wRe-m9-sqQ" firstAttribute="centerX" secondItem="UyX-t8-3nI" secondAttribute="centerX" id="scU-p3-4za"/>
                                                 <constraint firstItem="9PN-BQ-LtX" firstAttribute="top" secondItem="AFd-TB-gmU" secondAttribute="bottom" constant="10" id="zUn-fL-oTy"/>
@@ -539,7 +539,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="bhJ-eK-Dlf">
-                                                    <rect key="frame" x="101.5" y="77" width="180" height="48"/>
+                                                    <rect key="frame" x="91.5" y="77" width="200" height="48"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Add to Basket" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h43-pc-L9z">
                                                             <rect key="frame" x="15" y="15" width="102" height="18"/>
@@ -548,7 +548,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="Vyx-OU-Ool">
-                                                            <rect key="frame" x="127" y="15" width="38" height="18"/>
+                                                            <rect key="frame" x="127" y="15" width="58" height="18"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -557,7 +557,7 @@
                                                     <color key="backgroundColor" red="0.0039215686269999999" green="0.2901960784" blue="0.015686274510000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="48" id="E2t-U9-4Wq"/>
-                                                        <constraint firstAttribute="width" constant="180" id="HSp-Ym-oUz"/>
+                                                        <constraint firstAttribute="width" constant="200" id="HSp-Ym-oUz"/>
                                                     </constraints>
                                                     <directionalEdgeInsets key="directionalLayoutMargins" top="15" leading="15" bottom="15" trailing="15"/>
                                                 </stackView>
