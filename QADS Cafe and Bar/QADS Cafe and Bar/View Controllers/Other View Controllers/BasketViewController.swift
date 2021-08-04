@@ -17,6 +17,8 @@ class BasketViewController: UIViewController, UICollectionViewDelegate, UICollec
     @IBOutlet weak var orderStackView: UIStackView!
     @IBOutlet weak var totalLabel: UILabel!
     
+    var expandedItems: [IndexPath: Bool] = [:]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -75,6 +77,15 @@ class BasketViewController: UIViewController, UICollectionViewDelegate, UICollec
         
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if expandedItems[indexPath]==nil {
+            expandedItems[indexPath] = true
+        } else {
+            expandedItems[indexPath]?.toggle()
+        }
+        collectionView.reloadItems(at: [indexPath])
+    }
+    
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
         let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: footerID, for: indexPath)
@@ -83,8 +94,14 @@ class BasketViewController: UIViewController, UICollectionViewDelegate, UICollec
 
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        //Set Cell Sizes
-        return CGSize(width: collectionView.frame.width * constants.basketItemWidthMultiplier, height: collectionView.frame.width * constants.basketItemHeightMultiplier)
+        
+        if expandedItems[indexPath] ?? false {
+            //Cell is expanded
+            return CGSize(width: collectionView.frame.width * constants.basketItemWidthMultiplier, height: constants.basketHeightExpanded)
+        } else {
+            //Cell is collapsed
+            return CGSize(width: collectionView.frame.width * constants.basketItemWidthMultiplier, height: constants.basketHeight)
+        }
     }
 
     func deleteItemTapped(index: Int) {

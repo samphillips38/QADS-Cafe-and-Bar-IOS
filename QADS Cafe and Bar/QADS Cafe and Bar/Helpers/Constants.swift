@@ -17,6 +17,10 @@ struct constants {
     
     static let basketItemWidthMultiplier = CGFloat(0.95)
     static let basketItemHeightMultiplier = CGFloat(0.15)
+    static let basketItemHeightMultiplierExpanded = CGFloat(0.2)
+    
+    static let basketHeight = CGFloat(40)
+    static let basketHeightExpanded = CGFloat(200)
     
     static let queensGreen = UIColor(red: 0.30, green: 0.69, blue: 0.31, alpha: 1.00)
     
@@ -30,10 +34,10 @@ struct constants {
     static let optionStr = "Option"
     static let typeStr = "Type"
     
-    static let itemTitleHeight = CGFloat(500)
+//    static let itemTitleHeight = CGFloat(500)
     static let itemTitlePadding = CGFloat(349)
     static let optionTVOffset = CGFloat(96)
-    static let allergyHeight = CGFloat(200)
+//    static let allergyHeight = CGFloat(200)
     static let allergyPadding = CGFloat(140)
     static let itemCheckoutHeight = CGFloat(150)
     
