@@ -16,6 +16,7 @@ class ItemDetailsViewController: UIViewController, UICollectionViewDelegate, UIC
 
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var collectionViewFlowLayout: UICollectionViewFlowLayout!
     
     var chosenItem = Item()
     var currentOrderItem = orderItem()
@@ -124,15 +125,18 @@ class ItemDetailsViewController: UIViewController, UICollectionViewDelegate, UIC
         
 
     }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        var height = CGFloat()
-        
-        if getCellType(indexPath: indexPath) == constants.titleCell {
 
-            height = constants.itemTitleHeight
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+
+        var height = CGFloat()
+
+        if getCellType(indexPath: indexPath) == constants.titleCell {
+            let descriptionHeight = estimateTextFrame(text: chosenItem.desc ?? "", width: collectionView.frame.width - CGFloat(40)).height
+            let temp = ItemTitleCollectionViewCell()
+            let allergenInfoHeight = estimateTextFrame(text: temp.makeAllergenLabel(allergenList: chosenItem.allergens), width: collectionView.frame.width - CGFloat(40)).height
             
+            height = constants.itemTitlePadding + descriptionHeight + allergenInfoHeight
+
         } else if getCellType(indexPath: indexPath) == constants.optionCell {
             guard let cell = self.collectionView(self.collectionView, cellForItemAt: indexPath) as? OptionsCollectionViewCell else {
                 fatalError("The dequeued cell is not an instance of OptionsCollectionViewCell")
@@ -141,13 +145,13 @@ class ItemDetailsViewController: UIViewController, UICollectionViewDelegate, UIC
             //Set height based on table view height
             let optionList = currentOrderItem.options
             height = getCellHeight(optionList: optionList, rowHeight: cell.rowHeight, offset: constants.optionTVOffset)
-            
+
         } else if getCellType(indexPath: indexPath) == constants.typeCell {
-            
+
             guard let cell = self.collectionView(self.collectionView, cellForItemAt: indexPath) as? OptionsCollectionViewCell else {
                 fatalError("The dequeued cell is not an instance of OptionsCollectionViewCell")
             }
-            
+
             let type = currentOrderItem.types[indexPath.row - 2]
             height = getCellHeight(optionList: type.choices, rowHeight: cell.rowHeight, offset: constants.optionTVOffset)
         } else if getCellType(indexPath: indexPath) == constants.allergyCell {
@@ -155,7 +159,7 @@ class ItemDetailsViewController: UIViewController, UICollectionViewDelegate, UIC
         } else if getCellType(indexPath: indexPath) == constants.checkoutCell {
             height = constants.itemCheckoutHeight
         }
-        
+
         //Set Cell size
         return CGSize(width: collectionView.frame.width, height: height)
     }
@@ -164,6 +168,16 @@ class ItemDetailsViewController: UIViewController, UICollectionViewDelegate, UIC
         let numRows = (optionList ?? []).count
         let height = rowHeight * CGFloat(numRows)
         return height + offset
+    }
+    
+    func estimateTextFrame(text: String, width: CGFloat, size: Int = 16, weight: UIFont.Weight = UIFont.Weight.light) -> CGRect {
+        //we make the height arbitrarily large so we don't undershoot height in calculation
+        let height: CGFloat = 10000
+        let size = CGSize(width: width, height: height)
+        let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
+        let attributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18, weight: weight)]
+
+        return NSString(string: text).boundingRect(with: size, options: options, attributes: attributes, context: nil)
     }
 
     func optionTapped() {
