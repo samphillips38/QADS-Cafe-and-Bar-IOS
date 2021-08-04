@@ -97,10 +97,10 @@ class BasketViewController: UIViewController, UICollectionViewDelegate, UICollec
         
         if expandedItems[indexPath] ?? false {
             let temp = OrderItemsCollectionViewCell()
-            let detailsHeight = estimateTextFrame(text: temp.getDetails(item: currentUser.getItemAt(index: indexPath.row)), width: collectionView.frame.width - CGFloat(20), size: 15).height
+            let detailsHeight = estimateTextFrame(text: temp.getDetails(item: currentUser.getItemAt(index: indexPath.row)), width: collectionView.frame.width - CGFloat(20), font: UIFont.systemFont(ofSize: 15)).height
             
             //Cell is expanded
-            return CGSize(width: collectionView.frame.width * constants.basketItemWidthMultiplier, height: constants.basketHeight + detailsHeight)
+            return CGSize(width: collectionView.frame.width * constants.basketItemWidthMultiplier, height: constants.basketHeight + detailsHeight + CGFloat(30))
         } else {
             //Cell is collapsed
             return CGSize(width: collectionView.frame.width * constants.basketItemWidthMultiplier, height: constants.basketHeight)

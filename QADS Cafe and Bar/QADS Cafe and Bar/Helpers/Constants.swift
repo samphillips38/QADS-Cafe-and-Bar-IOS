@@ -48,12 +48,12 @@ struct constants {
     static let checkoutCell = 4
 }
 
-func estimateTextFrame(text: String, width: CGFloat, size: Int = 16, weight: UIFont.Weight = UIFont.Weight.light) -> CGRect {
+func estimateTextFrame(text: String, width: CGFloat, font: UIFont) -> CGRect {
     //we make the height arbitrarily large so we don't undershoot height in calculation
     let height: CGFloat = 10000
     let size = CGSize(width: width, height: height)
     let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
-    let attributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18, weight: weight)]
+    let attributes = [NSAttributedString.Key.font: font]
 
     return NSString(string: text).boundingRect(with: size, options: options, attributes: attributes, context: nil)
 }
