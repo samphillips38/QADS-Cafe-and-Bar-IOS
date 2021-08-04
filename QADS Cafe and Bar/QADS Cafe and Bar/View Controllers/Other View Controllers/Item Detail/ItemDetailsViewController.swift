@@ -104,6 +104,7 @@ class ItemDetailsViewController: UIViewController, UICollectionViewDelegate, UIC
             cell.presentVC = {(VC: UIViewController) -> Void in
                 self.present(VC, animated: true, completion: nil)
             }
+            cell.refreshCell = {collectionView.reloadItems(at: [IndexPath(row: self.currentOrderItem.types.count + 2, section: 0)])}
             cell.currentOrderItem = currentOrderItem
             cell.setUp()
             return cell
@@ -155,7 +156,11 @@ class ItemDetailsViewController: UIViewController, UICollectionViewDelegate, UIC
             let type = currentOrderItem.types[indexPath.row - 2]
             height = getCellHeight(optionList: type.choices, rowHeight: cell.rowHeight, offset: constants.optionTVOffset)
         } else if getCellType(indexPath: indexPath) == constants.allergyCell {
-            height = constants.allergyHeight
+            let temp = AllergensCollectionViewCell()
+            temp.currentOrderItem = currentOrderItem
+            let allergyTextHeight = estimateTextFrame(text: temp.getChosenAllergies(), width: collectionView.frame.width - CGFloat(40)).height
+            
+            height = constants.allergyPadding + allergyTextHeight
         } else if getCellType(indexPath: indexPath) == constants.checkoutCell {
             height = constants.itemCheckoutHeight
         }

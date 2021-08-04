@@ -34,6 +34,7 @@ struct constants {
     static let itemTitlePadding = CGFloat(349)
     static let optionTVOffset = CGFloat(96)
     static let allergyHeight = CGFloat(200)
+    static let allergyPadding = CGFloat(140)
     static let itemCheckoutHeight = CGFloat(150)
     
     static let optionCell = 0

@@ -13,16 +13,22 @@ class AllergensCollectionViewCell: UICollectionViewCell {
     
     var currentOrderItem = orderItem()
     var presentVC = {(VC: UIViewController) -> Void in }
+    var refreshCell = {}
     
     func setUp() {
         titleLabel.text = "Choose Allergies"
-        setChosenAllergies()
+        chosenAllergiesLabel.text = getChosenAllergies()
         
         // Add gesture recogniser for cell
         self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(chooseAllergiesTapped(_:))))
     }
     
-    func setChosenAllergies() {
+    func setUpAndRefresh() {
+        setUp()
+        refreshCell()
+    }
+    
+    func getChosenAllergies() -> String {
         var text = "Chosen Allergies: "
         var noneFound = true
         for allergy in currentOrderItem.allergies {
@@ -32,9 +38,9 @@ class AllergensCollectionViewCell: UICollectionViewCell {
             }
         }
         if noneFound {
-            chosenAllergiesLabel.text = "No Allergies Added"
+            return "No Allergies Added"
         } else {
-            chosenAllergiesLabel.text = String(text.dropLast(2))
+            return String(text.dropLast(2))
         }
     }
     
@@ -43,7 +49,7 @@ class AllergensCollectionViewCell: UICollectionViewCell {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let AllergyVC = storyBoard.instantiateViewController(withIdentifier: "AllergiesVC") as! AllergyPickerViewController
         AllergyVC.currentOrderItem = currentOrderItem
-        AllergyVC.onDismiss = {self.setChosenAllergies()}
+        AllergyVC.onDismiss = {self.setUpAndRefresh()}
         presentVC(AllergyVC)
         AllergyVC.setUp()
     }
