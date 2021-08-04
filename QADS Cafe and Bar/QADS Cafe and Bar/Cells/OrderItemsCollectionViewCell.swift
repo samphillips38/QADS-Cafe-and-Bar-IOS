@@ -33,22 +33,31 @@ class OrderItemsCollectionViewCell: UICollectionViewCell {
         itemNameLabel.text = item.itemName
         itemPriceLabel.text = "£" + String(format: "%.2f", item.price)
         quantityLabel.text = "x" + String(item.quantity)
-        
-        // Fill in description
-        var text = "Detials\n"
+        descriptionLabel.text = getDetails(item: item)
+    }
+    
+    
+    func getDetails(item: orderItem) -> String {
+        var text = "Details"
         for type in item.types {
             for choice in type.choices {
                 if choice.quantity > 0 {
-                    text += type.name + ": " + choice.name + "\n"
+                    text += "\n" + type.name + ": " + choice.name
                 }
             }
         }
         for option in item.options {
             if option.quantity > 0 {
-                text += option.name + ": " + String(option.quantity) + "\n"
+                text += "\n" + option.name + ": " + String(option.quantity)
             }
         }
-        descriptionLabel.text = text
+        text += "\n\nAllergies: "
+        for allergy in item.allergies {
+            if allergy.isChosen {
+                text += "\n" + allergy.name
+            }
+        }
+        return text
     }
 
     //MARK: -Button Actions
