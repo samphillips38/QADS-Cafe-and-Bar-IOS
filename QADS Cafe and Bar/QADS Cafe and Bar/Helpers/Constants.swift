@@ -19,7 +19,7 @@ struct constants {
     static let basketItemHeightMultiplier = CGFloat(0.15)
     static let basketItemHeightMultiplierExpanded = CGFloat(0.2)
     
-    static let basketHeight = CGFloat(40)
+    static let basketHeight = CGFloat(50)
     static let basketHeightExpanded = CGFloat(200)
     
     static let queensGreen = UIColor(red: 0.30, green: 0.69, blue: 0.31, alpha: 1.00)

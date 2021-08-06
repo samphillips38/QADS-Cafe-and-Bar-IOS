@@ -38,7 +38,9 @@ class OrderItemsCollectionViewCell: UICollectionViewCell {
     
     
     func getDetails(item: orderItem) -> String {
-        var text = "Details"
+        var text = "Details:"
+        
+        // Types
         for type in item.types {
             for choice in type.choices {
                 if choice.quantity > 0 {
@@ -46,16 +48,29 @@ class OrderItemsCollectionViewCell: UICollectionViewCell {
                 }
             }
         }
+        
+        // Options
         for option in item.options {
             if option.quantity > 0 {
                 text += "\n" + option.name + ": " + String(option.quantity)
             }
         }
-        text += "\n\nAllergies: "
+        
+        //Allergies
+        var AllergyList: [String] = []
         for allergy in item.allergies {
             if allergy.isChosen {
-                text += "\n" + allergy.name
+                AllergyList.append(allergy.name)
             }
+        }
+        if AllergyList != [] {
+            text += "\n\nAllergies: \n"
+            text += AllergyList.joined(separator: "\n")
+        }
+        
+        // Check if empty
+        if text == "Details:" {
+            text = "No Details"
         }
         return text
     }
