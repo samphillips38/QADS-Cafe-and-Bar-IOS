@@ -95,6 +95,11 @@ class BasketViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
+        //Handle Empty Basket
+        if currentUser.cafeOrder.items.count + currentUser.barOrder.items.count == 0 {
+            return CGSize(width: collectionView.frame.width * constants.basketItemWidthMultiplier, height: constants.basketHeight)
+        }
+        
         if expandedItems[indexPath] ?? false {
             let temp = OrderItemsCollectionViewCell()
             let detailsHeight = estimateTextFrame(text: temp.getDetails(item: currentUser.getItemAt(index: indexPath.row)), width: collectionView.frame.width - CGFloat(20), font: UIFont.systemFont(ofSize: 15)).height
