@@ -12,8 +12,9 @@ class OrderConfirmationViewController: UIViewController {
     @IBOutlet weak var dismissButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        
+        dismissButton.layer.cornerRadius = dismissButton.frame.height/2
     }
     
     //MARK:- Button Actions
