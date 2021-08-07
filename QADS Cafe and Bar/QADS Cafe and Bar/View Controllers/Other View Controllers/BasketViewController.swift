@@ -17,7 +17,7 @@ class BasketViewController: UIViewController, UICollectionViewDelegate, UICollec
     @IBOutlet weak var orderStackView: UIStackView!
     @IBOutlet weak var totalLabel: UILabel!
     
-    var expandedItems: [IndexPath: Bool] = [:]
+    var expandedItems: [Int: Bool] = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,10 +78,10 @@ class BasketViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if expandedItems[indexPath]==nil {
-            expandedItems[indexPath] = true
+        if expandedItems[indexPath.row]==nil {
+            expandedItems[indexPath.row] = true
         } else {
-            expandedItems[indexPath]?.toggle()
+            expandedItems[indexPath.row]?.toggle()
         }
         collectionView.reloadItems(at: [indexPath])
     }
@@ -100,7 +100,7 @@ class BasketViewController: UIViewController, UICollectionViewDelegate, UICollec
             return CGSize(width: collectionView.frame.width * constants.basketItemWidthMultiplier, height: constants.basketHeight)
         }
         
-        if expandedItems[indexPath] ?? false {
+        if expandedItems[indexPath.row] ?? false {
             let temp = OrderItemsCollectionViewCell()
             let detailsHeight = estimateTextFrame(text: temp.getDetails(item: currentUser.getItemAt(index: indexPath.row)), width: collectionView.frame.width - CGFloat(20), font: UIFont.systemFont(ofSize: 15)).height
             
@@ -122,6 +122,7 @@ class BasketViewController: UIViewController, UICollectionViewDelegate, UICollec
             
             //delete item
             currentUser.removeItemAt(index: index)
+            self.deleteExpandedElement(at: index)
             self.setPrice()
             self.collectionView.reloadData()
             
@@ -131,6 +132,21 @@ class BasketViewController: UIViewController, UICollectionViewDelegate, UICollec
         }))
         self.present(alert, animated: true, completion: nil)
         
+    }
+    
+    func deleteExpandedElement(at index: Int) {
+        if index == 0 {
+            expandedItems.removeValue(forKey: index)
+            return
+        }
+        var maxKey = 0
+        for (key, _) in expandedItems {
+            if key > index {
+                expandedItems[key-1] = expandedItems[key]
+            }
+            maxKey = key
+        }
+        expandedItems.removeValue(forKey: maxKey)
     }
     
     

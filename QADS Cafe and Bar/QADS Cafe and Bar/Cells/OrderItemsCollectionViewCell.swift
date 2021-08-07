@@ -21,6 +21,7 @@ class OrderItemsCollectionViewCell: UICollectionViewCell {
     
     var cellDelegate: orderItemsDelegate?
     var index: IndexPath?
+    var isExpanded = false
     
     override func awakeFromNib() {
         super.awakeFromNib()
