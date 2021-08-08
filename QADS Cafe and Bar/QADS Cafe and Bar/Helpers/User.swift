@@ -197,5 +197,23 @@ class User: NSObject {
         }
     }
     
+    func getTandCLink(completion: @escaping (_ urlLink: String) -> Void) {
+        let db = Firestore.firestore()
+        db.collection("settings").document("link").getDocument { (document, err) in
+            if err != nil {
+                print("Error getting documents: \(String(describing: err))")
+            } else {
+                if let document = document, document.exists {
+                    //Fill in allergy data
+                    completion(document["link"] as! String)
+                } else {
+                    completion("")
+                    print("Document does not exist")
+                }
+            }
+        }
+        
+    }
+    
 
 }

@@ -16,6 +16,9 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var signUpButtion: UIButton!
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var TandCSwitch: UISwitch!
+    @IBOutlet weak var TandCTextView: UITextView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +26,24 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         // Set Text field delegates
         firstNameTextField.delegate = self
         lastNameTextField.delegate = self
+        
+        currentUser.getTandCLink { linkString in
+            
+            let attributedString = NSMutableAttributedString(string: "I have read and agree to the Terms and Conditions.")
+            attributedString.addAttribute(.link, value: linkString, range: NSRange(location: 29, length: 21))
+            
+            self.TandCTextView.attributedText = attributedString
+            self.TandCTextView.textColor = .white
+        }
+        
+        
+        
     }
+    
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        UIApplication.shared.open(URL)
+        return false
+        }
     
 
     func validateFields() -> String? {
@@ -32,9 +52,12 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         
         if check1 == "" || check2 == "" {
             return "Please fill in all details"
+        } else if !TandCSwitch.isOn {
+            return "Please Agree to Terms and Conditions"
         } else {
             return nil
         }
+        
     }
     
     
@@ -91,5 +114,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    @IBAction func TandCButton(_ sender: Any) {
+    }
     
 }

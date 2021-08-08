@@ -308,10 +308,10 @@ class orderItem: NSObject {
                         self.allergies.append(allergy)
                     }
                 } else {
+                    completion()
                     print("Document does not exist")
                 }
             }
-            completion()
         }
     }
     
