@@ -11,14 +11,14 @@ private let emptyBasketIdentifier = "emptyBasketCVC"
 private let reuseIdentifier = "OrderItemCVC"
 private let footerID = "DetailsFooter"
 
-class BasketViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, orderItemsDelegate {
+class BasketViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, orderItemsDelegate, UITextFieldDelegate {
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var orderStackView: UIStackView!
     @IBOutlet weak var totalLabel: UILabel!
     
     var expandedItems: [Int: Bool] = [:]
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -87,9 +87,10 @@ class BasketViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: footerID, for: indexPath) as! DetailsFooterCollectionReusableView
         
-        let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: footerID, for: indexPath)
-        return headerView
+        footerView.orderNotesTextField.delegate = self
+        return footerView
     }
 
     
@@ -152,16 +153,24 @@ class BasketViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     //MARK: -Text Field
     
-//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//        textField.resignFirstResponder()
-//        return true
-//    }
-//
-//    func textFieldDidEndEditing(_ textField: UITextField) {
-//        currentUser.cafeOrder.note = textField.text
-//        currentUser.barOrder.note = textField.text
-//    }
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        
+        let footerCell = collectionView.supplementaryView(forElementKind: "UICollectionElementKindSectionFooter", at: IndexPath(row: 0, section: 0))
+
+        let newPosition = footerCell!.frame.origin.y + textField.frame.origin.y - collectionView.frame.height / 2
+
+        collectionView.setContentOffset(CGPoint(x: collectionView.contentOffset.x, y: newPosition), animated: true)
+    }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        currentUser.cafeOrder.note = textField.text
+        currentUser.barOrder.note = textField.text
+    }
     
     //MARK: -Button actions
     
