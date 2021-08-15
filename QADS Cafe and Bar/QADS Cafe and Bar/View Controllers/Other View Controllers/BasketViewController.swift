@@ -74,7 +74,6 @@ class BasketViewController: UIViewController, UICollectionViewDelegate, UICollec
         cell.index = indexPath
         
         return cell
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -150,7 +149,6 @@ class BasketViewController: UIViewController, UICollectionViewDelegate, UICollec
         expandedItems.removeValue(forKey: maxKey)
     }
     
-    
     //MARK: -Text Field
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -196,7 +194,6 @@ class BasketViewController: UIViewController, UICollectionViewDelegate, UICollec
                     self.collectionView.reloadData()
                     self.layout()
                     self.setPrice()
-//                    self.orderNotesTextField.text = ""
                 }
             }
             
@@ -206,8 +203,4 @@ class BasketViewController: UIViewController, UICollectionViewDelegate, UICollec
         }))
         self.present(alert, animated: true, completion: nil)
     }
-    
-    
-    
-    
 }

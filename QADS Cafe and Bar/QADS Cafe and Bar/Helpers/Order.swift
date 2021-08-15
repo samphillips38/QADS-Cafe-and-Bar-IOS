@@ -111,6 +111,7 @@ class order: NSObject {
         
         //Get properly formatted item list
         let configuredItems = self.configureItems()
+        let uid = (Auth.auth().currentUser?.uid)!
         
         let dataDic = [
             "archived": self.archived,
@@ -123,7 +124,8 @@ class order: NSObject {
             "price": self.price,
             "user": currentUser.crsid as Any,
             "note": self.note as Any,
-            "name": self.name as Any
+            "name": self.name as Any,
+            "uid": uid
         ]
         
         return dataDic
@@ -180,7 +182,6 @@ class order: NSObject {
         self.userCRSID = new.userCRSID
         self.note = new.note
         self.name = new.name
-        
     }
     
 }

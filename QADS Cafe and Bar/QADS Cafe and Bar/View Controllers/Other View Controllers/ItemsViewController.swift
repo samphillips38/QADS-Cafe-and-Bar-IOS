@@ -34,9 +34,7 @@ class ItemsViewController: UIViewController, UICollectionViewDelegate, UICollect
         ItemList.loadItemsFor(location: location, category: category) {
             self.collectionView.reloadData()
         }
-        
     }
-    
     
     // MARK:- Collection View
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -63,13 +61,11 @@ class ItemsViewController: UIViewController, UICollectionViewDelegate, UICollect
         return cell
     }
     
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
         //Make the values constants
         return CGSize(width: collectionView.frame.width * constants.itemWidthMultiplier, height: collectionView.frame.width * constants.itemHeightMultiplier)
     }
-    
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
@@ -80,5 +76,4 @@ class ItemsViewController: UIViewController, UICollectionViewDelegate, UICollect
         present(ItemDetailVC, animated: true, completion: nil)
     }
     
-
 }
