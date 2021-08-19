@@ -8,6 +8,6 @@
 import UIKit
 
 class TableNumberCollectionViewCell: UICollectionViewCell {
-    @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var TableNumberTextField: UITextField!
     
 }

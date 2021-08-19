@@ -22,6 +22,7 @@ class order: NSObject {
     var price: Double = 0.0
     var userCRSID: String?
     var note: String?
+    var table_number: String?
     var name: String?
     
     lazy var functions = Functions.functions()
@@ -125,6 +126,7 @@ class order: NSObject {
             "user": currentUser.crsid as Any,
             "note": self.note as Any,
             "name": self.name as Any,
+            "table": self.table_number as Any,
             "uid": uid
         ]
         

@@ -10,6 +10,7 @@ import UIKit
 private let emptyBasketIdentifier = "emptyBasketCVC"
 private let reuseIdentifier = "OrderItemCVC"
 private let tableNumberIdentifier = "TableNumberCVC"
+private let orderNotesIdentifier = "OrderNotesCVC"
 private let detailsReuseIdentifier = "DetailsCVC"
 private let footerID = "DetailsFooter"
 
@@ -57,7 +58,7 @@ class BasketViewController: UIViewController, UICollectionViewDelegate, UICollec
         if section == 0 {
             return max(1, currentUser.cafeOrder.items.count + currentUser.barOrder.items.count)
         } else {
-            return 2
+            return 3
         }
     }
     
@@ -90,7 +91,13 @@ class BasketViewController: UIViewController, UICollectionViewDelegate, UICollec
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: tableNumberIdentifier, for: indexPath) as? TableNumberCollectionViewCell else {
                 fatalError("The dequeued cell is not an instance of TableNumberCollectionViewCell")
             }
-            cell.textField.delegate = self
+            cell.TableNumberTextField.delegate = self
+            return cell
+        } else if indexPath.row == 2 {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: orderNotesIdentifier, for: indexPath) as? OrderNotesCollectionViewCell else {
+                fatalError("The dequeued cell is not an instance of OrderNotesCollectionViewCell")
+            }
+            cell.orderNotesTextField.delegate = self
             return cell
         } else {
             return UICollectionViewCell()
@@ -114,7 +121,6 @@ class BasketViewController: UIViewController, UICollectionViewDelegate, UICollec
         footerView.orderNotesTextField.delegate = self
         return footerView
     }
-
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
@@ -138,6 +144,9 @@ class BasketViewController: UIViewController, UICollectionViewDelegate, UICollec
             return CGSize(width: collectionView.frame.width, height: constants.detailsHeight)
             
         } else if indexPath.row == 1 {
+            return CGSize(width: collectionView.frame.width, height: constants.tableNumberHeight)
+            
+        } else if indexPath.row == 2 {
             return CGSize(width: collectionView.frame.width, height: constants.tableNumberHeight)
             
         } else { // Fill this in later - for details, notes and table no.
@@ -188,11 +197,19 @@ class BasketViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         
-        let footerCell = collectionView.supplementaryView(forElementKind: "UICollectionElementKindSectionFooter", at: IndexPath(row: 0, section: 0))
+        let TableNumberCell = collectionView.cellForItem(at: IndexPath(row: 1, section: 1)) as! TableNumberCollectionViewCell
+        
+        if textField == TableNumberCell.TableNumberTextField { // Sent from table notes
+            let newPosition = TableNumberCell.frame.origin.y + textField.frame.origin.y - collectionView.frame.height / 2
 
-        let newPosition = footerCell!.frame.origin.y + textField.frame.origin.y - collectionView.frame.height / 2
+            collectionView.setContentOffset(CGPoint(x: collectionView.contentOffset.x, y: newPosition), animated: true)
+        } else {
+            let orderNotesCell = collectionView.cellForItem(at: IndexPath(row: 2, section: 1)) as! OrderNotesCollectionViewCell
+            
+            let newPosition = orderNotesCell.frame.origin.y + textField.frame.origin.y - collectionView.frame.height / 2
 
-        collectionView.setContentOffset(CGPoint(x: collectionView.contentOffset.x, y: newPosition), animated: true)
+            collectionView.setContentOffset(CGPoint(x: collectionView.contentOffset.x, y: newPosition), animated: true)
+        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -201,8 +218,15 @@ class BasketViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
 
     func textFieldDidEndEditing(_ textField: UITextField) {
-        currentUser.cafeOrder.note = textField.text
-        currentUser.barOrder.note = textField.text
+        let TableNumberCell = collectionView.cellForItem(at: IndexPath(row: 1, section: 1)) as! TableNumberCollectionViewCell
+        
+        if textField == TableNumberCell.TableNumberTextField {
+            currentUser.cafeOrder.table_number = textField.text
+            currentUser.barOrder.table_number = textField.text
+        } else {
+            currentUser.cafeOrder.note = textField.text
+            currentUser.barOrder.note = textField.text
+        }
     }
     
     //MARK: -Button actions
