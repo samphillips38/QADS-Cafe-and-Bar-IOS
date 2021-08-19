@@ -80,6 +80,8 @@ class BasketViewController: UIViewController, UICollectionViewDelegate, UICollec
             cell.cellDelegate = self
             cell.index = indexPath
             
+            cell.descriptionLabel.isHidden = !(expandedItems[indexPath.row] ?? false)
+            
             return cell
         } else if indexPath.row == 0 { // Set up details cell
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: detailsReuseIdentifier, for: indexPath) as? DetailsCollectionViewCell else {
@@ -122,12 +124,9 @@ class BasketViewController: UIViewController, UICollectionViewDelegate, UICollec
                 return CGSize(width: collectionView.frame.width, height: constants.basketHeight)
             }
             
-            if expandedItems[indexPath.row] ?? false {
-                let temp = OrderItemsCollectionViewCell()
-                let detailsHeight = estimateTextFrame(text: temp.getDetails(item: currentUser.getItemAt(index: indexPath.row)), width: collectionView.frame.width - CGFloat(20), font: UIFont.systemFont(ofSize: 15)).height
+            if expandedItems[indexPath.row] ?? false { // Cell is expanded
                 
-                //Cell is expanded
-                return CGSize(width: collectionView.frame.width, height: constants.basketHeight + detailsHeight + CGFloat(30))
+                return getExpandedSize(for: indexPath)
             } else {
                 //Cell is collapsed
                 return CGSize(width: collectionView.frame.width, height: constants.basketHeight)
@@ -145,8 +144,31 @@ class BasketViewController: UIViewController, UICollectionViewDelegate, UICollec
             return CGSize(width: collectionView.frame.width, height: constants.tableNumberHeight)
         }
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        if section == 0 {
+            return CGFloat(0)
+        } else {
+            return CGFloat(40)
+        }
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        if section == 1 {
+            return UIEdgeInsets(top: 0, left: 0, bottom: 60, right: 0)
+        }
+        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    }
 
     //MARK: -Functions
+    
+    func getExpandedSize(for indexPath: IndexPath) -> CGSize {
+        
+        let temp = OrderItemsCollectionViewCell()
+        let detailsHeight = estimateTextFrame(text: temp.getDetails(item: currentUser.getItemAt(index: indexPath.row)), width: collectionView.frame.width - CGFloat(20), font: UIFont.systemFont(ofSize: 15)).height
+        
+        //Cell is expanded
+        return CGSize(width: collectionView.frame.width, height: detailsHeight + CGFloat(70))
+    }
     
     func deleteItemTapped(index: Int) {
         

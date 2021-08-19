@@ -15,7 +15,7 @@ struct constants {
     static let itemWidthMultiplier = CGFloat(0.95)
     static let itemHeightMultiplier = CGFloat(0.3)
     
-    static let basketHeight = CGFloat(50)
+    static let basketHeight = CGFloat(80)
     static let detailsHeight = CGFloat(190)
     static let tableNumberHeight = CGFloat(150)
     
