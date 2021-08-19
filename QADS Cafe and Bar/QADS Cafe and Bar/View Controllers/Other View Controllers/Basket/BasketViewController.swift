@@ -81,6 +81,7 @@ class BasketViewController: UIViewController, UICollectionViewDelegate, UICollec
             cell.index = indexPath
             
             cell.descriptionLabel.isHidden = !(expandedItems[indexPath.row] ?? false)
+            cell.infoButton.isHidden = expandedItems[indexPath.row] ?? false
             
             return cell
         } else if indexPath.row == 0 { // Set up details cell

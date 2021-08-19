@@ -18,6 +18,7 @@ class OrderItemsCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var itemPriceLabel: UILabel!
     @IBOutlet weak var quantityLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var infoButton: UIButton!
     
     var cellDelegate: orderItemsDelegate?
     var index: IndexPath?
