@@ -9,6 +9,8 @@ import UIKit
 
 private let emptyBasketIdentifier = "emptyBasketCVC"
 private let reuseIdentifier = "OrderItemCVC"
+private let tableNumberIdentifier = "TableNumberCVC"
+private let detailsReuseIdentifier = "DetailsCVC"
 private let footerID = "DetailsFooter"
 
 class BasketViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, orderItemsDelegate, UITextFieldDelegate {
@@ -48,41 +50,62 @@ class BasketViewController: UIViewController, UICollectionViewDelegate, UICollec
     //MARK: -Collection view
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+        return 2
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return max(1, currentUser.cafeOrder.items.count + currentUser.barOrder.items.count)
+        if section == 0 {
+            return max(1, currentUser.cafeOrder.items.count + currentUser.barOrder.items.count)
+        } else {
+            return 2
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        //Handle Empty Basket
-        if currentUser.cafeOrder.items.count + currentUser.barOrder.items.count == 0 {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: emptyBasketIdentifier, for: indexPath)
+        if indexPath.section == 0 { // This is in the items section
+            //Handle Empty Basket
+            if currentUser.cafeOrder.items.count + currentUser.barOrder.items.count == 0 {
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: emptyBasketIdentifier, for: indexPath)
+                return cell
+            }
+            
+            //Basket with items
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? OrderItemsCollectionViewCell else {
+                fatalError("The dequeued cell is not an instance of OrderItemsCollectionViewCell")
+            }
+            cell.fillInData(item: currentUser.getItemAt(index: indexPath.row))
+            
+            //set delegate and index
+            cell.cellDelegate = self
+            cell.index = indexPath
+            
             return cell
+        } else if indexPath.row == 0 { // Set up details cell
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: detailsReuseIdentifier, for: indexPath) as? DetailsCollectionViewCell else {
+                fatalError("The dequeued cell is not an instance of DetailsCollectionViewCell")
+            }
+            return cell
+        } else if indexPath.row == 1 {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: tableNumberIdentifier, for: indexPath) as? TableNumberCollectionViewCell else {
+                fatalError("The dequeued cell is not an instance of TableNumberCollectionViewCell")
+            }
+            cell.textField.delegate = self
+            return cell
+        } else {
+            return UICollectionViewCell()
         }
-        
-        //Basket with items
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? OrderItemsCollectionViewCell else {
-            fatalError("The dequeued cell is not an instance of OrderItemsCollectionViewCell")
-        }
-        cell.fillInData(item: currentUser.getItemAt(index: indexPath.row))
-        
-        //set delegate and index
-        cell.cellDelegate = self
-        cell.index = indexPath
-        
-        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if expandedItems[indexPath.row]==nil {
-            expandedItems[indexPath.row] = true
-        } else {
-            expandedItems[indexPath.row]?.toggle()
+        if indexPath.section == 0 { // Items section
+            if expandedItems[indexPath.row]==nil {
+                expandedItems[indexPath.row] = true
+            } else {
+                expandedItems[indexPath.row]?.toggle()
+            }
+            collectionView.reloadItems(at: [indexPath])
         }
-        collectionView.reloadItems(at: [indexPath])
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -95,23 +118,35 @@ class BasketViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        //Handle Empty Basket
-        if currentUser.cafeOrder.items.count + currentUser.barOrder.items.count == 0 {
-            return CGSize(width: collectionView.frame.width * constants.basketItemWidthMultiplier, height: constants.basketHeight)
-        }
-        
-        if expandedItems[indexPath.row] ?? false {
-            let temp = OrderItemsCollectionViewCell()
-            let detailsHeight = estimateTextFrame(text: temp.getDetails(item: currentUser.getItemAt(index: indexPath.row)), width: collectionView.frame.width - CGFloat(20), font: UIFont.systemFont(ofSize: 15)).height
+        if indexPath.section == 0 { // Items section
+            //Handle Empty Basket
+            if currentUser.cafeOrder.items.count + currentUser.barOrder.items.count == 0 {
+                return CGSize(width: collectionView.frame.width, height: constants.basketHeight)
+            }
             
-            //Cell is expanded
-            return CGSize(width: collectionView.frame.width * constants.basketItemWidthMultiplier, height: constants.basketHeight + detailsHeight + CGFloat(30))
-        } else {
-            //Cell is collapsed
-            return CGSize(width: collectionView.frame.width * constants.basketItemWidthMultiplier, height: constants.basketHeight)
+            if expandedItems[indexPath.row] ?? false {
+                let temp = OrderItemsCollectionViewCell()
+                let detailsHeight = estimateTextFrame(text: temp.getDetails(item: currentUser.getItemAt(index: indexPath.row)), width: collectionView.frame.width - CGFloat(20), font: UIFont.systemFont(ofSize: 15)).height
+                
+                //Cell is expanded
+                return CGSize(width: collectionView.frame.width, height: constants.basketHeight + detailsHeight + CGFloat(30))
+            } else {
+                //Cell is collapsed
+                return CGSize(width: collectionView.frame.width, height: constants.basketHeight)
+            }
+        } else if indexPath.row == 0 {
+            return CGSize(width: collectionView.frame.width, height: constants.detailsHeight)
+            
+        } else if indexPath.row == 1 {
+            return CGSize(width: collectionView.frame.width, height: constants.tableNumberHeight)
+            
+        } else { // Fill this in later - for details, notes and table no.
+            return CGSize(width: collectionView.frame.width, height: constants.tableNumberHeight)
         }
     }
 
+    //MARK: -Functions
+    
     func deleteItemTapped(index: Int) {
         
         //Show warning message about deleting the item
