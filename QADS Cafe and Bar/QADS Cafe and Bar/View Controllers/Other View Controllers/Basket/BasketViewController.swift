@@ -12,7 +12,6 @@ private let reuseIdentifier = "OrderItemCVC"
 private let tableNumberIdentifier = "TableNumberCVC"
 private let orderNotesIdentifier = "OrderNotesCVC"
 private let detailsReuseIdentifier = "DetailsCVC"
-private let footerID = "DetailsFooter"
 
 class BasketViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, orderItemsDelegate, UITextFieldDelegate {
     
@@ -113,13 +112,6 @@ class BasketViewController: UIViewController, UICollectionViewDelegate, UICollec
             }
             collectionView.reloadItems(at: [indexPath])
         }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: footerID, for: indexPath) as! DetailsFooterCollectionReusableView
-        
-        footerView.orderNotesTextField.delegate = self
-        return footerView
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

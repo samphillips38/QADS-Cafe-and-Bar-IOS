@@ -21,7 +21,6 @@
 		F444DFB825C84A9900E8D7CE /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F444DFB725C84A9900E8D7CE /* SignUpViewController.swift */; };
 		F4A3393C264C0EE8003F15BC /* BasketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A3393B264C0EE8003F15BC /* BasketViewController.swift */; };
 		F4A3393E264C0F2D003F15BC /* OrderItemsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A3393D264C0F2D003F15BC /* OrderItemsCollectionViewCell.swift */; };
-		F4A33940264C1E4F003F15BC /* DetailsFooterCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A3393F264C1E4F003F15BC /* DetailsFooterCollectionReusableView.swift */; };
 		F4A33942264FC609003F15BC /* ButteryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A33941264FC609003F15BC /* ButteryViewController.swift */; };
 		F4A3394426526B62003F15BC /* AllergyPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A3394326526B61003F15BC /* AllergyPickerViewController.swift */; };
 		F4CF6702257BB7C1004FF87F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CF6701257BB7C1004FF87F /* AppDelegate.swift */; };
@@ -95,7 +94,6 @@
 		F444DFB725C84A9900E8D7CE /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		F4A3393B264C0EE8003F15BC /* BasketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketViewController.swift; sourceTree = "<group>"; };
 		F4A3393D264C0F2D003F15BC /* OrderItemsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItemsCollectionViewCell.swift; sourceTree = "<group>"; };
-		F4A3393F264C1E4F003F15BC /* DetailsFooterCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsFooterCollectionReusableView.swift; sourceTree = "<group>"; };
 		F4A33941264FC609003F15BC /* ButteryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButteryViewController.swift; sourceTree = "<group>"; };
 		F4A3394326526B61003F15BC /* AllergyPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllergyPickerViewController.swift; sourceTree = "<group>"; };
 		F4CF66FE257BB7C1004FF87F /* QADS Cafe and Bar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "QADS Cafe and Bar.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -333,7 +331,6 @@
 				F4E4BD5426CC30A800FC3B5E /* DetailsCollectionViewCell.swift */,
 				F4E4BD5626CC35C100FC3B5E /* TableNumberCollectionViewCell.swift */,
 				F4E4BD5826CE823B00FC3B5E /* OrderNotesCollectionViewCell.swift */,
-				F4A3393F264C1E4F003F15BC /* DetailsFooterCollectionReusableView.swift */,
 			);
 			path = Basket;
 			sourceTree = "<group>";
@@ -613,7 +610,6 @@
 				F4E664882674A5110044A6C9 /* ItemDetailsViewController.swift in Sources */,
 				F4A3393E264C0F2D003F15BC /* OrderItemsCollectionViewCell.swift in Sources */,
 				F4D1A950257C40D40027035C /* ItemCollectionViewCell.swift in Sources */,
-				F4A33940264C1E4F003F15BC /* DetailsFooterCollectionReusableView.swift in Sources */,
 				F4E4BD5726CC35C100FC3B5E /* TableNumberCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
