@@ -9,6 +9,7 @@ import UIKit
 
 struct constants {
     
+    // Layout constants
     static let categoryWidthMultiplier = CGFloat(0.93)
     static let categoryHeightMultiplier = CGFloat(0.65)
     
@@ -19,11 +20,12 @@ struct constants {
     static let detailsHeight = CGFloat(190)
     static let tableNumberHeight = CGFloat(150)
     
-    static let queensGreen = UIColor(red: 0.30, green: 0.69, blue: 0.31, alpha: 1.00)
+    static let itemTitlePadding = CGFloat(349)
+    static let optionTVOffset = CGFloat(96)
+    static let allergyPadding = CGFloat(140)
+    static let itemCheckoutHeight = CGFloat(150)
     
-    //not sure if these are right
-//    static let QDarkGreen = UIColor(red: 0.003, green: 0.290, blue: 0.157, alpha: 1.00)
-//    static let QLightGreen = UIColor(red: 0.224, green: 144, blue: 101, alpha: 1)
+    static let queensGreen = UIColor(red: 0.30, green: 0.69, blue: 0.31, alpha: 1.00)
     
     
     // For string values
@@ -31,13 +33,11 @@ struct constants {
     static let optionStr = "Option"
     static let typeStr = "Type"
     
-//    static let itemTitleHeight = CGFloat(500)
-    static let itemTitlePadding = CGFloat(349)
-    static let optionTVOffset = CGFloat(96)
-//    static let allergyHeight = CGFloat(200)
-    static let allergyPadding = CGFloat(140)
-    static let itemCheckoutHeight = CGFloat(150)
+    static let cafe = "cafe"
+    static let bar = "bar"
+    static let buttery = "buttery"
     
+    // Cell types
     static let optionCell = 0
     static let allergyCell = 1
     static let typeCell = 2

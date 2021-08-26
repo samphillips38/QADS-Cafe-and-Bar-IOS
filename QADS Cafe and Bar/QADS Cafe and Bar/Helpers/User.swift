@@ -15,8 +15,9 @@ class User: NSObject {
     var firstName: String?
     var lastName: String?
     var email: String?
-    var cafeOrder = order()
-    var barOrder = order()
+    var cafeOrder = Order()
+    var barOrder = Order()
+    var butteryOrder = Order()
     var previousOrders: [String] = []
     
     func populate(data: [String: Any?]) {
@@ -62,7 +63,7 @@ class User: NSObject {
     }
     
     
-    func addToPreviousOrders(order: order, completion: @escaping () -> Void) {
+    func addToPreviousOrders(order: Order, completion: @escaping () -> Void) {
         
         //Return if order does not yet exist
         if order.orderID == nil {
@@ -89,38 +90,62 @@ class User: NSObject {
         
     }
     
-    
-    func checkout(completion: @escaping () -> Void) {
-        
-        //For each order, save and send out if they have items
-        for order in [self.cafeOrder, self.barOrder] {
-            
-            //Skip if there are no orders
-            if order.items.isEmpty {
-                continue
+    func checkoutAll(completion: @escaping () -> Void) {
+        // Checkout all orders. Execute completion when all orders have been executed
+        let group = DispatchGroup()
+        for location in [constants.cafe, constants.bar, constants.buttery] {
+            group.enter()
+            checkoutSingle(location: location) {
+                group.leave()
             }
+        }
+
+        // notify the main thread when all task are completed
+        group.notify(queue: .main) {
+            completion()
+        }
+    }
+    
+    
+    func checkoutSingle(location: String, completion: @escaping () -> Void) {
+        
+        let order = Order()
+        if location == constants.cafe {
+            _ = self.cafeOrder
+        } else if location == constants.bar {
+            _ = self.barOrder
+        } else if location == constants.buttery {
+            _ = self.butteryOrder
+        }
+        
+        // Save and send out if they have items
             
-            //get email and name
-            order.email = Auth.auth().currentUser?.email
-            order.name = (self.firstName ?? "") + " " + (self.lastName ?? "")
-            
-            if order.orderID == nil {
-                //This is a new order
-                order.saveOrder {
-                    self.addToPreviousOrders(order: order) {
-                        order.resetOrder()
-                        completion()
-                    }
-                }
-            } else {
-                //This order already exists
-                order.updateOrder {
+        //Skip if there are no orders
+        if order.items.isEmpty {
+            completion()
+            return
+        }
+        
+        // Get email and name
+        order.email = Auth.auth().currentUser?.email
+        order.name = (self.firstName ?? "") + " " + (self.lastName ?? "")
+        
+        if order.orderID == nil {
+            //This is a new order
+            order.saveOrder {
+                self.addToPreviousOrders(order: order) {
                     order.resetOrder()
                     completion()
                 }
             }
+        } else {
+            //This order already exists
+            order.updateOrder {
+                order.resetOrder()
+                completion()
+            }
         }
-        
+    
     }
     
     

@@ -10,7 +10,7 @@ import Firebase
 import FirebaseFirestore
 import FirebaseFunctions
 
-class order: NSObject {
+class Order: NSObject {
     var orderID: String?
     var archived = false
     var cancelled = false
@@ -170,7 +170,7 @@ class order: NSObject {
     func resetOrder() {
         
         //Reset all to defaults
-        let new = order()
+        let new = Order()
         
         self.orderID = new.orderID
         self.archived = new.archived

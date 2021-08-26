@@ -33,7 +33,6 @@ class BasketViewController: UIViewController, UICollectionViewDelegate, UICollec
         orderStackView.isUserInteractionEnabled = true
         
         layout()
-        setPrice()
     }
     
     func setPrice() {
@@ -45,6 +44,7 @@ class BasketViewController: UIViewController, UICollectionViewDelegate, UICollec
 
         //Stack View Layout for button
         orderStackView.layer.cornerRadius = orderStackView.frame.height/2
+        setPrice()
     }
     
     //MARK: -Collection view
@@ -94,12 +94,14 @@ class BasketViewController: UIViewController, UICollectionViewDelegate, UICollec
                 fatalError("The dequeued cell is not an instance of TableNumberCollectionViewCell")
             }
             cell.TableNumberTextField.delegate = self
+            cell.TableNumberTextField.text = currentUser.cafeOrder.table_number
             return cell
         } else if indexPath.row == 2 {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: orderNotesIdentifier, for: indexPath) as? OrderNotesCollectionViewCell else {
                 fatalError("The dequeued cell is not an instance of OrderNotesCollectionViewCell")
             }
             cell.orderNotesTextField.delegate = self
+            cell.orderNotesTextField.text = currentUser.cafeOrder.table_number
             return cell
         } else {
             return UICollectionViewCell()
@@ -255,7 +257,7 @@ class BasketViewController: UIViewController, UICollectionViewDelegate, UICollec
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
             
             //Checkout order once confirmed
-            currentUser.checkout {
+            currentUser.checkoutAll {
                 
                 //Show confirmation screen (fullscreen)
                 let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
@@ -267,7 +269,6 @@ class BasketViewController: UIViewController, UICollectionViewDelegate, UICollec
                     //Refresh the table data
                     self.collectionView.reloadData()
                     self.layout()
-                    self.setPrice()
                 }
             }
             
