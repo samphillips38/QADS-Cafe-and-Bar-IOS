@@ -109,13 +109,15 @@ class User: NSObject {
     
     func checkoutSingle(location: String, completion: @escaping () -> Void) {
         
-        let order = Order()
+        let order: Order
         if location == constants.cafe {
-            _ = self.cafeOrder
+            order = self.cafeOrder
         } else if location == constants.bar {
-            _ = self.barOrder
+            order = self.barOrder
         } else if location == constants.buttery {
-            _ = self.butteryOrder
+            order = self.butteryOrder
+        } else {
+            order = Order()
         }
         
         // Save and send out if they have items

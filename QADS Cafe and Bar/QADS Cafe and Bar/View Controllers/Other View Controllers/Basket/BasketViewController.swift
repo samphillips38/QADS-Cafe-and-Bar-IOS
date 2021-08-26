@@ -101,7 +101,7 @@ class BasketViewController: UIViewController, UICollectionViewDelegate, UICollec
                 fatalError("The dequeued cell is not an instance of OrderNotesCollectionViewCell")
             }
             cell.orderNotesTextField.delegate = self
-            cell.orderNotesTextField.text = currentUser.cafeOrder.table_number
+            cell.orderNotesTextField.text = currentUser.cafeOrder.note
             return cell
         } else {
             return UICollectionViewCell()

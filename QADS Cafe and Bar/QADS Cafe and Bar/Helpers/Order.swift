@@ -183,6 +183,7 @@ class Order: NSObject {
         self.price = new.price
         self.userCRSID = new.userCRSID
         self.note = new.note
+        self.table_number = new.table_number
         self.name = new.name
     }
     
