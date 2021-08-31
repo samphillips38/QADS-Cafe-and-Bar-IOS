@@ -43,7 +43,7 @@ class CafeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         self.collectionView.register(nib, forCellWithReuseIdentifier: reuseIdentifier)
         
         //Get all the active categories
-        categoryList.getCategories(location: "Cafe", Completion: {
+        categoryList.getCategories(location: constants.cafe, Completion: {
             self.collectionView.reloadData()
         })
         
@@ -90,7 +90,7 @@ class CafeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         let db = Firestore.firestore()
         
         //Get all active Events
-        db.collection("locations").whereField("name", isEqualTo: "Cafe").getDocuments() { (querySnapshot, err) in
+        db.collection("locations").whereField("name", isEqualTo: constants.cafe).getDocuments() { (querySnapshot, err) in
                 if let err = err {
                     print("Error getting categories: \(err)")
                 } else {
@@ -184,7 +184,7 @@ class CafeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         let ItemVC = storyBoard.instantiateViewController(withIdentifier: "ItemVC") as! ItemsViewController
         
-        ItemVC.location = "Cafe"
+        ItemVC.location = constants.cafe
         ItemVC.category = categoryList.categories[indexPath.row].name ?? ""
         
         self.navigationController?.pushViewController(ItemVC, animated: true)

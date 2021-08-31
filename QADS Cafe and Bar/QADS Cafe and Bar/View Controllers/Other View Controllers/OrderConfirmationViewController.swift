@@ -13,7 +13,6 @@ class OrderConfirmationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         dismissButton.layer.cornerRadius = dismissButton.frame.height/2
     }
     

@@ -36,7 +36,7 @@ class BasketViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     
     func setPrice() {
-        let price = currentUser.barOrder.price + currentUser.cafeOrder.price
+        let price = currentUser.barOrder.price + currentUser.cafeOrder.price + currentUser.butteryOrder.price
         totalLabel.text = "£" + String(format: "%.2f", price)
     }
 
@@ -55,7 +55,7 @@ class BasketViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if section == 0 {
-            return max(1, currentUser.cafeOrder.items.count + currentUser.barOrder.items.count)
+            return max(1, currentUser.cafeOrder.items.count + currentUser.barOrder.items.count + currentUser.butteryOrder.items.count)
         } else {
             return 3
         }
@@ -65,7 +65,7 @@ class BasketViewController: UIViewController, UICollectionViewDelegate, UICollec
         
         if indexPath.section == 0 { // This is in the items section
             //Handle Empty Basket
-            if currentUser.cafeOrder.items.count + currentUser.barOrder.items.count == 0 {
+            if currentUser.cafeOrder.items.count + currentUser.barOrder.items.count + currentUser.butteryOrder.items.count == 0 {
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: emptyBasketIdentifier, for: indexPath)
                 return cell
             }
@@ -123,7 +123,7 @@ class BasketViewController: UIViewController, UICollectionViewDelegate, UICollec
         
         if indexPath.section == 0 { // Items section
             //Handle Empty Basket
-            if currentUser.cafeOrder.items.count + currentUser.barOrder.items.count == 0 {
+            if currentUser.cafeOrder.items.count + currentUser.barOrder.items.count + currentUser.butteryOrder.items.count == 0 {
                 return CGSize(width: collectionView.frame.width, height: constants.basketHeight)
             }
             
@@ -240,9 +240,11 @@ class BasketViewController: UIViewController, UICollectionViewDelegate, UICollec
         if textField == TableNumberCell.TableNumberTextField {
             currentUser.cafeOrder.table_number = textField.text
             currentUser.barOrder.table_number = textField.text
+            currentUser.butteryOrder.table_number = textField.text
         } else {
             currentUser.cafeOrder.note = textField.text
             currentUser.barOrder.note = textField.text
+            currentUser.butteryOrder.note = textField.text
         }
     }
     

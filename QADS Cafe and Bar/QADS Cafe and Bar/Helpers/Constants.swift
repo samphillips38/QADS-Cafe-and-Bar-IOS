@@ -33,9 +33,9 @@ struct constants {
     static let optionStr = "Option"
     static let typeStr = "Type"
     
-    static let cafe = "cafe"
-    static let bar = "bar"
-    static let buttery = "buttery"
+    static let cafe = "Cafe"
+    static let bar = "Bar"
+    static let buttery = "Buttery"
     
     // Cell types
     static let optionCell = 0

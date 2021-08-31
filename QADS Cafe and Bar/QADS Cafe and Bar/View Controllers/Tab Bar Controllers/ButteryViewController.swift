@@ -184,7 +184,7 @@ class ButteryViewController: UIViewController, UICollectionViewDelegate, UIColle
         
         let ItemVC = storyBoard.instantiateViewController(withIdentifier: "ItemVC") as! ItemsViewController
         
-        ItemVC.location = "Buttery"
+        ItemVC.location = constants.buttery
         ItemVC.category = categoryList.categories[indexPath.row].name ?? ""
         
         self.navigationController?.pushViewController(ItemVC, animated: true)

@@ -44,7 +44,7 @@ class BarViewController: UIViewController, UICollectionViewDelegate, UICollectio
         self.collectionView.register(nib, forCellWithReuseIdentifier: reuseIdentifier)
         
         //Get all the active categories
-        categoryList.getCategories(location: "Bar", Completion: {
+        categoryList.getCategories(location: constants.bar, Completion: {
             self.collectionView.reloadData()
         })
         
@@ -91,7 +91,7 @@ class BarViewController: UIViewController, UICollectionViewDelegate, UICollectio
         let db = Firestore.firestore()
         
         //Get all active Events
-        db.collection("locations").whereField("name", isEqualTo: "Bar").getDocuments() { (querySnapshot, err) in
+        db.collection("locations").whereField("name", isEqualTo: constants.bar).getDocuments() { (querySnapshot, err) in
                 if let err = err {
                     print("Error getting categories: \(err)")
                 } else {
@@ -182,7 +182,7 @@ class BarViewController: UIViewController, UICollectionViewDelegate, UICollectio
         
         let ItemVC = storyBoard.instantiateViewController(withIdentifier: "ItemVC") as! ItemsViewController
         
-        ItemVC.location = "Bar"
+        ItemVC.location = constants.bar
         ItemVC.category = categoryList.categories[indexPath.row].name ?? ""
         
         self.navigationController?.pushViewController(ItemVC, animated: true)

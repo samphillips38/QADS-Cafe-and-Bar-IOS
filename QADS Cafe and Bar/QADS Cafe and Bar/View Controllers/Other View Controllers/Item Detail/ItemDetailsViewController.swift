@@ -121,10 +121,7 @@ class ItemDetailsViewController: UIViewController, UICollectionViewDelegate, UIC
             cell.setUp()
             return cell
         }
-        
         return cell
-        
-
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

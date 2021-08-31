@@ -162,12 +162,14 @@ class User: NSObject {
     }
     
     func getItemAt(index: Int) -> orderItem {
-        if index < self.cafeOrder.items.count {
+        if index < cafeOrder.items.count {
             //This is in the cafe
-            return self.cafeOrder.items[index]
-        } else {
+            return cafeOrder.items[index]
+        } else if index < cafeOrder.items.count + barOrder.items.count {
             //This is in the bar
-            return self.barOrder.items[index - self.cafeOrder.items.count]
+            return barOrder.items[index - cafeOrder.items.count]
+        } else {
+            return butteryOrder.items[index - (cafeOrder.items.count + barOrder.items.count)]
         }
     }
     
