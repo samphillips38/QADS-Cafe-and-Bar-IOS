@@ -23,6 +23,7 @@
 		F4A3393E264C0F2D003F15BC /* OrderItemsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A3393D264C0F2D003F15BC /* OrderItemsCollectionViewCell.swift */; };
 		F4A33942264FC609003F15BC /* ButteryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A33941264FC609003F15BC /* ButteryViewController.swift */; };
 		F4A3394426526B62003F15BC /* AllergyPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A3394326526B61003F15BC /* AllergyPickerViewController.swift */; };
+		F4CA771B26DE9169008F6499 /* CustomAllergyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CA771A26DE9169008F6499 /* CustomAllergyTableViewCell.swift */; };
 		F4CF6702257BB7C1004FF87F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CF6701257BB7C1004FF87F /* AppDelegate.swift */; };
 		F4CF6704257BB7C1004FF87F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CF6703257BB7C1004FF87F /* SceneDelegate.swift */; };
 		F4CF6709257BB7C1004FF87F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4CF6707257BB7C1004FF87F /* Main.storyboard */; };
@@ -96,6 +97,7 @@
 		F4A3393D264C0F2D003F15BC /* OrderItemsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItemsCollectionViewCell.swift; sourceTree = "<group>"; };
 		F4A33941264FC609003F15BC /* ButteryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButteryViewController.swift; sourceTree = "<group>"; };
 		F4A3394326526B61003F15BC /* AllergyPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllergyPickerViewController.swift; sourceTree = "<group>"; };
+		F4CA771A26DE9169008F6499 /* CustomAllergyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAllergyTableViewCell.swift; sourceTree = "<group>"; };
 		F4CF66FE257BB7C1004FF87F /* QADS Cafe and Bar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "QADS Cafe and Bar.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4CF6701257BB7C1004FF87F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F4CF6703257BB7C1004FF87F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -189,9 +191,10 @@
 				F4E664872674A5110044A6C9 /* ItemDetailsViewController.swift */,
 				F4188F4A2677C7A90071FC37 /* ItemTitleCollectionViewCell.swift */,
 				F4E664892674B30A0044A6C9 /* OptionsCollectionViewCell.swift */,
-				F4E6648B267614190044A6C9 /* OptionTableViewCell.swift */,
 				F4188F4E267B68780071FC37 /* AllergensCollectionViewCell.swift */,
 				F4A3394326526B61003F15BC /* AllergyPickerViewController.swift */,
+				F4E6648B267614190044A6C9 /* OptionTableViewCell.swift */,
+				F4CA771A26DE9169008F6499 /* CustomAllergyTableViewCell.swift */,
 				F40FBAE826B2B3BE00EA62B3 /* CheckoutCollectionViewCell.swift */,
 			);
 			path = "Item Detail";
@@ -580,6 +583,7 @@
 			files = (
 				F4E6648A2674B30A0044A6C9 /* OptionsCollectionViewCell.swift in Sources */,
 				F4D1A91E257BE1950027035C /* MainTabBarViewController.swift in Sources */,
+				F4CA771B26DE9169008F6499 /* CustomAllergyTableViewCell.swift in Sources */,
 				F4D1A92D257BEB8E0027035C /* CategoriesCollectionViewCell.swift in Sources */,
 				F414A8FC25CE9E380008B9AB /* CafeViewController.swift in Sources */,
 				F414A90425CEAB980008B9AB /* BarViewController.swift in Sources */,
