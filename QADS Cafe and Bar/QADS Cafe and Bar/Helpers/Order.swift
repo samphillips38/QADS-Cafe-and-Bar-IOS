@@ -133,7 +133,7 @@ class Order: NSObject {
         return dataDic
     }
     
-    func configureItems() -> [[String: Any]] { //Returns Configured Cafe then Bar Lists
+    func configureItems() -> [[String: Any]] { //Returns Configured Cafe, Bar and then buttery Lists
         
         //Configure the item Dictionary for Bar and Cafe
         var configuredItems: [[String: Any]] = []
@@ -147,17 +147,42 @@ class Order: NSObject {
                 
                 itemDic["id"] = item.itemID
                 itemDic["name"] = item.itemName
+                itemDic["price"] = item.price
                 self.location = item.location //Ensures that the order is set to the correct location
                 
-                //set options Dictionary
+                // Set options Dictionary
                 var optionsDic: [String: Any] = [:]
                 for option in item.options {
                     optionsDic[option.name] = [
                         "name":option.name,
-                        "quantity": option.quantity
+                        "quantity": option.quantity,
+                        "price": option.extraPrice
                     ]
                 }
                 itemDic["options"] = optionsDic
+                
+                // Set Allergies
+                var allergies: [String] = []
+                for allergy in item.allergies {
+                    if allergy.isChosen {
+                        allergies.append(allergy.name)
+                    }
+                }
+                itemDic["allergies"] = allergies
+                
+                // Set types
+                var types: [String: Any] = [:]
+                for type in item.types {
+                    var typeDic: [String: Any] = [:]
+                    for choice in type.choices {
+                        if choice.quantity > 0 {
+                            typeDic["name"] = choice.name
+                            typeDic["price"] = choice.extraPrice
+                        }
+                    }
+                    types[type.name] = typeDic
+                }
+                itemDic["types"] = types
                 
                 //Add item
                 configuredItems.append(itemDic)
