@@ -1108,14 +1108,34 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vCS-Ci-NVi">
+                                <rect key="frame" x="0.0" y="68" width="414" height="20"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Closed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dGP-XX-EVg">
+                                        <rect key="frame" x="186" y="2" width="42.5" height="16"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemRedColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="0af-hY-46s"/>
+                                    <constraint firstItem="dGP-XX-EVg" firstAttribute="centerX" secondItem="vCS-Ci-NVi" secondAttribute="centerX" id="6Yn-di-lMv"/>
+                                    <constraint firstItem="dGP-XX-EVg" firstAttribute="centerY" secondItem="vCS-Ci-NVi" secondAttribute="centerY" id="mik-5p-9iH"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="jR9-n2-91F"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="jR9-n2-91F" firstAttribute="trailing" secondItem="Tjf-vv-54B" secondAttribute="trailing" id="FAy-X0-ILS"/>
-                            <constraint firstItem="Tjf-vv-54B" firstAttribute="top" secondItem="jR9-n2-91F" secondAttribute="top" id="ZVI-lQ-Nd6"/>
+                            <constraint firstAttribute="trailing" secondItem="vCS-Ci-NVi" secondAttribute="trailing" id="Ri2-0F-0SD"/>
+                            <constraint firstItem="Tjf-vv-54B" firstAttribute="top" secondItem="vCS-Ci-NVi" secondAttribute="bottom" id="WpL-at-BaE"/>
                             <constraint firstItem="jR9-n2-91F" firstAttribute="bottom" secondItem="Tjf-vv-54B" secondAttribute="bottom" id="b1B-Pb-WnU"/>
+                            <constraint firstItem="vCS-Ci-NVi" firstAttribute="leading" secondItem="QIz-ld-iKz" secondAttribute="leading" id="fTl-Tl-ZZB"/>
                             <constraint firstItem="Tjf-vv-54B" firstAttribute="leading" secondItem="jR9-n2-91F" secondAttribute="leading" id="fXa-2e-nlw"/>
+                            <constraint firstItem="vCS-Ci-NVi" firstAttribute="top" secondItem="jR9-n2-91F" secondAttribute="top" constant="-20" id="wIQ-nA-kVr"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Buttery" id="EcO-E5-owo">
@@ -1127,6 +1147,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="Tjf-vv-54B" id="Ip3-Sj-P2M"/>
+                        <outlet property="isOpenConstraint" destination="wIQ-nA-kVr" id="Ped-ja-SOt"/>
+                        <outlet property="isOpenView" destination="vCS-Ci-NVi" id="2BJ-tB-8J4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zfZ-rO-ler" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1505,7 +1527,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="wAp-vD-4fF"/>
+        <segue reference="W6f-3I-Nsr"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="BarIcon" width="25" height="25"/>

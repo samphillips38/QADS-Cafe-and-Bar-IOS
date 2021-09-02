@@ -12,8 +12,8 @@ private let reuseIdentifier = "ButteryCVC"
 
 class ButteryViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
-//    @IBOutlet weak var isOpenView: UIView!
-//    @IBOutlet weak var isOpenConstraint: NSLayoutConstraint!
+    @IBOutlet weak var isOpenView: UIView!
+    @IBOutlet weak var isOpenConstraint: NSLayoutConstraint!
     @IBOutlet weak var collectionView: UICollectionView!
     
     var categoryList = CategoryList()
@@ -35,9 +35,9 @@ class ButteryViewController: UIViewController, UICollectionViewDelegate, UIColle
         collectionView.dataSource = self
         
         //Set open status
-//        setOpenStatus {
-//            //Do something depending on outcome
-//        }
+        setOpenStatus {
+            //Do something depending on outcome
+        }
 
         //Set up the xib file for the event cells
         let nib = UINib(nibName: "CategoriesCollectionViewCell",bundle: nil)
@@ -66,9 +66,9 @@ class ButteryViewController: UIViewController, UICollectionViewDelegate, UIColle
     //refresh control
     @objc func refreshData() {
         //Refresh data
-//        setOpenStatus {
-//            self.refreshControl.endRefreshing()
-//        }
+        setOpenStatus {
+            self.refreshControl.endRefreshing()
+        }
     }
     
     func setTitleImage() { //not implemented right now
@@ -87,55 +87,55 @@ class ButteryViewController: UIViewController, UICollectionViewDelegate, UIColle
     }
     
     
-//    func setOpenStatus(Completion: @escaping () -> Void) {
-//
-//        //Load Firestore Database
-//        let db = Firestore.firestore()
-//
-//        //Get all active Events
-//        db.collection("locations").whereField("name", isEqualTo: "Bar").getDocuments() { (querySnapshot, err) in
-//                if let err = err {
-//                    print("Error getting categories: \(err)")
-//                } else {
-//                    for document in querySnapshot!.documents {
-//
-//                        let doc = document.data() as [String : Any]
-//                        self.isOpen = (doc["open"] as? Bool) ?? true
-//
-//                        //Animate banner
-//                        self.animateOpenBanner()
-//                    }
-//                }
-//                Completion()
-//        }
-//    }
+    func setOpenStatus(Completion: @escaping () -> Void) {
+
+        //Load Firestore Database
+        let db = Firestore.firestore()
+
+        //Get all active Events
+        db.collection("locations").whereField("name", isEqualTo: constants.buttery).getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting categories: \(err)")
+                } else {
+                    for document in querySnapshot!.documents {
+
+                        let doc = document.data() as [String : Any]
+                        self.isOpen = (doc["open"] as? Bool) ?? true
+
+                        //Animate banner
+                        self.animateOpenBanner()
+                    }
+                }
+                Completion()
+        }
+    }
     
-//    func animateOpenBanner() {
-//        if isOpen {
-//            self.view.layoutIfNeeded()
-//            UIView.animate(withDuration: 0.3, animations: {
-//                self.isOpenConstraint.constant = -20
-//                self.view.layoutIfNeeded()
-//            }, completion: nil)
-//        } else {
-//            self.view.layoutIfNeeded()
-//            UIView.animate(withDuration: 0.3, animations: {
-//                self.isOpenConstraint.constant = 0
-//                self.view.layoutIfNeeded()
-//            }, completion: nil)
-//        }
-//    }
+    func animateOpenBanner() {
+        if isOpen {
+            self.view.layoutIfNeeded()
+            UIView.animate(withDuration: 0.3, animations: {
+                self.isOpenConstraint.constant = -20
+                self.view.layoutIfNeeded()
+            }, completion: nil)
+        } else {
+            self.view.layoutIfNeeded()
+            UIView.animate(withDuration: 0.3, animations: {
+                self.isOpenConstraint.constant = 0
+                self.view.layoutIfNeeded()
+            }, completion: nil)
+        }
+    }
     
-//    func shakeBanner() {
-//        //Banner will shake
-//        let animation = CABasicAnimation(keyPath: "position")
-//        animation.duration = 0.07
-//        animation.repeatCount = 4
-//        animation.autoreverses = true
-//        animation.fromValue = NSValue(cgPoint: CGPoint(x: isOpenView.center.x - 5, y: isOpenView.center.y))
-//        animation.toValue = NSValue(cgPoint: CGPoint(x: isOpenView.center.x + 5, y: isOpenView.center.y))
-//        isOpenView.layer.add(animation, forKey: "position")
-//    }
+    func shakeBanner() {
+        //Banner will shake
+        let animation = CABasicAnimation(keyPath: "position")
+        animation.duration = 0.07
+        animation.repeatCount = 4
+        animation.autoreverses = true
+        animation.fromValue = NSValue(cgPoint: CGPoint(x: isOpenView.center.x - 5, y: isOpenView.center.y))
+        animation.toValue = NSValue(cgPoint: CGPoint(x: isOpenView.center.x + 5, y: isOpenView.center.y))
+        isOpenView.layer.add(animation, forKey: "position")
+    }
 
     // MARK:- UICollectionViewDataSource
 
@@ -175,7 +175,7 @@ class ButteryViewController: UIViewController, UICollectionViewDelegate, UIColle
         
         //If closed do nothing
         if !self.isOpen {
-//            shakeBanner()
+            shakeBanner()
             return
         }
         
