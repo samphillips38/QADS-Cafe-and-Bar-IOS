@@ -794,13 +794,13 @@
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO;
 				CODE_SIGN_ENTITLEMENTS = "QADS Cafe and Bar/QADS Cafe and Bar.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = X9F3S93MFG;
+				DEVELOPMENT_TEAM = 3466PK96GX;
 				INFOPLIST_FILE = "QADS Cafe and Bar/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.samphillips.QADS-Cafe-and-Bar";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.samphillips.QADS-Cafe-and-Bar-ID";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_VERSION = 5.0;
@@ -817,13 +817,13 @@
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO;
 				CODE_SIGN_ENTITLEMENTS = "QADS Cafe and Bar/QADS Cafe and Bar.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = X9F3S93MFG;
+				DEVELOPMENT_TEAM = 3466PK96GX;
 				INFOPLIST_FILE = "QADS Cafe and Bar/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.samphillips.QADS-Cafe-and-Bar";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.samphillips.QADS-Cafe-and-Bar-ID";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_VERSION = 5.0;

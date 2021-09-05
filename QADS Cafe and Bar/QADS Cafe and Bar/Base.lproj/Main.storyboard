@@ -904,7 +904,7 @@
                                 </connections>
                             </button>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="CartIcon" id="Qt4-4Z-cCN">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="BasketIcon" id="Qt4-4Z-cCN">
                             <connections>
                                 <segue destination="4th-dM-dxE" kind="show" id="16e-Q8-fML"/>
                             </connections>
@@ -1063,7 +1063,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Queens' Bar" id="tfk-eA-OMr">
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="CartIcon" id="kQ3-Zv-Qcy">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="BasketIcon" id="kQ3-Zv-Qcy">
                             <connections>
                                 <segue destination="4th-dM-dxE" kind="show" id="W6f-3I-Nsr"/>
                             </connections>
@@ -1139,7 +1139,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Buttery" id="EcO-E5-owo">
-                        <barButtonItem key="rightBarButtonItem" title="Basket" image="CartIcon" id="ace-5W-lQA">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="BasketIcon" id="ace-5W-lQA">
                             <connections>
                                 <segue destination="4th-dM-dxE" kind="show" id="wAp-vD-4fF"/>
                             </connections>
@@ -1506,7 +1506,7 @@
         <scene sceneID="pON-Aw-nrO">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="I5m-C4-RTP" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Buttery" id="mkz-SM-ces"/>
+                    <tabBarItem key="tabBarItem" title="Buttery" image="ButteryIcon" id="mkz-SM-ces"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="mnm-GA-rTf">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -1531,9 +1531,10 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="BarIcon" width="25" height="25"/>
+        <image name="BasketIcon" width="25" height="25"/>
         <image name="Bridge" width="1024" height="1024"/>
+        <image name="ButteryIcon" width="22.5" height="22.5"/>
         <image name="CafeIcon" width="25" height="25"/>
-        <image name="CartIcon" width="25" height="25"/>
         <image name="circle" catalog="system" width="128" height="121"/>
         <image name="qbar" width="864" height="864"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
