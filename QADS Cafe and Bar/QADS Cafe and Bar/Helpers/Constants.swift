@@ -23,7 +23,7 @@ struct constants {
     static let itemTitlePadding = CGFloat(349)
     static let optionTVOffset = CGFloat(96)
     static let allergyPadding = CGFloat(140)
-    static let itemCheckoutHeight = CGFloat(150)
+    static let itemCheckoutHeight = CGFloat(170)
     
     static let queensGreen = UIColor(red: 0.30, green: 0.69, blue: 0.31, alpha: 1.00)
     

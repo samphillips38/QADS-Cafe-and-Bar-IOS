@@ -37,7 +37,9 @@ class CheckoutCollectionViewCell: UICollectionViewCell {
     }
     
     @objc func addToBasketTapped(_ sender: UITapGestureRecognizer? = nil) {
-        if currentOrderItem.location == constants.cafe {
+        if !inStock { // Can't add - Not in stock
+            return
+        } else if currentOrderItem.location == constants.cafe {
             currentUser.cafeOrder.addItem(item: currentOrderItem)
         } else if currentOrderItem.location == constants.bar {
             currentUser.barOrder.addItem(item: currentOrderItem)
