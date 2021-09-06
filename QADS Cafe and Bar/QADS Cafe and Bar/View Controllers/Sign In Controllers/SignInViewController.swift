@@ -14,7 +14,7 @@ import FirebaseFirestore
 
 class SignInViewController: UIViewController {
     
-    @IBOutlet weak var googleSignInButtonView: GIDSignInButton!
+    @IBOutlet weak var googleSignInButtonView: UIView!
     @IBOutlet weak var appleButtonView: GIDSignInButton!
     
     
@@ -23,6 +23,18 @@ class SignInViewController: UIViewController {
         
         // Sets up the apple sign in button.
         setupAppleSignInButton()
+        layout()
+        
+        //Add gesture recogniser to view
+        googleSignInButtonView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(googleSignInTapped(_:))))
+    }
+    
+    func layout() {
+        //Sign in button
+        googleSignInButtonView.layer.borderColor = UIColor.black.cgColor
+        googleSignInButtonView.layer.borderWidth = 1
+        googleSignInButtonView.layer.backgroundColor = UIColor.white.cgColor
+        googleSignInButtonView.layer.cornerRadius = 10
     }
     
     //MARK:- Apple Sign In
@@ -70,12 +82,13 @@ class SignInViewController: UIViewController {
     
     //MARK:- Google Sign In
     
-    @IBAction func googleSignInTapped(_ sender: Any) {
+    @objc func googleSignInTapped(_ sender: Any) {
         print("Sign in with google tapped")
         guard let clientID = FirebaseApp.app()?.options.clientID else { return }
 
         // Create Google Sign In configuration object.
         let config = GIDConfiguration(clientID: clientID)
+        config.setValue("cam.ac.uk", forKey: "hostedDomain")
 
         // Start the sign in flow!
         GIDSignIn.sharedInstance.signIn(with: config, presenting: self) { [unowned self] user, error in
