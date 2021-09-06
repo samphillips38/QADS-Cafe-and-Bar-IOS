@@ -1140,6 +1140,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Buttery" id="EcO-E5-owo">
                         <barButtonItem key="rightBarButtonItem" title="Item" image="BasketIcon" id="ace-5W-lQA">
+                            <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <segue destination="4th-dM-dxE" kind="show" id="wAp-vD-4fF"/>
                             </connections>
@@ -1303,13 +1304,13 @@
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="uSt-9P-yxv">
                                                             <rect key="frame" x="0.0" y="0.0" width="168.5" height="20.5"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Name: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3zx-Ja-fAl">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" ambiguous="YES" text="Name: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3zx-Ja-fAl">
                                                                     <rect key="frame" x="0.0" y="0.0" width="56" height="20.5"/>
                                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rOE-9o-rzS">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Name Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rOE-9o-rzS">
                                                                     <rect key="frame" x="76" y="0.0" width="92.5" height="20.5"/>
                                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                                     <color key="textColor" systemColor="systemGray2Color"/>
@@ -1511,6 +1512,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="mnm-GA-rTf">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="barTintColor" red="0.0039215686269999999" green="0.2901960784" blue="0.015686274510000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1527,7 +1529,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="W6f-3I-Nsr"/>
+        <segue reference="wAp-vD-4fF"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="BarIcon" width="25" height="25"/>
