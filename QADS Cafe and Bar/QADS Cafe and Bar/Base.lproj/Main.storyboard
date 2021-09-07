@@ -62,6 +62,16 @@
                                 <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fGr-SW-8j7">
+                                <rect key="frame" x="148.5" y="664" width="117" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Demo Sign In">
+                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="demoButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="g8y-Tl-qqd"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="0.22352941179999999" green="0.56470588239999997" blue="0.39607843139999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -71,18 +81,21 @@
                             <constraint firstItem="dgc-vP-xzV" firstAttribute="top" secondItem="tfJ-As-XHA" secondAttribute="bottom" constant="40" id="LzI-2f-qGe"/>
                             <constraint firstItem="Bn7-yc-bTU" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="Pes-vH-Pc7"/>
                             <constraint firstItem="tfJ-As-XHA" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="UVt-al-kSa"/>
+                            <constraint firstItem="fGr-SW-8j7" firstAttribute="top" secondItem="sNx-Mu-fWb" secondAttribute="bottom" constant="20" id="Xvi-g2-KnW"/>
                             <constraint firstItem="Bn7-yc-bTU" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="70" id="grS-T9-Vv5"/>
                             <constraint firstItem="Bn7-yc-bTU" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="l3N-8o-OWO"/>
                             <constraint firstItem="sNx-Mu-fWb" firstAttribute="top" secondItem="dgc-vP-xzV" secondAttribute="bottom" constant="25" id="qSF-GM-P9C"/>
                             <constraint firstItem="dgc-vP-xzV" firstAttribute="width" secondItem="tfJ-As-XHA" secondAttribute="width" id="rpq-DX-5gf"/>
                             <constraint firstItem="sNx-Mu-fWb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="sfK-bC-bdp"/>
                             <constraint firstItem="dgc-vP-xzV" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="tVn-ol-Wsp"/>
+                            <constraint firstItem="fGr-SW-8j7" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="vI9-h3-x31"/>
                             <constraint firstItem="tfJ-As-XHA" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="yP3-wg-Bfj"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="bn7-1O-X9T"/>
                     <connections>
                         <outlet property="appleButtonView" destination="dgc-vP-xzV" id="bPX-wf-oAQ"/>
+                        <outlet property="demoButton" destination="fGr-SW-8j7" id="HD4-7U-kAV"/>
                         <outlet property="googleSignInButtonView" destination="tfJ-As-XHA" id="WJF-Ad-Weo"/>
                     </connections>
                 </viewController>
@@ -1330,13 +1343,13 @@
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="uSt-9P-yxv">
                                                             <rect key="frame" x="0.0" y="0.0" width="168.5" height="20.5"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Name: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3zx-Ja-fAl">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" ambiguous="YES" text="Name: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3zx-Ja-fAl">
                                                                     <rect key="frame" x="0.0" y="0.0" width="56" height="20.5"/>
                                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rOE-9o-rzS">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Name Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rOE-9o-rzS">
                                                                     <rect key="frame" x="76" y="0.0" width="92.5" height="20.5"/>
                                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                                     <color key="textColor" systemColor="systemGray2Color"/>

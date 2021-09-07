@@ -16,25 +16,48 @@ class SignInViewController: UIViewController {
     
     @IBOutlet weak var googleSignInButtonView: UIView!
     @IBOutlet weak var appleButtonView: GIDSignInButton!
-    
+    @IBOutlet weak var demoButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Layout
+        layout()
+        
         // Sets up the apple sign in button.
         setupAppleSignInButton()
-        layout()
         
         //Add gesture recogniser to view
         googleSignInButtonView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(googleSignInTapped(_:))))
     }
     
     func layout() {
+        setDemoButton()
+        
         //Sign in button
         googleSignInButtonView.layer.borderColor = UIColor.black.cgColor
         googleSignInButtonView.layer.borderWidth = 1
         googleSignInButtonView.layer.backgroundColor = UIColor.white.cgColor
         googleSignInButtonView.layer.cornerRadius = 10
+    }
+    
+    func setDemoButton() {
+        // Set demo mode button
+        let db = Firestore.firestore()
+        db.collection("settings").document("demoMode").getDocument { (document, err) in
+            if err != nil {
+                print("Error getting documents: \(String(describing: err))")
+            } else {
+                if let document = document, document.exists {
+                    let isActive = document.get("active") as? Bool
+                    if isActive ?? false {
+                        self.demoButton.isHidden = false
+                    }
+                } else {
+                    print("Document does not exist")
+                }
+            }
+        }
     }
     
     //MARK:- Apple Sign In
@@ -80,6 +103,28 @@ class SignInViewController: UIViewController {
         return request
     }
     
+    @IBAction func demoButton(_ sender: Any) {
+        
+        Auth.auth().signIn(withEmail: "qads.president@gmail.com", password: "QADSisgr8*") { authResult, error in
+            
+            if error != nil {
+                print("Error Logging In: ", error)
+            }
+            
+            currentUser.populateAsCurrentUser {
+                let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                
+                //Sign in to subscribe to topics
+                currentUser.signIn()
+
+                //This is an existing user - Go to MainTabBarController
+                let MainTabBarVC = storyBoard.instantiateViewController(withIdentifier: "MainTBC") as! UITabBarController
+
+                (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(MainTabBarVC)
+            }
+            
+        }
+    }
     //MARK:- Google Sign In
     
     @objc func googleSignInTapped(_ sender: Any) {
