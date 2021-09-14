@@ -3,9 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>1017654581310-g3f4nc4hpqmu3g18fd46u0f6i24bgpe2.apps.googleusercontent.com</string>
+	<string>1017654581310-qf0ho5t55d2mvherl6sfvstne434bj1h.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.1017654581310-g3f4nc4hpqmu3g18fd46u0f6i24bgpe2</string>
+	<string>com.googleusercontent.apps.1017654581310-qf0ho5t55d2mvherl6sfvstne434bj1h</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>1017654581310-ke64av3qulrriqk6vq4d2db8okte5vsa.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
 	<string>AIzaSyDrJGNFQ0wTF-lDviO3VnYmpky5UvkpUqk</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +15,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.samphillips.QADS-Cafe-and-Bar</string>
+	<string>com.samphillips.QADS-Cafe-and-Bar-ID</string>
 	<key>PROJECT_ID</key>
 	<string>qads-cafe-and-bar</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:1017654581310:ios:6a1d37745f2d45bc1bd96f</string>
+	<string>1:1017654581310:ios:bd79127584f346691bd96f</string>
 </dict>
 </plist>
