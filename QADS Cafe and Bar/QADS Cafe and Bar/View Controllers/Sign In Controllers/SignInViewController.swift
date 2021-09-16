@@ -239,11 +239,15 @@ extension SignInViewController: ASAuthorizationControllerDelegate {
                     //Change the root ViewController
                     let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                     if (authDataResult?.additionalUserInfo!.isNewUser)! {
-                        
-                        //This is a new user - Go to SignInViewController
-                        let SignInNVC = storyBoard.instantiateViewController(withIdentifier: "SignUpVC") as! SignUpViewController
-                        
-                        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(SignInNVC)
+                        currentUser.firstName = appleIDCredential.fullName?.givenName
+                        currentUser.lastName = appleIDCredential.fullName?.familyName
+                        currentUser.make {
+                            currentUser.signIn()
+                            //Infer details and sign up
+                            let HomeVC = storyBoard.instantiateViewController(withIdentifier: "MainTBC") as! MainTabBarViewController
+                            
+                            (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(HomeVC)
+                        }
                         
                     } else {
                         
@@ -252,11 +256,16 @@ extension SignInViewController: ASAuthorizationControllerDelegate {
                             
                             //Check for filled in info
                             if currentUser.uid == nil {
-                                
-                                //This is a new user - Go to SignInViewController
-                                let SignInNVC = storyBoard.instantiateViewController(withIdentifier: "SignUpVC") as! SignUpViewController
-                                
-                                (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(SignInNVC)
+                                // This is a new user
+                                currentUser.firstName = appleIDCredential.fullName?.givenName
+                                currentUser.lastName = appleIDCredential.fullName?.familyName
+                                currentUser.make {
+                                    currentUser.signIn()
+                                    //Infer details and sign up
+                                    let HomeVC = storyBoard.instantiateViewController(withIdentifier: "MainTBC") as! MainTabBarViewController
+                                    
+                                    (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(HomeVC)
+                                }
                             } else {
                                 
                                 //Sign in to subscribe to topics

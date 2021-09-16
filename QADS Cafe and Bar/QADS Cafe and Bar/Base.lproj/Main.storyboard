@@ -63,9 +63,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fGr-SW-8j7">
-                                <rect key="frame" x="148.5" y="664" width="117" height="36"/>
+                                <rect key="frame" x="149.5" y="664" width="115" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Demo Sign In">
+                                <state key="normal" title="Other Sign In">
                                     <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
@@ -115,7 +115,7 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TxP-A2-mXm" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="980"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="930"/>
                                         <subviews>
                                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j1w-Ef-AkW">
                                                 <rect key="frame" x="20" y="347" width="374" height="30"/>
@@ -140,7 +140,7 @@
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cvZ-GG-gb2">
-                                                <rect key="frame" x="177" y="697" width="60" height="33"/>
+                                                <rect key="frame" x="177" y="647" width="60" height="33"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <state key="normal" title="Sign Up">
                                                     <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -178,7 +178,7 @@
                                         <constraints>
                                             <constraint firstItem="iEc-jC-oFw" firstAttribute="centerY" secondItem="i9O-hh-v3K" secondAttribute="centerY" id="1QP-dO-HfA"/>
                                             <constraint firstItem="rCI-Kk-yw4" firstAttribute="top" secondItem="TxP-A2-mXm" secondAttribute="top" constant="50" id="7FO-tZ-X7c"/>
-                                            <constraint firstItem="cvZ-GG-gb2" firstAttribute="top" secondItem="i9O-hh-v3K" secondAttribute="bottom" constant="80" id="9pV-zW-FHI"/>
+                                            <constraint firstItem="cvZ-GG-gb2" firstAttribute="top" secondItem="i9O-hh-v3K" secondAttribute="bottom" constant="30" id="9pV-zW-FHI"/>
                                             <constraint firstItem="wVI-2r-zGv" firstAttribute="height" secondItem="ht1-Gz-EFL" secondAttribute="height" id="JN6-Il-N3g"/>
                                             <constraint firstItem="rCI-Kk-yw4" firstAttribute="centerX" secondItem="TxP-A2-mXm" secondAttribute="centerX" id="M3K-hu-q3G"/>
                                             <constraint firstItem="wVI-2r-zGv" firstAttribute="leading" secondItem="ht1-Gz-EFL" secondAttribute="leading" id="QFi-4P-ohB"/>
@@ -1343,13 +1343,13 @@
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="uSt-9P-yxv">
                                                             <rect key="frame" x="0.0" y="0.0" width="168.5" height="20.5"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" ambiguous="YES" text="Name: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3zx-Ja-fAl">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Name: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3zx-Ja-fAl">
                                                                     <rect key="frame" x="0.0" y="0.0" width="56" height="20.5"/>
                                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Name Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rOE-9o-rzS">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rOE-9o-rzS">
                                                                     <rect key="frame" x="76" y="0.0" width="92.5" height="20.5"/>
                                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                                     <color key="textColor" systemColor="systemGray2Color"/>
